@@ -1,0 +1,15 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block container %}
+    <h1>Editar Agencia</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('dashboard_agencia') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

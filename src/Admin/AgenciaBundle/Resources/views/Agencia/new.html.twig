@@ -1,0 +1,76 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-lg-12">
+        <h1>Formulario de registro Agencia</h1>
+
+    </div>
+    {{ form_start(form) }}
+    <div class="col-lg-6 form-group">    
+        {{ form_row(form.categoria,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.nombreagencia,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.pais,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.ciudad,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.nit,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.telefono,{
+                                        'attr': {'class':'form-control form-group','rows':'9'}
+
+                                     })
+        }}
+
+
+    </div>
+    <div class="col-lg-6 form-group">
+        {{ form_row(form.direccion,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.email,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+        }}
+        {{ form_row(form.descripcion,{
+                                        'attr': {'class':'form-control form-group','rows':'13'}
+
+                                     })
+        }}
+
+
+    </div>
+    <div class="col-lg-12 form-group">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        
+        {{ form_row(form.submit, { 'label': 'Registrar agencia','attr': {'class':'btn btn-default btn-block' }}) }}
+    </div>
+    <div class="col-lg-4">
+        </div>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+
+

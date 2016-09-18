@@ -1,0 +1,25 @@
+{% for entity in entities %}
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+        {% if entity.idPhoto.image == '' %}
+            <img height="auto" data-src="{{ asset('images/noimage.jpg')}}"  src="{{ asset('images/noimage.jpg')}}" width="100%" > 
+        {% else %}
+            <img height="auto" data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(210,210)}}" width="100%" class="img-thumbnail" src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"> 
+        {%endif%}
+                                
+                    
+       
+    </div>
+{% endfor %}
+<script>
+    (function ($) {
+
+        /* tooltip */
+        $('a[data-toggle="tooltip"]').tooltip();
+
+    })(jQuery);
+</script>
+
+
+
+
+

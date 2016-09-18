@@ -1,0 +1,199 @@
+{% extends "AdminMyaccountBundle:Account:index.html.twig" %}
+{% block container %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-10 col-lg-10 info">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <h1 id="nameProfile"><span class="glyphicon glyphicon-user"></span> {{entity.nombre}}<small> {{entity.apellido}}</small></h1>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <h1> Edad:                  {% set number1 = entity.fechaNac|date("Y") %}
+                    {% set number2 = "now"|date("Y") %}
+                    {% set aux= ((number2 - number1)) %}
+                    {{aux}}
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-6">                
+                        <label>Tipo de Documento</label>
+                        {{ entity.tipoDocumento }}
+                    </div>
+                    <div class="col-md-6">                
+                        <label>Documento</label>
+                        {{ entity.nit }}
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label>Nombres</label>
+                        {{entity.nombre}}  
+                    </div>
+                    <div class="col-md-6">
+                        <label>Apellidos</label>
+                        {{entity.apellido}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label>Whatsapp</label>
+                        {{ entity.telefonoAdic }}
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Telefono celular</label>
+                        {{ entity.telCe }}
+                    </div>
+                </div>
+                <div class="form-group">                
+                    <div class="col-md-6">
+                        <label>Correo Electronico</label>
+                        {{ entity.emailPersonal }}
+                    </div>
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>Fecha de nacimiento</label>
+                        {{ entity.fechaNac|date('Y-m-d') }}
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Genero</label>
+                        {{ entity.sexo }}
+
+                    </div>
+                    <div class="col-md-4">
+                        <label>Area artistica</label>
+                        {{ entity.Campoartistico}}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Estatura</label>
+                        {{ entity.estatura}}
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Estudios</label>
+                        {{ entity.Estudios}}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Peso</label>
+                        {{ entity.peso}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Direccion de casa</label>
+                        {{ entity.dirCasa}}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Ciudad de residencia</label>
+                        {{ entity.ciudadresidencia}}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Pais de nacimiento</label>
+                        {{ entity.paisNacimiento }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Deportes</label>
+                        {{ entity.deportes }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Maneja</label>
+                        {{ entity.maneja }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Idiomas</label>
+                        {{ entity.idiomas}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Habilidades</label>
+                        {{ entity.habilidades }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Entidad de salud</label>
+                        {{ entity.entidadSalud }}
+                    </div>
+
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Color de piel</label>
+                        {{ entity.piel }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Color ojos</label>
+                        {{ entity.ojos }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Color de Cabello</label>
+                        {{ entity.pelo }}
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+
+                        <label>Talla de camisa</label>
+                        {{ entity.tallaCamisa }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Talla de chaqueta</label>
+                        {{ entity.tallaChaqueta }}
+                    </div>
+                    <div class="col-md-4">
+                        <label>Talla Pantalon</label>
+                        {{ entity.tallaPantalon }}                </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Talla Zapato</label>
+                        {{ entity.TallaZapato }}
+                    </div>                
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-12">
+
+                        <label>Experiencia</label>
+                        {{ entity.experienciaTv }}
+                    </div>                
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+
+                        <label>Fecha Creacion</label>
+                        {{ entity.fecha|date('Y-m-d H:i:s') }}
+                    </div>                
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+
+                        <label>Fecha Actualizacion</label>
+                        {{ entity.fechaupdate|date('Y-m-d H:i:s') }}
+                    </div>                
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                <a  class='btn btn-default btn-block' id="boton2" href="{{ path('Myaccount_perfil_edit') }}">
+                    Editar
+                </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-10 col-lg-10 info">
+            {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <a href="{{path('Myaccount_photo_list')}}" class="btn  btn-default" id="boton2">Modificar Fotos</a>
+            </div>
+    </div>
+    {% endblock container %}

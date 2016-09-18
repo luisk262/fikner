@@ -1,0 +1,92 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-lg-12">
+    <h1>Agencia</h1>
+
+    <table class="table table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombreagencia }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ entity.direccion }}</td>
+            </tr>
+            <tr>
+                <th>nit</th>
+                <td>{{ entity.nit }}</td>
+            </tr>
+            
+            <tr>
+                <th>Pais</th>
+                <td>{{ entity.pais }}</td>
+            </tr>
+            <tr>
+                <th>Ciudad</th>
+                <td>{{ entity.ciudad }}</td>
+            </tr>
+            <tr>
+                <th>Pagina web</th>
+                <td>{{ entity.paginaweb }}</td>
+            </tr>
+            <tr>
+                <th>Grupo facebook</th>
+                <td>{{ entity.grupofb }}</td>
+            </tr>
+            <tr>
+                <th>Youtube</th>
+                <td>{{ entity.youtube }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ entity.twitter }}</td>
+            </tr>
+            
+            <tr>
+                <th>categoria</th>
+                <td>{{ entity.categoria }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ entity.descripcion }}</td>
+            </tr>
+            
+            <tr>
+                <th>Nomreplegal</th>
+                <td>{{ entity.nomsRepLegal }}</td>
+            </tr>
+             <tr>
+                <th>Nomreplegal</th>
+                <td>{{ entity.apellsRepLegal }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('dashboard_agencia') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('dashboard_agencia_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+   </div>
+{% endblock %}

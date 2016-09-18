@@ -1,0 +1,48 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_USER:        ROLE_USER
+        ROLE_CORDI:       ROLE_CORDI
+        ROLE_RECLU:       ROLE_RECLU
+        ROLE_AGENC:       ROLE_AGENC
+        ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN
+    providers:
+        chain_providers:
+            chain:
+                providers: [ fos_userbundle, in_memory]
+        in_memory:
+            memory:
+                users:                   
+                    admin: { password: A1v2r3z, roles: [ 'ROLE_SUPER_ADMIN' ] }
+        fos_userbundle:
+            id: fos_user.user_provider.username
+                
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: chain_providers
+                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+
+            logout:       true
+            anonymous:    true
+            remember_me:
+                key:      aSecretKey
+                lifetime: 3600
+                path:     /
+                domain:   localhost
+    
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/dashboard/*, role: [ROLE_SUPER_ADMIN] }
+        - { path: ^/dashboard/hojadevida/*, role: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+        - { path: ^/Agencia/dashboard/*, role: [ROLE_AGENC] }
+        - { path: ^/Reclutador/dashboard/*, role: [ROLE_RECLU] }
+        - { path: ^/Myaccount/*, role: [ROLE_USER] }
+        - { path: ^/Empresa/*, role: [ROLE_USER] }
+    #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

@@ -1,0 +1,26 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+
+{% block container %}
+     <h1>Nueva solicitud</h1>
+
+    {{ form_start(form) }}
+     {{ form_row(form.nombre,{
+                                       'attr': {'class':'form-control'}
+                                       
+                                     })}}
+{{ form_row(form.observaciones,{
+                                       'attr': {'class':'form-control','rows':'10'}
+                                       
+                                     })}}
+{{ form_row(form.privado)}}
+     <p>Si la solicitud es publica, aparecera en su fikner-page</p>
+   
+                                     {{ form_end(form) }}
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('Agencia_dashboard_solicitud') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+    <div class="container">
+        {% if error != true %}
+            <div class="row">
+                <div class="col-xs-10 col-sm-12 col-md-10 col-lg-10" id="inscrito">
+
+                    <div class="alert alert-success" role="alert">
+
+                        <p align="center">
+                            ¡Felicidades, {{nombre}} {{apellidos}} El registro ha finalizado.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        {%else%}
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10" id="inscrito">
+                    <br>
+                    <br>
+                    <div class="alert alert-warning" role="alert">
+                        <p align="center">
+                            ¡Ups! No se registró la agencia. </p>
+                        <p align="center">Parece ser que otro usuario ya registró esta agencia. </p>
+                        <p align="center">Para mayor información solicita soporte en youfikner@gmail.com</p>
+                    </div>
+
+                </div>
+            </div>
+        {% endif %} 
+    </div>
+{% endblock  %}

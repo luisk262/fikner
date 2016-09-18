@@ -1,0 +1,52 @@
+<div class="col-md-12">
+    {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
+</div>
+{% for entity in entities %}
+    <div class="col-lg-4">
+        <div class="thumbnail">
+            <div class="col-md-2">
+                <input type="checkbox" name="entities[]" value="{{entity.id}}">
+            </div>
+            {% if entity.idPhoto.image == '' %}
+                <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.id}) }}" target="_blank">
+                    <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}" data-holder-rendered="true" style="width: 100%; display: block;"> 
+                </a>
+            {% else %}
+                <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.id}) }}" target="_blank">
+                    <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}" data-holder-rendered="true" style=" width: 100%; display: block;"> 
+                </a>
+            {%endif%}
+            <div class="caption"> 
+                <h3>{{ entity.idHojadevida.nombre }}<br>
+                    <small>{{ entity.idHojadevida.apellido }}</small>
+                </h3> 
+                <label>Ciudad:</label>{{ entity.idHojadevida.ciudadresidencia }}<br>
+                {{ entity.idHojadevida.emailPersonal }}<br>
+                <label>Estatura:</label>{{ entity.idHojadevida.estatura }}<br>
+                {% set number1 = entity.idHojadevida.fechaNac|date("Y") %}
+                {% set number2 = "now"|date("Y") %}
+                {% set aux= ((number2 - number1)) %}
+                <label>Edad:</label>{{aux}}<br>
+                <Label>Celular:</label>
+                    {{ entity.idHojadevida.telCe }}
+            </div> 
+        </div>    
+    </div>
+{% endfor %}
+
+<div class="col-md-12">
+    {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
+</div>
+<script>
+    (function ($) {
+
+        /* tooltip */
+        $('a[data-toggle="tooltip"]').tooltip();
+
+    })(jQuery);
+</script>
+
+
+
+
+

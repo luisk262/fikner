@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/jpeg" href="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title>{% block title %} Fikner{% endblock %}</title>
+        <meta name="description" content="Fikner es la plataforma que busca integrar todas las agencias de television, personal de apoyo, modelos,Figurantes (etc)">
+        <meta name="keywords" content="fikner,Trabaja,Tabajo,extra,figurante,modelo,actor,bogota,colombia,evento,publicidad,actriz,Cantante,Locutor,Actuacion,cine,
+              Novela,camara,Casting,Imagen,Television,Talento,Estilo,arte,caracol,rti,rcn,canal,teleantioquia,señal,cable,centro,institucional,trece,13,zoom,City,uno,locacion,carro,peter,personal,apoyo,tv">
+
+        {% block styles %}
+            <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{asset('css/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
+         <link href="{{ asset('css/styles/css/select2.css') }}" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+        {% block menu %}
+                {% include "AdminAdminBundle:views:menu.html.twig" %}            
+        {% endblock menu %}
+        {% block section %}
+        <section class="dashboard">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="container">
+                        {% if not is_granted("ROLE_SUPER_ADMIN") %}
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 info">
+                                    <h1> "Usted no tiene permisos para acceder a este apartado."</h1>
+                                </div>
+                            </div>
+                        {%else%}
+                            {% block container %}
+                            {% endblock %}
+                        {% endif  %}
+
+                    </div>
+                </div>
+            </div>
+        </section>        
+        {% endblock %}
+        {% block footer %}
+            <footer>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="footerBackground">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 animatedParent" data-sequence='700' id="textoFooter">
+                                    NUESTROS PRODUCTOS
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <a href="#" target="_blank"><li class="animated bounceInLeft" data-id='1'><img src="{{asset('images/logo/logo_digital_gray.png')}}" alt="" height="50px"></li></a>
+                                        <!--<li class="animated bounceInLeft" data-id='2'><a href="#" target="_blank"><img src="images/logo/alive.png" alt="" height="12px"> </a></li>-->
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" id="textoFooter">
+                                    + INFO
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <li><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Términos y condiciones</li>
+                                        <li><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda </li>
+                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  Bogotá D.C., Colombia</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="textoFooter">
+                                    BLOGS
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <li><a href="https://medium.com/@digitalhype.co" target="_blank"><img src="{{asset('images/logo/medium.png')}}" alt="" height="20px"> Medium</a></li>
+                                        <!--<li><a href="#"><img src="images/logo/compania/alive.png" alt="" height="12px"></a></li>
+                                        <li><a href="#"><img src="images/logo/compania/main.png" alt="" height="30px"></a></li>
+                                        <li><a href="#"><img src="images/logo/compania/aitv.png" alt="" height="30px"></a></li>-->
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="textoFooter">
+                                    REDES
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <li><a href="https://www.facebook.com/YouFikner/?fref=ts" target="_blank"><img src="{{asset('images/social/f.png')}}" alt="" height="35px" id="social"></a> Facebook</li>
+                                        <li><a href="https://twitter.com/YouFikner" target="_blank"><img src="{{asset('images/social/t.png')}}" alt="" height="35px" id="social"></a> Twitter</li>
+                                        <li><a href="#" target="_blank"><img src="{{asset('images/social/y.png')}}" alt="" height="35px" id="social"></a> Youtube</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animatedParent">
+                                    <p id="fiknerCredits">
+                                        Fikner © 2016 | Español (COL)
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+    </body>
+    {% block javascript %}
+        <script type="text/javascript" src="{{asset('js/jquery-1.12.1.min.js')}}" charset="UTF-8"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+    {%endblock%}
+</html>

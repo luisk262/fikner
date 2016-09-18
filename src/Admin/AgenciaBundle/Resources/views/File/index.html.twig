@@ -1,0 +1,46 @@
+{% extends "AdminMyaccountBundle::layout.html.twig" %}
+{% block styles %}	
+    {{parent()}}
+{%endblock%}
+{% block body %}
+    {% block menu %}
+        {{parent()}}
+    {%endblock%}
+    <div class="contenido">
+        <div class="container">            
+            <div class="col-lg-12 cuadro-azul">
+                <div class="formulario">
+                    {% block container %}
+                        <div class="col-lg-12 page-header">
+                            <div class="col-lg-10">
+                                <h1 >Book </h1>
+                            </div>
+                            <div class="col-lg-2">
+                                <a href="{{path('Myaccount')}}" class="btn btn-primary btn-block ">
+                                    <i class="glyphicon glyphicon-home"></i>
+                                    Página principal
+                                </a>
+                                {% if not max %}
+                                    <a href="{{ path('Myaccount_photo_new') }}" class="btn btn-success btn-block ">
+                                        <i class="glyphicon glyphicon-upload"></i> Subir Foto
+                                    </a>
+                                {%endif%}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    {% endblock javascripts %}
+
+{% endblock %}

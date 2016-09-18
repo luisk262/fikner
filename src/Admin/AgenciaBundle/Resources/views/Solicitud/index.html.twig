@@ -1,0 +1,44 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% set Solicitud=0%}
+{% for plan in AgenciaP %}
+    {% if plan.codigo ==2007%}
+        {% set Solicitud=1%}
+    {%endif%}
+{%endfor%}
+{% block container %}
+    {%if not Solicitud %}
+        <div class="col-lg-12">
+            <h2>No tiene permiso para acceder a este repositorio.</h2>
+        </div>
+    {%else%}
+        <div class="col-lg-12">
+            <div class="row page-header"> 
+                <div class="">
+                    <div class="col-md-10">
+                        <h1><i class="glyphicon glyphicon-th-list"></i> Lista de solicitudes</h1>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ path('Agencia_dashboard_solicitud_new') }}" class="btn btn-default btn-block">
+                            Nueva
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for entity in entities %}
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><a href="{{ path('Agencia_dashboard_solicitud_show', { 'id': entity.id }) }}">{{ entity.nombre }}</a></div>
+                    <div class="panel-body"><p>{{ entity.observaciones }}</p>
+                        <p></p>
+                        <p>{% if entity.fechaprogramada %}{{ entity.fechainicio|date('Y-m-d H:i:s') }}{% endif %}</p>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="{{ path('Agencia_dashboard_solicitud_edit', { 'id': entity.id }) }}" class="btn btn-block btn-default">Editar</a>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {%endif%}
+{% endblock %}

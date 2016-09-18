@@ -1,0 +1,486 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-md-12">
+        <div class="col-md-10">
+            <div class="row">
+                <h3><span class="glyphicon glyphicon-list-alt"></span> Hojas de vida</h3>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <h3>
+                    <a href="{{ path('dashboard_hojadevida_new') }}" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span>
+                        Crear Nueva
+                    </a>
+                </h3>
+            </div>
+        </div>
+
+    </div>
+    <form  id="jsForm" role="form" method="GET" action="" class="form-horizontal col-lg-12">
+        <div class="col-lg-10">
+            <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
+            <div class="col-md-12">
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <input type="text" name="searchParam[general]" class="form-control" placeholder="Búsqueda rápida">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </div><!-- /btn-group -->
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-md-2">
+                    <select id="js-perpage" name="searchParam[perPage]" class="form-control">
+                        <option value="10" >10</option>
+                        <option value="20" selected>20</option>
+                        <option value="50">50</option>
+                        <option value="100" >100</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="js-perpage" name="searchParam[estado]" class="form-control">
+                        <option value="Todas" selected="">Todas</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Vetado" >Vetado</option>
+                    </select>
+                </div>
+                <div col-md-3>
+                    <h4>
+                        <input type="checkbox" id="checkall"   data-toggle="checkbox"> Seleccionar Todos
+                    </h4>
+                </div>
+                <hr>
+                <div id='dataContainer'>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <a  href="#" data-toggle="modal" data-target="#emailModal" id="js-email" class="btn btn-primary btn-block"><span class="fa fa-envelope-o"></span> Enviar Email</a>
+                <a href="#" data-toggle="modal" data-target="#searchModal" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-glass"></span> Búsqueda avanzada</a>
+                <a href="#" id="js-delete" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>            
+            </div>
+        </div>
+        <!-- Modal advanced search -->
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+            <div class="col-md-12">
+                <div class="modal-content col-md-12">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="searchModalLabel">Busqueda Avanzada</h4>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Id</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[id]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Ciudad de recidencia</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[ciudadresidencia]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Celular</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[telCe]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Edad</label>
+                                    <div class="col-sm-3">
+                                        <select name="searchParam[EdadMin]" class="form-control">
+                                            <option value="" selected="selected">Min</option>
+                                            {% for i in 0..100 %}
+                                                <option value="{{ i }}">{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select name="searchParam[EdadMax]" class="form-control">
+                                            <option value="" selected="selected">Max</option>
+                                            {% for i in 0..100 %}
+                                                <option value="{{ i }}">{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Documento</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[nit]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-5 control-label">Genero</label>
+                                    <div class="col-sm-6">
+                                        <select name="searchParam[sexo]" class="form-control">
+                                            <option value="" selected="selected">Seleccione tipo</option>
+                                            <option value="Masculino" >Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Pais de nacimiento </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[lugarNacimiento]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Estatura</label>
+                                    <div class="col-lg-3">
+                                        <select name="searchParam[EstaturaMin]" class="form-control">
+                                            <option value="" selected="selected">Min</option>
+                                            {% for i in 24..273 %}
+                                                <option value="{{ i }}">{{ i }} Cm</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <select name="searchParam[EstaturaMax]" class="form-control">
+                                            <option value="" selected="selected">Max</option>
+                                            {% for i in 24..273 %}
+                                                <option value="{{ i }}">{{ i }} Cm</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Fototipo de piel</label>
+                                    <div class="col-sm-6">
+                                        <select name="searchParam[piel]" class="form-control">
+                                            <option value="" selected="selected">Seleccione </option>
+                                            <option value="I" >I-Muy Blanca</option>
+                                            <option value="II">II-Blanca</option>
+                                            <option value="III">III-Ligeramente morena</option>
+                                            <option value="IV">IV-Morena</option>
+                                            <option value="V">V-Muy Morena</option>
+                                            <option value="VI">VI-Negra</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Color de ojos</label>
+                                    <div class="col-sm-6">
+                                        <select name="searchParam[ojos]" class="form-control">
+                                            <option value="" selected="selected">Seleccione </option>
+                                            <option value="Negro" >Negro</option>
+                                            <option value="Castaño">Castaño</option>
+                                            <option value="Ambar">Ambar</option>
+                                            <option value="Avellana">Avellana</option>
+                                            <option value="Azul">Azul</option>
+                                            <option value="Verde">Verde</option>
+                                            <option value="Gris">Gris</option>
+                                            <option value="Heterocromia">Heterocromia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Color de cabello</label>
+                                    <div class="col-sm-6">
+                                        <select name="searchParam[pelo]" class="form-control">
+                                            <option value="" selected="selected">Seleccione </option>
+                                            <option value="Negro" >Negro</option>
+                                            <option value="Castaño">Castaño</option>
+                                            <option value="Rubio-castañoclaro">Rubio o castaño claro</option>
+                                            <option value="Pelirojo">Pelirojo</option>
+                                            <option value="Gris">Gris o canoso</option>
+                                            <option value="Blanco">Blanco</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Peso</label>
+                                    <div class="col-lg-3">
+                                        <select name="searchParam[pesoMin]" class="form-control">
+                                            <option value="" selected="selected">Min</option>
+                                            {% for i in 2..597 %}
+                                                <option value="{{ i }}">{{ i }} Kg</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <select name="searchParam[pesoMax]" class="form-control">
+                                            <option value="" selected="selected">Max</option>
+                                            {% for i in 2..597 %}
+                                                <option value="{{ i }}">{{ i }} Kg</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Deportes</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[deportes]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Habilidades</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[habilidades]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Idiomas</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[idiomas]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Maneja</label>
+                                    <div class="col-sm-6">
+                                        <select id="admin_adminbundle_hojadevida_maneja" name="searchParam[maneja]" class="form-control"><option value=""selected="selected" >Seleccione</option><option value="No" >No</option><option value="Carro">Carro</option><option value="Moto">Moto</option><option value="Carro y Moto">Carro y Moto</option><option value="Otro">Otro</option></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Entidad de salud</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[entidadSalud]" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Categoría</label>
+                                    <div class="col-sm-6">
+                                        <select name="searchParam[categoria]" class="form-control">
+                                            <option value="" selected="selected">Seleccione</option>
+                                            <option value="Actor" >Actor</option><option value="Actor en formacion">Actor en formacion</option><option value="Figurante">Figurante</option><option value="Modelo A">Modelo A</option><option value="Modelo AA">Modelo AA</option><option value="Modelo AAA">Modelo AAA</option><option value="Extra A">Extra A</option><option value="Extra AA">Extra AA</option><option value="Extra AAA">Extra AAA</option></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Talla de camisa</label>
+                                    <div class="col-sm-6">
+                                        <select  name="searchParam[tallaCamisa]"  class="form-control">
+                                            <option value="" selected="selected">Seleccione </option>
+                                            <option value="0-1 Meses">0-1 Meses</option>
+                                            <option value="1-3 Meses">1-3 Meses</option>
+                                            <option value="3-6 Meses">3-6 Meses</option>
+                                            <option value="6-9 Meses">6-9 Meses</option>
+                                            <option value="9-12 Meses">9-12 Meses</option>
+                                            <option value="12-18 Meses">12-18 Meses</option>
+                                            <option value="12-24 Meses">12-24 Meses</option>
+                                            <option value="24-36 Meses">24-36 Meses</option>
+                                            <option value="USA-XXXS(0)">USA-XXXS(0)</option>
+                                            <option value="USA-XXS(2)">USA-XXS(2)</option>
+                                            <option value="USA-XS(4)">USA-XS(4)</option>
+                                            <option value="USA-S(6)">USA-S(6)</option>
+                                            <option value="USA-M(8)">USA-M(8)</option>
+                                            <option value="USA-L(10)">USA-L(10)</option>
+                                            <option value="USA-XL(12)">USA-XL(12)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Talla de pantalón</label>
+                                    <div class="col-sm-6">
+                                        <select  name="searchParam[tallaPantalon]" class="form-control">
+                                            <option value="" selected="selected">Seleccione </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="4" >4</option>
+                                            <option value="6">6</option>
+                                            <option value="8">8</option>
+                                            <option value="10">10</option>
+                                            <option value="12">12</option>
+                                            <option value="XS(26-28)">XS(26-28)</option>
+                                            <option value="S(29-31)">S(29-31)</option>
+                                            <option value="M(32-34)">M(32-34)</option>
+                                            <option value="L(35-37)">L(35-37)</option>
+                                            <option value="XL(38-40)">XL(38-40)</option>
+                                            <option value="XXL(41-43)">XXL(41-43)</option>
+                                        </select>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Talla de zapatos</label>
+                                    <div class="col-sm-6">
+                                        <select  name="searchParam[tallaZapato]" class="form-control"><option value="" selected="selected">Seleccione </option><option value="2.5  - 32">2.5 - 32</option><option value="3 - 32.5">3 - 32.5</option><option value="3.5 - 33">3.5 - 33</option><option value="4 - 33.5">4 - 33.5</option><option value="4.5 - 34">4.5 - 34</option><option value="5 - 35.5">5 - 35.5</option><option value="5.5 - 36" >5.5 - 36</option><option value="6 - 36.5">6 - 36.5</option><option value="6.5 - 37">6.5 - 37</option><option value="7 - 37.5">6 - 37.5</option><option value="7.5 - 38">7.5 - 38</option><option value="8 - 38.5">8 - 38.5</option><option value="8.5 - 39">8.5 - 39</option><option value="9 - 39.5">9 - 39.5</option><option value="9.5 - 40">9.5 - 40</option><option value="10 - 40.5">10 - 40.5</option><option value="10.5 - 41">10.5 - 41</option><option value="11 - 41.5">11 - 41.5</option><option value="11.5 - 42">11.5 - 42</option><option value="12 - 42.5">12 - 42.5</option><option value="12.5 - 43">12.5 - 43</option><option value="13 - 43.5">13 - 43.5</option><option value="13.5 - 44">13.5 - 44</option><option value="14 - 44.5">14 - 44.5</option><option value="14.5 - 45">14.5 - 45</option><option value="15 - 45.5">15 - 45.5</option><option value="15.5 - 46">15.5 - 46</option><option value="16 - 46.5">16 - 46.5</option><option value="16 - 47.5">16.5 - 47</option></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label">Etiqueta</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="searchParam[Tags]" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">                        
+                        <div class="container">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary btn-block">Filtrar</button>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal advanced search -->
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+            <div class="modal-dialog col-md-12">
+                <div class="modal-content col-md-12">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="searchModalLabel">Enviar correo electrónico</h4>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="form-group">
+                            <label for="" class="col-sm-5 control-label">Asunto</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="mail[Subject]" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-5 control-label">Cuerpo</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" name="mail[Body]" rows="8"></textarea>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button  id="js-email-submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascript %}
+    {{parent()}}
+    <script>
+        (function ($) {
+            /* helper functions */
+            function getCheckedRows() {
+                var users = [];
+                dataContainer.find('input:checkbox:checked').each(function () {
+                    users.push($(this).val());
+                });
+                return users.join(',');
+            }
+            function isSelected() {
+                if (!getCheckedRows()) {
+                    alert('Por favor seleccione una hoja de vida');
+                    return false;
+                }
+                ;
+                return true;
+            }
+            /* ajax dashboard*/
+            var form = $('#jsForm'),
+                    dataContainer = form.find('#dataContainer'),
+                    pageInput = form.find('#pagenumber'),
+                    searchModal = form.find('#searchModal'),
+                    deleteBtn = form.find('#js-delete'),
+                    emailBtn = form.find('#js-email'),
+                    emailSubmit = form.find('#js-email-submit'),
+                    emailModal = form.find('#emailModal'),
+                    jsFormUrl = '',
+                    checkboxBtn = form.find("input:checkbox");
+            /* pagination */
+            form.on('click', '.js-page', function () {
+                pageInput.val($(this).data('page'));
+                ajaxPost();
+            });
+            form.on('submit', function () {
+                ajaxPost();
+                return false;
+            });
+            function init() {
+                pageInput.val('1');
+                checkboxBtn.prop("checked", false);
+                jsFormUrl = '{{ path('hojadevida_ajax',{'page':current_page}) }}';
+            }
+            function ajaxPost(action, callback) {
+                form.addClass('working');
+                searchModal.modal('hide');
+                $.ajax({
+                    type: "GET",
+                    data: form.serialize(),
+                    url: jsFormUrl,
+                    success: function (data) {
+                        form.removeClass('working');
+                        if (callback)
+                            callback(data);
+                        init();
+                        if (!action)
+                            dataContainer.empty().hide().html(data).fadeIn();
+                        else
+                            ajaxPost();
+                    },
+                    error: function () {
+                        form.removeClass('working');
+                        alert('Hubo un error');
+                    }
+                });
+                return false;
+            }
+            /* submit the form after loading the page*/
+            init();
+            ajaxPost();
+            /*enviar email*/
+            emailBtn.on('click', function () {
+                if (!isSelected())
+                    return false;
+            });
+            emailSubmit.on('click', function () {
+                Enviarmail('mail');
+            });
+            function Enviarmail(action, callback) {
+                $('#panel').addClass('panel-warning').removeClass('panel-primary');
+                emailModal.modal('hide');
+                $.ajax({
+                    type: "GET",
+                    data: form.serialize(),
+                    url: '{{ path('dashboard_hojadevida_mail') }}',
+                    success: function (data) {
+                        $('#panel').addClass('panel-primary').removeClass('panel-warning');
+                        alert('Email enviado satisfactoriamente');
+
+                    },
+                    error: function () {
+                        alert('Hubo un error');
+                        $('#panel').addClass('panel-primary').removeClass('panel-warning');
+
+                    }
+                });
+                return false;
+            }
+            /* delete a user */
+            deleteBtn.on('click', function () {
+                if (!isSelected() || !confirm('Ultima Palabra?'))
+                    return false;
+                jsFormUrl = '{{ path('dashboard_hojadevida_remove') }}';
+                ajaxPost('delete');
+            });
+             /* check all check buttons*/
+            $("#checkall").click(function () {
+                if ($("#checkall").prop("checked"))
+                    $("input:checkbox").prop("checked", true);
+                else
+                    $("input:checkbox").prop("checked", false);
+            });
+
+        })(jQuery);
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,141 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-lg-12">
+        <div class="row page-header"> 
+            <div class="">
+                <div class="col-md-6">
+                    <h1><i class="glyphicon glyphicon-dashboard"></i> Editar agencia</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            {{ form_start(edit_form) }}
+            <div class="col-lg-6 form-group">
+                {{ form_row(edit_form.categoria,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.nombreagencia,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+               
+                {{ form_row(edit_form.nit,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.telefono,{
+                                        'attr': {'class':'form-control form-group','rows':'9'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.pais,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.ciudad,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.direccion,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+                 {{ form_row(edit_form.paginaweb,{
+                                        'attr': {'class':'form-control form-group'}
+                                     })
+                }}
+                {{ form_row(edit_form.grupofb,{
+                                        'attr': {'class':'form-control form-group'}
+                                     })
+                }}
+                {{ form_row(edit_form.youtube,{
+                                        'attr': {'class':'form-control form-group'}
+                                     })
+                }}
+                {{ form_row(edit_form.twitter,{
+                                        'attr': {'class':'form-control form-group'}
+                                     })
+                }}
+                
+
+
+            </div>
+            <div class="col-lg-6 form-group">
+                 {{ form_row(edit_form.descripcion,{
+                                        'attr': {'class':'form-control form-group','rows':'13'}
+
+                                     })
+                }}
+                 
+                {{ form_row(edit_form.email,{
+                                        'attr': {'class':'form-control form-group'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.firmaemail,{
+                                        'attr': {'class':'form-control form-group','rows':'13'}
+
+                                     })
+                }}
+                {{ form_row(edit_form.copiaemail,{
+                                        'attr': {'class':'form-group'}
+
+                                     })
+                }}
+               
+                {% set privacidad=0%}
+                {% for plan in AgenciaP %}
+                    {% if plan.codigo ==2004%}
+                        {% set privacidad=1%}
+                    {%endif%}
+                {%endfor%}
+                {%if privacidad%}
+                    {{ form_row(edit_form.privado,{
+                                        'attr': {'class':'form-group','onchange':'mostrar(this);'}
+
+                                     })
+                    }}
+                {%endif%}
+
+
+            </div>
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
+                {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-default btn-block' }}) }}
+
+            </div>
+            <div class="col-lg-4">
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+        <div class="col-lg-2">
+        </div>
+
+    </div>
+    <script type="text/javascript">
+
+        function mostrar() {
+            alert('Si la agencia es privada los talentos no podrán ver su agencia. Realice convocatorias usando su fikner-page, por cada talento nuevo que registre fikner regala uno adicional, no olvide que el personal puede decidir si permanece en su agencia o decide retirarse.');
+
+        }
+    </script>
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,105 @@
+.contenido {  
+  background: url('../../images/fondo.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    background-size: cover;
+ }
+ .cuadro-fondo {
+    background-color: black;
+    opacity: 0.9;
+    color: #00a8a8;
+}
+#logos{
+    text-align: center;
+}
+ .cuadro-fondo2{
+    opacity: 0.98;
+    }
+.contenedor-color{
+    background-color: black;
+    padding: 50px;
+    padding: 50px;
+   min-height: 400px; 
+}
+  .contenedor-color p{
+    color: #00a8a8;
+    text-align: center;
+    font-size: 27px;  
+  }
+.contenedor-color h2{
+    font-size: 30px;
+    color: #53d3d3;
+
+}
+.contenedor-color h4{
+    font-size: 20px;
+    color: #53d3d3;
+
+}
+@media (min-width: 1200px)
+.container {
+    width: 100%;
+}
+
+@media (min-width: 992px)
+.container {
+    width: 100%;
+}
+@media (min-width: 768px)
+.container {
+    width: 100%;
+}
+.container {
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+    }  
+ .vcenter {
+ 	display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+.logoprofile img{
+    width: 80px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-right: auto;
+    padding-left: auto;
+    display: block;
+}
+.botonsesion{
+        padding: 10px 0 0 0;
+}
+.navbar-default {
+    background-color: white;
+    border-color: #f8f8f8;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
+.texto{
+	padding: 25px 25px;
+}
+.colorfooter{
+ background-color: #114877;
+ color: #84b4db;   
+}
+.colorprincipalfoter{
+ background-color: #3f6889;   
+color: #84b4db;
+    
+}
+
+footer.short-2 {
+    width: 100%;
+    
+}
+
+

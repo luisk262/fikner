@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/jpeg" href="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title>{% block title %} Fikner   | Agencias de Casting | Agencias de modelaje | Agencias de btl y eventos |  {% endblock %}</title>
+        <!--facebook -->
+        <meta property="og:url"                content="http://www.fikner.com/" />
+        <meta property="og:type"               content="article" />
+        <meta property="og:title"              content="Fikner" />
+        <meta property="og:image"              content="{{web_image('images/background/Fb2.png')}}" />
+        <meta property="og:image:width" content="400">
+        <meta property="og:image:height" content="315">
+        <meta name="og:description" content="Fikner es la plataforma que integra las principales agencias de casting y modelaje del país.">
+        <meta name="keywords" content="fikner,Trabaja,Tabajo,extra,figurante,modelo,actor,bogota,colombia,evento,publicidad,actriz,Cantante,Locutor,Actuacion,cine,
+              Novela,camara,Casting,Imagen,Television,Talento,Estilo,arte,caracol,rti,rcn,canal,teleantioquia,señal,cable,centro,institucional,trece,13,zoom,City,uno,locacion,carro,peter,personal,apoyo,tv">
+        <!-- fin facebook-->
+        {% block styles %}
+            <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{asset('css/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
+        {% endblock %}    
+    </head>
+    <body>
+        {% block container %}
+            <div class="backgroundImage">
+                <header>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <ul id="social">
+                                            <li><p>social link:</p></li>
+                                            <li id="imgSocial"><a href="#" target="_blank"><img src="{{asset('images/social/f2.png')}}" alt="" height="35px" id="social"></a> </li>
+                                            <li id="imgSocial"><a href="https://twitter.com/YouFikner" target="_blank"><img src="{{asset('images/social/t2.png')}}" alt="" height="35px" id="social"></a> </li>
+                                            <li id="imgSocial"><a href="#" target="_blank"><img src="{{asset('images/social/y2.png')}}" alt="" height="35px" id="social"></a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-default"  data-offset-top="197">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="container">
+                                <div class="navbar-header">
+                                    <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                      <span class="sr-only">Toggle navigation</span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                    </button>-->
+                                    <a class="navbar-brand" href="{{path('principal')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="30px"></a>
+                                </div>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class=""><a href="{{path('Myaccount')}}"><button type="button" name="button">Iniciar sesión</button></a></li>
+                                    <!--<li class=""><a href="#contactUsSection">CONTACTO</a></li>-->
+                                </ul>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <!--<ul class="nav navbar-nav navbar-right">
+                                      <li class=""><a href="#optionSection"><button type="button" name="button">Iniciar sesión</button></a></li>
+                                      <li class=""><a href="#contactUsSection">CONTACTO</a></li>
+                                    </ul>-->
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </div>
+                    </nav>
+                </header>
+
+                <hr>
+
+                <section class="registrate">
+                    <div class="row" id="registrate">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <h1>El mundo del espectáculo</h1>
+                                        <h2>Espera por ti</h2>
+                                        <p>
+                                            Fikner es la plataforma que permite a los modelos, </p>
+                                        <p> Actores y Personal de apoyo tener un espacio para </p>
+                                        <p> Mostrar su book profesional además de ser </p>
+                                        <p>Encontrados por empresas y agencias interesadas </p>
+                                        <p>De una manera rápida y segura.
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <h1>Crea tu cuenta</h1>
+                                        <h2>Es completamente gratis</h2>
+                                        <div class="form-group">
+                                            {{ form_start(form) }}
+
+
+
+
+                                            {% if form_errors(form.plainPassword.first) or form_errors(form.email.first) or form_errors(form.telefono) %}
+                                                <div class="alert alert-danger">
+                                                    {{ form_errors(form.telefono) }}
+                                                    {{ form_errors(form.email.first) }}
+                                                    {{ form_errors(form.plainPassword.first) }}
+                                                </div>
+                                            {% endif%}
+
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    {{ form_widget(form.nombre,{
+                                    'attr': {'class':'form-control','placeholder':'Nombres*'}
+                                     })
+                                                    }}                    </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="espacio1">
+                                                    {{ form_widget(form.apellidos,{
+                                    'attr': {'class':'form-control','placeholder':'Apellidos*'}
+                                     })
+                                                    }}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <h4 id="fechaNacimiento">Fecha de nacimiento</h4>
+                                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                                                    {{ form_widget(form.fechanaci.year,{
+                                        'attr': {'class':'form-control form-group'}
+                                     })
+                                                    }}      
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                                                    {{ form_widget(form.fechanaci.month,{
+                                        'attr': {'class':'form-control form-group','id':'espacio2'}
+                                     })
+                                                    }}
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+
+                                                    {{ form_widget(form.fechanaci.day,{
+                                        'attr': {'class':'form-control form-group','id':'espacio3'}
+                                     })
+                                                    }}
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                    {{ form_widget(form.telefono,{
+                                    'attr': {'class':'form-control','placeholder':'Numero Celular*'}
+                                     })
+                                                    }}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    {{ form_widget(form.email.first,{
+                                    'attr': {'class':'form-control','placeholer':'Correo Electronico'}
+                                     })
+                                                    }}                        </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                                    {{ form_widget(form.email.second,{
+                                    'attr': {'class':'form-control','placeholer':'Correo Electronico'}
+                                     })
+                                                    }}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    {{ form_widget(form.plainPassword.first,{
+                                    'attr': {'class':'form-control'}
+                                     })
+                                                    }}                        </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    {{ form_widget(form.plainPassword.second,{
+                                    'attr': {'class':'form-control'}
+                                     })
+                                                    }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p id="terminos">
+                                        <h5>Al hacer clic confirmas que has leido los <a href="#">Terminos y condiciones</a> y los aceptas</h5>
+                                        </p>
+                                        {{ form_row(form.submit, {'attr': {'class':'btn btn-default'}}) }}
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section class="agencias">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <a href="{{path('Agencia_registration_create')}}"  class="btn btn-default">¡Regístrese como agencia GRATIS !</a>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <p>
+                                        ¿Necesitas modelos, actrices, actores y personal de apoyo?
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <section class="book">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <img src="{{asset('images/logo/fikner_logo2.png')}}" alt="" />
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h2>Estar en la T.V.</h2>
+                            <h1>Nunca fue tan fácil</h1>
+                            <p id="texto">
+                                Si tienes interés en participar en proyectos para televisión, comerciales, <br>
+                                fotografía, modelaje y más; puedes inscribirte en nuestra base de datos
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <hr>
+                            <h1 id="h1">Últimos books registrados</h1>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row">
+                                {{ render(controller('AdminAdminBundle:Default:ajaxtalentos')) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--
+    <section class="clientes">
+    <div class="row">
+    <div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h1>Nuestros clientes</h1>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" id="profiles">
+                <img src="" alt="" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" id="profiles">
+                <img src="" alt="" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" id="profiles">
+                <img src="" alt="" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" id="profiles">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+            -->
+        {%endblock%}
+
+        {% block footer %}
+            <footer>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="footerBackground">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 animatedParent" data-sequence='700' id="textoFooter">
+                                    NUESTROS PRODUCTOS
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <a href="#" target="_blank"><li class="animated bounceInLeft" data-id='1'><img src="{{asset('images/logo/logo_digital_gray.png')}}" alt="" height="50px"></li></a>
+                                        <!--<li class="animated bounceInLeft" data-id='2'><a href="#" target="_blank"><img src="images/logo/alive.png" alt="" height="12px"> </a></li>-->
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" id="textoFooter">
+                                    + INFO
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <li><a href="{{path('registration_terminos')}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Términos y condiciones</a></li>
+                                        <li><a href="{{path('Myaccount_calificacion')}}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Calificación de book</a></li>
+
+                                        <li><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda </li>
+                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  Bogotá D.C., Colombia</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="textoFooter">
+                                    BLOGS
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <li><a href="https://medium.com/@digitalhype.co" target="_blank"><img src="{{asset('images/logo/medium.png')}}" alt="" height="20px"> Medium</a></li>
+                                        <!--<li><a href="#"><img src="images/logo/compania/alive.png" alt="" height="12px"></a></li>
+                                        <li><a href="#"><img src="images/logo/compania/main.png" alt="" height="30px"></a></li>
+                                        <li><a href="#"><img src="images/logo/compania/aitv.png" alt="" height="30px"></a></li>-->
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="textoFooter">
+                                    REDES
+                                    <hr id="footerLine">
+                                    <ul>
+                                        <li><a href="https://www.facebook.com/YouFikner/?fref=ts" target="_blank"><img src="{{asset('images/social/f.png')}}" alt="" height="35px" id="social"></a> Facebook</li>
+                                        <li><a href="https://twitter.com/YouFikner" target="_blank"><img src="{{asset('images/social/t.png')}}" alt="" height="35px" id="social"></a> Twitter</li>
+                                        <li><a href="#" target="_blank"><img src="{{asset('images/social/y.png')}}" alt="" height="35px" id="social"></a> Youtube</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animatedParent">
+                                    <p id="fiknerCredits">
+                                        Fikner © 2016 | Español (COL)
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+    </body>
+    {% block javascript %}
+        <script type="text/javascript" src="{{asset('js/jquery-1.12.1.min.js')}}" charset="UTF-8"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-79661589-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    {%endblock%}
+</html>

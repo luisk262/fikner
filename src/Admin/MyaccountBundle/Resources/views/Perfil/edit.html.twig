@@ -1,0 +1,204 @@
+{% extends "AdminMyaccountBundle::layout.html.twig" %}
+
+{% block container %}
+    <div >
+        <h3><span class="glyphicon glyphicon-user"></span> Editar {{entity.nombre}}  {{entity.apellido}}</h3> 
+        {{ form_start(edit_form) }}
+        <div class="col-md-12" id="errors">
+            {{ form_errors(edit_form) }}
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-md-6">                
+                    {{ form_row(edit_form.tipoDocumento,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-6">                
+
+                    {{ form_row(edit_form.nit,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <center><label>Fecha de nacimiento</label></center>
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(edit_form.fechaNac.year,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(edit_form.fechaNac.month,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(edit_form.fechaNac.day,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.telefonoAdic,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.telCe,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                    }}                
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.telCasa,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                    }}                
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.sexo,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.Campoartistico,{
+                                        'attr': {'class':'form-control'}})
+                    }} 
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(edit_form.Estudios,{
+                                        'attr': {'class':'form-control'}})
+                    }} 
+
+                </div>
+                <div class="col-md-4">
+                    <label>Estatura en centimetos</label>
+                    <p>Ejemplo:158 medida en centimetros sin puntos ni comas</p>
+                    {{ form_widget(edit_form.estatura,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.peso,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.dirCasa,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.ciudadresidencia,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.paisnacimiento,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.deportes,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.maneja,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.idiomas,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.habilidades,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.entidadSalud,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.piel,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.ojos,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.pelo,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.tallaCamisa,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(edit_form.tallaPantalon,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.tallaZapato,{
+                                        'attr': {'class':'form-control'}})
+                    }}
+                </div>                
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {{ form_row(edit_form.experienciaTv,{
+                                        'attr': {'class':'form-control','rows':'9'}
+
+                                     })
+                    }}
+                </div>                
+            </div>                
+            <div class="col-md-12">
+                <br>
+
+                {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-primary bnt-block' }}) }}
+            </div>  
+        </div>
+        {{ form_end(edit_form) }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% for entity in entities %}
+    {% if entity.image == '' %}
+        <div class="col-lg-4 portfolio-item">
+            <a href="{{ path('Admin_photo_show', { 'id': entity.id }) }}" target="_blank">
+                <img  class="img-thumbnail" u=image  width="100%" src="{{ asset('upload/default/default.jpg')}}" /></a>
+        </div>
+        
+    {% else %}
+        <div class="col-lg-4 portfolio-item">
+            <a href="{{ path('Admin_photo_show', { 'id': entity.id }) }}">
+                <img class="img-thumbnail" width="100%" src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(300,300)}}">
+            </a>
+        </div>
+    {%endif%}
+{% endfor %}

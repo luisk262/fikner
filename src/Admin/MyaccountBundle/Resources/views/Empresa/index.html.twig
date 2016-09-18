@@ -1,0 +1,156 @@
+{% extends "AdminMyaccountBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-lg-12">
+        <div class="col-md-12" id="errors">
+        </div>
+        <div class="col-md-12">
+            <h3>EN ESTE FORMULARIO SOLO APARECEN LAS AGENCIAS PÚBLICAS</h3>
+<h3><small>Enviaremos un email a su correo cuando las agencias privadas soliciten su perfil</small></h3>
+        </div>
+        {%if photo %}
+            <form  id="jsForm" role="form" method="GET" action="" class="form-horizontal ">
+                <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
+                <div class="col-lg-12 page-header">
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input type="text" name="searchParam[general]" class="form-control" placeholder="Búsqueda rápida">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </div>
+                    <div class="col-md-2">
+                        <select id="js-perpage" name="searchParam[perPage]" class="form-control form-group">
+                            <option value="10" >10</option>
+                            <option value="20" selected>20</option>
+                            <option value="50">50</option>
+                            <option value="100" >100</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select id="js-perpage" name="searchParam[categoria]" class="form-control form-group">
+                            <option value="" selected="">Todas</option>
+                            <option value="Casting">Casting</option>
+                            <option value="BTL">BTL</option>
+                            <option value="Modelaje">Modejale</option>
+                            <option value="Casting y BTL">Casting y BTL</option>
+                            <option value="Casting y Modelaje">Casting y Modelaje</option>
+                            <option value="BTL y Modelaje">BTL y Modelaje</option>
+                            <option value="Casting,BTL y Modelaje">Casting,BTL y Modelaje</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <a href="#" class="btn btn-default btn-block" id="js-ofertar">Enviar Book</a>
+                    </div>
+                </div> 
+                <div class="col-lg-12">
+                    <div id='dataContainer'>
+                    </div>
+                </div>
+            </form>
+            <script src="{{asset('js/jquery-1.12.1.min.js')}}"></script>
+        <script>
+            (function ($) {
+                function isSelected() {
+                    if (!getCheckedRows()) {
+                        alert('Por favor seleccione al menos una empresa');
+                        return false;
+                    }
+                    ;
+                    return true;
+                }
+                /* helper functions */
+                function getCheckedRows() {
+                    var agencias = [];
+                    dataContainer.find('input:checkbox:checked').each(function () {
+                        agencias.push($(this).val());
+                    });
+                    return agencias.join(',');
+                }
+
+                /* ajax dashboard*/
+                var form = $('#jsForm'),
+                        dataContainer = form.find('#dataContainer'),
+                        pageInput = form.find('#pagenumber'),
+                        ofertarBtn = form.find('#js-ofertar'),
+                        jsFormUrl = '',
+                        checkboxBtn = form.find("input:checkbox");
+                /* pagination */
+                form.on('click', '.js-page', function () {
+                    pageInput.val($(this).data('page'));
+                    ajaxPost();
+                });
+                form.on('submit', function () {
+                    ajaxPost();
+                    return false;
+                });
+                function init() {
+                    pageInput.val('1');
+                    checkboxBtn.prop("checked", false);
+                    jsFormUrl = '{{ path('Myaccount_empresa_ajax',{'page':current_page}) }}';
+                }
+                function ajaxPost(action, callback) {
+                    form.addClass('working');
+                    $.ajax({
+                        type: "GET",
+                        data: form.serialize(),
+                        url: jsFormUrl,
+                        success: function (data) {
+                            form.removeClass('working');
+                            if (callback)
+                                callback(data);
+                            init();
+                            if (!action)
+                                dataContainer.empty().hide().html(data).fadeIn();
+                            else
+                                ajaxPost();
+                        },
+                        error: function () {
+                            form.removeClass('working');
+                            alert('Ups! Tuvimos un error, intenta mas tarde');
+                        }
+                    });
+                    return false;
+                }
+                /* submit the form after loading the page*/
+                init();
+                ajaxPost();
+                /*enviar email*/
+                ofertarBtn.on('click', function () {
+                    if (!isSelected())
+                        return false;
+                    jsFormUrl = '{{ path('Myaccount_empresas_Ofertar') }}';
+                    ajaxPost('delete');
+
+                });
+
+
+            })(jQuery);
+        </script>
+        {%else%}
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <br>
+                    <br>
+                    <img data-src="{{ web_image('images/logo/fikner_logo2.png').resize(100,100)}}"  src="{{ web_image('images/logo/fikner_logo2.png').resize(100,100)}}" > 
+                    <h3>Para enviar tu book necesitas subir  al menos una imágen....</h3>
+                    <div class="col-lg-4 ">
+                    </div>
+                    
+                    <div class="col-lg-4 ">
+                        <a href="{{path('Myaccount_photo_new')}}" class="btn btn-block btn-default " id="boton2"><span class="glyphicon glyphicon-open"></span> Cargar Fotos</a> 
+                   <br>
+                    </div>
+                    <div class="col-lg-4 ">
+                    </div>
+                </div>
+
+            </div>
+        {%endif%}
+        
+    </div>
+{% endblock container %}
+
+
+
+

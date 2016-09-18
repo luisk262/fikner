@@ -1,0 +1,37 @@
+.contenido {
+  background-color: #6c8cd5;
+  margin-top: 36px;
+
+ }
+ 
+ .cuadro-azul{
+ 	         box-shadow: 0 3px 10px 0 rgba(0,0,0,0.1);
+ 	         border-radius: 3px;
+ 	         margin-bottom: 30px;
+ 	         margin-top: 10px;
+ 			 background-color: white;	
+ }
+@media (min-width: 100px){
+	.formulario {
+ 	padding: 20px 0px;
+	}
+}
+@media (min-width: 992px){
+	.formulario {
+	 	padding: 50px 25px;
+	}
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+.logoprofile img{
+    width: 80px;
+	padding: 10px 0px 10px 0;
+    vertical-align: inherit;
+}
+.navbar-default {
+    background-color: white;
+    border-color: #f8f8f8;
+}

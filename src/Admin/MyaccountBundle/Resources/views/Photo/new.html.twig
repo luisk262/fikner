@@ -1,0 +1,123 @@
+{% extends "AdminMyaccountBundle::layout.html.twig" %}
+
+{% block container %}
+    <div class="col-md-12" id="errors">            
+    </div>
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
+        <center>
+
+            <h1>Subir Foto</h1>
+            {{ form_start(form) }}
+            <div class="col-md-12" id="errors">
+                {{ form_errors(form) }}
+            </div>
+            <div id="file1">
+                <img class="img-thumbnail"  height="auto" width="100%" src="{{asset('images/noimage.jpg')}}">
+            </div>
+
+            <br>
+            {{ form_row(form.image,{
+                                       'attr': {'class':'form-control','accept':'image/x-png, image/gif, image/jpeg','onchange':'Validarimagen(this);'}
+                                       
+                                     })}}
+
+            <br>
+            {{ form_row(form.submit, { 'label': 'Subir','attr': {'class':'btn btn-default btn-block','id':'boton1' }}) }}
+
+            {{ form_end(form) }}
+        </center>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="col-lg-4">
+    </div>
+{% endblock %}
+{% block javascript %}
+    {{parent()}}
+    <script type="text/javascript">
+        function Validarimagen(imagen) {
+            document.getElementById("errors").innerHTML = [' <div></div>'].join('');
+            var file = document.getElementById(imagen.id);
+            window.aux = document.getElementById('admin_adminbundle_photo_image').value;
+            if (file.files[0].size != null) {
+                if (file.files[0].size >= 5242880) {
+                    document.getElementById("errors").innerHTML = [' <div class="alert alert-danger"><ul><li>Ojo! la imagen es demasiado grande. la imagen excede el peso admitido 5mb.</li><ul></div>'].join('');
+                    document.getElementById(imagen.id).value = "";
+                }
+                else {
+                    if (!imagen.value.match(/.(jpg)|(jpeg)|(jpe)|(gif)|(png)|(bmp)|(JPG)|(JPEG)|(JPE)|(PNG)|(BMP)|$/)) {
+                        document.getElementById("errors").innerHTML = [' <div class="alert alert-danger"><ul><li>Seleccione una imagen valida.</li><ul></div>'].join('');
+                    }
+                }
+            }
+            else {
+                document.getElementById("errors").innerHTML = [' <div class="alert alert-danger"><ul><li>Error! Seleccione una imagen.</li><ul></div>'].join('');
+            }
+        }
+        function archivo(evt) {
+        document.getElementById("file1").innerHTML = [' <img class="img-thumbnail" id="img-thumbnail1" u=image height="auto" width="100%" src="{{asset('images/aspirante/cara.png')}}" />'].join('');
+            var files = evt.target.files; // FileList object             
+    // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+    //Solo admitimos imágenes.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        // Insertamos la imagen
+                        document.getElementById("file1").innerHTML = ['<img class="img-thumbnail" height="317px" width="100%" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        }
+        function archivo1(evt) {
+        document.getElementById("file2").innerHTML = ['<img class="img-thumbnail" u=image height="" width="100%" src="{{asset('images/aspirante/cara.png')}}" />'].join('');
+            var files = evt.target.files; // FileList object             
+    // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+    //Solo admitimos imágenes.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        // Insertamos la imagen
+                        document.getElementById("file2").innerHTML = ['<img class="img-thumbnail" height="317px" width="100%" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        }
+        function archivo2(evt) {
+            document.getElementById("file3").innerHTML = ['<img class="img-thumbnail" u=image height="" width="100%" src="/upload/cache/4/8/e/b/6/48eb63740d2acf16921b81f22e26ca794b824caa.png" />'].join('');
+
+            var files = evt.target.files; // FileList object             
+    // Obtenemos la imagen del campo "file".
+            for (var i = 0, f; f = files[i]; i++) {
+    //Solo admitimos imágenes.
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        // Insertamos la imagen
+                        document.getElementById("file3").innerHTML = ['<img class="img-thumbnail" height="317px" width="100%" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        }
+        document.getElementById('admin_adminbundle_photo_image').addEventListener('change', archivo, false);
+    </script>
+{% endblock %}

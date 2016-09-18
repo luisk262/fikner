@@ -1,0 +1,239 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-lg-12">
+        <div class="row page-header"> 
+            <div class="">
+                <div class="col-md-6">
+                    <h1><i class="glyphicon glyphicon-dashboard"></i> Dashboard</h1>
+                </div>
+                <div class="col-md-6">
+                    {%if agencia %}
+                        <h1>{{nombreagencia}} <small>{{pais}}</small></h1>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-lg-8">
+        {%if estado%}
+            <div class="col-lg-12">
+                {%if totalbooksA <1000 %}
+                    <h2>Alcance su próxima meta</h2>
+                    <h2><small>Necesita al menos 1000 perfiles activos para responder las solicitudes de sus clientes.</small>   </h2>
+                {%endif%}
+                {%if totalbooksA >=1000 and totalbooksA <2000%}
+                    <h2>Muy Bien!!</h2>
+                    <h2><small>Su agencia empieza a dar grandes pasos hacia el éxito.</small></h2>
+                    <h4>Alcanza los 2000 perfiles una recompensa le espera al finalizar su objetivo.</h4>
+                {%endif%}
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksR}}</div>
+                                <div>Inactivo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{path('agencia_dashboard_hojadevida2')}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksP}}</div>
+                                <div>Pendiente</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{path('agencia_dashboard_hojadevida2',{'estado':'Pendiente'})}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksA}}</div>
+                                <div>Activos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{path('agencia_dashboard_hojadevida')}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksV}}</div>
+                                <div>Vetados</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{path('agencia_dashboard_hojadevida2',{'estado':'Vetado'})}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {%endif%}
+        <div class="col-lg-12">
+            {%if agencia %}
+                {%if estado%}
+                    <h2>Bienvenido</h2>
+                    <h4>No olvide revisar  los books Inactivos</h4>
+                    <h4>Su agencia esta<small> Activa</small></h4>
+                    <h2>Su cuenta es: {%if AgenciaP %}{{AgenciaP[0].nombre}}{%else%}Basica{%endif%}<h2>
+                            {%if fileId%}
+                            {%else%}    
+                                <p>  </p>
+                                <a href="{{path('Agencia_file_new')}}" class="btn btn-default btn-block">Subir PDF</a>
+                            {%endif%}
+                            {%if logoId %}
+                            {%else%}
+
+                                <a href="{{path('Agencia_photo_new')}}" class="btn btn-default btn-block">Subir logotipo</a>
+                            {%endif%}
+                        {%else%}
+                            {%if fileId and logoId%}
+                                <h2>Bienvenido</h2>
+                                <h4>Su agencia esta<small> Inactiva</small></h4>
+                                <h4>Para mayor información envié un email a youfikner@gmail.com</h4>
+                                <p>La activación de su cuenta se realizara un día hábil después de llenar el formulario</p>
+                                <p>Se verificara y validara cámara de comercio o rut (el representante legal debe corresponder al registro en nuestra base de datos)</p>
+
+                            {%endif%}
+                            {%if fileId%}
+                            {%else%}    
+                                <p>  Cargue su rut o camara de comercio</p>
+                                <a href="{{path('Agencia_file_new')}}" class="btn btn-default btn-block">Subir PDF</a>
+                            {%endif%}
+                            {%if logoId %}
+                            {%else%}
+                                <a href="{{path('Agencia_photo_new')}}" class="btn btn-default btn-block">Subir logotipo</a>
+                            {%endif%}
+                        {%endif%}
+                    {%endif%}
+                    </div>    
+                    </div>
+                    <div class="col-md-4 col-lg-4">
+                        {%if agencia %}
+                            <div class="col-sm-12 col-md-12">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <h3>Datos de Agencia</h3>
+                                        <p id="profilePhoto">
+                                            {%if logoId %}
+                                                <img data-src="{{web_image('upload/Photos/' ~ logoId ~'/' ~ logoName).resize(400,400)}}" src="{{web_image('upload/Photos/' ~ logoId ~'/' ~ logoName).zoomCrop(400,400)}}"> 
+                                            {%else%}
+                                                <img data-src="{{web_image('images/noimage.jpg' ).resize(400,400)}}" src="{{web_image('images/noimage.jpg').zoomCrop(400,400)}}"> 
+                                            {%endif%}
+                                        </p>
+                                        <p id="nameProfile">{{categoria}}</p>
+                                        <p id="info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{email}}</p>
+                                        <p id="info"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{direccion}}</p>
+                                        <p id="info"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{telefono}}</p>
+                                        {%if estado%}
+                                            <p id="boton"><a href="{{path('Agencia_page', { 'nombre':ruta })}}" target="_blank" class="btn btn-default" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VER FIKNER-PAGE</a></p>
+                                            <div class="row">
+                                                <div class="col-lg-12" >
+                                                    <div class="col-lg-6">                             
+                                                        <a href="http://www.facebook.com/sharer.php?u=http://fikner.com{{path('Agencia_page', { 'nombre':ruta })}}" target="_blank">
+                                                            <img src="{{asset('images/social/f.png')}}" alt="" id="socialdashboard">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-lg-6 text-right">
+                                                        <a href="whatsapp://send?text=http://fikner.com{{path('Agencia_page', { 'nombre':ruta })}}">
+                                                            <img src="{{asset('images/social/w.png')}}" alt=""  id="socialdashboard">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {%else%}
+                                            <p id="info"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Fikner-page inactiva</p>
+                                        {%endif%}
+                                    </div> 
+                                </div> 
+                            </div>
+                        {%endif%}
+                    </div>
+                    {%if agencia %}
+                    {%else%}
+                        <div class="row">
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-8">
+                                <h2>Bienvenido a Fikner </h2>
+                                <b>Para terminar con el proceso necesita:</b>
+                                <p id="texto">• Cámara de comercio o rut formato pdf(Opcional)</p>
+                                <p id="texto">• Logotipo de su agencia (imagen que no supere 5mb de tamaño)</p>
+                                <p id="texto">• Descripción o información de las actividades que realiza la agencia</p>
+                                <b>¡Ojo!</b>
+                                <p id="texto">La activación de su cuenta se realizara un día hábil después de llenar el formulario</p>
+                                <p id="texto">Se verifica y valida  su nit  en cámara de comercio (el representante legal debe corresponder al registro en nuestra base de datos)</p>
+                                <p id="texto">Nos reservamos el derecho de admisión, todo uso indebido, 
+                                    con fines fraudulentos y que incumplan con nuestros términos y condiciones podrán ser denunciados ante las autoridades pertinentes.</p>
+                                <p id="texto"><b>EL REGISTRO EN FIKNER ES GRATUITO DENUNCIE SI PERSONAS INESCRUPULOSAS PIDEN SUMAS DE DINERO POR REGISTRAR SU AGENCIA.</b></p>
+                                <div class="col-md-12">
+                                    <div class="col-lg-4">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p id="texto">
+                                            <a  class="btn btn-block btn-default" href="{{path('agencia_dashboard_myagencia_new')}}">
+                                                <span class="glyphicon glyphicon-pencil"></span> Registrar Agencia
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-4">
+
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <div class="col-lg-2">
+                            </div>
+                        </div>
+                    {%endif%}
+                {% endblock %}

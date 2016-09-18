@@ -1,0 +1,58 @@
+<?php
+
+namespace Admin\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * HojadevidaPhoto
+ *
+ * @ORM\Table(name="hojadevida_photo", indexes={@ORM\Index(name="Id_Agencia", columns={"id"}), @ORM\Index(name="Id_Usuario", columns={"Id_Usuario"})})
+ * @ORM\Entity
+ */
+class HojadevidaPhoto
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Hojadevida
+     *
+     * @ORM\ManyToOne(targetEntity="Hojadevida",cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Hojadevida", referencedColumnName="id")
+     * })
+     */
+    private $idHojadevida;
+
+    /**
+     * @var \FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="Photo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Photo", referencedColumnName="id")
+     * })
+     */
+    private $idPhoto;
+     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha", type="datetime", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="FechaUpdate", type="datetime", nullable=true)
+     */
+    private $fechaupdate;
+
+
+}

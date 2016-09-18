@@ -1,0 +1,36 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+
+{% block container %}
+    <h1>PlanServicio</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{{ entity.fechaCreacion|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fechaupdate</th>
+                <td>{{ entity.fechaUpdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('dashboard_planservicio') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('dashboard_planservicio_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

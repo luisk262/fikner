@@ -1,0 +1,51 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+    <h1>Solicitud</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idsolicitud</th>
+                <td>{{ entity.id}}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Observaciones</th>
+                <td>{{ entity.observaciones }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ entity.estado }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicio</th>
+                <td>{{ entity.fechaprogramada|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ entity.fecha|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fechaupdate</th>
+                <td>{{ entity.fechaupdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('Agencia_dashboard_solicitud') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('Agencia_dashboard_solicitud_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

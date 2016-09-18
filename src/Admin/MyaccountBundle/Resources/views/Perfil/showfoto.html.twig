@@ -1,0 +1,13 @@
+{% extends "AdminMyaccountBundle:Account:index.html.twig" %}
+{% block container %}
+    <div class="row">
+        <div class="col-md-12">
+            
+                                    {% if foto == '' %}
+                                        <img u=image height="210" width="210" src="{{ asset('upload/default/default.jpg')}}" />
+                                    {% else %}
+                                             <img u=image height="auto" width="100%" src="{{asset('upload/Hojasdevida/' ~ id ~'/' ~ foto)}}" />
+                                    {%endif%}
+        </div>
+    </div>
+{% endblock %}

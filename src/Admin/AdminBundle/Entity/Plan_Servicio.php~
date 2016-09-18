@@ -1,0 +1,59 @@
+<?php
+
+namespace Admin\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Plan_Servicio
+ *
+ * @ORM\Table(name="Plan_Servicio", indexes={@ORM\Index(name="Id_Plan", columns={"id"}), @ORM\Index(name="Id_Servicio", columns={"Id_Servicio"})})
+ * @ORM\Entity
+ */
+class Plan_Servicio
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+   
+     /**
+     * @var \Plan
+     *
+     * @ORM\ManyToOne(targetEntity="Plan",cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Plan", referencedColumnName="id")
+     * })
+     */
+    private $idPlan;
+
+   /**
+     * @var \Servicio
+     *
+     * @ORM\ManyToOne(targetEntity="Servicio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Servicio", referencedColumnName="id")
+     * })
+     */
+    private $idServicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="FechaCreacion", type="date")
+     */
+    private $fechaCreacion;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="FechaUpdate", type="date")
+     */
+    private $fechaUpdate;
+}
+

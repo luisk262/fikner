@@ -1,0 +1,44 @@
+<div class="col-lg-12">
+    <div class="col-lg-12 form-group">
+        <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                {{ form(delete_form) }}
+            </div>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-md-6 col-lg-4">
+
+            <div class="form-group">
+{{ form_start(edit_form) }}
+                {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-primary btn-block' }}) }}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-lg-12 form-group">
+        {{ form_row(edit_form.Tags,{
+                                       'attr': {'class':'form-control'}
+                                       
+                                     })}}
+
+    </div>
+    <div class="col-lg-6 form-group">
+        {{ form_row(edit_form.Estado,{
+                                       'attr': {'class':'form-control'}
+                                       
+                                     })}}
+
+    </div>
+    <div class="col-lg-6 form-group">
+        {{ form_row(edit_form.categoria,{
+                                       'attr': {'class':'form-control'}
+                                       
+                                     })}}
+    </div>
+    {{ form_end(edit_form) }}
+
+</div>
+
+

@@ -1,0 +1,73 @@
+{% for entity in entities %}
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3" id="profiles">
+{% if not entity.idHojadevida.Calificacion %}
+                        <center>
+                        <p id="info">
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                        </center>
+                    {%endif%}
+                    {% if entity.idHojadevida.Calificacion =='1' %}
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    {%endif%}
+                    {% if entity.idHojadevida.Calificacion =='2' %}
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    {%endif%}
+                    {% if entity.idHojadevida.Calificacion =='3' %}
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>                            
+                        </p>
+                    {%endif%}
+                    {% if entity.idHojadevida.Calificacion =='4' %}
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    {%endif%}
+                    {% if entity.idHojadevida.Calificacion =='5' %}
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </p>
+                    {%endif%}
+
+        
+            {% if entity.idPhoto.image == '' %}
+                    <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}" class="img-circle"> 
+            {% else %}
+                    <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(210,210)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(210,210)}}" class="img-circle"> 
+            {%endif%}
+                </div>
+{% endfor %}
+
+
+
+
+
+

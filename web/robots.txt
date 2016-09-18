@@ -1,0 +1,17 @@
+# www.robotstxt.org/
+# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
+
+User-agent: *
+Disallow: /book*/
+User-agent: *
+Disallow: /agencia*/
+User-agent: *
+Disallow: /terminos
+User-agent: *
+Disallow: /calificacion/
+User-agent: *
+Disallow:/app.php*/
+User-agent: *
+Disallow:/login
+User-agent: *
+Disallow:/resetting/request

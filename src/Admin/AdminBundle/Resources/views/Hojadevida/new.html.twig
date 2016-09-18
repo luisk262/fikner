@@ -1,0 +1,238 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block title %}
+Proyecto | {{ parent() }}
+{% endblock %}
+{% block container %}
+    <h3><span class="glyphicon glyphicon-tag"></span> Nueva hoja de vida</h3>
+    
+    {{ form_start(form) }}
+                    <div class="col-lg-6">
+                        {{ form_row(form.nombre,{
+                                    'attr': {'class':'form-control'}
+                                     })
+                        }}
+                        {{ form_row(form.apellido,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+                        {{ form_row(form.telCe,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+
+
+                        {{ form_row(form.telefonoAdic,{
+                                        'attr': {'class':'form-control'}
+                                     }) }}
+
+
+                        {{ form_row(form.tipoDocumento,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.nit,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+
+                        {{ form_row(form.paisnacimiento,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.ciudadresidencia,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+
+                        {{ form_row(form.dirCasa,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.emailPersonal,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.estatura,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+
+                        {{ form_row(form.piel,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.ojos,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.pelo,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.tallaCamisa,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.tallaPantalon,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.tallaZapato,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.tallaChaqueta,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form_row(form.telCasa,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+
+                        {{ form_row(form.sexo,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        <label>Fecha de nacimiento</label>
+                        {{ form_row(form.fechaNac.year,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+                        {{ form_row(form.fechaNac.month,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+                        {{ form_row(form.fechaNac.day,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                        }}
+
+                        {{ form_row(form.peso,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.experienciaTv,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.deportes,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.habilidades,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.idiomas,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.maneja,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        {{ form_row(form.entidadSalud,{
+                                        'attr': {'class':'form-control'}
+
+                                     })
+                        }}
+                        <label>Imagenes</label>
+                        <p>El tamaño de la imagen no debe ser superior a 1mb</p>
+                        {{ form_row(form.image,{
+                                        'label': 'Foto Rotro',
+                                       'attr': {'class':'form-control','accept':'image/x-png, image/gif, image/jpeg','onchange':'Validarimagen(this);'}
+                                       
+                                     })}}
+                        {{ form_row(form.image1,{
+                                        'label': 'Foto medio cuerpo',
+                                        'attr': {'class':'form-control','accept':'image/x-png, image/gif, image/jpeg','onchange':'Validarimagen(this);'}
+                                       
+
+                                     })}}
+
+                        {{ form_row(form.image2,{
+                                      'label': 'Foto cuerpo completo',
+                                      'attr': {'class':'form-control','accept':'image/x-png, image/gif, image/jpeg','onchange':'Validarimagen(this);'}
+                                       
+                                     })}}
+                        <br>
+                        {{ form_row(form.submit, { 'label': 'Registrarme','attr': {'class':'btn btn-default'}}) }}
+                        {{ form_end(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('dashboard_hojadevida') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+            function validarRepetida() {
+                var nombre = document.getElementById('#foto1').value;
+                alert(nombre);
+                var nombre = document.getElementById('#foto2').value;
+                alert(nombre);
+                var nombre = document.getElementById('#foto3').value;
+                alert(nombre);
+            }
+            var aux = '';
+            var aux1 = '';
+            var aux2 = '';
+            function Validarimagen(imagen) {
+                var file = document.getElementById(imagen.id);
+                if ((document.getElementById(imagen.id).value == window.aux1) ||
+                        (document.getElementById(imagen.id).value == window.aux2) ||
+                        (document.getElementById(imagen.id).value == window.aux)) {
+                    alert('La imagen no se puede repetir');
+                    document.getElementById(imagen.id).value = "";
+                }
+                window.aux = document.getElementById('admin_adminbundle_hojadevida_image').value;
+                window.aux1 = document.getElementById('admin_adminbundle_hojadevida_image1').value;
+                window.aux2 = document.getElementById('admin_adminbundle_hojadevida_image2').value;
+                if (file.files[0].size != null) {
+                    if (file.files[0].size >= 1048576) {
+                        alert("Ojo! la imagen es demasiado grande. la imagen excede el peso admitido 1mb.")
+                        document.getElementById(imagen.id).value = "";
+                    }
+                    else {
+                        var e = imagen.value.substr(-3);
+                        if (e != "jpg" && e != "gif" && e != "png" && e != "JPG" && e != "GIF" && e != "PNG") {
+                            alert('Seleccione una imagen valida');
+                            document.getElementById(imagen.id).value = "";
+                        }
+                        else {
+                        }
+                    }
+                }
+                else {
+                    alert("Error! Seleccione una imagen.")
+                }
+            }
+        </script>
+    {% endblock javascripts%}

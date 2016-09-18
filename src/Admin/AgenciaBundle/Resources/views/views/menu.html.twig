@@ -1,0 +1,50 @@
+{% set route = app.request.attributes.get('_route') %} 
+{% set DashboardMenu = ['agencia_dashboard','agencia_dashboard_myagencia_new','Agencia_file_new'] %}
+{% set BookMenu = ['agencia_dashboard_hojadevida'] %}
+{% set solicitudMenu =['Agencia_dashboard_solicitud','Agencia_dashboard_solicitud_new','Agencia_dashboard_solicitud_show','Agencia_dashboard_solicitud_edit'] %}
+
+{% set Solicitud=0%}
+{% for plan in AgenciaP %}
+    {% if plan.codigo ==2007%}
+        {% set Solicitud=1%}
+    {%endif%}
+{%endfor%}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{path('agencia_dashboard')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="100%"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li id="profileImage" class="{% if route in DashboardMenu %}active{% endif %}">
+                   <a href="{{path('agencia_dashboard')}}"> <i class="glyphicon glyphicon-dashboard"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="{% if route in BookMenu %}active{% endif %}"><a href="{{path('agencia_dashboard_hojadevida')}}"> <i class="glyphicon glyphicon-book"></i> Books</a></li>
+                {%if Solicitud %}
+                <li class="{% if route in solicitudMenu %}active{% endif %}"><a href="{{path('Agencia_dashboard_solicitud')}}"> <i class="glyphicon glyphicon-book"></i> Solicitudes</a></li>
+                {%endif%}
+                </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header"></li>
+                        <li><a href="{{path('Myaccount_calificacion')}}">Acerca de calificación  </a></li>
+                        <li><a href="#">Reportar Problemas</a></li>
+                        <li><a href="#">Configurar cuenta</a></li>
+                        <li><a href="{{path('agencia_dashboard_myagencia_show')}}">Configurar agencia</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Cerrar la sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>    
+    </div>
+</nav>

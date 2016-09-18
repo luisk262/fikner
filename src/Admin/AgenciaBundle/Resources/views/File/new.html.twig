@@ -1,0 +1,49 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
+         <h1>Subir archivo</h1>
+            {{ form_start(form) }}
+            <div class="col-md-12" id="errors">
+                {{ form_errors(form) }}
+            </div>
+            <br>
+            {{ form_row(form.file,{
+                                       'attr': {'class':'form-control','onchange':'Validarimagen(this);'}
+                                     })}}
+
+            <br>
+            {{ form_row(form.submit, { 'label': 'Subir','attr': {'class':'btn btn-default btn-block' }}) }}
+
+            {{ form_end(form) }}
+ <div class="col-md-12" id="errors">            
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="col-lg-4">
+    </div>
+
+    <script type="text/javascript">
+        function Validarimagen(imagen) {
+            document.getElementById("errors").innerHTML = [' <div></div>'].join('');
+            var file = document.getElementById(imagen.id);
+            window.aux = document.getElementById('admin_adminbundle_file_file').value;
+            if (file.files[0].size != null) {
+                if (file.files[0].size >= 5242880) {
+                    document.getElementById("errors").innerHTML = [' <div class="alert alert-danger"><ul><li>Ojo! el archivo es demasiado grande. Excede el peso admitido 5mb.</li><ul></div>'].join('');
+                    document.getElementById(imagen.id).value = "";
+                }
+                else {
+
+                }
+            }
+            else {
+                document.getElementById("errors").innerHTML = [' <div class="alert alert-danger"><ul><li>Error! Seleccione un archivo.</li><ul></div>'].join('');
+            }
+        }
+    </script>
+{% endblock %}

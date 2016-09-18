@@ -1,0 +1,38 @@
+{% extends "AdminMyaccountBundle::layout.html.twig" %}
+{% block container %}
+    <div class="row">        
+        <div class=" col-lg-12 form-group">
+            <div class="col-md-8 col-lg-8 ">
+                <h1>Información importante</h1>
+               <h1><small>Recomendamos subir 6 imagenes</small></h1>
+               
+                <p id="texto">
+                        Para nosotros es muy importante su seguridad, por esto no coloque datos como 
+                        (número de documento, teléfono, email, dirección de residencia, nombre) en las imágenes subidas a fikner, 
+                        ya que personas inescrupulosas los pueden usar para contactarte con fines fraudulentos.
+                    </p>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <p id="texto">    
+                    <a href="{{path('Myaccount_empresa')}}" class="btn btn-block">
+                        <span class="glyphicon glyphicon-facetime-video"></span> Postulate en las agencias
+                    </a>
+                </p>
+                {% if not max %}
+                    <a href="{{ path('Myaccount_photo_new') }}" class="btn btn-default btn-block ">
+                        <i class="glyphicon glyphicon-upload"></i> Subir Foto
+                    </a>
+                {%endif%}
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-12 form-group">
+            <hr>
+        </div>    
+        <div class="col-lg-12">
+            <div class="row">
+                {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

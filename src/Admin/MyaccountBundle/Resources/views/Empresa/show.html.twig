@@ -1,0 +1,76 @@
+{% extends "AdminMyaccountBundle:Account:index.html.twig" %}
+{% block title %}{{ entity.nombreagencia }} - Fikner {% endblock %}
+{% block body %}
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="logoprofile" href="{{path('principal')}}">
+                        <img  width="40px" src="{{asset('images/logo.png')}}" />
+                        <FONT SIZE="3"><b>FIKNER</b></FONT>                    
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="contenido">
+        <div class="container" >
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <h1>{{ entity.nombreagencia }}</h1>
+                {% if entity.image == '' %}
+                    <img class="img-thumbnail" u=image height="auto" width="100%" src="{{ asset('upload/default/default.jpg')}}" />
+                {% else %}
+                    <img class="img-thumbnail" u=image height="210" width="210" src="{{web_image('upload/Empresa/' ~ entity.id ~'/' ~ entity.image).resize(310,310)}}" />
+                {%endif%}
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Categoria</th>
+                            <td>{{ entity.categoria }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Nombre</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Telefono</th>
+                            <td>{{ entity.telefono }}</td>
+                        </tr>
+                        <tr>
+                            <th>Direccion</th>
+                            <td>{{ entity.direccion }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nomreplegal</th>
+                            <td>{{ entity.nomsRepLegal }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nomreplegal</th>
+                            <td>{{ entity.apellsRepLegal }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ entity.email }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="#" class="btn btn-primary btn-block" id="js-ofertar">Incribir</a>  
+
+
+                </ul>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+{% endblock %}

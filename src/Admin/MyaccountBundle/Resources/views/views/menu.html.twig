@@ -1,0 +1,50 @@
+{% set route = app.request.attributes.get('_route') %} 
+{% set MyaccountMenu = ['Myaccount'] %}
+{% set perfilMenu = ['Myaccount_perfil_new','Myaccount_perfil_new','Myaccount_perfil_create','Myaccount_perfil_show','Myaccount_perfil_edit','Myaccount_perfil_update','Myaccount_perfil_showfoto','Myaccount_photo','Myaccount_photo_list','Myaccount_photo_new','Myaccount_photo_edit','Myaccount_photo_show'] %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{path('Myaccount')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="100%"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li id="profileImage" class="{% if route in perfilMenu %}active{% endif %}"><a href="{{path('Myaccount')}}">
+                        {{ app.user.nombre}}
+                        {% if  Image %}
+                            <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(40,40)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"> 
+                        {%else%}
+                            <img data-src="{{ web_image('upload/default/default.jpg').resize(40,40)}}}}"  src="{{web_image('upload/default/default.jpg').resize(40,40)}}"> 
+                        {%endif%}
+                    </a>
+                </li>
+                <li class="{% if route=='Myaccount_empresa' %}active{% endif %}"><a href="{{path('Myaccount_empresa')}}"> <i class="glyphicon glyphicon-facetime-video"></i> Agencias</a></li>
+            
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{path('Myaccount_perfil_show')}}">Mire su Book</a></li>
+                        <li><a href="{{path('Myaccount_misempresas')}}">Mis agencias</a></li>
+                        <li><a href="{{path('Myaccount_empresa')}}">Postúlese en las agencias</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header"></li>
+                        <li><a href="{{path('Myaccount_calificacion')}}">Mejorar mi calificación</a></li>
+                        <a href="{{path('Myaccount_calificacion')}}">
+                        <li><a href="#">Reportar Problemas</a></li>
+                        <li><a href="#">Configurar cuenta</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Cerrar la sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>    
+    </div>
+</nav>
+
+

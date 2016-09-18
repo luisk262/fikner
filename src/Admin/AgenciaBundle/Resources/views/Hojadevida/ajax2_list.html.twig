@@ -1,0 +1,126 @@
+<div class="col-md-12">
+    {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
+</div>
+{% for entity in entities %}
+    <div class="col-lg-4">
+        <div class="thumbnail">
+            <div class="col-md-2">
+                <input type="checkbox" name="entities[]" value="{{entity.idHojadevida.id}}">
+            </div>
+            {% if entity.idPhoto.image == '' %}
+                <a href="{{ path('agencia_dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}">
+                    <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}" data-holder-rendered="true" style="width: 100%; display: block;"> 
+                </a>
+            {% else %}
+                <a href="{{ path('agencia_dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}">
+                    <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}" data-holder-rendered="true" style=" width: 100%; display: block;"> 
+                </a>
+            {%endif%}
+            <div class="caption">
+                <h3>{{ entity.idHojadevida.nombre }}<br>
+                    <small>{{ entity.idHojadevida.apellido }}</small>
+                </h3>
+                {% if not entity.idHojadevida.Calificacion %}
+                    <center>
+                        <a href="{{path('Myaccount_calificacion')}}">
+                            <p id="info">
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            </p>
+                        </a>
+                    </center>
+                {%endif%}
+                {% if entity.idHojadevida.Calificacion =='1' %}
+                    <a href="{{path('Myaccount_calificacion')}}">
+
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    </a>
+
+                {%endif%}
+                {% if entity.idHojadevida.Calificacion =='2' %}
+                    <a href="{{path('Myaccount_calificacion')}}">
+
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    </a>
+                {%endif%}
+                {% if entity.idHojadevida.Calificacion =='3' %}
+                    <a href="{{path('Myaccount_calificacion')}}">
+
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>                            
+                        </p>
+                    </a>
+                {%endif%}
+                {% if entity.idHojadevida.Calificacion =='4' %}
+                    <a href="{{path('Myaccount_calificacion')}}">
+
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </p>
+                    </a>
+                {%endif%}
+                {% if entity.idHojadevida.Calificacion =='5' %}
+                    <a href="{{path('Myaccount_calificacion')}}">
+                        <p id="info" class="text-center">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </p>
+                    </a>
+                {%endif%}
+                <label>Ciudad:</label>{{ entity.idHojadevida.ciudadresidencia }}<br>
+                {{ entity.idHojadevida.emailPersonal }}<br>
+                <label>Estatura:</label>{{ entity.idHojadevida.estatura }} Cm<br>
+                {% set number1 = entity.idHojadevida.fechaNac|date("Y") %}
+                {% set number2 = "now"|date("Y") %}
+                {% set aux= ((number2 - number1)) %}
+                <label>Edad:</label>{{aux}}<br>
+                <Label>Celular:</label>
+                    {{ entity.idHojadevida.telCe }}
+                <a href="{{ path('agencia_dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}" class="btn btn-default btn-block"><i class="glyphicon glyphicon-eye-open"></i> Ver book</a>
+            </div> 
+        </div>    
+    </div>
+{% endfor %}
+
+<div class="col-md-12">
+    {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
+</div>
+<script>
+    (function ($) {
+
+        /* tooltip */
+        $('a[data-toggle="tooltip"]').tooltip();
+
+    })(jQuery);
+</script>
+
+
+
+
+

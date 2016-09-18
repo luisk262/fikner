@@ -1,0 +1,81 @@
+{% for entity in entities %}
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" id="profiles">
+        {% if not entity.idHojadevida.Calificacion %}
+            <center>
+                <p id="info">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </p>
+            </center>
+        {%endif%}
+        {% if entity.idHojadevida.Calificacion =='1' %}
+            <p id="info" class="text-center">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            </p>
+        {%endif%}
+        {% if entity.idHojadevida.Calificacion =='2' %}
+            <p id="info" class="text-center">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            </p>
+        {%endif%}
+        {% if entity.idHojadevida.Calificacion =='3' %}
+            <p id="info" class="text-center">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>                            
+            </p>
+        {%endif%}
+        {% if entity.idHojadevida.Calificacion =='4' %}
+            <p id="info" class="text-center">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            </p>
+        {%endif%}
+        {% if entity.idHojadevida.Calificacion =='5' %}
+            <p id="info" class="text-center">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </p>
+        {%endif%}
+        {% if entity.idPhoto.image == '' %}
+            <img height="auto" data-src="{{ asset('images/noimage.jpg')}}"  src="{{ asset('images/noimage.jpg')}}" width="100%" > 
+        {% else %}
+            <img height="auto" data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(210,210)}}" width="100%" src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"> 
+        {%endif%}
+                                
+                    
+       
+    </div>
+{% endfor %}
+<script>
+    (function ($) {
+
+        /* tooltip */
+        $('a[data-toggle="tooltip"]').tooltip();
+
+    })(jQuery);
+</script>
+
+
+
+
+

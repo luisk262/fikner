@@ -1,0 +1,22 @@
+{% extends "AdminMyaccountBundle::layout.html.twig" %}
+{% block container %}
+    <div class="row">
+        <div class="col-lg-2">
+            </div>
+        <div class="col-lg-8 info">
+                 <p id="nameUser">
+                        `   <h1>¡Advertencia!</h1>
+                 </p>
+                 <br>
+                    <h1><small>Esta seguro que desea cambiar su modalidad a AGENCIA</small></h1>
+                   <br>
+                    <p id="texto">NO PODRA REGISTRARSE COMO TALENTO</p>
+                    <br>
+                    <p id="texto">
+                        <a href="{{path('Myaccount_ChangeModalidad')}}" class="btn btn-block btn-default"><span class="glyphicon glyphicon-ok"></span> Confirmo soy agencia </a> 
+                    </p>
+                    <p id="texto">Se cambiara su modalidad inicie sesión después de confirmar el cambio.</p>
+ </div>
+                        <div class="col-lg-2">
+            </div>
+{% endblock container %}

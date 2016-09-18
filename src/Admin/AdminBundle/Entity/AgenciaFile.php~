@@ -1,0 +1,64 @@
+<?php
+
+namespace Admin\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AgenciaPhoto
+ *
+ * @ORM\Table(name="Agencia_file", indexes={@ORM\Index(name="Id_Agencia", columns={"id"}), @ORM\Index(name="Id_File", columns={"Id_File"})})
+ * @ORM\Entity
+ */
+class AgenciaFile
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Agencia
+     *
+     * @ORM\ManyToOne(targetEntity="Agencia",cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Agencia", referencedColumnName="id")
+     * })
+     */
+    private $idAgencia;
+
+    /**
+     * @var \FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="File")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_File", referencedColumnName="id")
+     * })
+     */
+    private $idFile;
+     /**
+     * @var \Principal
+     *
+     * @ORM\Column(name="Principal", type="boolean", nullable=true)
+     */
+    private $principal;
+    
+     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha", type="datetime", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="FechaUpdate", type="datetime", nullable=true)
+     */
+    private $fechaupdate;
+
+}

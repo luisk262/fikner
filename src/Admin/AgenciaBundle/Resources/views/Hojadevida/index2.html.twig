@@ -1,0 +1,177 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% set EEmail=0%}
+{% for plan in AgenciaP %}
+    {% if plan.codigo ==2001%}
+        {% set EEmail=1%}
+    {%endif%}
+
+{%endfor%}
+
+{% block container %}
+    <form  id="jsForm" role="form" method="GET" action="" class="form-horizontal col-lg-12">
+        <div class="col-lg-12">
+            <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
+            <div class="col-lg-12 page-header">
+                <div class="col-md-2">
+                    <select id="js-perpage" name="searchParam[estado]" class="form-control">
+                        <option value="Inactivo" {%if estado%}{%else%}selected{%endif%}>Inactivo</option>
+                        <option value="Pendiente" {%if estado =='Pendiente'%} selected{%else%}{%endif%}>Pendiente</option>
+                        <option value="Vetado" {%if estado =='Vetado'%} selected{%else%}{%endif%}>Vetado</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="js-perpage" name="searchParam[perPage]" class="form-control">
+                        <option value="10" >10</option>
+                        <option value="20" selected>20</option>
+                        <option value="50">50</option>
+                        <option value="100" >100</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" name="searchParam[general]" class="form-control" placeholder="Búsqueda rápida">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </div><!-- /btn-group -->
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-lg-2">
+                    {%if EEmail%}
+                        <a  href="#" data-toggle="modal" data-target="#emailModal" id="js-email" class="btn btn-primary btn-block"><span class="fa fa-envelope-o"></span> Enviar Email</a>
+                    {%endif%}
+                </div>
+            </div>
+
+            <div id='dataContainer'>
+            </div>
+
+        </div>
+        <!-- Modal advanced search -->
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+            <div class="modal-dialog col-md-12">
+                <div class="modal-content col-md-12">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="searchModalLabel">Enviar correo electrónico</h4>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="form-group">
+                            <label for="" class="col-sm-5 control-label">Asunto</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="mail[Subject]" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-5 control-label">Cuerpo</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" name="mail[Body]" rows="8"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button  id="js-email-submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascript %}
+    {{parent()}}
+    <script>
+        (function ($) {
+            /* helper functions */
+            function getCheckedRows() {
+                var users = [];
+                dataContainer.find('input:checkbox:checked').each(function () {
+                    users.push($(this).val());
+                });
+                return users.join(',');
+            }
+            function isSelected() {
+                if (!getCheckedRows()) {
+                    alert('Por favor seleccione un book');
+                    return false;
+                }
+                ;
+                return true;
+            }
+            /* ajax dashboard*/
+            var form = $('#jsForm'),
+                    dataContainer = form.find('#dataContainer'),
+                    pageInput = form.find('#pagenumber'),
+                    emailBtn = form.find('#js-email'),
+                    emailSubmit = form.find('#js-email-submit'),
+                    emailModal = form.find('#emailModal'),
+                    jsFormUrl = '',
+                    searchModal = form.find('#searchModal');
+            /* pagination */
+            form.on('click', '.js-page', function () {
+                pageInput.val($(this).data('page'));
+                ajaxPost();
+            });
+            form.on('submit', function () {
+                ajaxPost();
+                return false;
+            });
+            function init() {
+                pageInput.val('1');
+                jsFormUrl = '{{path('agencia_hojadevida_ajax2',{'page':current_page}) }}';
+            }
+            function ajaxPost(action, callback) {
+                form.addClass('working');
+                searchModal.modal('hide');
+                $.ajax({
+                    type: "GET",
+                    data: form.serialize(),
+                    url: jsFormUrl,
+                    success: function (data) {
+                        form.removeClass('working');
+                        if (callback)
+                            callback(data);
+                        init();
+                        if (!action)
+                            dataContainer.empty().hide().html(data).fadeIn();
+                        else
+                            ajaxPost();
+                    },
+                    error: function () {
+                        form.removeClass('working');
+                        alert('Hubo un error');
+                    }
+                });
+                return false;
+            }
+            emailBtn.on('click', function () {
+                if (!isSelected())
+                    return false;
+            });
+            emailSubmit.on('click', function () {
+                Enviarmail('mail');
+            });
+            function Enviarmail(action, callback) {
+                emailModal.modal('hide');
+                $.ajax({
+                    type: "GET",
+                    data: form.serialize(),
+                    url: '{{ path('agencia_dashboard_hojadevida_mail') }}',
+                    success: function (data) {
+                        $('#panel').addClass('panel-primary').removeClass('panel-warning');
+                        alert('Email enviado satisfactoriamente');
+
+                    },
+                    error: function () {
+                        alert('Hubo un error');
+
+                    }
+                });
+                return false;
+            }
+            /* submit the form after loading the page*/
+            init();
+            ajaxPost();
+        })(jQuery);
+    </script>
+
+{% endblock%}
+

@@ -1,0 +1,28 @@
+.navbar-default {
+    border-color: white;
+    background-color: #C63533;
+}
+.carousel-inner > .item > img {
+   position: absolute;
+    min-width: 100%;
+    height: auto;
+    bottom: 0px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+}
+.navbar {
+    border-radius: 0px;
+        border:0px;
+}
+.imageprofile {
+  height: 500px;
+  margin-bottom: 60px;
+}    
+.imageprofile > img {
+ 	position: absolute;
+    min-width: 100%;
+    height: 500px;
+}

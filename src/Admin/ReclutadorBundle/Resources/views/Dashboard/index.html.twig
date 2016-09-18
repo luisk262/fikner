@@ -1,0 +1,100 @@
+{% extends "AdminReclutadorBundle::layout.html.twig" %}
+{% block container %}
+    <div class="col-lg-12">
+        <div class="row page-header"> 
+            <div class="">
+                <div class="col-md-6">
+                    <h1><i class="glyphicon glyphicon-dashboard"></i> Dashboard</h1>
+                </div>
+                <div class="col-md-6">
+                        <h1>{{app.user.nombre}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-12">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksP}}</div>
+                                <div>Pendientes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksA}}</div>
+                                <div>Pagados</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="glyphicon glyphicon-book x5"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalbooksR}}</div>
+                                <div>Anulados</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver Detalles</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <div class="col-lg-12">
+                    <h2>Bienvenido</h2>
+                    <h4>Este es su panel administrativo</h4>
+                    <h4>Reclute personal con el siguiente link </h4>
+                    <h4><a href="{{path('Reclutador_page', { 'id':app.user.id})}}">http://www.fikner.com{{path('Reclutador_page', { 'id':app.user.id})}}</a></h4>
+                                <p>Verifique que la información del book no contenga errores, exija que el usuario cargue imágenes de calidad.</p>
+                                <p>Cuando el contador Pendiente marque 100 registros Envié un mail a youfikner@gmail.com o comuníquese al 3114579556 para solicitar su pago.</p>
+                                <p>Los registros anulados son aquellos que no pertenecen a una persona real, un registro falso o personal sin experiencia, recuerde este módulo se desarrolló para registrar (Modelos, Actores y Actrices) o personal con experiencia en el medio.
+                                </p>            
+        </div>    
+                    </div>
+                    <div class="col-md-4 col-lg-4">
+                    </div>
+                    <div class="col-lg-8">
+                    </div>
+
+{% endblock %}

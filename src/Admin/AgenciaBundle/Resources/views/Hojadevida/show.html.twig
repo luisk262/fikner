@@ -1,0 +1,207 @@
+{% extends "AdminAgenciaBundle::layout.html.twig" %}
+{% block container %}
+
+    <div class="col-lg-12">
+            <div class="col-lg-9">
+                <h3><span class="glyphicon glyphicon-user"></span> {{entity.idHojadevida.nombre}}  {{entity.idHojadevida.apellido}} <small>{{Ahojadevida.Estado}} </small></h3>
+            </div>
+            <div class="col-lg-3"><h3> Edad:                  
+                    {% set number1 = entity.idHojadevida.fechaNac|date("Y") %}
+                    {% set number2 = "now"|date("Y") %}
+                    {% set aux= ((number2 - number1)) %}
+                    {{aux}}</h3>
+                <p><a href="{{path('list_book', { 'id':entity.idHojadevida.id})}}">BOOK:{{entity.idHojadevida.id}}</a><p>
+
+            </div>
+        <div class="col-lg-12 page-header">
+            {{ render(controller('AdminAgenciaBundle:Hojadevida:edit',{'id':Ahojadevida.idHojadevida.id})) }}
+        </div>
+        <div class="col-lg-12">
+            {{ render(controller('AdminAgenciaBundle:Photo:list',{'id':entity.idHojadevida})) }}
+        </div>
+        <div class="col-lg-12 page-header">
+            <div class="form-group">
+                <div class="col-md-6">                
+                    <label>Tipo de Documento</label>
+                    {{ entity.idHojadevida.tipoDocumento }}
+                </div>
+                <div class="col-md-6">                
+                    <label>Documento</label>
+                    {{ entity.idHojadevida.nit }}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label>Nombres</label>
+                    {{entity.idHojadevida.nombre}}  
+                </div>
+                <div class="col-md-6">
+                    <label>Apellidos</label>
+                    {{entity.idHojadevida.apellido}}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label>Whatsapp</label>
+                    {{ entity.idHojadevida.telefonoAdic }}
+
+                </div>
+                <div class="col-md-6">
+                    <label>Teléfono celular</label>
+                    {{ entity.idHojadevida.telCe }}
+                </div>
+            </div>
+            <div class="form-group">                
+                <div class="col-md-6">
+                    <label>Correo Electrónico</label>
+                    {{ entity.idHojadevida.emailPersonal }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 page-header">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label>Fecha de nacimiento</label>
+                    {{ entity.idHojadevida.fechaNac|date('Y-m-d') }}
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Genero</label>
+                    {{ entity.idHojadevida.sexo }}
+
+                </div>
+                <div class="col-md-4">
+                    <label>Estatura</label>
+                    {{ entity.idHojadevida.estatura}}
+                </div>
+                <div class="col-md-4">
+                    <label>Peso</label>
+                    {{ entity.idHojadevida.peso}}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Dirección de residencia</label>
+                    {{ entity.idHojadevida.dirCasa}}
+                </div>
+                <div class="col-md-4">
+                    <label>Ciudad de residencia</label>
+                    {{ entity.idHojadevida.ciudadresidencia}}
+                </div>
+                <div class="col-md-4">
+                    <label>Lugar de nacimiento</label>
+                    {{ entity.idHojadevida.paisnacimiento }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 page-header"> 
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Color de piel</label>
+                    {{ entity.idHojadevida.piel }}
+                </div>
+                <div class="col-md-4">
+                    <label>Color ojos</label>
+                    {{ entity.idHojadevida.ojos }}
+                </div>
+                <div class="col-md-4">
+                    <label>Color de Cabello</label>
+                    {{ entity.idHojadevida.pelo }}
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+
+                    <label>Talla de camisa</label>
+                    {{ entity.idHojadevida.tallaCamisa }}
+                </div>
+
+                <div class="col-md-4">
+                    <label>Talla Pantalón</label>
+                    {{ entity.idHojadevida.tallaPantalon }}                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Talla Zapato</label>
+                    {{ entity.idHojadevida.TallaZapato }}
+                </div>                
+            </div>
+        </div>
+        <div class="col-lg-12 page-header">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Deportes</label>
+                    {{ entity.idHojadevida.deportes }}
+                </div>
+                <div class="col-md-4">
+                    <label>Maneja</label>
+                    {{ entity.idHojadevida.maneja }}
+                </div>
+                <div class="col-md-4">
+                    <label>Idiomas</label>
+                    {{ entity.idHojadevida.idiomas}}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Habilidades</label>
+                    {{ entity.idHojadevida.habilidades }}
+                </div>
+                <div class="col-md-4">
+                    <label>Entidad de salud</label>
+                    {{ entity.idHojadevida.entidadSalud }}
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-12 page-header">
+            <div class="col-lg-6">
+                <label>Campo Artístico</label>
+
+                {{entity.idHojadevida.campoartistico}}   
+            </div>
+            <div class="col-lg-6">
+                <label>Estudios</label>
+                {{entity.idHojadevida.estudios}}
+            </div>
+
+        </div>
+        <div class="col-lg-12 page-header">
+            <div class="form-group">
+                <div class="col-md-12">
+
+                    <label>Experiencia de televisión</label>
+                    {{ entity.idHojadevida.experienciaTv }}
+                </div>                
+            </div>
+        </div>
+        <div class="col-lg-12 page-header">
+            <div class="col-lg-6">
+
+                <label>Fecha creación</label>
+                {{ entity.idHojadevida.fecha|date('Y-m-d H:i:s') }}
+            </div>                
+            <div class="col-lg-6">
+
+                <label>Fecha Actualización</label>
+                {{ entity.idHojadevida.fechaupdate|date('Y-m-d H:i:s') }}
+            </div>                
+        </div>
+    </div>    
+{%endblock%}
+{% block javascript %}
+    {{parent()}}
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script>
+        (function ($) {
+            var diagnosticInput = $('#admin_adminbundle_agenciahojadevida_Tags');
+            diagnosticData = "Acrobata_Adolecente_Afrodecendiente_Ama de casa_Artes Marciales_Bailarin_Colegio_Deportista_Doble_Enfermera_Estrato Alto_Extranjero_Gay_Hospital_Iglesia_Indigena_Ingeniero_Mafioso_Medico_Metalero_Musico_Niño_Oficina_Policia_Pre Adolecente_Prepago_Profesor_Recreador_Universidad_Musico_Maloso_Malandro".split('_');
+            diagnosticInput.removeClass('form-control').select2({tags: diagnosticData});
+        })(jQuery);
+    </script>
+
+{%endblock%}
