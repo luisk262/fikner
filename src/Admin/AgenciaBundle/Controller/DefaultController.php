@@ -368,7 +368,6 @@ EOF
                 )
         ;
         $this->get('mailer')->send($message);
-
         return array('AgenciaP' => $Agenciaplan);
     }
 
