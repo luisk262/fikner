@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class DefaultController extends Controller {
 
@@ -32,7 +34,7 @@ class DefaultController extends Controller {
             'nombre' => $nombre,
             'apellidos' => $apellidos,
             'idAgencia' => $idAgencia,
-            'idReclutador'=>$idReclutador,
+            'idReclutador' => $idReclutador,
             'error' => $error,
             'id' => $id,
             'errormsg' => $errormsg);
@@ -48,6 +50,7 @@ class DefaultController extends Controller {
     public function terminosAction() {
         
     }
+
     /**
      * Displays a form to create a new Hojadevida entity.
      *
@@ -87,7 +90,7 @@ class DefaultController extends Controller {
                     $ids[] = $aux->getIdPhoto(); //convertimos la consulta en un array
                 }
             } else {
-                $HojadevidaP=null;
+                $HojadevidaP = null;
                 $ids[] = null;
             }
             $entryQuery = $em->createQueryBuilder()
@@ -108,9 +111,70 @@ class DefaultController extends Controller {
             'id' => $id,
             'photos' => $photos,
             'entities' => $entities,
-            'HojadevidaP'=>$HojadevidaP,
-            
+            'HojadevidaP' => $HojadevidaP,
         );
+    }
+
+    /**
+     * recibe y envia el problema a el email del desarrollador del sistema
+     *
+     * @Route("/Myaccount/reportar/problema", name="Myaccount_reportarproblema")
+     * @Method("GET")
+     * @Template("AdminMyaccountBundle:views:reportarproblemas.html.twig")
+     */
+    public function reportarproblemasAction() {
+        $security_context = $this->get('security.context');
+        $security_token = $security_context->getToken();
+        //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
+        $user = $security_token->getUser();
+        $aux = AccountController::profile();
+        return array(
+            'Image' => $aux['image'],
+            'idfoto' => $aux['id'],
+            'user' => $user);
+    }
+
+    /**
+     * envia el problema a el email del desarrollador del sistema
+     *
+     * @Route("/Myaccount/reportar/problema/send", name="Myaccount_enviarproblema")
+     * @Method("GET")
+     * @Template("AdminMyaccountBundle:views:sendproblemas.html.twig")
+     */
+    public function sendproblemaAction(Request $request) {
+        $security_context = $this->get('security.context');
+        $security_token = $security_context->getToken();
+        //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
+        $user = $security_token->getUser();
+        ///procedemos a enviar el email
+        $asunto = $request->query->get('asunto');
+        $Body = $request->query->get('mensaje');
+        $correo_remitente = 'youfikner@gmail.com';
+        $Subject = 'Fikner - ' . $user->getNombre() . ':' . $asunto;
+        $emailuser = $user->getEmail();
+        $email = 'luisk__@hotmail.com';
+        $message = \Swift_Message::newInstance()
+                ->setSubject($Subject)
+                ->setFrom($correo_remitente)
+                ->setTo($email)
+                ->setBody(
+                <<<EOF
+                Asunto:  $Subject
+                Correo:  $email
+                
+                
+                        $Body               
+                
+                Responda este email a $emailuser
+                
+EOF
+                )
+        ;
+        $this->get('mailer')->send($message);
+        $aux = AccountController::profile();
+        return array(
+            'Image' => $aux['image'],
+            'idfoto' => $aux['id']);
     }
 
 }
