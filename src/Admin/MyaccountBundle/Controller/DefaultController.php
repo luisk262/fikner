@@ -105,6 +105,7 @@ class DefaultController extends Controller {
         } else {
             $photos = false;
             $entities = null;
+            $HojadevidaP=null;
         }
 
         return array(

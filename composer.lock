@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c263ad6ae78d1cae8bb51aa8e3516edb",
-    "content-hash": "783f278bfaaff1be691bd92f19cfadf9",
+    "hash": "40e4e6d937bd6997249f304529573fb3",
+    "content-hash": "2b8451149f1b1de019a98c2cfb11d37a",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -2644,6 +2644,61 @@
             ],
             "description": "This bundle generates code for you",
             "time": "2015-03-17 06:36:52"
+        },
+        {
+            "name": "tchwork/debug-bundle",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tchwork/debug-bundle.git",
+                "reference": "85e7f767a023f36705c4f5bf22d24d9a443e7bc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tchwork/debug-bundle/zipball/85e7f767a023f36705c4f5bf22d24d9a443e7bc9",
+                "reference": "85e7f767a023f36705c4f5bf22d24d9a443e7bc9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/config": "~2.3",
+                "symfony/dependency-injection": "~2.2",
+                "symfony/event-dispatcher": "~2.3",
+                "symfony/http-kernel": "~2.3",
+                "symfony/var-dumper": "~2.6"
+            },
+            "require-dev": {
+                "twig/twig": "~1.12"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Bundle\\DebugBundle\\": "src",
+                    "Symfony\\Bridge\\Twig\\": "src",
+                    "Symfony\\Component\\HttpKernel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                }
+            ],
+            "description": "The DebugBundle of Symfony 2.6 backported for 2.3+",
+            "homepage": "https://github.com/tchwork/debug-bundle",
+            "keywords": [
+                "dump"
+            ],
+            "time": "2014-12-02 19:45:04"
         }
     ],
     "aliases": [],
