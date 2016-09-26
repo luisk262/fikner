@@ -87,7 +87,7 @@
                         {% if  Image %}
                             <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}" > 
                         {%else%}
-                            <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}"> 
+                            <img  src="{{ asset('upload/default/default.png')}}"> 
                         {%endif%}
                     </p>
                     <p id="nameProfile">{{ app.user.nombre}} <small>{{ app.user.apellidos}}</small></p>

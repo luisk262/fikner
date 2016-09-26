@@ -129,9 +129,17 @@ class DefaultController extends Controller {
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
         $aux = AccountController::profile();
+        if(!$aux){
+            $Image=null;
+            $idfoto=null;
+        }
+        else{
+            $Image=$aux[0]['image'];
+            $idfoto=$aux[0]['id'];
+        }
         return array(
-            'Image' => $aux['image'],
-            'idfoto' => $aux['id'],
+            'Image' => $Image,
+            'idfoto' => $idfoto,
             'user' => $user);
     }
 

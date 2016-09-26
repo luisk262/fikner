@@ -1,0 +1,733 @@
+$blanco: #ffffff
+$rojo: #C63533
+$rojo2: #EF4036
+$gris: gray
+$grisTransparente: rgba(128, 128, 128, 0.34)
+@import 'https://fonts.googleapis.com/css?family=Roboto'
+
+html
+  overflow-y: scroll
+  overflow-x: hidden
+body
+  font-family: 'Roboto', 'sans-serif'
+  li, p
+    color: $gris
+
+  .backgroundImage
+    background-image: url("../../../images/background/background2.jpg")
+    background-size: cover
+    background-repeat: no-repeat
+    padding-bottom: 100px
+  header
+    p
+      margin-top: 10px
+      color: $blanco
+    ul
+      float: right
+      li
+        display: inline-block
+    button
+      padding-left: 50px
+      padding-right: 50px
+      padding-top: 15px
+      padding-bottom: 15px
+      background-color: transparent
+      border-radius: 10px
+      border-color: $blanco
+      color: $blanco
+      font-size: 20px
+      &:hover
+        background-color: $rojo
+
+    .navbar-default
+      background-color: transparent
+      border-color: transparent
+      .navbar-brand
+        img
+          margin-left: 15px
+
+
+  .navbar-default.navbar-fixed-top
+    height: 60px
+    background-color: $rojo
+    border-color: $rojo
+    .navbar-left
+      li
+        a
+          color: $blanco
+          margin-top: 10px
+      #profileImage
+        img
+          margin-top: -10px
+          background-color: $grisTransparente
+          width: 30px
+          height: 30px
+          border-radius: 120px
+    .navbar-right
+      li
+        a
+          color: $blanco
+          margin-top: 10px
+
+    a.dropdown.open
+    a.dropdown-toggle:hover
+      background-color: transparent
+      color: $blanco
+    .dropdown
+      li
+        a
+          color: $gris
+
+
+
+
+
+  #bannerProfile
+    background-color: #4b4f56
+    margin-top: 60px
+    padding-top: 30px
+    padding-bottom: 30px
+    #profileImage
+      img
+        height: 200px
+        width: 100%
+    #profileDescription
+      h2
+        font-family: Roboto
+        color: $blanco
+        //-----------------------------SISTEMA DE CALIFICACIÓN POR ESTRELLAS
+      span
+        font-size: 15px
+        .clasificacion
+          direction: ltr // right to left
+          unicode-bidi: bidi-override /* bidi de bidireccional */
+        label
+          color: $gris
+          &:hover
+            color: orange
+        label:hover ~ label
+          color: orange
+        input[type = "radio"]
+          display: none
+        input[type = "radio"]:checked ~ label
+          color: orange
+        //------------------------- FIN SISTEMA DE CALIFICACIÓN POR ESTRELLAS
+
+      h4
+        font-family: Roboto
+        font-weight: 100
+        color: $blanco
+      button
+        background-color: $blanco
+        border-color: $blanco
+        margin-bottom: 10px
+        border-radius: 0px
+      span
+        color: $rojo2
+
+
+  #profileLikes
+    ul
+      margin-top: 30px
+      li
+        list-style: none
+        font-family: sans-serif
+        font-weight: 100
+        color: $blanco
+
+
+  #infoContent
+    margin-top: 25px
+    #confianza
+      h3
+        color: $gris
+      h4
+        color: $rojo2
+        margin-bottom: 37px
+
+  #accordion
+    h4
+      a
+        color: $rojo2
+    ul
+      li 
+        span
+          color: $rojo
+    .panel-default>.panel-heading
+      background-color: $blanco
+    .panel-collapse
+      ul
+        li
+          list-style: none
+          margin-left: -40px
+
+  #socialMedia
+    color: $rojo2
+    ul.social-network
+      margin-left: -20px
+
+
+  #sobreMi
+    h3
+      color: $rojo2
+
+  #valoraciones
+    .perfilImageCalificador
+      img
+        width: 100%
+        height: 100px
+    .infoPerfilCalificador
+      li
+        font-size: 12px
+        a
+          color: $rojo2
+          font-size: 12px
+    button
+      background-color: transparent
+      border-color: $rojo2
+      margin-bottom: 10px
+      border-radius: 0px
+      span
+        color: $rojo2
+
+  #fotos
+    margin-top: -15px
+    color: $gris
+    .linea
+      margin-bottom: 30px
+
+
+
+@media (min-width: 992px) and (max-width: 1199px)
+  html
+
+  body
+    .page-header 
+      padding-bottom: 29px
+    #valoraciones button
+      width: 100%
+@media (min-width: 769px) and (max-width: 991px)
+  html
+
+  body
+    a  
+      font-size: 15px
+    header
+    section.registrate
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+        width: 100%
+        padding-left: 40px
+        padding-right: 40px
+        padding-top: 15px
+        padding-bottom: 15px
+        background-color: $rojo
+        border-color: $rojo
+        color: $blanco
+        font-size: 15px
+        font-weight: 400
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 0px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 50px
+        padding-right: 50px
+      .thumbnail
+        .caption
+          padding-left: 30px
+          padding-right: 30px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+
+    #infoContent 
+      #socialMedia 
+        h3  
+          font-size: 15px
+        .social-circle li a
+          width: 50px
+          height: 50px
+          font-size: 35px  
+    #accordion
+      ul
+        li 
+          span
+            color: $rojo
+    .page-header
+      padding-bottom: 35px
+      margin: 21px 0px 0px
+    #fotos
+      margin-top: 0px
+    #sobreMi h3
+      font-size: 15px
+
+    #valoraciones button
+      width: 100%
+@media (min-width: 601px) and (max-width: 767px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 39px
+      #social
+        display: none
+        float: left
+        li
+        li#imgSocial
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: -10px
+        height: 50px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      margin-top: -10px
+    section.registrate
+      margin-top: -200px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 100px
+        padding-right: 100px
+      .thumbnail
+        margin-top: 60px
+      .recuadro
+        padding-left: 100px
+        padding-right: 100px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 0px
+
+  #bannerProfile #profileDescription h4
+    margin-top: -25px
+  #bannerProfile #profileDescription h2
+    z-index: 99
+    position: relative
+  #profileLikes
+    margin-top: -166px
+    ul 
+      float: right
+@media (min-width: 401px) and (max-width: 600px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 0px
+      #social
+        display: none
+        float: left
+        li
+        li#imgSocial
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: -10px
+        height: 50px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      margin-top: -10px
+    section.registrate
+      margin-top: -200px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+      h5
+        margin-bottom: 25px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 50px
+        padding-right: 50px
+      .thumbnail
+        margin-top: 60px
+      .recuadro
+        padding-left: 20px
+        padding-right: 20px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        p#info
+          font-size: 12px
+          text-align: left
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 0px
+
+
+    section.login
+      form
+        margin-top: -150px
+        margin-bottom: -150px
+
+  #bannerProfile #profileDescription h4
+    margin-top: -25px
+  #bannerProfile #profileDescription h2
+    z-index: 99
+    position: relative
+  #profileLikes 
+    margin-top: -20px
+    ul
+      margin-left: -40px
+  #valoraciones button
+    margin-top: 10px
+    padding-top: 10px
+    padding-bottom: 10px
+    font-size: 15px
+    text-transform: uppercase
+  .infoPerfilCalificador
+    margin-top: 25px
+    
+//MOTO X 2 Gen
+@media (min-width: 297px) and (max-width: 400px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 0px
+      #social
+        display: none
+        float: left
+        li
+        li#imgSocial
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: -10px
+        height: 50px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      margin-top: -10px
+    section.registrate
+      margin-top: -200px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+      h5
+        margin-bottom: 25px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+        font-size: 15px
+        padding-left: 10px
+        padding-right: 10px
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.book #profiles img
+      height: 100px
+      width: 100px
+    section.clientes #profiles img
+      height: 100px
+      width: 100px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 20px
+        padding-right: 20px
+      .thumbnail
+        margin-top: 60px
+      .recuadro
+        padding-left: 10px
+        padding-right: 10px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        p#info
+          font-size: 11px
+          text-align: left
+          padding-left: 0px
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 0px
+
+
+    section.login
+      form
+        margin-top: -150px
+        margin-bottom: -150px
+  #bannerProfile #profileDescription h4
+    margin-top: -25px
+  #bannerProfile #profileDescription h2
+    z-index: 99
+    position: relative
+  #profileLikes 
+    margin-top: -20px
+    ul
+      margin-left: -40px
+  #valoraciones button
+    margin-top: 10px
+    padding-top: 10px
+    padding-bottom: 10px
+    font-size: 15px
+    text-transform: uppercase
+  .infoPerfilCalificador
+    margin-top: 25px
+
+@media (min-width: 0px) and (max-width: 296px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 0px
+      ul#social
+        float: left
+        margin-left: -40px
+        img
+          height: 25px
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: 0px
+        height: 30px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      padding-left: 20px
+      padding-right: 20px
+      padding-top: 15px
+    section.registrate
+      margin-top: 300px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+      h5
+        margin-bottom: 25px
+      button
+        padding-left: 20px
+        padding-right: 20px
+        font-size: 20px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+        font-size: 12px
+        padding-left: 0px
+        padding-right: 0px
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.book #profiles img
+      height: 100px
+      width: 100px
+    section.clientes #profiles img
+      height: 100px
+      width: 100px
+    section.book #profiles img
+      height: 80px
+      width: 80px
+    section.clientes #profiles img
+      height: 80px
+      width: 80px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 10px
+        padding-right: 10px
+      .thumbnail
+        margin-top: 60px
+        .caption
+          padding-left: 10px
+          padding-right: 10px
+      .recuadro
+        padding-left: 0px
+        padding-right: 0px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        p#info
+          font-size: 10px
+          padding-left: 0px
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 20px
+
+
+
+    section.login
+      form
+        margin-top: -150px
+        margin-bottom: -150px
+
+  #bannerProfile #profileDescription h4
+    margin-top: -25px
+  #bannerProfile #profileDescription h2
+    z-index: 99
+    position: relative
+  #bannerProfile #profileDescription button
+    width: 100%
+  #profileLikes 
+    margin-top: -20px
+    ul
+      margin-left: -40px
+  #valoraciones button
+    margin-top: 10px
+    padding-top: 10px
+    padding-bottom: 10px
+    font-size: 15px
+    text-transform: uppercase
+    width: 100%
+  .infoPerfilCalificador
+    margin-top: 25px

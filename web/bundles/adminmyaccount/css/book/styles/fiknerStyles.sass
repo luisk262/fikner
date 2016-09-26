@@ -1,0 +1,663 @@
+$blanco: #ffffff
+$rojo: #C63533
+$rojo2: #EF4036
+$gris: gray
+$grisTransparente: rgba(128, 128, 128, 0.34)
+
+html
+  overflow-y: scroll
+  overflow-x: hidden
+body
+  .backgroundImage
+    background-image: url("../../../images/background/background2.jpg")
+    background-size: cover
+    background-repeat: no-repeat
+    padding-bottom: 100px
+  header
+    p
+      margin-top: 10px
+      color: $blanco
+    ul
+      float: right
+      li
+        display: inline-block
+    button
+      padding-left: 50px
+      padding-right: 50px
+      padding-top: 15px
+      padding-bottom: 15px
+      background-color: transparent
+      border-radius: 10px
+      border-color: $blanco
+      color: $blanco
+      font-size: 20px
+      &:hover
+        background-color: $rojo
+
+    .navbar-default
+      background-color: transparent
+      border-color: transparent
+      .navbar-brand
+        img
+          margin-left: 15px
+
+  section.registrate
+    h1
+      color: $blanco
+    h2
+      color: $blanco
+    p
+      color: $blanco
+    #fechaNacimiento
+      margin-left: 10%
+      color: $blanco
+      font-weight: 200
+      font-style: italic
+      font-size: 15px
+    p#terminos
+    h5
+      color: $blanco
+      font-weight: 200
+      font-size: 15px
+    a
+      color: $blanco
+      font-size: 20px
+
+    button
+      width: 100%
+      padding-left: 50px
+      padding-right: 50px
+      padding-top: 15px
+      padding-bottom: 15px
+      color: $rojo
+      border-color: $rojo
+      font-size: 18px
+      font-weight: 400
+
+  section.agencias
+    padding-top: 100px
+    padding-bottom: 100px
+    background-color: $grisTransparente
+    button
+      width: 100%
+      padding-left: 50px
+      padding-right: 50px
+      padding-top: 15px
+      padding-bottom: 15px
+      background-color: $rojo
+      border-color: $rojo
+      color: $blanco
+      font-size: 18px
+      font-weight: 400
+    p
+      font-size: 25px
+      color: $rojo
+      text-align: center
+      margin-top: -10px
+
+  section.book
+    text-align: center
+    margin-top: 100px
+    img
+      height: 80px
+    h2
+      margin-top: 70px
+      color: $gris
+    h1
+      color: $rojo
+      margin-top: -10px
+      margin-bottom: 40px
+    #texto
+      color: $gris
+      margin-bottom: 40px
+    hr
+      margin-bottom: 70px
+    #h1
+      margin-bottom: 70px
+    #profiles
+      img
+        background-color: $gris
+        height: 150px
+        width: 150px
+        border-radius: 150px
+        background-color: $grisTransparente
+        margin-bottom: 100px
+
+  section.clientes
+    text-align: center
+    background-color: $rojo
+    h1
+      margin-top: 70px
+      color: $blanco
+      margin-bottom: 70px
+    #profiles
+      img
+        background-color: $gris
+        height: 150px
+        width: 150px
+        border-radius: 150px
+        background-color: $blanco
+        margin-bottom: 100px
+
+  footer
+    #textoFooter
+      margin-top: 70px
+      color: $rojo
+      a
+        color: $gris
+        &:hover
+          color: $rojo
+      #footerLine
+        margin-top: 30px
+      ul
+        li
+          margin-top: 0px
+          list-style: none
+          margin-left: -40px
+          color: $gris
+    #fiknerCredits
+      float: right
+      color: $gris
+
+
+
+
+
+
+
+  .navbar-default.navbar-fixed-top
+    height: 60px
+    background-color: $rojo
+    .navbar-left
+      li
+        a
+          color: $blanco
+          margin-top: 10px
+      #profileImage
+        img
+          margin-top: -10px
+          background-color: $grisTransparente
+          width: 30px
+          height: 30px
+          border-radius: 120px
+    .navbar-right
+      li
+        a
+          color: $blanco
+          margin-top: 10px
+
+
+
+  .books
+    margin-top: 0px
+    #space
+      width: 100%
+      height: auto
+      padding-top: 200px
+      padding-bottom: 200px
+    #here
+      height: 100 hv
+      margin-top: 100px
+      margin-bottom: 100px
+      ul
+        margin-top: 200px
+        li
+          list-style: none
+          font-size: 20px
+          color: #C63533
+        span
+          float: right
+          color: gray
+      img
+        width: 100%
+        height: 500px
+        background-color: transparent
+      #experiencia
+        margin-top: 100px
+
+
+
+
+
+
+@media (min-width: 769px) and (max-width: 991px)
+  html
+
+  body
+    header
+    section.registrate
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+        width: 100%
+        padding-left: 40px
+        padding-right: 40px
+        padding-top: 15px
+        padding-bottom: 15px
+        background-color: $rojo
+        border-color: $rojo
+        color: $blanco
+        font-size: 15px
+        font-weight: 400
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 0px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 50px
+        padding-right: 50px
+      .thumbnail
+        .caption
+          padding-left: 30px
+          padding-right: 30px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+
+
+
+
+@media (min-width: 601px) and (max-width: 767px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 39px
+      #social
+        display: none
+        float: left
+        li
+        li#imgSocial
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: -10px
+        height: 50px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      margin-top: -10px
+    section.registrate
+      margin-top: -200px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 100px
+        padding-right: 100px
+      .thumbnail
+        margin-top: 60px
+      .recuadro
+        padding-left: 100px
+        padding-right: 100px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 0px
+
+
+@media (min-width: 401px) and (max-width: 600px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 0px
+      #social
+        display: none
+        float: left
+        li
+        li#imgSocial
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: -10px
+        height: 50px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      margin-top: -10px
+    section.registrate
+      margin-top: -200px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+      h5
+        margin-bottom: 25px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 50px
+        padding-right: 50px
+      .thumbnail
+        margin-top: 60px
+      .recuadro
+        padding-left: 20px
+        padding-right: 20px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        p#info
+          font-size: 12px
+          text-align: left
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 0px
+
+
+    section.login
+      form
+        margin-top: -150px
+        margin-bottom: -150px
+
+
+//MOTO X 2 Gen
+@media (min-width: 297px) and (max-width: 400px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 0px
+      #social
+        display: none
+        float: left
+        li
+        li#imgSocial
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: -10px
+        height: 50px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      margin-top: -10px
+    section.registrate
+      margin-top: -200px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+      h5
+        margin-bottom: 25px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+        font-size: 15px
+        padding-left: 10px
+        padding-right: 10px
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.book #profiles img
+      height: 100px
+      width: 100px
+    section.clientes #profiles img
+      height: 100px
+      width: 100px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 20px
+        padding-right: 20px
+      .thumbnail
+        margin-top: 60px
+      .recuadro
+        padding-left: 10px
+        padding-right: 10px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        p#info
+          font-size: 11px
+          text-align: left
+          padding-left: 0px
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 0px
+
+
+    section.login
+      form
+        margin-top: -150px
+        margin-bottom: -150px
+
+
+@media (min-width: 0px) and (max-width: 296px)
+  html
+
+  body
+    header
+      #telefono
+        margin-left: 0px
+      ul#social
+        float: left
+        margin-left: -40px
+        img
+          height: 25px
+    .navbar-default
+      height: 67px
+      .navbar-nav .open .dropdown-menu>li>a
+        color: $blanco
+      .navbar-toggle
+        border-color: $rojo
+        span.icon-bar
+          background-color: $blanco
+          &:hover
+            color: $rojo2
+    .navbar-brand
+      float: left
+      img
+        margin-top: 0px
+        height: 30px
+    .navbar-collapse
+      background-color: $rojo
+    button
+      padding-left: 20px
+      padding-right: 20px
+      padding-top: 15px
+    section.registrate
+      margin-top: 300px
+      #espacio1
+        margin-top: 20px
+      #espacio2
+        margin-top: 20px
+      #espacio3
+        margin-top: 20px
+      #espacio4
+        margin-top: 20px
+      #fechaNacimiento
+        margin-bottom: 25px
+      h5
+        margin-bottom: 25px
+      button
+        padding-left: 20px
+        padding-right: 20px
+        font-size: 20px
+    section.agencias
+      padding-top: 100px
+      padding-bottom: 100px
+      background-color: $grisTransparente
+      button
+        font-size: 12px
+        padding-left: 0px
+        padding-right: 0px
+      p
+        font-size: 20px
+        color: $rojo
+        text-align: center
+        margin-top: 20px
+    section.book #profiles img
+      height: 100px
+      width: 100px
+    section.clientes #profiles img
+      height: 100px
+      width: 100px
+    section.book #profiles img
+      height: 80px
+      width: 80px
+    section.clientes #profiles img
+      height: 80px
+      width: 80px
+    section.profile
+      margin-top: 150px
+      .info
+        padding-left: 10px
+        padding-right: 10px
+      .thumbnail
+        margin-top: 60px
+        .caption
+          padding-left: 10px
+          padding-right: 10px
+      .recuadro
+        padding-left: 0px
+        padding-right: 0px
+        #profilePhoto
+          img
+            height: 150px
+            width: 150px
+        p#info
+          font-size: 10px
+          padding-left: 0px
+        .btn-default
+          margin-top: 20px
+    footer.footerProfile
+      p
+        padding-top: 20px
+        padding-bottom: 10px
+
+
+    header
+      .navbar-fixed-top
+        .navbar-brand
+          img
+            margin-top: 20px
+
+
+
+    section.login
+      form
+        margin-top: -150px
+        margin-bottom: -150px

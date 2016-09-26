@@ -1,199 +1,453 @@
-{% extends "AdminMyaccountBundle:Account:index.html.twig" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title>Bienvenido a Fikner!</title>
+        <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/profile/bootstrap.min.css')}}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/profile/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <style media="screen">
+            /*=========================
+              Icons
+            ================= */
+            /* footer social icons */
+            #socialMedia ul.social-network {
+                list-style: none;
+                display: inline;
+                /*margin-left:0 !important;*/
+                padding: 0;
+            }
+            ul.social-network li {
+                display: inline;
+                margin: 0 5px;
+            }
+            /* footer social icons */
+            #socialMedia .social-network a.icoRss:hover {
+                background-color: #F56505;
+            }
+            #socialMedia .social-network a.icoFacebook:hover {
+                background-color:#3B5998;
+            }
+            #socialMedia .social-network a.icoTwitter:hover {
+                background-color:#33ccff;
+            }
+            #socialMedia .social-network a.icoGoogle:hover {
+                background-color:#BD3518;
+            }
+            #socialMedia .social-network a.icoVimeo:hover {
+                background-color:#0590B8;
+            }
+            #socialMedia .social-network a.icoLinkedin:hover {
+                background-color:#007bb7;
+            }
+            #socialMedia .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+            #socialMedia .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+                color:#fff;
+            }
+            #socialMedia a.socialIcon:hover, .socialHoverClass {
+                color:#44BCDD;
+            }
+            #socialMedia .social-circle li a {
+                display:inline-block;
+                position:relative;
+                margin:0 auto 0 auto;
+                -moz-border-radius:50%;
+                -webkit-border-radius:50%;
+                border-radius:50%;
+                text-align:center;
+                width: 30px;
+                height: 30px;
+                font-size:20px;
+            }
+            #socialMedia .social-circle li i {
+                margin:0;
+                line-height:30px;
+                text-align: center;
+            }
+            #socialMedia .social-circle li a:hover i, .triggeredHover {
+                -moz-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+                -ms--transform: rotate(360deg);
+                transform: rotate(360deg);
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                transition: all 0.2s;
+            }
+            #socialMedia .social-circle i {
+                color: #fff;
+                -webkit-transition: all 0.8s;
+                -moz-transition: all 0.8s;
+                -o-transition: all 0.8s;
+                -ms-transition: all 0.8s;
+                transition: all 0.8s;
+            }
+            #socialMedia a {
+                background-color: #D3D3D3;
+            }
+        </style>
+    </head>
+
+    <body>
+    <head>
+        {% include "AdminMyaccountBundle:views:menu.html.twig" %}
+    </head>
+    <section id="bannerProfile">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="profileImage">
+                            {% if  Image %}
+                                <img src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(200,200)}}"> 
+                            {%else%}
+                                <img   src="{{web_image('upload/default/default.png').resize(200,200)}}"> 
+                            {%endif%}
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="profileDescription">
+                            <h2>{{entity.nombre}} {{entity.apellido}}
+                                <span>
+                                    <form>
+                                        <p class="calificacion">
+                                            <label for="radio5">★</label>
+                                            <label for="radio4">★</label>
+                                            <label for="radio3">★</label>
+                                            <label for="radio2">★</label>
+                                            <label for="radio1">★</label>
+                                        </p>
+                                    </form>
+                                </span></h2>
+                            <br>
+                            <h4>Profesión ({%if entity.Campoartistico%}{{ entity.Campoartistico}}{%else%}No definido{%endif%})</h4>
+                            <br>
+                            <a href="{{path('list_book',{id:entity.id})}}" class="btn btn-primary">
+                                <span>
+                                    BOOK PUBLICO
+                                </span></a>
+                            <a href="#" class="btn btn-primary">
+                                <span>
+                                    COMPARTIR
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="profileLikes">
+                            <ul>
+                                <!--<li>Me gusta 43</li>
+                                <li>Me encanta 692</li>
+                                <li>Favoritos 18</li>
+                                <li>Dedicación 68%</li>-->
+                                <li>VISITAS</li>
+                                <li>Agencias:     134,193</li>
+                                <li>Book público: 134,193</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section id="infoContent">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="info">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="masInfo">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                                        INFORMACIÓN</a>
+                                                    <HR> 
+                                                    <a  class='btn btn-default btn-block' id="boton2" href="{{ path('Myaccount_perfil_edit') }}">
+                                                        Editar
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse1" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>EDAD <br><span>{% set number1 = entity.fechaNac|date("Y") %}
+                                                                {% set number2 = "now"|date("Y") %}
+                                                                {% set aux= ((number2 - number1)) %}
+                                                                {{aux}} AÑOS</span><hr></li>
+                                                        <li>GÉNERO <br><span>{{ entity.sexo }}</span><hr></li>
+                                                        <li>RESIDENCIA <br><span>{{ entity.ciudadresidencia}}</span><hr></li>
+
+
+                                                        <li>PESO <br><span>{{ entity.peso}}KG</span><hr></li>
+
+
+
+                                                        <li>DOCUMENTO <br><span> {{ entity.tipoDocumento }} / {{ entity.nit }}</span><hr></li>
+                                                        <li>PAIS NACIMIENTO <br><span>{{ entity.paisNacimiento }}</span><hr></li>
+
+                                                        <li>MOVIL<BR><span> {{ entity.telCe }}</span><hr></li>
+
+                                                        <li>WHATSAPP<BR><span> {{ entity.telefonoAdic }}</span><hr></li>
+
+                                                        <li>EMAIL<br><span>{{ entity.emailPersonal }}</span><li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                                        RASGOS FÍSICOS</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse2" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>OJOS <br><span>{{ entity.ojos }}</span><hr></li>
+                                                        <li>PIEL <br><span>{{ entity.piel }}</span><hr></li>
+                                                        <li>CABELLO<BR><span> {{ entity.pelo }}</span><hr></li>
+                                                        <li>CAMISA <br><span>{{ entity.tallaCamisa }}</span><hr></li>
+                                                        <li>PANTALON <br><span>{{ entity.tallaPantalon }}</span><hr></li>
+                                                        <li>CALZADO <br><span>{{ entity.TallaZapato }}</span></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                                        CAMPO ARTÍSTICO</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse3" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>{%if entity.Campoartistico%}{{ entity.Campoartistico}}{%else%}No definido{%endif%}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                                        DISCIPLINAS</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse4" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>VIDEOS </li>
+                                                        <li>FOTOGRAFÍA </li>
+                                                        <li>COMERCIALES </li>
+                                                        <li>EVENTOS </li>
+                                                        <li>CATÁLOGOS </li>
+                                                        <li>ARTE </li>
+                                                        <li>GLAMOUR </li>
+                                                        <li>ONLINE/WEB </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                                        IDIOMAS</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse5" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>{%if entity.idiomas%}{{ entity.idiomas}}{%else%}No definido{%endif%}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                                                        HABILIDADES</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse6" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>HABILIDADES<br><span>{%if entity.habilidades%}{{ entity.habilidades }}{%else%}No definido{%endif%}</span><hr></li>
+                                                        <li>DEPORTES<br><span>{%if entity.deportes%}{{ entity.deportes }}{%else%}No definido{%endif%}</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+                                                        ESTUDIOS</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse7" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>{%if entity.Estudios%}{{entity.Estudios}}{%else%}No definido{%endif%}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
+                                                        OTROS</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse8" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li>CONDUCE<br><span>{{ entity.maneja }}</span><hr></li>
+                                                        <li>ENTIDAD DE SALUD<br><span>{%if entity.entidadSalud%}{{ entity.entidadSalud }}{%else%}No definido{%endif%}</span></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="socialMedia">
+                                    <h3>Encuéntrame en</h3>
+                                    <div class="col-md-12">
+                                        <ul class="social-network social-circle">
+                                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="sobreMi">
+                                    <hr>
+                                    <h3>Sobre mí</h3>
+                                    <p id="textoABoutMe">
+                                        {{ entity.experienciaTv }}
+                                    </p>
+                                    <hr>
+                                </div>
+                                <!--
+                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="valoraciones">
+                                                                    <div class="panel-group" id="accordion">
+                                                                        <div class="panel panel-default">
+                                                                            <div class="panel-heading">
+                                                                                <h4 class="panel-title">
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                                                                        <span>2 </span>VALORACIONES</a>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id="collapse5" class="panel-collapse collapse in">
+                                                                                <div class="panel-body">
+                                
+                                                                                    <div class="row">
+                                                                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                                                                                            <div class="perfilImageCalificador">
+                                                                                                <img src="" alt="" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                                                                                            <div class="infoPerfilCalificador">
+                                                                                                <ul>
+                                                                                                    <li><a href="#">Nombre agencia</a></li>
+                                                                                                    <li>Tipo agencia</li>
+                                                                                                    <li>Valorado 22 Jun 2015</li>
+                                                                                                    <li>Número de estrellas</li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                                                                                            <div class="perfilImageCalificador">
+                                                                                                <img src="" alt="" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                                                                                            <div class="infoPerfilCalificador">
+                                                                                                <ul>
+                                                                                                    <li><a href="#">Nombre agencia</a></li>
+                                                                                                    <li>Tipo agencia</li>
+                                                                                                    <li>Valorado 22 Jun 2015</li>
+                                                                                                    <li>Número de estrellas</li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr>
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                                                                                <span>
+                                                                                                    + valoraciones
+                                                                                                </span>
+                                                                                            </button>
+                                                                                            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                                                                                <span>
+                                                                                                    ¡Valorar!
+                                                                                                </span>
+                                                                                            </button>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                -->
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="fotos">
+                            <div class="col-lg-12 linea">
+                                <h3 class="page-header">Galería</h3>
+                                <a href="{{path('Myaccount_photo_list')}}" class="btn  btn-default">Modificar Galeria</a>
+                            </div>
+                            {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+
+<script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/profile/jquery-2.1.4.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/profile/bootstrap.min.js')}}"></script>
+</html>
+
+{#{% extends "AdminMyaccountBundle:Account:index.html.twig" %}
 {% block container %}
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-10 col-lg-10 info">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <h1 id="nameProfile"><span class="glyphicon glyphicon-user"></span> {{entity.nombre}}<small> {{entity.apellido}}</small></h1>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <h1> Edad:                  {% set number1 = entity.fechaNac|date("Y") %}
-                    {% set number2 = "now"|date("Y") %}
-                    {% set aux= ((number2 - number1)) %}
-                    {{aux}}
-                </h1>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+             <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
                 <hr>
-                <div class="form-group">
-                    <div class="col-md-6">                
-                        <label>Tipo de Documento</label>
-                        {{ entity.tipoDocumento }}
-                    </div>
-                    <div class="col-md-6">                
-                        <label>Documento</label>
-                        {{ entity.nit }}
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Nombres</label>
-                        {{entity.nombre}}  
-                    </div>
-                    <div class="col-md-6">
-                        <label>Apellidos</label>
-                        {{entity.apellido}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Whatsapp</label>
-                        {{ entity.telefonoAdic }}
-
-                    </div>
-                    <div class="col-md-6">
-                        <label>Telefono celular</label>
-                        {{ entity.telCe }}
-                    </div>
-                </div>
-                <div class="form-group">                
-                    <div class="col-md-6">
-                        <label>Correo Electronico</label>
-                        {{ entity.emailPersonal }}
-                    </div>
-                </div>
-
-                <hr>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Fecha de nacimiento</label>
-                        {{ entity.fechaNac|date('Y-m-d') }}
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label>Genero</label>
-                        {{ entity.sexo }}
-
-                    </div>
-                    <div class="col-md-4">
-                        <label>Area artistica</label>
-                        {{ entity.Campoartistico}}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Estatura</label>
-                        {{ entity.estatura}}
-                    </div>
-
-                    <div class="col-md-4">
-                        <label>Estudios</label>
-                        {{ entity.Estudios}}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Peso</label>
-                        {{ entity.peso}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label>Direccion de casa</label>
-                        {{ entity.dirCasa}}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Ciudad de residencia</label>
-                        {{ entity.ciudadresidencia}}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Pais de nacimiento</label>
-                        {{ entity.paisNacimiento }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label>Deportes</label>
-                        {{ entity.deportes }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Maneja</label>
-                        {{ entity.maneja }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Idiomas</label>
-                        {{ entity.idiomas}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label>Habilidades</label>
-                        {{ entity.habilidades }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Entidad de salud</label>
-                        {{ entity.entidadSalud }}
-                    </div>
-
-                </div>
-                <hr>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label>Color de piel</label>
-                        {{ entity.piel }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Color ojos</label>
-                        {{ entity.ojos }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Color de Cabello</label>
-                        {{ entity.pelo }}
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">
-
-                        <label>Talla de camisa</label>
-                        {{ entity.tallaCamisa }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Talla de chaqueta</label>
-                        {{ entity.tallaChaqueta }}
-                    </div>
-                    <div class="col-md-4">
-                        <label>Talla Pantalon</label>
-                        {{ entity.tallaPantalon }}                </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label>Talla Zapato</label>
-                        {{ entity.TallaZapato }}
-                    </div>                
-                </div>
-                <hr>
-                <div class="form-group">
-                    <div class="col-md-12">
-
-                        <label>Experiencia</label>
-                        {{ entity.experienciaTv }}
-                    </div>                
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-
-                        <label>Fecha Creacion</label>
-                        {{ entity.fecha|date('Y-m-d H:i:s') }}
-                    </div>                
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-
-                        <label>Fecha Actualizacion</label>
-                        {{ entity.fechaupdate|date('Y-m-d H:i:s') }}
-                    </div>                
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                <a  class='btn btn-default btn-block' id="boton2" href="{{ path('Myaccount_perfil_edit') }}">
-                    Editar
-                </a>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-10 col-lg-10 info">
-            {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
-        </div>
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <a href="{{path('Myaccount_photo_list')}}" class="btn  btn-default" id="boton2">Modificar Fotos</a>
-            </div>
-    </div>
-    {% endblock container %}
+                
+            
+        
+#}

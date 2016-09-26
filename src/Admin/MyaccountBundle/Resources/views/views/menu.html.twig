@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{path('Myaccount')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="100%"></a>
+            <a class="navbar-brand" href="{{path('Myaccount')}}"><img src="{{web_image('images/logo/fikner_logo_blanco.png').resize(90,30)}}" alt="" height="30px"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
@@ -19,7 +19,7 @@
                         {% if  Image %}
                             <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(40,40)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"> 
                         {%else%}
-                            <img data-src="{{ web_image('upload/default/default.jpg').resize(40,40)}}}}"  src="{{web_image('upload/default/default.jpg').resize(40,40)}}"> 
+                            <img data-src="{{ web_image('upload/default/default.png').resize(40,40)}}}}"  src="{{web_image('upload/default/default.png').resize(40,40)}}"> 
                         {%endif%}
                     </a>
                 </li>
