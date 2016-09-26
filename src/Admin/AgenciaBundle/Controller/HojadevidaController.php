@@ -51,6 +51,9 @@ class HojadevidaController extends Controller {
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
             ///verificamos plan que tiene la agencia 
             $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            if(!$agenciaPlan){
+                $agenciaPlan=null;
+            }
         } else {
             $agencia = false;
             $AgenciaUsuario = null;
@@ -95,6 +98,10 @@ class HojadevidaController extends Controller {
             $agenciaU = $query->setMaxResults(1)->getOneOrNullResult();
             ///verificamos plan que tiene la agencia 
             $agenciaPlan = DashboardController::agenciaplan($agenciaU->getIdAgencia()->getId());
+            if(!$agenciaPlan){
+                $agenciaPlan=null;
+            }
+            
         } else {
             $agenciaPlan = null;
         }
@@ -650,12 +657,30 @@ EOF
                 $hojadevida = NULL;
             }
         }
+        //buscamos la agencia asignada al usuario 
+        $query = $em->createQuery(
+                        'SELECT AU
+                            FROM AdminAdminBundle:AgenciaUsuario AU
+                            WHERE AU.idUsuario  =:idUsuario'
+                )->setParameter('idUsuario', $user->getId());
+        if ($query->getResult()) {
+            $agenciaU = $query->setMaxResults(1)->getOneOrNullResult();
+            ///verificamos plan que tiene la agencia 
+            $agenciaPlan = DashboardController::agenciaplan($agenciaU->getIdAgencia()->getId());
+            if(!$agenciaPlan){
+                $agenciaPlan=null;
+            }
+        } else {
+            $agenciaPlan = null;
+        }
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity' => $HPhoto,
             'Ahojadevida' => $hojadevida,
             'delete_form' => $deleteForm->createView(),
+            'AgenciaP'=>$agenciaPlan
         );
     }
 
