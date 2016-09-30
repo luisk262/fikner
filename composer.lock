@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40e4e6d937bd6997249f304529573fb3",
-    "content-hash": "2b8451149f1b1de019a98c2cfb11d37a",
+    "hash": "b51e7c76fda87a9ac4e1712cb15d0bbe",
+    "content-hash": "b8f1ef89023c1b1d5a93cdd0fc161433",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -835,6 +835,61 @@
                 "orm"
             ],
             "time": "2016-01-05 21:34:58"
+        },
+        {
+            "name": "elao/error-notifier-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Elao/ErrorNotifierBundle.git",
+                "reference": "fceee3eef168add530d12dfc7b03befca5f08038"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Elao/ErrorNotifierBundle/zipball/fceee3eef168add530d12dfc7b03befca5f08038",
+                "reference": "fceee3eef168add530d12dfc7b03befca5f08038",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "swiftmailer/swiftmailer": "~5.0",
+                "symfony/console": "~2.3|~3.0",
+                "symfony/framework-bundle": "~2.3|~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Elao\\ErrorNotifierBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elao Team",
+                    "homepage": "http://www.elao.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "http://github.com/Elao/ErrorNotifierBundle/contributors"
+                }
+            ],
+            "description": "This bundle sends a html email when an error occurs.",
+            "homepage": "http://github.com/Elao/ErrorNotifierBundle",
+            "keywords": [
+                "bundle",
+                "elao",
+                "error",
+                "notifier"
+            ],
+            "time": "2016-06-24 12:50:19"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -2705,7 +2760,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
-        "gregwar/image-bundle": 20
+        "gregwar/image-bundle": 20,
+        "elao/error-notifier-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
