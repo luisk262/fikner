@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Admin\MyaccountBundle\AdminMyaccountBundle(),
             new Admin\AgenciaBundle\AdminAgenciaBundle(),
             new Admin\ReclutadorBundle\AdminReclutadorBundle(),
+            new Elao\ErrorNotifierBundle\ElaoErrorNotifierBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

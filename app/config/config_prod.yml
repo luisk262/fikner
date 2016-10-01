@@ -23,3 +23,13 @@ monolog:
             level: debug
         console:
             type:  console
+elao_error_notifier:
+    from: luisk__@hotmail.com
+    to: youfikner@gmail.com
+    handle404: true # default :  false
+    handleHTTPcodes: ~
+    mailer: mailer # default : mailer
+    handlePHPErrors: true # catch fatal erros and email them
+    handlePHPWarnings: true # catch warnings and email them
+    handleSilentErrors: false # don't catch error on method with an @
+    ignoredClasses: ~

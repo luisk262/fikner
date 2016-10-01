@@ -1,0 +1,545 @@
+html {
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+body .backgroundImage {
+  background-image: url("../../../images/background/background2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 100px; }
+body header p {
+  margin-top: 10px;
+  color: #ffffff; }
+body header ul {
+  float: right; }
+  body header ul li {
+    display: inline-block; }
+body header button {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: transparent;
+  border-radius: 10px;
+  border-color: #ffffff;
+  color: #ffffff;
+  font-size: 20px; }
+  body header button:hover {
+    background-color: #C63533; }
+body header .navbar-default {
+  background-color: transparent;
+  border-color: transparent; }
+  body header .navbar-default .navbar-brand img {
+    margin-left: 15px; }
+body section.registrate h1 {
+  color: #ffffff; }
+body section.registrate h2 {
+  color: #ffffff; }
+body section.registrate p {
+  color: #ffffff; }
+body section.registrate #fechaNacimiento {
+  margin-left: 10%;
+  color: #ffffff;
+  font-weight: 200;
+  font-style: italic;
+  font-size: 15px; }
+body section.registrate h5 {
+  color: #ffffff;
+  font-weight: 200;
+  font-size: 15px; }
+body section.registrate a {
+  color: #ffffff;
+  font-size: 20px; }
+body section.registrate button {
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #C63533;
+  border-color: #C63533;
+  font-size: 18px;
+  font-weight: 400; }
+body section.agencias {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: rgba(128, 128, 128, 0.34); }
+  body section.agencias button {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #C63533;
+    border-color: #C63533;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400; }
+  body section.agencias p {
+    font-size: 25px;
+    color: #C63533;
+    text-align: center;
+    margin-top: -10px; }
+body section.book {
+  text-align: center;
+  margin-top: 100px; }
+  body section.book img {
+    height: 80px; }
+  body section.book h2 {
+    margin-top: 70px;
+    color: gray; }
+  body section.book h1 {
+    color: #C63533;
+    margin-top: -10px;
+    margin-bottom: 40px; }
+  body section.book #texto {
+    color: gray;
+    margin-bottom: 40px; }
+  body section.book hr {
+    margin-bottom: 70px; }
+  body section.book #h1 {
+    margin-bottom: 70px; }
+  body section.book #profiles img {
+    background-color: gray;
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    background-color: rgba(128, 128, 128, 0.34);
+    margin-bottom: 100px; }
+body section.clientes {
+  text-align: center;
+  background-color: #C63533; }
+  body section.clientes h1 {
+    margin-top: 70px;
+    color: #ffffff;
+    margin-bottom: 70px; }
+  body section.clientes #profiles img {
+    background-color: gray;
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    background-color: #ffffff;
+    margin-bottom: 100px; }
+body footer #textoFooter {
+  margin-top: 70px;
+  color: #C63533; }
+  body footer #textoFooter a {
+    color: gray; }
+    body footer #textoFooter a:hover {
+      color: #C63533; }
+  body footer #textoFooter #footerLine {
+    margin-top: 30px; }
+  body footer #textoFooter ul li {
+    margin-top: 0px;
+    list-style: none;
+    margin-left: -40px;
+    color: gray; }
+body footer #fiknerCredits {
+  float: right;
+  color: gray; }
+body .navbar-default.navbar-fixed-top {
+  height: 60px;
+  background-color: #C63533; }
+  body .navbar-default.navbar-fixed-top .navbar-left li a {
+    color: #ffffff;
+    margin-top: 10px; }
+  body .navbar-default.navbar-fixed-top .navbar-left #profileImage img {
+    margin-top: -10px;
+    background-color: rgba(128, 128, 128, 0.34);
+    width: 30px;
+    height: 30px;
+    border-radius: 120px; }
+  body .navbar-default.navbar-fixed-top .navbar-right li a {
+    color: #ffffff;
+    margin-top: 10px; }
+body .books {
+  margin-top: 0px; }
+  body .books #space {
+    width: 100%;
+    height: auto;
+    padding-top: 200px;
+    padding-bottom: 200px; }
+  body .books #here {
+    height: 100 hv;
+    margin-top: 100px;
+    margin-bottom: 100px; }
+    body .books #here ul {
+      margin-top: 200px; }
+      body .books #here ul li {
+        list-style: none;
+        font-size: 20px;
+        color: #C63533; }
+      body .books #here ul span {
+        float: right;
+        color: gray; }
+    body .books #here img {
+      width: 100%;
+      height: 500px;
+      background-color: transparent; }
+    body .books #here #experiencia {
+      margin-top: 100px; }
+
+@media (min-width: 769px) and (max-width: 991px) {
+  body section.registrate #espacio3 {
+    margin-top: 20px; }
+  body section.registrate #espacio4 {
+    margin-top: 20px; }
+  body section.agencias {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(128, 128, 128, 0.34); }
+    body section.agencias button {
+      width: 100%;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: #C63533;
+      border-color: #C63533;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 400; }
+    body section.agencias p {
+      font-size: 20px;
+      color: #C63533;
+      text-align: center;
+      margin-top: 0px; }
+  body section.profile {
+    margin-top: 150px; }
+    body section.profile .info {
+      padding-left: 50px;
+      padding-right: 50px; }
+    body section.profile .thumbnail .caption {
+      padding-left: 30px;
+      padding-right: 30px; }
+    body section.profile .thumbnail #profilePhoto img {
+      height: 150px;
+      width: 150px; } }
+@media (min-width: 601px) and (max-width: 767px) {
+  body header #telefono {
+    margin-left: 39px; }
+  body header #social {
+    display: none;
+    float: left; }
+  body .navbar-default {
+    height: 67px; }
+    body .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #ffffff; }
+    body .navbar-default .navbar-toggle {
+      border-color: #C63533; }
+      body .navbar-default .navbar-toggle span.icon-bar {
+        background-color: #ffffff; }
+        body .navbar-default .navbar-toggle span.icon-bar:hover {
+          color: #EF4036; }
+  body .navbar-brand {
+    float: left; }
+    body .navbar-brand img {
+      margin-top: -10px;
+      height: 50px; }
+  body .navbar-collapse {
+    background-color: #C63533; }
+  body button {
+    margin-top: -10px; }
+  body section.registrate {
+    margin-top: -200px; }
+    body section.registrate #espacio1 {
+      margin-top: 20px; }
+    body section.registrate #espacio2 {
+      margin-top: 20px; }
+    body section.registrate #espacio3 {
+      margin-top: 20px; }
+    body section.registrate #espacio4 {
+      margin-top: 20px; }
+    body section.registrate #fechaNacimiento {
+      margin-bottom: 25px; }
+  body section.agencias {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(128, 128, 128, 0.34); }
+    body section.agencias p {
+      font-size: 20px;
+      color: #C63533;
+      text-align: center;
+      margin-top: 20px; }
+  body section.profile {
+    margin-top: 150px; }
+    body section.profile .info {
+      padding-left: 100px;
+      padding-right: 100px; }
+    body section.profile .thumbnail {
+      margin-top: 60px; }
+    body section.profile .recuadro {
+      padding-left: 100px;
+      padding-right: 100px; }
+      body section.profile .recuadro #profilePhoto img {
+        height: 150px;
+        width: 150px; }
+      body section.profile .recuadro .btn-default {
+        margin-top: 20px; }
+  body footer.footerProfile p {
+    padding-top: 20px;
+    padding-bottom: 10px; }
+  body header .navbar-fixed-top .navbar-brand img {
+    margin-top: 0px; } }
+@media (min-width: 401px) and (max-width: 600px) {
+  body header #telefono {
+    margin-left: 0px; }
+  body header #social {
+    display: none;
+    float: left; }
+  body .navbar-default {
+    height: 67px; }
+    body .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #ffffff; }
+    body .navbar-default .navbar-toggle {
+      border-color: #C63533; }
+      body .navbar-default .navbar-toggle span.icon-bar {
+        background-color: #ffffff; }
+        body .navbar-default .navbar-toggle span.icon-bar:hover {
+          color: #EF4036; }
+  body .navbar-brand {
+    float: left; }
+    body .navbar-brand img {
+      margin-top: -10px;
+      height: 50px; }
+  body .navbar-collapse {
+    background-color: #C63533; }
+  body button {
+    margin-top: -10px; }
+  body section.registrate {
+    margin-top: -200px; }
+    body section.registrate #espacio1 {
+      margin-top: 20px; }
+    body section.registrate #espacio2 {
+      margin-top: 20px; }
+    body section.registrate #espacio3 {
+      margin-top: 20px; }
+    body section.registrate #espacio4 {
+      margin-top: 20px; }
+    body section.registrate #fechaNacimiento {
+      margin-bottom: 25px; }
+    body section.registrate h5 {
+      margin-bottom: 25px; }
+  body section.agencias {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(128, 128, 128, 0.34); }
+    body section.agencias p {
+      font-size: 20px;
+      color: #C63533;
+      text-align: center;
+      margin-top: 20px; }
+  body section.profile {
+    margin-top: 150px; }
+    body section.profile .info {
+      padding-left: 50px;
+      padding-right: 50px; }
+    body section.profile .thumbnail {
+      margin-top: 60px; }
+    body section.profile .recuadro {
+      padding-left: 20px;
+      padding-right: 20px; }
+      body section.profile .recuadro #profilePhoto img {
+        height: 150px;
+        width: 150px; }
+      body section.profile .recuadro p#info {
+        font-size: 12px;
+        text-align: left; }
+      body section.profile .recuadro .btn-default {
+        margin-top: 20px; }
+  body footer.footerProfile p {
+    padding-top: 20px;
+    padding-bottom: 10px; }
+  body header .navbar-fixed-top .navbar-brand img {
+    margin-top: 0px; }
+  body section.login form {
+    margin-top: -150px;
+    margin-bottom: -150px; } }
+@media (min-width: 297px) and (max-width: 400px) {
+  body header #telefono {
+    margin-left: 0px; }
+  body header #social {
+    display: none;
+    float: left; }
+  body .navbar-default {
+    height: 67px; }
+    body .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #ffffff; }
+    body .navbar-default .navbar-toggle {
+      border-color: #C63533; }
+      body .navbar-default .navbar-toggle span.icon-bar {
+        background-color: #ffffff; }
+        body .navbar-default .navbar-toggle span.icon-bar:hover {
+          color: #EF4036; }
+  body .navbar-brand {
+    float: left; }
+    body .navbar-brand img {
+      margin-top: -10px;
+      height: 50px; }
+  body .navbar-collapse {
+    background-color: #C63533; }
+  body button {
+    margin-top: -10px; }
+  body section.registrate {
+    margin-top: -200px; }
+    body section.registrate #espacio1 {
+      margin-top: 20px; }
+    body section.registrate #espacio2 {
+      margin-top: 20px; }
+    body section.registrate #espacio3 {
+      margin-top: 20px; }
+    body section.registrate #espacio4 {
+      margin-top: 20px; }
+    body section.registrate #fechaNacimiento {
+      margin-bottom: 25px; }
+    body section.registrate h5 {
+      margin-bottom: 25px; }
+  body section.agencias {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(128, 128, 128, 0.34); }
+    body section.agencias button {
+      font-size: 15px;
+      padding-left: 10px;
+      padding-right: 10px; }
+    body section.agencias p {
+      font-size: 20px;
+      color: #C63533;
+      text-align: center;
+      margin-top: 20px; }
+  body section.book #profiles img {
+    height: 100px;
+    width: 100px; }
+  body section.clientes #profiles img {
+    height: 100px;
+    width: 100px; }
+  body section.profile {
+    margin-top: 150px; }
+    body section.profile .info {
+      padding-left: 20px;
+      padding-right: 20px; }
+    body section.profile .thumbnail {
+      margin-top: 60px; }
+    body section.profile .recuadro {
+      padding-left: 10px;
+      padding-right: 10px; }
+      body section.profile .recuadro #profilePhoto img {
+        height: 150px;
+        width: 150px; }
+      body section.profile .recuadro p#info {
+        font-size: 11px;
+        text-align: left;
+        padding-left: 0px; }
+      body section.profile .recuadro .btn-default {
+        margin-top: 20px; }
+  body footer.footerProfile p {
+    padding-top: 20px;
+    padding-bottom: 10px; }
+  body header .navbar-fixed-top .navbar-brand img {
+    margin-top: 0px; }
+  body section.login form {
+    margin-top: -150px;
+    margin-bottom: -150px; } }
+@media (min-width: 0px) and (max-width: 296px) {
+  body header #telefono {
+    margin-left: 0px; }
+  body header ul#social {
+    float: left;
+    margin-left: -40px; }
+    body header ul#social img {
+      height: 25px; }
+  body .navbar-default {
+    height: 67px; }
+    body .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: #ffffff; }
+    body .navbar-default .navbar-toggle {
+      border-color: #C63533; }
+      body .navbar-default .navbar-toggle span.icon-bar {
+        background-color: #ffffff; }
+        body .navbar-default .navbar-toggle span.icon-bar:hover {
+          color: #EF4036; }
+  body .navbar-brand {
+    float: left; }
+    body .navbar-brand img {
+      margin-top: 0px;
+      height: 30px; }
+  body .navbar-collapse {
+    background-color: #C63533; }
+  body button {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px; }
+  body section.registrate {
+    margin-top: 300px; }
+    body section.registrate #espacio1 {
+      margin-top: 20px; }
+    body section.registrate #espacio2 {
+      margin-top: 20px; }
+    body section.registrate #espacio3 {
+      margin-top: 20px; }
+    body section.registrate #espacio4 {
+      margin-top: 20px; }
+    body section.registrate #fechaNacimiento {
+      margin-bottom: 25px; }
+    body section.registrate h5 {
+      margin-bottom: 25px; }
+    body section.registrate button {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 20px; }
+  body section.agencias {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(128, 128, 128, 0.34); }
+    body section.agencias button {
+      font-size: 12px;
+      padding-left: 0px;
+      padding-right: 0px; }
+    body section.agencias p {
+      font-size: 20px;
+      color: #C63533;
+      text-align: center;
+      margin-top: 20px; }
+  body section.book #profiles img {
+    height: 100px;
+    width: 100px; }
+  body section.clientes #profiles img {
+    height: 100px;
+    width: 100px; }
+  body section.book #profiles img {
+    height: 80px;
+    width: 80px; }
+  body section.clientes #profiles img {
+    height: 80px;
+    width: 80px; }
+  body section.profile {
+    margin-top: 150px; }
+    body section.profile .info {
+      padding-left: 10px;
+      padding-right: 10px; }
+    body section.profile .thumbnail {
+      margin-top: 60px; }
+      body section.profile .thumbnail .caption {
+        padding-left: 10px;
+        padding-right: 10px; }
+    body section.profile .recuadro {
+      padding-left: 0px;
+      padding-right: 0px; }
+      body section.profile .recuadro #profilePhoto img {
+        height: 150px;
+        width: 150px; }
+      body section.profile .recuadro p#info {
+        font-size: 10px;
+        padding-left: 0px; }
+      body section.profile .recuadro .btn-default {
+        margin-top: 20px; }
+  body footer.footerProfile p {
+    padding-top: 20px;
+    padding-bottom: 10px; }
+  body header .navbar-fixed-top .navbar-brand img {
+    margin-top: 20px; }
+  body section.login form {
+    margin-top: -150px;
+    margin-bottom: -150px; } }
+
+/*# sourceMappingURL=fiknerStyles.min.css.map */

@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "gregwar/image-bundle": "dev-master",
-        "beberlei/DoctrineExtensions": "*"
+        "beberlei/DoctrineExtensions": "*",
+        "elao/error-notifier-bundle" : "dev-master"
         
     },
     "require-dev": {
