@@ -15,11 +15,11 @@ security:
                 providers: [ fos_userbundle, in_memory]
         in_memory:
             memory:
-                users:                   
-                    admin: { password: A1v2r3z, roles: [ 'ROLE_SUPER_ADMIN' ] }
+                users:
+                    admin: { password: 89CjxIgb, roles: [ 'ROLE_SUPER_ADMIN' ] }
         fos_userbundle:
             id: fos_user.user_provider.username
-                
+
     firewalls:
         main:
             pattern: ^/
@@ -34,7 +34,7 @@ security:
                 lifetime: 3600
                 path:     /
                 domain:   localhost
-    
+
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
