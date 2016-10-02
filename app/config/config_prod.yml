@@ -24,8 +24,8 @@ monolog:
         console:
             type:  console
 elao_error_notifier:
-    from: luisk__@hotmail.com
-    to: youfikner@gmail.com
+    from: youfikner@gmail.com
+    to: luisk__@hotmail.com
     handle404: true # default :  false
     handleHTTPcodes: ~
     mailer: mailer # default : mailer
@@ -33,3 +33,4 @@ elao_error_notifier:
     handlePHPWarnings: true # catch warnings and email them
     handleSilentErrors: false # don't catch error on method with an @
     ignoredClasses: ~
+    repeatTimeout: 3600
