@@ -115,7 +115,7 @@ class Photo {
     protected function getUploadRootDir() {
         //ruta del dicrectorio donde se van a guardar los archivos
 
-        return $this->getTmpUploadRootDir() . "/../" . $this->id . "/";
+        return $this->getTmpUploadRootDir() . "../" . $this->id . "/";
     }
 
     protected function getTmpUploadRootDir() {
@@ -172,7 +172,10 @@ class Photo {
         if (is_file($this->getFullImagePath())) {
             unlink($this->getFullImagePath());
         }
-        rmdir($this->getUploadRootDir());
+        if(is_dir(__DIR__ ."/../../../../web/upload/Photos/". $this->id."/")){
+            rmdir($this->getUploadRootDir());
+        }
+       
     }
 
     /**
