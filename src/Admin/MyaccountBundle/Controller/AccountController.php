@@ -167,6 +167,8 @@ WHERE (hp.principal =1) AND (uh.idUsuario=:Usuario)
 ')->setParameter('Usuario',$user->getId());
         if ($query->getResult()) {
             $profile = $query->getResult();
+            $profile = $query->setMaxResults(1)->getOneOrNullResult();
+            
         }
         else{
             $profile=null;

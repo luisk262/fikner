@@ -155,6 +155,7 @@ class DefaultController extends Controller {
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
+        $aux = AccountController::profile();
         ///procedemos a enviar el email
         $asunto = $request->query->get('asunto');
         $Body = $request->query->get('mensaje');
@@ -180,7 +181,6 @@ EOF
                 )
         ;
         $this->get('mailer')->send($message);
-        $aux = AccountController::profile();
         return array(
             'Image' => $aux['image'],
             'idfoto' => $aux['id']);
