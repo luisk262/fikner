@@ -134,8 +134,8 @@ class DefaultController extends Controller {
             $idfoto=null;
         }
         else{
-            $Image=$aux[0]['image'];
-            $idfoto=$aux[0]['id'];
+            $Image=['image'];
+            $idfoto=['id'];
         }
         return array(
             'Image' => $Image,
