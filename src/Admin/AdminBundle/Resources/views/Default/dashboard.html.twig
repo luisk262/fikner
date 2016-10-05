@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{ path('dashboard_hojadevida') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver registros </span>
                                     <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{path('dashboard_user')}}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver registros </span>
                                     <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{ path('dashboard_agencia') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver registros </span>
                                     <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{ path('dashboard_agencia') }}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver registros </span>
                                     <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -136,12 +136,12 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div>Tienes</div>
-                                        <div class="huge">{{AsinUser}}</div>
+                                        <div class="huge">{%set aux=AsinUser-Agencias  %}{{aux}}</div>
                                         <div>Usuarios Tipo Agencia</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{path('dashboard_user',{'id':1})}}">
                                 <div class="panel-footer">
                                     <span class="pull-left">Ver registros </span>
                                     <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>

@@ -1,6 +1,5 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
+{% extends 'AdminAdminBundle::layout.html.twig'%}
+{% block container %}
     <h1>User</h1>
 
     <table class="record_properties">
@@ -8,6 +7,22 @@
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                 <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+        <tr>
+             <th>apellidos</th>
+                <td>{{ entity.apellidos }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                 <th>Email</th>
+                <td>{{ entity.email }}</td>
             </tr>
         </tbody>
     </table>
