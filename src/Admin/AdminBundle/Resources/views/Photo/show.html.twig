@@ -1,7 +1,14 @@
 {% extends "AdminAdminBundle::layout.html.twig" %}
 {% block container %}
+     <div class="col-lg-12 page-header">
+        <div class="col-lg-10">
+        </div>
+        <div class="col-lg-2">
+            {{ form(delete_form) }}
+        </div>
+    </div>
     <div class="col-lg-12">
-        <img u=image height="auto" width="100%" src="{{asset('upload/Photos/' ~ entity.id ~'/' ~entity.image)}}" />
+        <img u=image height="auto" width="100%" src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~entity.image)}}" />
     </div>
     <div class="col-lg-12">
         <label>Fecha creacion:</label> {{ entity.fecha|date('Y-m-d H:i:s') }}

@@ -6,218 +6,224 @@
 
     <h3><span class="glyphicon glyphicon-user"></span> Editar {{entity.nombre}}  {{entity.apellido}}</h3> 
     {{ form_start(edit_form) }}
-        {{ form_errors(edit_form) }}
-        
-        <div class="col-md-12">
-            <div class="form-group">
-                <div class="col-md-6">                
-                    {{ form_row(edit_form.tipoDocumento,{
+    {{ form_errors(edit_form) }}
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="col-md-6">                
+                {{ form_row(edit_form.tipoDocumento,{
                                         'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-6">                
-
-                    {{ form_row(edit_form.nit,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
+                }}
             </div>
-            <div class="form-group">
-                <div class="col-md-6">
-                    {{ form_row(edit_form.nombre,{
+            <div class="col-md-6">                
+
+                {{ form_row(edit_form.nit,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                {{ form_row(edit_form.nombre,{
                                     'attr': {'class':'form-control'}
                                      })
-                    }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(edit_form.apellido,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                    }}
-                </div>
+                }}
             </div>
-            <div class="form-group">
-                <div class="col-md-6">
-                    {{ form_row(edit_form.telefonoAdic,{
+            <div class="col-md-6">
+                {{ form_row(edit_form.apellido,{
                                         'attr': {'class':'form-control'}
                                      })
-                    }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(edit_form.telCe,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                    }}                
-                </div>
+                }}
             </div>
-            <div class="form-group">                
-                <div class="col-md-6">
-                    {{ form_row(edit_form.emailPersonal,{
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                {{ form_row(edit_form.telefonoAdic,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(edit_form.telCe,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                }}                
+            </div>
+        </div>
+        <div class="form-group">                
+            <div class="col-md-6">
+                {{ form_row(edit_form.emailPersonal,{
                                         'attr': {'class':'form-control'}})
-                    }}
-                </div>
+                }}
             </div>
+        </div>
 
-            <hr>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label>Fecha de nacimiento</label>
-
-                </div>
-                <div class="col-md-4">
-
-                    {{ form_row(edit_form.fechaNac.year,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                    }}
-                </div>
-                <div class="col-md-4">                
-                    {{ form_row(edit_form.fechaNac.month,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                    }}
-                </div>
-                <div class="col-md-4">                
-                    {{ form_row(edit_form.fechaNac.day,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                    }}
-                </div>
-            </div>
-            <hr>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.sexo,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.estatura,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.peso,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.dirCasa,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.ciudadresidencia,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.paisnacimiento,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.deportes,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.maneja,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.idiomas,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.habilidades,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.entidadSalud,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
+        <hr>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label>Fecha de nacimiento</label>
 
             </div>
-            <hr>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.piel,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.ojos,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.pelo,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
+            <div class="col-md-4">
 
+                {{ form_row(edit_form.fechaNac.year,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                }}
             </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.tallaCamisa,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.tallaChaqueta,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(edit_form.tallaPantalon,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>
+            <div class="col-md-4">                
+                {{ form_row(edit_form.fechaNac.month,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                }}
             </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_row(edit_form.tallaZapato,{
-                                        'attr': {'class':'form-control'}})
-                    }}
-                </div>                
+            <div class="col-md-4">                
+                {{ form_row(edit_form.fechaNac.day,{
+                                        'attr': {'class':'form-control'}
+                                     })
+                }}
             </div>
-            <hr>
-            <div class="form-group">
-                <div class="col-md-12">
-                    {{ form_row(edit_form.experienciaTv,{
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.sexo,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.estatura,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.peso,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.dirCasa,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.ciudadresidencia,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.paisnacimiento,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.deportes,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.maneja,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.idiomas,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.habilidades,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.entidadSalud,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.piel,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.ojos,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(edit_form.pelo,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.tallaCamisa,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+
+            <div class="col-md-4">
+                {{ form_row(edit_form.tallaPantalon,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.tallaZapato,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>                
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.Campoartistico,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div></div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.Estudios,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                {{ form_row(edit_form.telCasa,{
+                                        'attr': {'class':'form-control'}})
+                }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                {{ form_row(edit_form.experienciaTv,{
                                         'attr': {'class':'form-control','rows':'9'}
 
                                      })
-                    }}
-                </div>                
-            </div>
+                }}
+            </div>  
             <div class="form-group">
-                {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-primary bnt-block' }}) }}
-
+                <div class="col-md-12">
+                    {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-primary bnt-block' }}) }}
+                </div>  
             </div>
         </div>
-    {{ form_end(edit_form) }}
-
-    <div class="col-md-2">
-        <a class='btn btn-primary btn-block' href="{{ path('dashboard_hojadevida') }}">
-            Ir a lista
-        </a>
-        <hr>
-            {{ form(delete_form) }}
-        
     </div>
-
+    <hr>
+{{ form_end(edit_form) }}
 {% endblock %}
 {% block javasctipt %}
     <!-- jQuery -->

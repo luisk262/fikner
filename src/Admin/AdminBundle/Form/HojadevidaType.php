@@ -14,17 +14,13 @@ class HojadevidaType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-               ->add('nombre','text',array('label'=>'Nombres *','max_length'=>30))
-                ->add('apellido','text',array('label'=>'Apellidos *','max_length'=>30))
-                ->add('telCasa','text',array('max_length'=>10,'label'=>'Telefono fijo','required' =>false))
-                ->add('telCe','text',array('max_length'=>10,'required' => true))
+              ->add('telCasa','text',array('max_length'=>10,'label'=>'Teléfono fijo','required' =>false))
+                ->add('nombre','text',array('label'=>'nombre','required' =>false))
+                ->add('apellido','text',array('label'=>'apellido','required' =>false))
+                ->add('emailPersonal')
+                ->add('fechaNac','date')
+                ->add('telCe','text',array('max_length'=>10,'label'=>'Teléfono Celular*','required' => true))
                 ->add('telefonoAdic','text',array('max_length'=>13,'label'=>'Whatsapp','required' =>false))
-                ->add('fechaNac', 'date', array(
-                    'years' => range(date('Y') - 95,date('Y')),
-                    'required' => True,
-                    'label' => 'Fecha de nacimimiento',
-                    'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
-                ))
                 ->add('tipoDocumento', 'choice', array(
                     'choices' => array(
                         'CC' => 'CC',
@@ -36,37 +32,60 @@ class HojadevidaType extends AbstractType {
                     'label'=>'Tipo de documento*',
                     'empty_data' => null
                 ))
-                ->add('nit','text',array('max_length'=>11,'required' => true,'label' => 'Documento *'))
-                
+                ->add('nit','text',array('max_length'=>11,'required' => true,'label' => 'Documento *','attr'=>array('placeholder' => 'Ejemplo( 1026265423 )')))                
                 ->add('sexo', 'choice', array(
                     'choices' => array(
-                        'Masculino' => 'Masculino',
-                        'Femenino' => 'Femenino',
+                        'Masculino' => 'Hombre',
+                        'Femenino' => 'Mujer',
+                        'Otro' => 'Otro',
                     ),
                     'required' => True,
-                    'label'=>'Sexo*',
+                    'label'=>'Genero*',
                     'empty_value' => 'Seleccione tipo',
                     'empty_data' => null
                 ))
-                ->add('Campoartistico')
-                ->add('Estudios')
-                ->add('paisnacimiento')
-                ->add('ciudadresidencia','text', array('label'=>'Ciudad de residencia*','required' => true))
-                ->add('dirCasa')
-                ->add('emailPersonal','email',array('label'=>'Correo Electronico*','required' => true))
-                ->add('estatura','number',array('max_length'=>4))
+                ->add('Campoartistico', 'choice', array(
+                    'choices' => array(
+                        'Actor' => 'Actor',
+                        'Actriz' => 'Actriz',
+                        'Extra' => 'Extra',
+                        'Figurante' => 'Figurante',
+                        'Modelo' => 'Modelo',
+                        'Otro' => 'Otro',
+                    ),
+                    'required' =>False,
+                    'label'=>'Campo artístico',
+                    'empty_value' => 'Seleccione tipo',
+                    'empty_data' => null
+                ))
+                ->add('Estudios', 'choice', array(
+                    'choices' => array(
+                        'Ninguno' => 'Ninguno',
+                        'Modelaje' => 'Modelaje',
+                        'Actuacion' => 'Actuacion',
+                        'Modelaje y Actuacion' => 'Modelaje y Actuacion',
+                    ),
+                    'required' =>False,
+                    'label'=>'Estudios realizados',
+                    'empty_value' => 'Seleccione tipo',
+                    'empty_data' => null
+                ))
+                ->add('paisnacimiento','text',array('label'=>'País de nacimiento*','attr'=>array('placeholder' => 'Ejemplo( Argentina  )')))
+                ->add('ciudadresidencia','text', array('label'=>'Ciudad de residencia*','required' => true,'attr'=>array('placeholder' => 'Ejemplo( Bogota  )')))
+                ->add('dirCasa','text',array('label'=>'Dirección de  residencia','required' => false,'attr'=>array('placeholder' => 'Ejemplo( Calle 41A#12-12  )')))
+                ->add('estatura','choice',array(
+                'placeholder'   => 'Estatura en Centímetros',
+                'choices'       => range(0,273),
+                'required'      => true))
                 ->add('piel', 'choice', array(
                     'choices' => array(
-                        'Amarilla' => 'Amarilla',
-                        'Blanca' => 'Blanca',
-                        'Indigena'=>'Indigena',
-                        'Mestiza'=>'Mestiza',
-                        'Negra'=>'Negra',
-                        'Roja'=>'Roja',
-                        'Trigeña'=>'Trigeña',
-                        
-                        'Otro'=>'Otro'
-                    ),
+                        'I' => 'I-Muy Blanca',
+                        'II' => 'II-Blanca',
+                        'III'=>'III-Ligeramente morena',
+                        'IV'=>'IV-Morena',
+                        'V'=>'V-Muy Morena ',
+                        'VI'=>'VI-Negra'
+                ),
                     'required' => True,
                     'label'=>'Color de piel*',
                     'empty_value' => 'Seleccione ',
@@ -74,11 +93,14 @@ class HojadevidaType extends AbstractType {
                 ))
                 ->add('ojos', 'choice', array(
                     'choices' => array(
-                        'Cafes' => 'Cafes',
-                        'Azules' => 'Azules',
-                        'Negros'=>'Negros',
-                        'Verdes'=>'Verdes',
-                        'Otro'=>'Otro'
+                        'Negro' => 'Negro',
+                        'Castaño' => 'Castaño',
+                        'Ambar' => 'Ambar',
+                        'Avellana'=>'Avellana',
+                        'Verde'=>'Verde',
+                        'Azul'=>'Azul',
+                        'Gris'=>'Gris',
+                        'Heterocromia'=>'Heterocromia'
                     ),
                     'required' => True,
                     'label'=>'Color de ojos*',
@@ -87,11 +109,14 @@ class HojadevidaType extends AbstractType {
                 ))                 
                 ->add('pelo', 'choice', array(
                     'choices' => array(
-                        'Castaño oscuro' => 'Castaño oscuro',
+                        'Negro' => 'Negro',
                         'Castaño' => 'Castaño',
-                        'Negro'=>'Negro',
-                        'Rojo'=>'Rojo',
-                        'Rubio'=>'Rubio',
+                        'Rubio-castañoclaro' => 'Rubio o castaño claro',
+                        'Castaño oscuro' => 'Castaño oscuro',
+                        'Pelirojo'=>'Pelirojo',
+                        'Gris'=>'Gris o canoso',
+                        'Blanco'=>'Blanco',
+                        'Sin cabello'=>'Sin cabello',
                         'Otro'=>'Otro'
                     ),
                     'required' => True,
@@ -99,11 +124,14 @@ class HojadevidaType extends AbstractType {
                     'empty_value' => 'Seleccione ',
                     'empty_data' => null
                 ))
-                ->add('peso','number',array('required' => false,'max_length'=>3))
-                ->add('experienciaTv')
-                ->add('deportes')
-                ->add('habilidades')
-                ->add('idiomas')
+                ->add('peso','choice',array(
+                'placeholder'   => 'Peso en kg',
+                'choices'       => range(0,597),
+                'required'      => false))
+                ->add('experienciaTv','textarea',array('label'=>'Experiencia','required' => false,'attr'=>array('rows' => 33,'placeholder' => 'Digite aqui su experiencia en Televisión,Btl protocolo (etc)')))
+                ->add('deportes','text',array('required' => false,'attr'=>array('placeholder' => 'Ejemplo( Futbol,MMA,Boxing )')))
+                ->add('habilidades','text',array('required' => false,'attr'=>array('placeholder' => 'Ejemplo( Cantante,Pintor,Imitador vocal )')))
+                ->add('idiomas','text',array('required' => false,'attr'=>array('placeholder' => 'Ejemplo( Ingles,Aleman,Frances )')))
                 ->add('maneja', 'choice', array(
                     'choices' => array(
                         'No' => 'No',
@@ -118,45 +146,26 @@ class HojadevidaType extends AbstractType {
                 ->add('entidadSalud')
                 ->add('tallaCamisa', 'choice', array(
                     'choices' => array(
-                        '1' => '1',
-                        '2' => '2',
-                        '4' => '4',
-                        '6' => '6',
-                        '8' => '8',
-                        '10' => '10',
-                        '12' => '12',
-                        'XS' => 'XS',
-                        'S' => 'S',
-                        'L' => 'L',
-                        'M' => 'M',
-                        'XL' => 'XL',
-                        'XXL' => 'XXL',
+                        '0-1 Meses' => '0-1 Meses',
+                        '1-3 Meses' => '1-3 Meses',
+                        '3-6 Meses' => '3-6 Meses',
+                        '6-9 Meses' => '6-9 Meses',
+                        '9-12 Meses' => '9-12 Meses',
+                        '12-18 Meses' => '12-18 Meses',
+                        '12-24 Meses' => '12-24 Meses',
+                        '24-36 Meses' => '24-36 Meses',
+                        'USA-XXXS(0)' =>'USA-XXXS(0)',
+                        'USA-XXS(2)' =>'USA-XXS(2)',
+                        'USA-XS(4)' => 'USA-XS(4)',
+                        'USA-S(6)' => 'USA-S(6)',
+                        'USA-M(8)' => 'USA-M(8)',
+                        'USA-L(10)' => 'USA-L(10)',
+                        'USA-XL(12)' => 'USA-XL(12)',
                         ),
                     'required' => True,
                     'label'=>'Talla de camisa*',
                     'empty_value' => 'Seleccione ',
                     
-                    'empty_data' => null
-                ))
-               ->add('tallaChaqueta', 'choice', array(
-                    'choices' => array(
-                        '1' => '1',
-                        '2' => '2',
-                        '4' => '4',
-                        '6' => '6',
-                        '8' => '8',
-                        '10' => '10',
-                        '12' => '12',
-                        'XS' => 'XS',
-                        'S' => 'S',
-                        'L' => 'L',
-                        'M' => 'M',
-                        'XL' => 'XL',
-                        'XXL' => 'XXL',
-                        ),
-                    'required' => True,
-                    'label'=>'Talla de chaqueta*',
-                    'empty_value' => 'Seleccione ',
                     'empty_data' => null
                 ))
                 ->add('tallaPantalon', 'choice', array(
@@ -168,16 +177,15 @@ class HojadevidaType extends AbstractType {
                         '8' => '8',
                         '10' => '10',
                         '12' => '12',
-                        'XS-28' => 'XS-28',
-                        'S-30' => 'S-30',
-                        'M-32' => 'M-32',
-                        'L-34' => 'L-34',
-                        'XL-36' => 'XL-36',
-                        'XXL-38' => 'XXL-38'
-                        
+                        'XS(26-28)' => 'XS(26-28)',
+                        'S(29-31)' => 'S(29-31)',
+                        'M(32-34)' => 'M(32-34)',
+                        'L(35-37)' => 'L(35-37)',
+                        'XL(38-40)' => 'XL(38-40)',
+                        'XXL(41-43)' => 'XXL(41-43)'
                         ),
                     'required' => True,
-                    'label'=>'Talla de pantalon*',
+                    'label'=>'Talla de pantalón*',
                     'empty_value' => 'Seleccione ',
                     'empty_data' => null
                 ))

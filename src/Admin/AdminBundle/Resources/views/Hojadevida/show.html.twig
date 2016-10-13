@@ -8,11 +8,16 @@
         {% set number2 = "now"|date("Y") %}
         {% set aux= ((number2 - number1)) %}
         {{aux}}
-    Id:{{entity.id}}
+    Id:<a href="{{path('list_book', { 'id':entity.idHojadevida.id})}}">BOOK:{{entity.idHojadevida.id}}</a>
     </h3>
     <div class="col-lg-12">
         {{ render(controller('AdminAdminBundle:Photo:list',{'id':entity.idHojadevida})) }}
     </div>
+     <div class="col-lg-12">
+       <a href="{{ path('Admin_photo_new',{'id':entity.idHojadevida.id}) }}" class="btn btn-default btn-block ">
+                        <i class="glyphicon glyphicon-upload"></i> Subir Foto
+                    </a>
+                        </div>
     <div class="col-md-10">
         <div class="form-group">
 
@@ -187,13 +192,13 @@
 
                 Ver lista
             </a>
-            <a  class='btn btn-info btn-block' href="{{ path('dashboard_hojadevida_edit', { 'id': entity.id}) }}">
+            <a  class='btn btn-info btn-block' href="{{ path('dashboard_hojadevida_edit', { 'id': entity.idHojadevida.id}) }}">
                 Editar
             </a>
             <a class="btn btn-info btn-block" id="btnPrint"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
 
             <hr>
-            {{ form(delete_form) }}
+            
 
         </ul>
     </div>

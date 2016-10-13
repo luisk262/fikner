@@ -516,33 +516,17 @@ EOF
      */
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-                        'SELECT h
-        FROM AdminAdminBundle:Hojadevida h
-        WHERE h.id  =:id'
-                )->setParameter('id', $id);
-
-        $products = $query->getResult();
-        // en esta instruccion sacamos los nombres de las imagenes que estan en la base de datos
-        $products = $query->setMaxResults(1)->getOneOrNullResult();
-        $imagen1 = $products->getImage();
-        $imagen2 = $products->getImage1();
-        $imagen3 = $products->getImage2();
         $entity = $em->getRepository('AdminAdminBundle:Hojadevida')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Hojadevida entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
-            $entity->setAux($imagen1);
-            $entity->setAux1($imagen2);
-            $entity->setAux2($imagen3);
             $entity->setFechaupdate($date);
             $em->persist($entity);
             $em->flush();
