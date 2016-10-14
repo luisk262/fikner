@@ -3,63 +3,56 @@
     Proyecto | {{ parent() }}
 {% endblock %}
 {% block container %}
-    <h3><span class="glyphicon glyphicon-user"></span> {{entity.idHojadevida.nombre}}  {{entity.idHojadevida.apellido}}</h3>
-    <h3> Edad:                  {% set number1 = entity.idHojadevida.fechaNac|date("Y") %}
+    <h3><span class="glyphicon glyphicon-user"></span> {{entity.nombre}}  {{entity.apellido}}</h3>
+    <h3> Edad:                  {% set number1 = entity.fechaNac|date("Y") %}
         {% set number2 = "now"|date("Y") %}
         {% set aux= ((number2 - number1)) %}
         {{aux}}
-    Id:<a href="{{path('list_book', { 'id':entity.idHojadevida.id})}}">BOOK:{{entity.idHojadevida.id}}</a>
+        Id:<a href="{{path('list_book', { 'id':entity.id})}}">BOOK:{{entity.id}}</a>
     </h3>
     <div class="col-lg-12">
-        {{ render(controller('AdminAdminBundle:Photo:list',{'id':entity.idHojadevida})) }}
+        {{ render(controller('AdminAdminBundle:Photo:list',{'id':entity.id})) }}
     </div>
-     <div class="col-lg-12">
-       <a href="{{ path('Admin_photo_new',{'id':entity.idHojadevida.id}) }}" class="btn btn-default btn-block ">
-                        <i class="glyphicon glyphicon-upload"></i> Subir Foto
-                    </a>
-                        </div>
     <div class="col-md-10">
         <div class="form-group">
-
-
         </div>
         <hr>
         <div class="form-group">
             <div class="col-md-6">                
                 <label>Tipo de Documento</label>
-                {{ entity.idHojadevida.tipoDocumento }}
+                {{ entity.tipoDocumento }}
             </div>
             <div class="col-md-6">                
                 <label>Documento</label>
-                {{ entity.idHojadevida.nit }}
+                {{ entity.nit }}
 
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-6">
                 <label>Nombres</label>
-                {{entity.idHojadevida.nombre}}  
+                {{entity.nombre}}  
             </div>
             <div class="col-md-6">
                 <label>Apellidos</label>
-                {{entity.idHojadevida.apellido}}
+                {{entity.apellido}}
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-6">
                 <label>Whatsapp</label>
-                {{ entity.idHojadevida.telefonoAdic }}
+                {{ entity.telefonoAdic }}
 
             </div>
             <div class="col-md-6">
                 <label>Telefono celular</label>
-                {{ entity.idHojadevida.telCe }}
+                {{ entity.telCe }}
             </div>
         </div>
         <div class="form-group">                
             <div class="col-md-6">
                 <label>Correo Electronico</label>
-                {{ entity.idHojadevida.emailPersonal }}
+                {{ entity.emailPersonal }}
             </div>
         </div>
 
@@ -67,61 +60,61 @@
         <div class="form-group">
             <div class="col-md-12">
                 <label>Fecha de nacimiento</label>
-                {{ entity.idHojadevida.fechaNac|date('Y-m-d') }}
+                {{ entity.fechaNac|date('Y-m-d') }}
             </div>
         </div>
         <hr>
         <div class="form-group">
             <div class="col-md-4">
                 <label>Genero</label>
-                {{ entity.idHojadevida.sexo }}
+                {{ entity.sexo }}
 
             </div>
             <div class="col-md-4">
                 <label>Estatura</label>
-                {{ entity.idHojadevida.estatura}}
+                {{ entity.estatura}}
             </div>
             <div class="col-md-4">
                 <label>Peso</label>
-                {{ entity.idHojadevida.peso}}
+                {{ entity.peso}}
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-4">
                 <label>Direccion de casa</label>
-                {{ entity.idHojadevida.dirCasa}}
+                {{ entity.dirCasa}}
             </div>
             <div class="col-md-4">
                 <label>Ciudad de recidencia</label>
-                {{ entity.idHojadevida.ciudadresidencia}}
+                {{ entity.ciudadresidencia}}
             </div>
             <div class="col-md-4">
                 <label>Lugar de nacimiento</label>
-                {{ entity.idHojadevida.paisnacimiento }}
+                {{ entity.paisnacimiento }}
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-4">
                 <label>Deportes</label>
-                {{ entity.idHojadevida.deportes }}
+                {{ entity.deportes }}
             </div>
             <div class="col-md-4">
                 <label>Maneja</label>
-                {{ entity.idHojadevida.maneja }}
+                {{ entity.maneja }}
             </div>
             <div class="col-md-4">
                 <label>Idiomas</label>
-                {{ entity.idHojadevida.idiomas}}
+                {{ entity.idiomas}}
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-4">
                 <label>Habilidades</label>
-                {{ entity.idHojadevida.habilidades }}
+                {{ entity.habilidades }}
             </div>
             <div class="col-md-4">
                 <label>Entidad de salud</label>
-                {{ entity.idHojadevida.entidadSalud }}
+                {{ entity.entidadSalud }}
             </div>
 
         </div>
@@ -129,15 +122,15 @@
         <div class="form-group">
             <div class="col-md-4">
                 <label>Color de piel</label>
-                {{ entity.idHojadevida.piel }}
+                {{ entity.piel }}
             </div>
             <div class="col-md-4">
                 <label>Color ojos</label>
-                {{ entity.idHojadevida.ojos }}
+                {{ entity.ojos }}
             </div>
             <div class="col-md-4">
                 <label>Color de Cabello</label>
-                {{ entity.idHojadevida.pelo }}
+                {{ entity.pelo }}
             </div>
 
         </div>
@@ -145,20 +138,20 @@
             <div class="col-md-4">
 
                 <label>Talla de camisa</label>
-                {{ entity.idHojadevida.tallaCamisa }}
+                {{ entity.tallaCamisa }}
             </div>
             <div class="col-md-4">
                 <label>Talla de chaqueta</label>
-                {{ entity.idHojadevida.tallaChaqueta }}
+                {{ entity.tallaChaqueta }}
             </div>
             <div class="col-md-4">
                 <label>Talla Pantalon</label>
-                {{ entity.idHojadevida.tallaPantalon }}                </div>
+                {{ entity.tallaPantalon }}                </div>
         </div>
         <div class="form-group">
             <div class="col-md-4">
                 <label>Talla Zapato</label>
-                {{ entity.idHojadevida.TallaZapato }}
+                {{ entity.TallaZapato }}
             </div>                
         </div>
         <hr>
@@ -166,45 +159,40 @@
             <div class="col-md-12">
 
                 <label>Experencia de television</label>
-                {{ entity.idHojadevida.experienciaTv }}
+                {{ entity.experienciaTv }}
             </div>                
         </div>
         <div class="form-group">
             <div class="col-md-12">
 
                 <label>Fecha Creacion</label>
-                {{ entity.idHojadevida.fecha|date('Y-m-d H:i:s') }}
+                {{ entity.fecha|date('Y-m-d H:i:s') }}
             </div>                
         </div>
         <div class="form-group">
             <div class="col-md-12">
 
                 <label>Fecha Actualizacion</label>
-                {{ entity.idHojadevida.fechaupdate|date('Y-m-d H:i:s') }}
+                {{ entity.fechaupdate|date('Y-m-d H:i:s') }}
             </div>                
         </div>
     </div>    
     <div class="col-md-2">
-
         <ul class="record_actions">
-
+            <a href="{{ path('Admin_photo_new',{'id':entity.id}) }}" class="btn btn-default btn-block ">
+                <i class="glyphicon glyphicon-upload"></i> Subir Foto
+            </a>          
             <a  class='btn btn-primary btn-block' href="{{ path('dashboard_hojadevida') }}">
 
                 Ver lista
             </a>
-            <a  class='btn btn-info btn-block' href="{{ path('dashboard_hojadevida_edit', { 'id': entity.idHojadevida.id}) }}">
+            <a  class='btn btn-info btn-block' href="{{ path('dashboard_hojadevida_edit', { 'id': entity.id}) }}">
                 Editar
             </a>
             <a class="btn btn-info btn-block" id="btnPrint"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
-
             <hr>
-            
-
         </ul>
     </div>
-
-
-
 {% endblock %}
 {% block javasctipt %}
     <!-- jQuery -->

@@ -448,8 +448,7 @@ EOF
      */
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $request = $this->getRequest();
-        $entity = $em->getRepository('AdminAdminBundle:HojadevidaPhoto')->find($id);
+        $entity = $em->getRepository('AdminAdminBundle:Hojadevida')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Hojadevida entity.');

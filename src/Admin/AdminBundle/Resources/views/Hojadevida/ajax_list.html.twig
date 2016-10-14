@@ -8,11 +8,11 @@
                 <input type="checkbox" name="entities[]" value="{{entity.id}}">
             </div>
             {% if entity.idPhoto.image == '' %}
-                <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.id}) }}" target="_blank">
+                <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}" target="_blank">
                     <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}" data-holder-rendered="true" style="width: 100%; display: block;"> 
                 </a>
             {% else %}
-                <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.id}) }}" target="_blank">
+                <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}" target="_blank">
                     <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}" data-holder-rendered="true" style=" width: 100%; display: block;"> 
                 </a>
             {%endif%}

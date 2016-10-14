@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Admin\AdminBundle\Entity\Photo;
 use Admin\AdminBundle\Entity\HojadevidaPhoto;
 use Admin\MyaccountBundle\Form\PhotoType;
+use DateTime;
 
 /**
  * Photo controller.
@@ -75,6 +76,7 @@ class PhotoController extends Controller {
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Photo entity.
      *
@@ -84,46 +86,29 @@ class PhotoController extends Controller {
     public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            //definimos que usuario se encuentra logeado
-            $security_token = $security_context->getToken();
-            $user = $security_token->getUser();
             $query = $em->createQuery(
-                            'SELECT UH
-                            FROM AdminAdminBundle:UsuarioHojadevida UH
-                            WHERE UH.idUsuario  =:idUsuario'
-                    )->setParameter('idUsuario', $user->getId());
-
-//si el usuario tiene hoja de vida continuamos
-            if ($query->getResult()) {
-                $UHojadevida = $query->setMaxResults(1)->getOneOrNullResult();
-                $query = $em->createQuery(
-                                'SELECT HP
+                            'SELECT HP
                             FROM AdminAdminBundle:HojadevidaPhoto HP
-                            WHERE (HP.idHojadevida  =:idHojadevida) and (HP.idPhoto  =:idPhoto)'
-                        )->setParameter('idHojadevida', $UHojadevida->getIdHojadevida())
-                        ->setParameter('idPhoto', $id);
-                $HojadevidaPhoto = $query->setMaxResults(1)->getOneOrNullResult();
-                print "entramos";
-
-                $em->remove($HojadevidaPhoto);
-                $em->flush();
-            }
+                            WHERE HP.idPhoto=:idPhoto'
+                    )->setParameter('idPhoto', $id);
+            $HojadevidaPhoto = $query->setMaxResults(1)->getOneOrNullResult();
+            $idhojadevida = $HojadevidaPhoto->getIdHojadevida()->getId();
+            $em->remove($HojadevidaPhoto);
+            $em->flush();
             $entity = $em->getRepository('AdminAdminBundle:Photo')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Photo entity.');
             }
-
             $em->remove($entity);
             $em->flush();
+            return $this->redirect($this->generateUrl('dashboard_hojadevida_show', array('id' => $idhojadevida)));
         }
-
-        return $this->redirect($this->generateUrl('Myaccount_photo'));
+        return $this->redirect($this->generateUrl('dashboard_hojadevida'));
     }
-     /**
+
+    /**
      * Creates a form to delete a Photo entity by id.
      *
      * @param mixed $id The entity id
@@ -138,65 +123,29 @@ class PhotoController extends Controller {
                         ->getForm()
         ;
     }
-      /**
+
+    /**
      * Creates a new Photo entity.
      *
-     * @Route("/", name="Admin_photo_create")
+     * @Route("/{id}", name="Admin_photo_create")
      * @Method("POST")
      * @Template("AdminAdminBundle:Photo:new.html.twig")
      */
-    public function createAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $security_context = $this->get('security.context');
-        //definimos que usuario se encuentra logeado
-        $security_token = $security_context->getToken();
-        $user = $security_token->getUser();
-        $query = $em->createQuery(
-                        'SELECT UH
-                            FROM AdminAdminBundle:UsuarioHojadevida UH
-                            WHERE UH.idUsuario  =:idUsuario'
-                )->setParameter('idUsuario', $user->getId());
-        //si el usuario tiene hoja de vida continuamos
-        if ($query->getResult()) {
-            $UHojadevida = $query->setMaxResults(1)->getOneOrNullResult();
-            $queryaux = $em->createQueryBuilder()
-                    ->select('COUNT(HP)')
-                    ->from('AdminAdminBundle:HojadevidaPhoto', 'HP')
-                    ->andWhere('HP.idHojadevida =:idHojadevida')
-                    ->setParameter('idHojadevida', $UHojadevida->getIdHojadevida());
-            $total_Photos = $queryaux->getQuery()->getSingleScalarResult();
-            if ($total_Photos >= 6) {
-                return $this->redirect($this->generateUrl('Myaccount_photo'));
-            }
-        }
+    public function createAction(Request $request, $id) {
         $entity = new Photo();
         $hojadevidaPhoto = new HojadevidaPhoto();
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity, $id);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $hojadevida = $em->getRepository('AdminAdminBundle:Hojadevida')->find($id);
             $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
-            $security_context = $this->get('security.context');
-            //definimos que usuario se encuentra logeado
-            $security_token = $security_context->getToken();
-            $user = $security_token->getUser();
-            $query = $em->createQuery(
-                            'SELECT UH
-                            FROM AdminAdminBundle:UsuarioHojadevida UH
-                            WHERE UH.idUsuario  =:idUsuario'
-                    )->setParameter('idUsuario', $user->getId());
-            //si el usuario tiene hoja de vida continuamos
-            if ($query->getResult()) {
-                $UHojadevida = $query->setMaxResults(1)->getOneOrNullResult();
-                /// vamos a buscar si el usuario ya tenia ya tiene otras fotos registradas
-                // de lo contrario  subimos la foto pero la colocamos como foto principal
-                $queryaux = $em->createQueryBuilder()
+            $queryaux = $em->createQueryBuilder()
                         ->select('COUNT(HP)')
                         ->from('AdminAdminBundle:HojadevidaPhoto', 'HP')
                         ->andWhere('HP.idHojadevida =:idHojadevida')
                         ->andWhere('HP.principal =:principal')
-                        ->setParameter('idHojadevida', $UHojadevida->getIdHojadevida())
+                        ->setParameter('idHojadevida', $hojadevida->getId())
                         ->setParameter('principal', '1');
                 $total_Photos = $queryaux->getQuery()->getSingleScalarResult();
                 if ($total_Photos < 1) {
@@ -205,7 +154,7 @@ class PhotoController extends Controller {
                     $entity->setFechaupdate($date);
                     $em->persist($entity);
                     $em->flush();
-                    $hojadevidaPhoto->setIdHojadevida($UHojadevida->getIdHojadevida());
+                    $hojadevidaPhoto->setIdHojadevida($hojadevida);
                     $hojadevidaPhoto->setIdPhoto($entity);
                     //aqui definimos que sea principal
                     $hojadevidaPhoto->setPrincipal(1);
@@ -219,15 +168,14 @@ class PhotoController extends Controller {
                     $entity->setFechaupdate($date);
                     $em->persist($entity);
                     $em->flush();
-                    $hojadevidaPhoto->setIdHojadevida($UHojadevida->getIdHojadevida());
+                    $hojadevidaPhoto->setIdHojadevida($hojadevida);
                     $hojadevidaPhoto->setIdPhoto($entity);
                     $hojadevidaPhoto->setFecha($date);
                     $hojadevidaPhoto->setFechaupdate($date);
                     $em->persist($hojadevidaPhoto);
                     $em->flush();
                 }
-            }
-            return $this->redirect($this->generateUrl('Myaccount_photo'));
+            return $this->redirect($this->generateUrl('dashboard_hojadevida_show', array('id' => $id)));
         }
 
         return array(
@@ -243,9 +191,9 @@ class PhotoController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Photo $entity) {
+    private function createCreateForm(Photo $entity, $id) {
         $form = $this->createForm(new PhotoType(), $entity, array(
-            'action' => $this->generateUrl('Admin_photo_create'),
+            'action' => $this->generateUrl('Admin_photo_create', array('id' => $id)),
             'method' => 'POST',
         ));
 
@@ -262,10 +210,8 @@ class PhotoController extends Controller {
      * @Template()
      */
     public function newAction($id) {
-        
         $entity = new Photo();
-        
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity, $id);
         return array(
             'entity' => $entity,
             'form' => $form->createView()

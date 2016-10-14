@@ -34,7 +34,7 @@ class HojadevidaPhoto
     /**
      * @var \FosUser
      *
-     * @ORM\ManyToOne(targetEntity="Photo")
+     * @ORM\ManyToOne(targetEntity="Photo" ,cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Id_Photo", referencedColumnName="id")
      * })
