@@ -16,11 +16,17 @@ class AgenciaType extends AbstractType {
         $builder
                 ->add('categoria', 'choice', array(
                     'choices' => array(
-                        'Agencia' => 'Agencia',
-                        'Individual' => 'Individual'
+                        'Casting' => 'Casting',
+                        'BTL' => 'BTL',
+                        'Modelaje' => 'Modelaje',
+                        'Casting y BTL' => 'Casting y BTL',
+                        'Casting y Modelaje' => 'Casting y Modelaje',
+                        'BTL y Modelaje' => 'BTL y Modelaje',
+                        'Casting,BTL y Modelaje' => 'Casting,BTL y Modelaje',
                     ),
                     'required' => True,
-                    'label' => 'Categoria*',
+                    'label' => 'Categoría*',
+                    'empty_value' => 'Seleccione categoria',
                     'empty_data' => null
                 ))
                 ->add('nombreagencia')
