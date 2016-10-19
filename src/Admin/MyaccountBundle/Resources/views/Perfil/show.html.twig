@@ -100,7 +100,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="profileImage">
                             {% if  Image %}
-                                <img src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(200,200)}}"> 
+                                <img src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).zoomCrop(200,200)}}"> 
                             {%else%}
                                 <img   src="{{web_image('upload/default/default.png').resize(200,200)}}"> 
                             {%endif%}
@@ -109,16 +109,48 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="profileDescription">
                             <h2>{{entity.nombre}} {{entity.apellido}}
                                 <span>
-                                    <form>
-                                        <p class="calificacion">
-                                            <label for="radio5">★</label>
-                                            <label for="radio4">★</label>
-                                            <label for="radio3">★</label>
-                                            <label for="radio2">★</label>
-                                            <label for="radio1">★</label>
-                                        </p>
-                                    </form>
-                                </span></h2>
+                                    <p class="calificacion">
+                                        {% if entity.calificacion==1 %}
+                                            <i style="color: orange;">★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                        {% elseif entity.calificacion== 2%}
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                        {% elseif entity.calificacion== 3%}
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                        {% elseif entity.calificacion== 4%}
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i>★</i>
+                                        {% elseif entity.calificacion== 5%}
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                            <i style="color: orange;">★</i>
+                                        {% else%}
+                                            <i>★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                            <i>★</i>
+                                        {% endif %}
+                                    </p>
+                                </span>    
+                            </h2>
+
                             <br>
                             <h4>Profesión ({%if entity.Campoartistico%}{{ entity.Campoartistico}}{%else%}No definido{%endif%})</h4>
                             <br>
@@ -140,7 +172,7 @@
                                 <li>Favoritos 18</li>
                                 <li>Dedicación 68%</li>-->
                                 <li>VISITAS</li>
-                                <li>Agencias:     134,193</li>
+                                <li>Agencias:     {{vistaagencias}}</li>
                                 <li>Book público: 134,193</li>
 
                             </ul>
@@ -290,167 +322,167 @@
                                                                 <div class="panel-body">
                                                                     <ul>
                                                                         <li>HABILIDADES<br>{%if entity.habilidades%}
-                                                                                {% for item in entity.habilidades|split(',') %}
-                                                                    <span>{{ item }}</span><br>
-                                                                    {% endfor %}
-                                                                                
-                                                                                {%else%}<span>No definido</span><hr>{%endif%}</li>
-                                                                        <li>DEPORTES<br>{%if entity.deportes%}
-                                                                                
-                                                                                   {% for item in entity.deportes|split(',') %}
-                                                                    <span>{{ item }}</span><br>
-                                                                    {% endfor %}
-                                                                                {%else%}<span>No definido</span>{%endif%}</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">
-                                                                <h4 class="panel-title">
-                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-                                                                        ESTUDIOS</a>
-                                                                </h4>
-                                                            </div>
-                                                            <div id="collapse7" class="panel-collapse collapse">
-                                                                <div class="panel-body">
-                                                                    <ul>
-                                                                        <li>{%if entity.Estudios%}{{entity.Estudios}}{%else%}No definido{%endif%}</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">
-                                                                <h4 class="panel-title">
-                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
-                                                                        OTROS</a>
-                                                                </h4>
-                                                            </div>
-                                                            <div id="collapse8" class="panel-collapse collapse">
-                                                                <div class="panel-body">
-                                                                    <ul>
-                                                                        <li>CONDUCE<br><span>{{ entity.maneja }}</span><hr></li>
-                                                                        <li>ENTIDAD DE SALUD<br><span>{%if entity.entidadSalud%}{{ entity.entidadSalud }}{%else%}No definido{%endif%}</span></li>
+                                                                            {% for item in entity.habilidades|split(',') %}
+                                                                                <span>{{ item }}</span><br>
+                                                                            {% endfor %}
 
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                            {%else%}<span>No definido</span><hr>{%endif%}</li>
+                                                                                <li>DEPORTES<br>{%if entity.deportes%}
 
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="socialMedia">
-                                                    <h3>Encuéntrame en</h3>
-                                                    <div class="col-md-12">
-                                                        <ul class="social-network social-circle">
-                                                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-instagram"></i></a></li>
-                                                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="sobreMi">
-                                                    <hr>
-                                                    <h3>Sobre mí</h3>
-                                                    <p id="textoABoutMe">
-                                                        {{ entity.experienciaTv }}
-                                                    </p>
-                                                    <hr>
-                                                </div>
-                                                <!--
-                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="valoraciones">
-                                                                                    <div class="panel-group" id="accordion">
-                                                                                        <div class="panel panel-default">
-                                                                                            <div class="panel-heading">
-                                                                                                <h4 class="panel-title">
-                                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-                                                                                                        <span>2 </span>VALORACIONES</a>
-                                                                                                </h4>
-                                                                                            </div>
-                                                                                            <div id="collapse5" class="panel-collapse collapse in">
-                                                                                                <div class="panel-body">
-                                                
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-                                                                                                            <div class="perfilImageCalificador">
-                                                                                                                <img src="" alt="" />
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-                                                                                                            <div class="infoPerfilCalificador">
-                                                                                                                <ul>
-                                                                                                                    <li><a href="#">Nombre agencia</a></li>
-                                                                                                                    <li>Tipo agencia</li>
-                                                                                                                    <li>Valorado 22 Jun 2015</li>
-                                                                                                                    <li>Número de estrellas</li>
-                                                                                                                </ul>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <hr>
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-                                                                                                            <div class="perfilImageCalificador">
-                                                                                                                <img src="" alt="" />
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-                                                                                                            <div class="infoPerfilCalificador">
-                                                                                                                <ul>
-                                                                                                                    <li><a href="#">Nombre agencia</a></li>
-                                                                                                                    <li>Tipo agencia</li>
-                                                                                                                    <li>Valorado 22 Jun 2015</li>
-                                                                                                                    <li>Número de estrellas</li>
-                                                                                                                </ul>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <hr>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                                                                                                <span>
-                                                                                                                    + valoraciones
-                                                                                                                </span>
-                                                                                                            </button>
-                                                                                                            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                                                                                                <span>
-                                                                                                                    ¡Valorar!
-                                                                                                                </span>
-                                                                                                            </button>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <hr>
+                                                                                    {% for item in entity.deportes|split(',') %}
+                                                                                        <span>{{ item }}</span><br>
+                                                                                    {% endfor %}
+                                                                                    {%else%}<span>No definido</span>{%endif%}</li>
+                                                                                    </ul>
                                                                                 </div>
-                                                -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="panel panel-default">
+                                                                            <div class="panel-heading">
+                                                                                <h4 class="panel-title">
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+                                                                                        ESTUDIOS</a>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id="collapse7" class="panel-collapse collapse">
+                                                                                <div class="panel-body">
+                                                                                    <ul>
+                                                                                        <li>{%if entity.Estudios%}{{entity.Estudios}}{%else%}No definido{%endif%}</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="panel panel-default">
+                                                                            <div class="panel-heading">
+                                                                                <h4 class="panel-title">
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
+                                                                                        OTROS</a>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id="collapse8" class="panel-collapse collapse">
+                                                                                <div class="panel-body">
+                                                                                    <ul>
+                                                                                        <li>CONDUCE<br><span>{{ entity.maneja }}</span><hr></li>
+                                                                                        <li>ENTIDAD DE SALUD<br><span>{%if entity.entidadSalud%}{{ entity.entidadSalud }}{%else%}No definido{%endif%}</span></li>
+
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="socialMedia">
+                                                                    <h3>Encuéntrame en</h3>
+                                                                    <div class="col-md-12">
+                                                                        <ul class="social-network social-circle">
+                                                                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                                                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-instagram"></i></a></li>
+                                                                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                                                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="sobreMi">
+                                                                    <hr>
+                                                                    <h3>Sobre mí</h3>
+                                                                    <p id="textoABoutMe">
+                                                                        {{ entity.experienciaTv }}
+                                                                    </p>
+                                                                    <hr>
+                                                                </div>
+                                                                <!--
+                                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="valoraciones">
+                                                                                                    <div class="panel-group" id="accordion">
+                                                                                                        <div class="panel panel-default">
+                                                                                                            <div class="panel-heading">
+                                                                                                                <h4 class="panel-title">
+                                                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                                                                                                        <span>2 </span>VALORACIONES</a>
+                                                                                                                </h4>
+                                                                                                            </div>
+                                                                                                            <div id="collapse5" class="panel-collapse collapse in">
+                                                                                                                <div class="panel-body">
+                                                                
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                                                                                                                            <div class="perfilImageCalificador">
+                                                                                                                                <img src="" alt="" />
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                                                                                                                            <div class="infoPerfilCalificador">
+                                                                                                                                <ul>
+                                                                                                                                    <li><a href="#">Nombre agencia</a></li>
+                                                                                                                                    <li>Tipo agencia</li>
+                                                                                                                                    <li>Valorado 22 Jun 2015</li>
+                                                                                                                                    <li>Número de estrellas</li>
+                                                                                                                                </ul>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <hr>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                                                                                                                            <div class="perfilImageCalificador">
+                                                                                                                                <img src="" alt="" />
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                                                                                                                            <div class="infoPerfilCalificador">
+                                                                                                                                <ul>
+                                                                                                                                    <li><a href="#">Nombre agencia</a></li>
+                                                                                                                                    <li>Tipo agencia</li>
+                                                                                                                                    <li>Valorado 22 Jun 2015</li>
+                                                                                                                                    <li>Número de estrellas</li>
+                                                                                                                                </ul>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <hr>
+                                                                                                                    <ul>
+                                                                                                                        <li>
+                                                                                                                            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                                                                                                                <span>
+                                                                                                                                    + valoraciones
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                                                                                                                <span>
+                                                                                                                                    ¡Valorar!
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                        </li>
+                                                                                                                    </ul>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <hr>
+                                                                                                </div>
+                                                                -->
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="fotos">
+                                                            <div class="col-lg-12 linea">
+                                                                <h3 class="page-header">Galería</h3>
+                                                                <a href="{{path('Myaccount_photo_list')}}" class="btn  btn-default">Modificar Galeria</a>
+                                                            </div>
+                                                            {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="fotos">
-                                            <div class="col-lg-12 linea">
-                                                <h3 class="page-header">Galería</h3>
-                                                <a href="{{path('Myaccount_photo_list')}}" class="btn  btn-default">Modificar Galeria</a>
-                                            </div>
-                                            {{ render(controller('AdminMyaccountBundle:Photo:list')) }}
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                                    </section>
 
 
-                </body>
-                <script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/profile/jquery-2.1.4.min.js')}}" charset="UTF-8"></script>
-                <script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/profile/bootstrap.min.js')}}"></script>
-            </html>
+                                </body>
+                                <script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/profile/jquery-2.1.4.min.js')}}" charset="UTF-8"></script>
+                                <script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/profile/bootstrap.min.js')}}"></script>
+                            </html>

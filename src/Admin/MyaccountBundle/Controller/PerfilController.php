@@ -234,10 +234,12 @@ class PerfilController extends Controller {
         } else {
             return $this->redirect($this->generateUrl('Myaccount_perfil_new'));
         }
+        $vistaagencia=count($em->getRepository('AdminAdminBundle:SeguimientoAgencia')->findBy(array('idHojadevida'=>$Hojadevida->getIdHojadevida()->getId())));
         return array(
             'entity' => $entity,
             'idfoto' => $idfoto,
-            'Image' => $Image
+            'Image' => $Image,
+            'vistaagencias'=>$vistaagencia
         );
     }
 
