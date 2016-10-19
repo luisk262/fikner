@@ -673,6 +673,13 @@ EOF
         } else {
             $agenciaPlan = null;
         }
+        $seguimientoagencia = new \Admin\AdminBundle\Entity\SeguimientoAgencia();
+        $seguimientoagencia->setIdAgencia($agenciaU->getIdAgencia());
+        $seguimientoagencia->setIdHojadevida($HPhoto->getIdHojadevida());
+        $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
+        $seguimientoagencia->setFechavisita($date);
+        $em->persist($seguimientoagencia);
+        $em->flush();
         
         $deleteForm = $this->createDeleteForm($id);
 
