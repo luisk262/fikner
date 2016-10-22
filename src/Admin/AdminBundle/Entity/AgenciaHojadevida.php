@@ -60,6 +60,12 @@ class AgenciaHojadevida
      */
     private $categoria;
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Calificacion", type="string", length=2, nullable=true)
+     */
+    private $Calificacion;
+    /**
      * @var \Activo
      *
      * @ORM\Column(name="Activo", type="boolean", nullable=true)
@@ -280,5 +286,29 @@ class AgenciaHojadevida
     public function getFechaupdate()
     {
         return $this->fechaupdate;
+    }
+
+    /**
+     * Set calificacion
+     *
+     * @param string $calificacion
+     *
+     * @return AgenciaHojadevida
+     */
+    public function setCalificacion($calificacion)
+    {
+        $this->Calificacion = $calificacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get calificacion
+     *
+     * @return string
+     */
+    public function getCalificacion()
+    {
+        return $this->Calificacion;
     }
 }
