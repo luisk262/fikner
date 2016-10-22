@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="icon" type="image/jpeg" href="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <title>Bienvenido a Fikner!</title>
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/profile/bootstrap.min.css')}}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/profile/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <style media="screen">
             /*=========================
               Icons
@@ -173,7 +175,7 @@
                                 <li>Dedicación 68%</li>-->
                                 <li>VISITAS</li>
                                 <li>Agencias:     {{vistaagencias}}</li>
-                                <li>Book público: 134,193</li>
+                                <li>Book público: {{vistapublico}}</li>
 
                             </ul>
                         </div>

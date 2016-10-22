@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Datetime;
 
 
 class DefaultController extends Controller {
@@ -71,6 +72,33 @@ class DefaultController extends Controller {
      */
     public function bookAction($id) {
         $em = $this->getDoctrine()->getManager();
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $seguimientos=$em->getRepository('AdminAdminBundle:SeguimientoBook')->findBy(array('idHojadevida'=>$id,'ipServer'=>$_SERVER['REMOTE_ADDR']),array('id' => 'DESC'),1,0);
+             if(!$seguimientos==null){
+                 foreach ($seguimientos as $seguimiento){
+                     $dateDB=$seguimiento->getFechaVisita();
+                     $dateDB->modify('+1 hour');
+                     $dateSYS=new DateTime('now');                     
+                     if($dateSYS>$dateDB){
+                        $hojadevida=$em->getRepository('AdminAdminBundle:Hojadevida')->find($id);            
+                        $seguimientobook= new \Admin\AdminBundle\Entity\SeguimientoBook();
+                        $seguimientobook->setIpServer($_SERVER['REMOTE_ADDR']);
+                        $seguimientobook->setIdHojadevida($hojadevida);
+                        $seguimientobook->setFechavisita(new DateTime('now'));
+                        $em->persist($seguimientobook);
+                        $em->flush();          
+                     }
+                 }
+             }else{
+                 $hojadevida=$em->getRepository('AdminAdminBundle:Hojadevida')->find($id);            
+                 $seguimientobook= new \Admin\AdminBundle\Entity\SeguimientoBook();
+                 $seguimientobook->setIpServer($_SERVER['REMOTE_ADDR']);
+                 $seguimientobook->setIdHojadevida($hojadevida);
+                 $seguimientobook->setFechavisita(new DateTime('now'));
+                 $em->persist($seguimientobook);
+                 $em->flush();                 
+             }
+         }
         $queryaux = $em->createQueryBuilder()
                 ->select('COUNT(HP)')
                 ->from('AdminAdminBundle:HojadevidaPhoto', 'HP')
@@ -134,8 +162,8 @@ class DefaultController extends Controller {
             $idfoto=null;
         }
         else{
-            $Image=['image'];
-            $idfoto=['id'];
+            $Image=$aux['image'];
+            $idfoto=$aux['id'];
         }
         return array(
             'Image' => $Image,

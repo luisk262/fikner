@@ -10,11 +10,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{path('Myaccount')}}"><img src="{{web_image('images/logo/fikner_logo_blanco.png').resize(90,30)}}" alt="" height="30px"></a>
+            <a class="navbar-brand" href="{{path('Myaccount')}}"><img src="{{web_image('images/logo/fikner_logo_blanco.png').resize(90,30)}}" alt="" height="100%"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li id="profileImage" class="{% if route in perfilMenu %}active{% endif %}"><a href="{{path('Myaccount')}}">
+                <li id="profileImage" class="{% if route in perfilMenu %}active{% endif %}"><a href="{{path('Myaccount_perfil_show')}}">
                         {{ app.user.nombre}}
                         {% if  Image %}
                             <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(40,40)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"> 
@@ -30,7 +30,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{path('Myaccount_perfil_show')}}">Mire su Book</a></li>
+                        <li><a href="{{path('Myaccount_perfil_show')}}">Mi perfil</a></li>
                         <li><a href="{{path('Myaccount_misempresas')}}">Mis agencias</a></li>
                         <li><a href="{{path('Myaccount_empresa')}}">Postúlese en las agencias</a></li>
                         <li role="separator" class="divider"></li>
