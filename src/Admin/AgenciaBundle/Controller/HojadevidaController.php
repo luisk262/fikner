@@ -799,6 +799,24 @@ EOF
             $entity->setFechaupdate($date);
             $em->persist($entity);
             $em->flush();
+            $query = $em->createQuery(
+                            'SELECT AH
+                            FROM AdminAdminBundle:AgenciaHojadevida AH
+                            WHERE AH.Calificacion !=:Calificacion and AH.idHojadevida =:idHojadevida'
+                    )->setParameter('idHojadevida', $entity->getIdHojadevida())
+                    ->setParameter('Calificacion',"");
+            $calificaciones=$query->getResult();
+            $totalCalificaciones=count($calificaciones);
+            $sumatoria=0;
+            foreach($calificaciones as $calificacion ){
+                $sumatoria+=intval($calificacion->getCalificacion());
+            }
+            $Calf=round($sumatoria/$totalCalificaciones);
+            $Hojadevida=$em->getRepository('AdminAdminBundle:Hojadevida')->find($entity->getIdHojadevida());
+            $Hojadevida->setCalificacion($Calf);
+            $em->persist($Hojadevida);
+            $em->flush();
+            
             return $this->redirect($this->generateUrl('agencia_dashboard_hojadevida_show', array('id' => $id)));
         }
 

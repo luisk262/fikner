@@ -43,8 +43,21 @@ class AgenciaHojadevidaType extends AbstractType
                     ),
                     'empty_data' => null,
                     'required' => true,
-                'label'=>'Categoría'
-                ))     
+                'label'=>'Categoría*'
+                ))
+                ->add('calificacion','choice', array(
+                    'choices' => array(
+                        '' => 'Seleccione',
+                        '1' => '★',
+                        '2' => '★★',
+                        '3' => '★★★',
+                        '4' => '★★★★',
+                        '5' => '★★★★★'                        
+                    ),
+                    'empty_data' => null,
+                    'required' => true,
+                'label'=>'Calidad de book*'
+                ))
         ;
     }
     
