@@ -1,0 +1,29 @@
+{% extends "AdminAgenciaBundle:Page:index.html.twig" %}
+{%block title %}Solicitud{%endblock%}
+{% block informacion %}{%endblock%}
+{%block container %}
+    <div class="container">
+        <div class="contenedor">
+            <section class="book">
+                <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                <br>
+                                <img src="/fikner/web/images/logo/fikner_logo2.png" alt="">
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                <h2 >{{ entity.nombre }}</h2>
+                                <h1>Comercial</h1>
+                                <p id="texto">
+                                    {{ entity.observaciones }}<br>
+                                    {% if entity.fechaprogramada %}<b>Fecha Limite:</b>{{ entity.fechaprogramada|date('Y-m-d') }}{% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

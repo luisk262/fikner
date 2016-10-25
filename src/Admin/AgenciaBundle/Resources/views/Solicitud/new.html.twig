@@ -1,26 +1,47 @@
 {% extends "AdminAgenciaBundle::layout.html.twig" %}
 
 {% block container %}
-     <h1>Nueva solicitud</h1>
-
+    <h1>Nueva solicitud</h1>
     {{ form_start(form) }}
-     {{ form_row(form.nombre,{
+    {{ form_row(form.nombre,{
                                        'attr': {'class':'form-control'}
                                        
                                      })}}
-{{ form_row(form.observaciones,{
+    {{ form_row(form.observaciones,{
                                        'attr': {'class':'form-control','rows':'10'}
                                        
                                      })}}
-{{ form_row(form.privado)}}
-     <p>Si la solicitud es publica, aparecera en su fikner-page</p>
-   
-                                     {{ form_end(form) }}
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('Agencia_dashboard_solicitud') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    {{ form_row(form.privado)}}
+    <p>Si la solicitud es publica, aparecera en su fikner-page</p>
+    <div class="row">
+        <h4 id="fechaNacimiento">Fecha programada de sesión</h4>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            {{ form_widget(form.fechaprogramada.year,{
+                                        'attr': {'class':'form-control form-group'}
+                                     })
+            }}      
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            {{ form_widget(form.fechaprogramada.month,{
+                                        'attr': {'class':'form-control form-group','id':'espacio2'}
+                                     })
+            }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+
+            {{ form_widget(form.fechaprogramada.day,{
+                                        'attr': {'class':'form-control form-group','id':'espacio3'}
+                                     })
+            }}
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('Agencia_dashboard_solicitud') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
 {% endblock %}

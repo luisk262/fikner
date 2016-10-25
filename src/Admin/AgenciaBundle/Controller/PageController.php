@@ -253,5 +253,31 @@ class PageController extends Controller {
                     'entities' => $entities,
         ));
     }
+    /**
+     * consulta a default entity.
+     *
+     * @Route("/ajax/{id}/solicitudes", name="Agencia_ajax_solicitudes")
+     * @Method("GET")
+     */
+    public function listSolicitudAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $entities=$em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia'=>$id,'privado'=>false),arraY('fechaupdate'=>'DESC'));
+        return $this->render('AdminAgenciaBundle:Page:listSolicitud.html.twig', array(
+                    'entities' => $entities,
+        ));
+    }
+    /**
+     * consulta a default entity.
+     *
+     * @Route("/solicitud/{id}", name="Agencia_solicitud")
+     * @Method("GET")
+     */
+    public function SolicitudAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $entity=$em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
+        return $this->render('AdminAgenciaBundle:Page:solicitud.html.twig', array(
+                    'entity' => $entity,
+        ));
+    }
 
 }

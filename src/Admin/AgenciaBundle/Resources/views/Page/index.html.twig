@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         {% if entity %}
-            <title>Fikner - {{entity.nombreagencia}}</title>    
+            <title>{%block title %}Fikner - {{entity.nombreagencia}}{% endblock %}</title>    
+            {% block informacion %}
             {% if not idlogo %}
                 <link rel="icon" type="image/jpeg" href="{{ asset('images/logo3.png')}}" />
             {% else %}
@@ -14,6 +15,7 @@
             <meta property="og:url"                content="http://www.fikner.com/agencia/{{entity.nombreagencia}}" />
             <meta property="og:image" content="{{web_image('upload/Photos/' ~ idlogo ~'/' ~ idNombre).resize(200,200,'white')}}" />
             <meta property="og:site_name" content="Fikner">
+            {% endblock %}
         {%else%}
             <meta property="og:image" content="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
             <meta property="og:description" content=" Registre su agencia en fikner">
@@ -58,6 +60,7 @@
                 </div>
             </div>
         {%else%}
+            {% block container %}
             <div class="container">
                 <div class="contenedor">
                     <div class="row">
@@ -90,7 +93,7 @@
                                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                                         <ul class="nav navbar-nav">
                                             <li ><a href="#">Inicio</a></li>
-                                            <li><a href="#">Información</a></li>
+                                            <li><a href="#">Solicitudes</a></li>
 
                                         </ul>
                                     </div><!--/.nav-collapse -->
@@ -104,6 +107,8 @@
                                     <div class="panel-heading">{{entity.categoria}}</div>
                                     <div class="panel-body"><p>{{entity.descripcion}}</p></div>
                                 </div>
+                                {{ render(controller('AdminAgenciaBundle:Page:listSolicitud',{'id':entity.id})) }}
+                                    
                             </div>
 
                             <div class="col-sm-4">
@@ -177,6 +182,7 @@
                 </div>
                 
             </div>
+            {% endblock %}
         {%endif%}
         <footer class="footerProfile">
             <div class="row">

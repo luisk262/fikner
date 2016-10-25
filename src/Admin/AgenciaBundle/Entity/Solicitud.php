@@ -59,7 +59,30 @@ class Solicitud {
      * @ORM\Column(name="Privado", type="boolean", nullable=true)
      */
     private $privado;
+     /**
+     * @var \Agencia
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\AdminBundle\Entity\Agencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Agencia", referencedColumnName="id")
+     * })
+     */
+    private $idAgencia;
+     /**
+     * @var \FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\AdminBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Usuario", referencedColumnName="id")
+     * })
+     */
+    private $idUsuario;
     
+   /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha", type="datetime", nullable=false)
+     */
     private $fecha;
 
     /**
@@ -68,6 +91,7 @@ class Solicitud {
      * @ORM\Column(name="FechaUpdate", type="datetime", nullable=true)
      */
     private $fechaupdate;
+    
 /**
      * Set nombre
      *
@@ -244,5 +268,53 @@ class Solicitud {
     public function getPrivado()
     {
         return $this->privado;
+    }
+
+    /**
+     * Set idAgencia
+     *
+     * @param \Admin\AdminBundle\Entity\Agencia $idAgencia
+     *
+     * @return Solicitud
+     */
+    public function setIdAgencia(\Admin\AdminBundle\Entity\Agencia $idAgencia = null)
+    {
+        $this->idAgencia = $idAgencia;
+    
+        return $this;
+    }
+
+    /**
+     * Get idAgencia
+     *
+     * @return \Admin\AdminBundle\Entity\Agencia
+     */
+    public function getIdAgencia()
+    {
+        return $this->idAgencia;
+    }
+
+    /**
+     * Set idUsuario
+     *
+     * @param \Admin\AdminBundle\Entity\User $idUsuario
+     *
+     * @return Solicitud
+     */
+    public function setIdUsuario(\Admin\AdminBundle\Entity\User $idUsuario = null)
+    {
+        $this->idUsuario = $idUsuario;
+    
+        return $this;
+    }
+
+    /**
+     * Get idUsuario
+     *
+     * @return \Admin\AdminBundle\Entity\User
+     */
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
     }
 }

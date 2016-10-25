@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Admin\AgenciaBundle\Entity\Solicitud;
 use Admin\AgenciaBundle\Form\SolicitudType;
+use DateTime;
 
 /**
  * Solicitud controller.
@@ -42,7 +43,7 @@ class SolicitudController extends Controller
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
             $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
-            $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
+            $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia'=>$AgenciaUsuario->getIdAgencia()->getId()));
         }
         else{
             $agenciaPlan=null;
@@ -70,6 +71,11 @@ class SolicitudController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $agencia=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findBy(array('idUsuario'=>$this->getUser()->getId()));
+            $entity->setIdAgencia($agencia[0]->getIdAgencia());
+            $entity->setIdUsuario($this->getUser());
+            $entity->setFecha(new \DateTime('now'));
+            $entity->setFechaupdate(new \DateTime('now'));
             $em->persist($entity);
             $em->flush();
 
@@ -96,7 +102,7 @@ class SolicitudController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;
     }
@@ -112,9 +118,26 @@ class SolicitudController extends Controller
     {
         $entity = new Solicitud();
         $form   = $this->createCreateForm($entity);
-
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+                        'SELECT au
+                        FROM AdminAdminBundle:AgenciaUsuario au
+                        WHERE au.idUsuario  =:id'
+                )->setParameter('id',$this->getUser()->getId());
+        if ($query->getResult()) {
+            $AgenciaUsuario = $query->getResult();
+            // Buscamos el array de resultados
+            $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
+            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
+        }
+        else{
+            $agenciaPlan=null;
+            $entities=null;
+        }
         return array(
             'entity' => $entity,
+             'AgenciaP'=>$agenciaPlan,
             'form'   => $form->createView(),
         );
     }
@@ -130,16 +153,35 @@ class SolicitudController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+                        'SELECT au
+                        FROM AdminAdminBundle:AgenciaUsuario au
+                        WHERE au.idUsuario  =:id'
+                )->setParameter('id',$this->getUser()->getId());
+        if ($query->getResult()) {
+            $AgenciaUsuario = $query->getResult();
+            // Buscamos el array de resultados
+            $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
+            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('id'=>$id,'idAgencia'=>$AgenciaUsuario->getIdAgencia()->getId()));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Solicitud entity.');
         }
-
+            
+        }
+        else{
+            $agenciaPlan=null;
+            $entities=null;
+        }
+        
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $entity[0],
+            'AgenciaP'=>$agenciaPlan,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -160,13 +202,30 @@ class SolicitudController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Solicitud entity.');
         }
-
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+                        'SELECT au
+                        FROM AdminAdminBundle:AgenciaUsuario au
+                        WHERE au.idUsuario  =:id'
+                )->setParameter('id',$this->getUser()->getId());
+        if ($query->getResult()) {
+            $AgenciaUsuario = $query->getResult();
+            // Buscamos el array de resultados
+            $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
+            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
+        }
+        else{
+            $agenciaPlan=null;
+            $entities=null;
+        }
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+            'AgenciaP'=>$agenciaPlan,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -185,7 +244,7 @@ class SolicitudController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
 
         return $form;
     }
@@ -260,7 +319,7 @@ class SolicitudController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('Agencia_dashboard_solicitud_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
     }
