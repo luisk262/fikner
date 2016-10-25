@@ -17,21 +17,7 @@
                     </p>
                     <h1><small>Usa la cabeza, usa fikner</small></h1>
                     
-                        {%if idbook %}
-                            <p id="texto">Comparta su book</p>
-                            <div class="col-lg-12" >
-                                <div class="col-lg-6">                             
-                                    <a href="http://www.facebook.com/sharer.php?u=http://fikner.com{{path('list_book',{id:idbook})}}" target="_blank">
-                                        <img src="{{asset('images/social/f.png')}}" alt="" id="socialdashboard">
-                                    </a>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a href="whatsapp://send?text=http://fikner.com{{path('list_book',{id:idbook})}}">
-                                        <img src="{{asset('images/social/w.png')}}" alt=""  id="socialdashboard">
-                                    </a>
-                                </div>
-                            </div>
-                        {%endif%}
+                       
                     
                 {%else%}
                     <p id="nameUser">
@@ -172,7 +158,7 @@
                     {% set aux= ((number2 - number1)) %}
                     <p id="info"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> {{aux}}</p>
                     <p id="info"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{TelCe}}</p>
-                    <p id="boton"><a href="{{path('Myaccount_perfil_show')}}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VER BOOK</a></p>
+                    <p id="boton"><a href="{{path('Myaccount_perfil_show')}}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VER PERFIL</a></p>
                 </div> 
             </div> 
         </div>
