@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                                 <br>
-                                <img src="/fikner/web/images/logo/fikner_logo2.png" alt="">
+                                {{ render(controller('AdminAgenciaBundle:Default:AgenciaLogoView',{'idAgencia':agencia.id,'height':200,'width':100})) }}
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                                 <h2 >{{ entity.nombre }}</h2>
@@ -19,7 +19,36 @@
                                     {{ entity.observaciones }}<br>
                                     {% if entity.fechaprogramada %}<b>Fecha Limite:</b>{{ entity.fechaprogramada|date('Y-m-d') }}{% endif %}
                                 </p>
+                                <div class="col-lg-2 center-block">
+                                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                            {% if not(is_granted("ROLE_AGENC"))  %}
+                                                {% if U_foto %}
+                                                    {% if U_foto_Agencia %}
+                                                        {%set aux=false%}
+                                                        {% for agencia in U_foto_Agencia %}
+                                                            {%if (agencia.idAgencia.id == entity.id) and (agencia.activo=='1')%}
+                                                                <a href="{{path('agencia_page_remove_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Remover book</strong></a> 
+                                                                {%set aux=true%}
+                                                            {%endif%}
+                                                        {%endfor%}
+                                                        {%if not aux%}
+                                                            <a href="{{path('agencia_page_send_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>   
+                                                        {%endif%}
+                                                    {%else%}
+                                                        <a href="{{path('agencia_page_send_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>                                
+                                                    {%endif%}
+                                                {%else%}
+                                                    <p>No puedes enviar book carga al menos una imagen primero</p>  
+                                                {%endif%}
+
+                                            {%else%}
+                                                <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                            {%endif%}
+                                        {%else%}
+                                            <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                        {%endif%}
                             </div>
+                                </div>
                         </div>
                     </div>
                 </div>

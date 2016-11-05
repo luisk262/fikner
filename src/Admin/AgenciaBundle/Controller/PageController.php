@@ -275,8 +275,10 @@ class PageController extends Controller {
     public function SolicitudAction($id) {
         $em = $this->getDoctrine()->getManager();
         $entity=$em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
+        $agencia=$em->getRepository('AdminAdminBundle:Agencia')->find($entity->getIdAgencia());
         return $this->render('AdminAgenciaBundle:Page:solicitud.html.twig', array(
                     'entity' => $entity,
+            'agencia'=>$agencia,
         ));
     }
 

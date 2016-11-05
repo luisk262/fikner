@@ -29,13 +29,19 @@
             <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading"><a href="{{ path('Agencia_dashboard_solicitud_show', { 'id': entity.id }) }}">{{ entity.nombre }}</a></div>
-                    <div class="panel-body"><p>{{ entity.observaciones }}</p>
+                    <div class="panel-body" style="min-height: 150px;max-height:150px;overflow-y: scroll;"><p>{{ entity.observaciones }}</p>
                         <p></p>
                         <p>{% if entity.fechaprogramada %}{{ entity.fechaprogramada|date('Y-m-d H:i:s') }}{% endif %}</p>
                     </div>
-                    <div class="panel-footer">
-                        <a href="{{ path('Agencia_dashboard_solicitud_edit', { 'id': entity.id }) }}" class="btn btn-block btn-default">Editar</a>
-
+                    <div class="panel-footer ">
+                        <div class='row'>
+                        <div class='col-lg-6 '>
+                            <a href="{{ path('Agencia_dashboard_solicitud_show', { 'id': entity.id }) }}" class="btn btn-block btn-default">Mostrar</a>
+                        </div>
+                        <div class='col-lg-6'>
+                            <a href="{{ path('Agencia_dashboard_solicitud_edit', { 'id': entity.id }) }}" class="btn btn-block btn-default">Editar</a>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>

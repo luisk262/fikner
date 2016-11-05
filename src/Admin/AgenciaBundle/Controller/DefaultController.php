@@ -371,4 +371,23 @@ EOF
         return array('AgenciaP' => $Agenciaplan);
     }
 
+    /**
+     * @Route("/agencias/logo/{idAgencia}/{height}/{width}/view", name="agencia_logo_view")
+     * @Method("GET")
+     */
+    public function AgenciaLogoViewAction($idAgencia, $height, $width) {
+        $em = $this->getDoctrine()->getManager();
+        $agencialogos = $em->getRepository('AdminAdminBundle:AgenciaPhoto')->findBy(array('idAgencia' => $idAgencia));
+        if ($agencialogos) {
+            $logo = $em->getRepository('AdminAdminBundle:Photo')->find($agencialogos[0]->getId());
+        } else {
+            $logo = null;
+        }
+        return $this->render('AdminAgenciaBundle:views:logo.html.twig', array(
+                    'entity' => $logo,
+                    'height' => $height,
+                    'width' => $width,
+        ));
+    }
+
 }

@@ -1,0 +1,5 @@
+{% if not entity %}
+    <img class="img-block img" height="auto" src="{{ asset('images/noimage.jpg')}}"  >
+{% else %}
+    <img class="img-block img" src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(width,height,'white')}}">                    
+{%endif%}
