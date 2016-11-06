@@ -340,7 +340,7 @@ class PhotoController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id) {
+    public function createDeleteForm($id) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl('Agencia_photo_delete', array('id' => $id)))
                         ->setMethod('DELETE')

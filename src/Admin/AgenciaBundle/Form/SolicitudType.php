@@ -15,7 +15,7 @@ class SolicitudType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre','text',array('label'=>'Nombre empresa cliente'))
+            ->add('nombre','text',array('label'=>'Nombre convocatoria'))
             ->add('observaciones','textarea',array('label'=>'Descripción'))
             ->add('fechaprogramada','date',array('label'=>'Fecha programada para la sesión',
                 'required' => false,

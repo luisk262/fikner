@@ -4,12 +4,14 @@
         <div class="row page-header"> 
             <div class="">
                 <div class="col-md-10">
-                    <h1><i class="glyphicon glyphicon-th-list"></i> Editar solicitud </h1>
+                    <h1><i class="glyphicon glyphicon-th-list"></i> Editar Convocatoria </h1>
                 </div>
                 <div class="col-md-2">
                     <a href="{{ path('Agencia_dashboard_solicitud') }}" class="btn btn-block btn-default">
                         Retroceder a lista
                     </a>
+                        <hr>
+                    {{ form(delete_form) }}    
                 </div>
             </div>
         </div>
@@ -52,20 +54,9 @@
     <div class="col-lg-4">
     </div>
     <div class="col-lg-4">
-        {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-primary btn-block form-group' }}) }}
+        {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-block btn-default form-group' }}) }}
     </div>
     <div class="col-lg-4">
     </div>
     {{ form_end(edit_form) }}
-
-    <div class="col-lg-12">
-        <div class="col-lg-4">
-        </div>
-        <div class="col-lg-4">
-            {{ form(delete_form) }}    
-        </div>
-
-        <div class="col-lg-4">
-        </div>
-    </div>
 {% endblock %}

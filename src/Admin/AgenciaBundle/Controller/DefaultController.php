@@ -377,9 +377,9 @@ EOF
      */
     public function AgenciaLogoViewAction($idAgencia, $height, $width) {
         $em = $this->getDoctrine()->getManager();
-        $agencialogos = $em->getRepository('AdminAdminBundle:AgenciaPhoto')->findBy(array('idAgencia' => $idAgencia));
+        $agencialogos = $em->getRepository('AdminAdminBundle:AgenciaPhoto')->findBy(array('idAgencia' => $idAgencia),null,1,null);
         if ($agencialogos) {
-            $logo = $em->getRepository('AdminAdminBundle:Photo')->find($agencialogos[0]->getId());
+            $logo = $em->getRepository('AdminAdminBundle:Photo')->find($agencialogos[0]->getIdPhoto());
         } else {
             $logo = null;
         }

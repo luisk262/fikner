@@ -290,5 +290,43 @@ class AgenciaController extends Controller {
             'AgenciaP' => null
         );
     }
+    /**
+     * Finds and displays a Photo entity.
+     *
+     * @Route("/agencialogo/{id}/show", name="Agencia_logoedit_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function editlogoAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AdminAdminBundle:Photo')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Photo entity.');
+        }
+        
+        $deleteForm =  $this->createDeleteForm($id);
+        return array(
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView(),
+            'AgenciaP' => null
+        );
+    }
+     /**
+     * Creates a form to delete a Photo entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    public function createDeleteForm($id) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl('Agencia_photo_delete', array('id' => $id)))
+                        ->setMethod('DELETE')
+                        ->add('submit', 'submit', array('label' => 'Eliminar','attr'=>array('class'=>'btn btn-danger btn-block')))
+                        ->getForm()
+        ;
+    }
 
 }

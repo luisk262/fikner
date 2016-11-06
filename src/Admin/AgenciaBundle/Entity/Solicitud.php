@@ -92,7 +92,25 @@ class Solicitud {
      */
     private $fechaupdate;
     
-/**
+    /**
+     * @var \Activo
+     *
+     * @ORM\Column(name="Activo", type="boolean", nullable=true)
+     */
+    private $activo;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set nombre
      *
      * @param string $nombre
@@ -102,7 +120,7 @@ class Solicitud {
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-
+    
         return $this;
     }
 
@@ -126,7 +144,7 @@ class Solicitud {
     public function setObservaciones($observaciones)
     {
         $this->observaciones = $observaciones;
-
+    
         return $this;
     }
 
@@ -150,7 +168,7 @@ class Solicitud {
     public function setEstado($estado)
     {
         $this->estado = $estado;
-
+    
         return $this;
     }
 
@@ -174,7 +192,7 @@ class Solicitud {
     public function setFechaprogramada($fechaprogramada)
     {
         $this->fechaprogramada = $fechaprogramada;
-
+    
         return $this;
     }
 
@@ -189,6 +207,30 @@ class Solicitud {
     }
 
     /**
+     * Set privado
+     *
+     * @param boolean $privado
+     *
+     * @return Solicitud
+     */
+    public function setPrivado($privado)
+    {
+        $this->privado = $privado;
+    
+        return $this;
+    }
+
+    /**
+     * Get privado
+     *
+     * @return boolean
+     */
+    public function getPrivado()
+    {
+        return $this->privado;
+    }
+
+    /**
      * Set fecha
      *
      * @param \DateTime $fecha
@@ -198,7 +240,7 @@ class Solicitud {
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-
+    
         return $this;
     }
 
@@ -222,7 +264,7 @@ class Solicitud {
     public function setFechaupdate($fechaupdate)
     {
         $this->fechaupdate = $fechaupdate;
-
+    
         return $this;
     }
 
@@ -237,37 +279,27 @@ class Solicitud {
     }
 
     /**
-     * Get id
+     * Set activo
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set privado
-     *
-     * @param boolean $privado
+     * @param boolean $activo
      *
      * @return Solicitud
      */
-    public function setPrivado($privado)
+    public function setActivo($activo)
     {
-        $this->privado = $privado;
-
+        $this->activo = $activo;
+    
         return $this;
     }
 
     /**
-     * Get privado
+     * Get activo
      *
      * @return boolean
      */
-    public function getPrivado()
+    public function getActivo()
     {
-        return $this->privado;
+        return $this->activo;
     }
 
     /**

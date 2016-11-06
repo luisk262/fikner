@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-3 col-lg-3 " align="center">
                             {%if logoId %}
-                                <a href="{{path('Agencia_photo_show',{'id':logoId})}}"><img class="img-circle img-responsive" data-src="{{web_image('upload/Photos/' ~ logoId ~'/' ~ logoName).resize(400,400)}}" src="{{web_image('upload/Photos/' ~ logoId ~'/' ~ logoName).zoomCrop(400,400)}}"></a> 
+                                <a href="{{path('Agencia_logoedit_show',{'id':logoId})}}"><img class="img-circle img-responsive" data-src="{{web_image('upload/Photos/' ~ logoId ~'/' ~ logoName).resize(400,400)}}" src="{{web_image('upload/Photos/' ~ logoId ~'/' ~ logoName).zoomCrop(400,400)}}"></a> 
                             {%else%}
                                 <img class="img-circle img-responsive" data-src="{{web_image('images/noimage.jpg' ).resize(400,400)}}" src="{{web_image('images/noimage.jpg').zoomCrop(400,400)}}"> 
                             {%endif%}

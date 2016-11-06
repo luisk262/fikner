@@ -16,8 +16,7 @@ use DateTime;
  *
  * @Route("/Agencia/dashboard/solicitud")
  */
-class SolicitudController extends Controller
-{
+class SolicitudController extends Controller {
 
     /**
      * Lists all Solicitud entities.
@@ -26,9 +25,8 @@ class SolicitudController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
-         $security_context = $this->get('security.context');
+    public function indexAction() {
+        $security_context = $this->get('security.context');
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
@@ -43,19 +41,19 @@ class SolicitudController extends Controller
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
             $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
-            $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia'=>$AgenciaUsuario->getIdAgencia()->getId()));
+            $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia' => $AgenciaUsuario->getIdAgencia()->getId(), 'activo' => '1'));
+        } else {
+            $agenciaPlan = null;
+            $entities = null;
         }
-        else{
-            $agenciaPlan=null;
-            $entities=null;
-        }
-        
-        
+
+
         return array(
             'entities' => $entities,
-            'AgenciaP'=>$agenciaPlan
+            'AgenciaP' => $agenciaPlan
         );
     }
+
     /**
      * Creates a new Solicitud entity.
      *
@@ -63,17 +61,17 @@ class SolicitudController extends Controller
      * @Method("POST")
      * @Template("AdminAgenciaBundle:Solicitud:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $entity = new Solicitud();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $agencia=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findBy(array('idUsuario'=>$this->getUser()->getId()));
+            $agencia = $em->getRepository('AdminAdminBundle:AgenciaUsuario')->findBy(array('idUsuario' => $this->getUser()->getId()));
             $entity->setIdAgencia($agencia[0]->getIdAgencia());
             $entity->setIdUsuario($this->getUser());
+            $entity->setActivo(true);
             $entity->setFecha(new \DateTime('now'));
             $entity->setFechaupdate(new \DateTime('now'));
             $em->persist($entity);
@@ -84,7 +82,7 @@ class SolicitudController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -95,8 +93,7 @@ class SolicitudController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Solicitud $entity)
-    {
+    private function createCreateForm(Solicitud $entity) {
         $form = $this->createForm(new SolicitudType(), $entity, array(
             'action' => $this->generateUrl('Agencia_dashboard_solicitud_create'),
             'method' => 'POST',
@@ -114,31 +111,29 @@ class SolicitudController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Solicitud();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
                         'SELECT au
                         FROM AdminAdminBundle:AgenciaUsuario au
                         WHERE au.idUsuario  =:id'
-                )->setParameter('id',$this->getUser()->getId());
+                )->setParameter('id', $this->getUser()->getId());
         if ($query->getResult()) {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
             $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
             $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
-        }
-        else{
-            $agenciaPlan=null;
-            $entities=null;
+        } else {
+            $agenciaPlan = null;
+            $entities = null;
         }
         return array(
             'entity' => $entity,
-             'AgenciaP'=>$agenciaPlan,
-            'form'   => $form->createView(),
+            'AgenciaP' => $agenciaPlan,
+            'form' => $form->createView(),
         );
     }
 
@@ -149,8 +144,7 @@ class SolicitudController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $em = $this->getDoctrine()->getManager();
@@ -158,30 +152,28 @@ class SolicitudController extends Controller
                         'SELECT au
                         FROM AdminAdminBundle:AgenciaUsuario au
                         WHERE au.idUsuario  =:id'
-                )->setParameter('id',$this->getUser()->getId());
+                )->setParameter('id', $this->getUser()->getId());
         if ($query->getResult()) {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
             $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
-            $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('id'=>$id,'idAgencia'=>$AgenciaUsuario->getIdAgencia()->getId()));
+            $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('id' => $id, 'idAgencia' => $AgenciaUsuario->getIdAgencia()->getId()));
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Solicitud entity.');
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Solicitud entity.');
+            }
+        } else {
+            $agenciaPlan = null;
+            $entities = null;
         }
-            
-        }
-        else{
-            $agenciaPlan=null;
-            $entities=null;
-        }
-        
-        
+
+
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity[0],
-            'AgenciaP'=>$agenciaPlan,
+            'entity' => $entity[0],
+            'AgenciaP' => $agenciaPlan,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -193,8 +185,7 @@ class SolicitudController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
@@ -207,38 +198,36 @@ class SolicitudController extends Controller
                         'SELECT au
                         FROM AdminAdminBundle:AgenciaUsuario au
                         WHERE au.idUsuario  =:id'
-                )->setParameter('id',$this->getUser()->getId());
+                )->setParameter('id', $this->getUser()->getId());
         if ($query->getResult()) {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
             $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
             $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
-        }
-        else{
-            $agenciaPlan=null;
-            $entities=null;
+        } else {
+            $agenciaPlan = null;
+            $entities = null;
         }
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'AgenciaP'=>$agenciaPlan,
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
+            'AgenciaP' => $agenciaPlan,
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Solicitud entity.
-    *
-    * @param Solicitud $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Solicitud $entity)
-    {
+     * Creates a form to edit a Solicitud entity.
+     *
+     * @param Solicitud $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Solicitud $entity) {
         $form = $this->createForm(new SolicitudType(), $entity, array(
             'action' => $this->generateUrl('Agencia_dashboard_solicitud_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -248,6 +237,7 @@ class SolicitudController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Solicitud entity.
      *
@@ -255,8 +245,7 @@ class SolicitudController extends Controller
      * @Method("PUT")
      * @Template("AdminAgenciaBundle:Solicitud:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
@@ -276,35 +265,32 @@ class SolicitudController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Solicitud entity.
      *
      * @Route("/{id}", name="Agencia_dashboard_solicitud_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Solicitud entity.');
-            }
-
-            $em->remove($entity);
+            $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
+            $entity->setActivo('0');
+            $entity->setFechaupdate($date);
+            $em->persist($entity);
             $em->flush();
         }
-
-        return $this->redirect($this->generateUrl('Agencia_dashboard_solicitud'));
+         return $this->redirect($this->generateUrl('Agencia_dashboard_solicitud'));
     }
 
     /**
@@ -314,13 +300,13 @@ class SolicitudController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Agencia_dashboard_solicitud_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Eliminar'))
-            ->getForm()
+                        ->setAction($this->generateUrl('Agencia_dashboard_solicitud_delete', array('id' => $id)))
+                        ->setMethod('DELETE')
+                        ->add('submit', 'submit', array('label' => 'Eliminar', 'attr' => array('class' => 'btn btn-danger btn-block')))
+                        ->getForm()
         ;
     }
+
 }

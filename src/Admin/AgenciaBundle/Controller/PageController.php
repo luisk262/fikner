@@ -261,7 +261,7 @@ class PageController extends Controller {
      */
     public function listSolicitudAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $entities=$em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia'=>$id,'privado'=>false),arraY('fechaupdate'=>'DESC'));
+        $entities=$em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia'=>$id,'privado'=>false,'activo'=>'1'),arraY('fechaupdate'=>'DESC'));
         return $this->render('AdminAgenciaBundle:Page:listSolicitud.html.twig', array(
                     'entities' => $entities,
         ));
