@@ -8,14 +8,14 @@
         {% if not logo %}
                 <link rel="icon" type="image/jpeg" href="{{ asset('images/logo3.png')}}" />
             {% else %}
-                <link rel="icon" type="image/jpeg" href="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(100,100)}}" />
+                <link rel="icon" type="image/jpeg" href="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(200,200)}}" />
             {%endif%}
             <meta property="og:title" content="Fikner - {{agencia.nombreagencia}}">
             <meta property="og:type"  content="article" />
             <meta property="og:url"                content="{{path('Agencia_solicitud',{'id':entity.id})}}" />
             <meta property="og:image" content="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(100,100)}}" />
             <meta property="og:site_name" content="Fikner">
-            <meta property="og:description" content="**{{ entity.observaciones }}**">
+            <meta property="og:description" content="{{ entity.observaciones }}">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/animate.css')}}" media="screen" title="no title" charset="utf-8">
