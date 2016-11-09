@@ -11,6 +11,7 @@ use DateTime;
 use Admin\AdminBundle\Entity\AgenciaHojadevida;
 
 class PageController extends Controller {
+
     /**
      * Displays a form to create a new Hojadevida entity.
      *
@@ -253,6 +254,7 @@ class PageController extends Controller {
                     'entities' => $entities,
         ));
     }
+
     /**
      * consulta a default entity.
      *
@@ -261,11 +263,12 @@ class PageController extends Controller {
      */
     public function listSolicitudAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $entities=$em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia'=>$id,'privado'=>false,'activo'=>'1'),arraY('fechaupdate'=>'DESC'));
+        $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia' => $id, 'privado' => false, 'activo' => '1'), arraY('fechaupdate' => 'DESC'));
         return $this->render('AdminAgenciaBundle:Page:listSolicitud.html.twig', array(
                     'entities' => $entities,
         ));
     }
+
     /**
      * consulta a default entity.
      *
@@ -274,11 +277,19 @@ class PageController extends Controller {
      */
     public function SolicitudAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $entity=$em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
-        $agencia=$em->getRepository('AdminAdminBundle:Agencia')->find($entity->getIdAgencia());
+        $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->find($id);
+        $agencia = $em->getRepository('AdminAdminBundle:Agencia')->find($entity->getIdAgencia());
+        //logo
+        $agencialogos = $em->getRepository('AdminAdminBundle:AgenciaPhoto')->findBy(array('idAgencia' => $agencia->getId()), null, 1, null);
+        if ($agencialogos) {
+            $logo = $em->getRepository('AdminAdminBundle:Photo')->find($agencialogos[0]->getIdPhoto());
+        } else {
+            $logo = null;
+        }
         return $this->render('AdminAgenciaBundle:Page:solicitud.html.twig', array(
                     'entity' => $entity,
-            'agencia'=>$agencia,
+                    'agencia' => $agencia,
+                    'logo' => $logo,
         ));
     }
 
