@@ -6,16 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Fikner - {{agencia.nombreagencia}}</title>
         {% if not logo %}
-                <link rel="icon" type="image/jpeg" href="{{ asset('images/logo3.png')}}" />
-            {% else %}
-                <link rel="icon" type="image/jpeg" href="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(200,200)}}" />
-            {%endif%}
-            <meta property="og:title" content="Fikner - {{agencia.nombreagencia}}">
-            <meta property="og:type"  content="article" />
-            <meta property="og:url"                content="{{path('Agencia_solicitud',{'id':entity.id})}}" />
-            <meta property="og:image" content="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(100,100)}}" />
-            <meta property="og:site_name" content="Fikner">
-            <meta property="og:description" content="{{ entity.observaciones }}">
+            <link rel="icon" type="image/jpeg" href="{{ asset('images/logo3.png')}}" />
+        {% else %}
+            <link rel="icon" type="image/jpeg" href="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(200,200)}}" />
+        {%endif%}
+        <meta property="og:title" content="Fikner - {{agencia.nombreagencia}}">
+        <meta property="og:type"  content="article" />
+        <meta property="og:url"                content="{{path('Agencia_solicitud',{'id':entity.id})}}" />
+        <meta property="og:image" content="{{web_image('upload/Photos/' ~ logo.id ~'/' ~ logo.image).resize(100,100)}}" />
+        <meta property="og:site_name" content="Fikner">
+        <meta property="og:description" content="{{ entity.observaciones }}">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/animate.css')}}" media="screen" title="no title" charset="utf-8">
@@ -45,38 +45,38 @@
                         <p id="texto">{% if entity.fechaprogramada %}<b>Fecha Limite:</b>{{ entity.fechaprogramada|date('Y-m-d') }}{% endif %}
                         </p>
                     </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            {% if not(is_granted("ROLE_AGENC"))  %}
-                                {% if U_foto %}
-                                    {% if U_foto_Agencia %}
-                                        {%set aux=false%}
-                                        {% for agencia in U_foto_Agencia %}
-                                            {%if (agencia.idAgencia.id == entity.id) and (agencia.activo=='1')%}
-                                                <a href="{{path('agencia_page_remove_book',{'id':agencia.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Remover book</strong></a> 
-                                                {%set aux=true%}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {% if not(is_granted("ROLE_AGENC"))  %}
+                                    {% if U_foto %}
+                                        {% if U_foto_Agencia %}
+                                            {%set aux=false%}
+                                            {% for agencia in U_foto_Agencia %}
+                                                {%if (agencia.idAgencia.id == entity.id) and (agencia.activo=='1')%}
+                                                    <a href="{{path('agencia_page_remove_book',{'id':agencia.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Remover book</strong></a> 
+                                                    {%set aux=true%}
+                                                {%endif%}
+                                            {%endfor%}
+                                            {%if not aux%}
+                                                <a href="{{path('agencia_page_send_book',{'id':agencia.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>   
                                             {%endif%}
-                                        {%endfor%}
-                                        {%if not aux%}
-                                            <a href="{{path('agencia_page_send_book',{'id':agencia.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>   
+                                        {%else%}
+                                            <a href="{{path('agencia_page_send_book',{'id':agencia.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>                                
                                         {%endif%}
                                     {%else%}
-                                        <a href="{{path('agencia_page_send_book',{'id':agencia.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>                                
+                                        <p>No puedes enviar book carga al menos una imagen primero</p>  
                                     {%endif%}
-                                {%else%}
-                                    <p>No puedes enviar book carga al menos una imagen primero</p>  
-                                {%endif%}
 
+                                {%else%}
+                                    <a href="{{path('registration_new',{'id':agencia.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                {%endif%}
                             {%else%}
-                                <a href="{{path('registration_new',{'id':agencia.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
                             {%endif%}
-                        {%else%}
-                            <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
-                        {%endif%}
-                    </div>
-                    <div class="col-lg-4"></div>
+                        </div>
+                        <div class="col-lg-4"></div>
                     </div>
 
                 </div>
