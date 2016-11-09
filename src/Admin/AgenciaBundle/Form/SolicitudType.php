@@ -15,8 +15,8 @@ class SolicitudType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre','text',array('label'=>'Nombre convocatoria'))
-            ->add('observaciones','textarea',array('label'=>'Descripción'))
+            ->add('nombre','text',array('label'=>'Nombre convocatoria','attr' => array('placeholder' => 'Eje: Actor de doblaje,Comercial,Figurante Etc..')))
+            ->add('observaciones','textarea',array('label'=>'Descripción','attr' => array('placeholder' => 'Eje: HOMBRES PERFIL MILITAR DE 20 A 45 AÑOS PARA GRABAR IMPORTANTE PRODUCCION.')))
             ->add('fechaprogramada','date',array('label'=>'Fecha programada para la sesión',
                 'required' => false,
                 'years' => range(date('Y'),date('Y') +3)
