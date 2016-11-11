@@ -253,54 +253,60 @@ class DefaultController extends Controller {
             return $this->redirect($this->generateUrl('Myaccount'));
         }
     }
+
     /**
      * @Route("/list/", name="principal_lista")
      * @Method("GET")
      * @Template()
      */
     public function booksAction() {
-          $request = $this->getRequest();
+        $request = $this->getRequest();
         $page = $request->query->get('page');
         $searchParam = $request->get('searchParam');
-
         return array(
             'current_page' => $page,
-            'searchParam' => $searchParam);
+            'searchParam' => $searchParam
+        );
     }
-     /**
+
+    /**
      * consulta a list Books.
      *
      * @Route("/list/ajax/consulta", name="principal_list_ajax")
      * @Method("GET")
      */
     public function ajaxListAction(Request $request) {
+        //pagina donde se esta ubicado
         $page = $request->query->get('page');
+        //Asignamos el parametro url
+        $searchParam = $request->get('searchParam');
+        //extraemos variables del array
+        extract($searchParam);
         
         $em = $this->getDoctrine()->getManager();
         $entryQuery = $em->createQueryBuilder()
-                    ->select('hp', 'p', 'h')
-                    ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
-                    ->leftJoin('hp.idHojadevida', 'h')
-                    ->leftJoin('hp.idPhoto', 'p')
-                    ->andWhere('hp.principal =:principal')
-                    ->addOrderBy('hp.fechaupdate', 'DESC')
-                    ->setParameter('principal', '1');
-            //query aux
-            $queryaux = $em->createQueryBuilder()
-                    ->select('COUNT(hp)')
-                    ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
-                    ->leftJoin('hp.idHojadevida', 'h')
-                    ->leftJoin('hp.idPhoto', 'p')
-                    ->andWhere('hp.principal =:principal')
-                    ->addOrderBy('hp.fechaupdate', 'DESC')
-                    ->setParameter('principal', '1');
-             $total_count = $queryaux->getQuery()->getSingleScalarResult();
-        if (!empty($perPage))
-            $entryQuery->setFirstResult(($page - 1) * $perPage)->setMaxResults($perPage);
+                ->select('hp', 'p', 'h')
+                ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                ->leftJoin('hp.idHojadevida', 'h')
+                ->leftJoin('hp.idPhoto', 'p')
+                ->andWhere('hp.principal =:principal')
+                ->addOrderBy('hp.fechaupdate', 'DESC')
+                ->setParameter('principal', '1');
+        //query aux
+        $queryaux = $em->createQueryBuilder()
+                ->select('COUNT(hp)')
+                ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                ->leftJoin('hp.idHojadevida', 'h')
+                ->leftJoin('hp.idPhoto', 'p')
+                ->andWhere('hp.principal =:principal')
+                ->addOrderBy('hp.fechaupdate', 'DESC')
+                ->setParameter('principal', '1');
+        $total_count = $queryaux->getQuery()->getSingleScalarResult();
+            $entryQuery->setFirstResult(($page - 1) * 36)->setMaxResults(36);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();
-        $pagination = (new Paginator())->setItems($total_count, 50)->setPage(1)->toArray();
+        $pagination = (new Paginator())->setItems($total_count, 36)->setPage($searchParam['page'])->toArray();
         //renderizamos la vista para mostrar las hojas de vida
         return $this->render('AdminAdminBundle:Default:ajax_books_list.html.twig', array(
                     'entities' => $entities,

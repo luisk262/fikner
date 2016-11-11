@@ -3,7 +3,7 @@
 </div>
 {% for entity in entities %}
     <div class="col-sm-6 col-md-3 col-lg-2">
-        <a href="{{path('list_book', { 'id':entity.idHojadevida.id})}}">
+        <a href="{{path('list_book', {'id':entity.idHojadevida.id})}}">
             {% if entity.idPhoto.image == '' %}
                     <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}"> 
             {% else %}
