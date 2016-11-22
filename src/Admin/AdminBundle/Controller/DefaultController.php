@@ -227,7 +227,7 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idHojadevida', 'h')
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
-                ->addOrderBy('hp.fechaupdate', 'DESC')
+                ->addOrderBy('h.Calificacion', 'DESC')
                 ->setParameter('principal', '1');
         $entryQuery->setFirstResult(0)->setMaxResults(4);
         $entryQueryfinal = $entryQuery->getQuery();
