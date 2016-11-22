@@ -290,7 +290,8 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idHojadevida', 'h')
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
-                ->addOrderBy('hp.fechaupdate', 'DESC')
+                ->addOrderBy('h.Calificacion', 'DESC')
+                ->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         //query aux
         $queryaux = $em->createQueryBuilder()
@@ -299,7 +300,8 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idHojadevida', 'h')
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
-                ->addOrderBy('hp.fechaupdate', 'DESC')
+                ->addOrderBy('h.Calificacion', 'DESC')
+                ->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         $total_count = $queryaux->getQuery()->getSingleScalarResult();
             $entryQuery->setFirstResult(($page - 1) * 36)->setMaxResults(36);
