@@ -1,0 +1,15 @@
+{% for entity in entities %}
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="profiles">
+        {% if entity.idPhoto.image == '' %}
+            <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}"> 
+        {% else %}
+            <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}" > 
+        {%endif%}
+    </div>
+{% endfor %}
+
+
+
+
+
+

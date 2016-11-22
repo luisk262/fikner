@@ -133,7 +133,9 @@ body section.book {
     margin-bottom: 100px; }
 body section.clientes {
   text-align: center;
-  background-color: #C63533; }
+  background-color: #C63533;
+  padding-top: 100px;
+  padding-bottom: 100px; }
   body section.clientes h1 {
     margin-top: 70px;
     color: #ffffff;

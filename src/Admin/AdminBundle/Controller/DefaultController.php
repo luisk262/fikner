@@ -237,6 +237,33 @@ class DefaultController extends Controller {
                     'entities' => $entities,
         ));
     }
+    /**
+     * consulta a default entity.
+     *
+     * @Route("/ajax/agencias", name="default_ajax_agencias")
+     * @Method("GET")
+     */
+    public function ajaxagenciasAction() {
+        $em = $this->getDoctrine()->getManager();
+        $entryQuery = $em->createQueryBuilder()
+                ->select('ap', 'p', 'a')
+                ->from('AdminAdminBundle:AgenciaPhoto', 'ap')
+                ->leftJoin('ap.idAgencia', 'a')
+                ->leftJoin('ap.idPhoto', 'p')
+                ->andWhere('ap.principal =:principal')
+                ->andWhere('a.privado =:privado')
+                ->andWhere('a.Activo =:activo')
+                ->setParameter('principal', '1')
+                ->setParameter('activo', '1')
+                ->setParameter('privado', '0');
+        $entryQuery->setFirstResult(0)->setMaxResults(4);
+        $entryQueryfinal = $entryQuery->getQuery();
+        //obtenemos el array de resultados
+        $entities = $entryQueryfinal->getArrayResult();
+        return $this->render('AdminAdminBundle:Default:ajax_agencias.html.twig', array(
+                    'entities' => $entities,
+        ));
+    }
 
     public function formulariousuario() {
         $security_context = $this->get('security.context');
