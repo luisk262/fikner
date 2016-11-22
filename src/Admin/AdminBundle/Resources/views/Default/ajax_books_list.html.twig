@@ -7,7 +7,7 @@
             {% if entity.idPhoto.image == '' %}
                 <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}"> 
             {% else %}
-                <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(200,200,'black')}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(200,200,'black')}}" style="height: 180px; width: 100%; display: block;"> 
+                <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(200,200,'black')}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(200,200,'black')}}" style="height: 180px; width: 100%; display: block;"> 
             {%endif%}
         </a>
     </div>
