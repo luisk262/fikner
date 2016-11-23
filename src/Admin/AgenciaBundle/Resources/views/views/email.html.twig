@@ -1,33 +1,49 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        Optional theme -->
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{{asset('bundles/adminagencia/css/style.css')}}">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Fikner</title>
     </head>
     <body>
-        <div class="container">
-            <section>
-                <img src="{{web_image('bundles/adminagencia/images/fikner_logo_blanco.png').resize(100,100)}}" alt="">
+        <div style="padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;">
+            <section style="text-align: center;background-color: #C63533;padding-top: 20px;padding-bottom: 20px;">
+                <img src="http://www.fikner.com/images/logo/fikner_logo_blanco.png" alt="" width="100px" height="auto">
             </section>
-            <div class="cuerpo">
-                <h2>{{data['agencia']}}</h2>
-                <h1>{{data['asunto']}}</h1>
-                <div id="texto" class="col-lg-5 col-centered">
-                    <p >
+            <div style="text-align: center;padding-bottom: 40px;">
+                <h2 style="margin-top: 70px;color: gray;">{{data['agencia']}}</h2>
+                <h1 style="color: #C63533;margin-top: -10px;margin-bottom: 40px;">{{data['asunto']}}</h1>
+                <div id="texto"style="width: 41.66666667%;float: none;margin: 0 auto;">
+                    <p style="color: gray;margin-bottom: 40px;text-align: justify;">
                         {{data['body']}}
                     </p>
-                    <p>{{data['firma']}}</p>
-                    <a href="http://www.fikner.com/" class="btn btn-danger"> <span class="glyphicon glyphicon-share-alt"></span>  Ir a fikner</a>
+                    <p style="color: gray;margin-bottom: 40px;text-align: justify;">{{data['firma']}}</p>
+                    <a href="http://www.fikner.com/" class="btn btn-danger" style="display: inline-block;
+                       padding: 6px 12px;
+                       margin-bottom: 0;
+                       font-size: 14px;
+                       font-weight: 400;
+                       line-height: 1.42857143;
+                       text-align: center;
+                       white-space: nowrap;
+                       vertical-align: middle;
+                       -ms-touch-action: manipulation;
+                       touch-action: manipulation;
+                       cursor: pointer;
+                       -webkit-user-select: none;
+                       -moz-user-select: none;
+                       -ms-user-select: none;
+                       user-select: none;
+                       background-image: none;
+                       border: 1px solid transparent;
+                       border-radius: 4px;
+                       color: #fff;
+                       text-decoration: none;
+                       background-color: #c9302c;border-color: #ac2925;"> <span class="glyphicon glyphicon-share-alt"></span>  Ir a fikner</a>
                 </div>			
             </div>
-            <div class="pie">
+            <div style="padding-top: 50px;
+                 padding-bottom: 20px;
+                 background-color: rgba(128, 128, 128, 0.34);">
                 <div id="texto" class="col-lg-5 col-centered">
                     <p >
                         Responda este email a {{data['emailagencia']}}
