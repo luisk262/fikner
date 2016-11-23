@@ -990,63 +990,36 @@ EOF
             //obtenemos el array de resultados
             $entities = $entryQueryfinal->getResult();
             $correo_remitente = 'youfikner@gmail.com';
-
+            $data['asunto']=$Subject;
             $Subject = 'Fikner - ' . $agenciaU->getIdAgencia()->getNombreAgencia() . ':' . $Subject;
             $emailagencia = $agenciaU->getIdAgencia()->getEmail();
+            $data['emailagencia']=$agenciaU->getIdAgencia()->getEmail();
             $nomagencia = $agenciaU->getIdAgencia()->getNombreAgencia();
+            $data['agencia']=$agenciaU->getIdAgencia()->getNombreAgencia();
             $firma_agencia = $agenciaU->getIdAgencia()->getFirmaEmail();
+            $data['firma']=$agenciaU->getIdAgencia()->getFirmaEmail();
             $copia_email = $agenciaU->getIdAgencia()->getCopiaEmail();
+            $data['body']=$Body;
             if ($copia_email) {
+                $template=$this->renderView('AdminAgenciaBundle:views:email.html.twig',array('data'=>$data));
                 $email = $agenciaU->getIdAgencia()->getEmail();
                 $message = \Swift_Message::newInstance()
                         ->setSubject($Subject)
                         ->setFrom($correo_remitente)
                         ->setTo($email)
-                        ->setBody(
-                        <<<EOF
-                Asunto: $Subject
-                Correo: $email
-                
-                $Body
-                
-                $firma_agencia 
-                
-                Responda este email a $emailagencia
-                
-                Este email es enviado a solicitud de la agencia $nomagencia
-                Si desea dejar de recibir noticias de esta agencia recuerde que puede 
-                Retirar su perfil en cualquier momento desde su perfil sección agencias.
-                
-EOF
-                        )
+                        ->setBody($template,'text/html')
                 ;
                 $this->get('mailer')->send($message);
             }
             foreach ($entities as $entity) {
+                $template=$this->renderView('AdminAgenciaBundle:views:email.html.twig',array('data'=>$data));
                 $email = $entity->getEmailPersonal();
                 $names = $entity->getNombre() . ' ' . $entity->getApellido();
                 $message = \Swift_Message::newInstance()
                         ->setSubject($Subject)
                         ->setFrom($correo_remitente)
                         ->setTo($email)
-                        ->setBody(
-                        <<<EOF
-                Nombres: $names
-                Asunto: $Subject
-                Correo: $email
-                
-                $Body
-                
-                $firma_agencia 
-                
-                Responda este email a $emailagencia
-                
-                Este email es enviado a solicitud de la agencia $nomagencia
-                Si desea dejar de recibir noticias de esta agencia recuerde que puede 
-                Retirar su perfil en cualquier momento desde su perfil sección agencias.
-                
-EOF
-                        )
+                        ->setBody($template,'text/html')
                 ;
                 $this->get('mailer')->send($message);
             }

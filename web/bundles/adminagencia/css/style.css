@@ -1,0 +1,37 @@
+section{
+	text-align: center;
+    background-color: #C63533;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+img{
+	width: 100px;
+	height: auto;
+}
+.cuerpo{
+	    text-align: center;
+	    padding-bottom: 40px;
+}
+h2 {
+    margin-top: 70px;
+    color: gray;
+}
+h1{
+	color: #C63533;
+    margin-top: -10px;
+    margin-bottom: 40px;
+}
+p{
+	color: gray;
+    margin-bottom: 40px;
+    text-align: justify;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.pie{
+	padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: rgba(128, 128, 128, 0.34);
+}

@@ -37,11 +37,12 @@ body {
     body header .navbar-default .navbar-brand img {
       margin-left: 15px; }
   body .navbar-default.navbar-fixed-top {
-    height: 50px;
+    height: 60px;
     background-color: #C63533;
     border-color: #C63533; }
     body .navbar-default.navbar-fixed-top .navbar-left li a {
-      color: #ffffff; }
+      color: #ffffff;
+      margin-top: 10px; }
     body .navbar-default.navbar-fixed-top .navbar-left #profileImage img {
       margin-top: -10px;
       background-color: rgba(128, 128, 128, 0.34);
@@ -49,7 +50,8 @@ body {
       height: 30px;
       border-radius: 120px; }
     body .navbar-default.navbar-fixed-top .navbar-right li a {
-      color: #ffffff; }
+      color: #ffffff;
+      margin-top: 10px; }
     body .navbar-default.navbar-fixed-top a.dropdown-toggle:hover {
       background-color: transparent;
       color: #ffffff; }
@@ -57,7 +59,7 @@ body {
       color: gray; }
   body #bannerProfile {
     background-color: #4b4f56;
-    margin-top: 50px;
+    margin-top: 60px;
     padding-top: 30px;
     padding-bottom: 30px; }
     body #bannerProfile #profileImage img {
@@ -141,9 +143,6 @@ body {
     color: gray; }
     body #fotos .linea {
       margin-bottom: 30px; }
-  body .navbar-brand {
-    float: left;
-    padding: 10px 10px 10px 10px;}
 
 @media (min-width: 992px) and (max-width: 1199px) {
   body .page-header {
@@ -222,8 +221,7 @@ body {
         body .navbar-default .navbar-toggle span.icon-bar:hover {
           color: #EF4036; }
   body .navbar-brand {
-    float: left;
-    padding: 10px 10px 10px 10px;}
+    float: left; }
     body .navbar-brand img {
       margin-top: -10px;
       height: 50px; }

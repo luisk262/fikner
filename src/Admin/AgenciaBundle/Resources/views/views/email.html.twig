@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        Optional theme -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{asset('bundles/adminagencia/css/style.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <section>
+                <img src="{{web_image('bundles/adminagencia/images/fikner_logo_blanco.png').resize(100,100)}}" alt="">
+            </section>
+            <div class="cuerpo">
+                <h2>{{data['agencia']}}</h2>
+                <h1>{{data['asunto']}}</h1>
+                <div id="texto" class="col-lg-5 col-centered">
+                    <p >
+                        {{data['body']}}
+                    </p>
+                    <p>{{data['firma']}}</p>
+                    <a href="http://www.fikner.com/" class="btn btn-danger"> <span class="glyphicon glyphicon-share-alt"></span>  Ir a fikner</a>
+                </div>			
+            </div>
+            <div class="pie">
+                <div id="texto" class="col-lg-5 col-centered">
+                    <p >
+                        Responda este email a {{data['emailagencia']}}
+
+                        Este email es enviado a solicitud de la agencia {{data['agencia']}}
+                        Si desea dejar de recibir noticias de esta agencia recuerde que puede
+                        Retirar su perfil en cualquier momento desde su perfil sección agencias.
+                    </p></div>
+            </div>
+        </div>
+    </body>
+</html>
