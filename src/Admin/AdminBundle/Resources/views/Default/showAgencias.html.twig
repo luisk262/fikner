@@ -19,6 +19,11 @@
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/animate.css')}}" media="screen" title="no title" charset="utf-8">
+        <style>
+            body section.book img {
+                height:100%;
+            }
+        </style>
     </head>
     <body>
         <!-- Fixed navbar -->
@@ -34,7 +39,7 @@
             <div class="row">
                 <div class="container">
                     <form  id="jsForm" role="form" method="GET" action="">
-                         <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
+                        <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
                         <div class="row" id='dataContainer'>
                         </div>
                     </form> 
