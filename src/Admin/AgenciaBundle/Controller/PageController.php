@@ -106,7 +106,7 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/agencia/", name="agencia_page_send_book")
+     * @Route("/agencia/send/book", name="agencia_page_send_book")
      * @Method("GET")
      */
     public function AgenciaPageSendBookAction(Request $request) {
@@ -166,7 +166,7 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/agencias/", name="agencia_page_remove_book")
+     * @Route("/agencia/remove/book", name="agencia_page_remove_book")
      * @Method("GET")
      */
     public function AgenciaPageRemoveBookAction(Request $request) {

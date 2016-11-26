@@ -237,6 +237,23 @@ class DefaultController extends Controller {
                     'entities' => $entities,
         ));
     }
+     /**
+     * consulta a default entity.
+     *
+     * @Route("/agencia/", name="agencias")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAgenciasAction(){
+        $request = $this->getRequest();
+        $page = $request->query->get('page');
+        $searchParam = $request->get('searchParam');
+        return array(
+            'current_page' => $page,
+            'searchParam' => $searchParam
+        );
+    }
+
     /**
      * consulta a default entity.
      *
