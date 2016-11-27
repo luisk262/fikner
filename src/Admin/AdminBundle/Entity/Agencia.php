@@ -8,8 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Agencia
  * @ORM\Table(name="agencia")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\AdminBundle\Repository\AgenciaRepository")
  */
-
+ 
 class Agencia {
 
     /**

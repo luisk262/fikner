@@ -92,21 +92,16 @@ class DefaultController extends Controller {
         $entity = new User();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $query = $em->createQuery(
-                            'SELECT u
-                        FROM AdminAdminBundle:User u
-                        WHERE u.username  =:username'
-                    )->setParameter('username', $entity->getEmail());
-            if ($query->getResult()) {
-                $error = true;
+            //verificamos si el usuario existe o ya estaba registrado
+            $user_exist = $em->getRepository('AdminAdminBundle:User')->findByUsername($entity->getEmail());
+            if ($user_exist) {
                 return $this->redirect(
                                 $this->generateUrl('registration_msg', array('id' => $entity->getId(),
                                     'nombre' => $entity->getNombre(),
                                     'apellidos' => $entity->getApellidos(),
-                                    'error' => $error,
+                                    'error' => true,
                                     'email' => $entity->getEmail()
                 )));
             } else {
@@ -114,17 +109,17 @@ class DefaultController extends Controller {
                 $entity->setEnabled(true);
                 $em->persist($entity);
                 $em->flush();
-                $error = false;
                 return $this->redirect(
                                 $this->generateUrl('registration_msg', array('id' => $entity->getId(),
                                     'nombre' => $entity->getNombre(),
                                     'apellidos' => $entity->getApellidos(),
-                                    'error' => $error,
+                                    'error' => false,
                                     'email' => $entity->getEmail()
                 )));
             }
         }
-
+        //eliminamos variables de memoria
+        unset($user_exist,$em);
         return array(
             'entity' => $entity,
             'form' => $form->createView(),
@@ -140,38 +135,19 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             ////personal de apoyo
-            $querybooks = $em->createQueryBuilder()
-                    ->select('COUNT(c)')
-                    ->from('AdminAdminBundle:UsuarioHojadevida', 'c');
-            $queryUser = $em->createQueryBuilder()
-                    ->select('COUNT(c)')
-                    ->from('AdminAdminBundle:User', 'c');
-            $queryUser->andWhere('c.roles  NOT LIKE :roles')->setParameter('roles', '%' . 'ROLE_AGENC' . '%');
-
-            /////////Agencias
-            $queryAgencia = $em->createQueryBuilder()
-                            ->select('COUNT(a)')
-                            ->from('AdminAdminBundle:Agencia', 'a')
-                            ->andWhere('a.Activo =:estado')->setParameter('estado', '1');
-            $queryAgenciaP = $em->createQueryBuilder()
-                            ->select('COUNT(a)')
-                            ->from('AdminAdminBundle:Agencia', 'a')
-                            ->andWhere('a.Activo =:estado')->setParameter('estado', '0');
-
+            $Books =  count($em->getRepository('AdminAdminBundle:UsuarioHojadevida')->count());
+            $Users =  count($em->getRepository('AdminAdminBundle:User')->count());
+            $AgenciasA = count($em->getRepository('AdminAdminBundle:Agencia')->count());
+            $AgenciasP = count($em->getRepository('AdminAdminBundle:Agencia')->count(0));
             $queryAgenciaU = $em->createQueryBuilder()
                             ->select('COUNT(c)')
                             ->from('AdminAdminBundle:User', 'c')
                             ->andWhere('c.roles  LIKE :roles')->setParameter('roles', '%' . 'ROLE_AGENC' . '%');
 
             ///personal de apoyo
-            $Books = $querybooks->getQuery()->getSingleScalarResult();
-            $Users = $queryUser->getQuery()->getSingleScalarResult();
             $CSinBook = $Users - $Books;
             ///agencias
-            $AgenciasA = $queryAgencia->getQuery()->getSingleScalarResult();
-            $AgenciasP = $queryAgenciaP->getQuery()->getSingleScalarResult();
             $UserSinAgencia = $queryAgenciaU->getQuery()->getSingleScalarResult();
-
             return $this->render('AdminAdminBundle:Default:dashboard.html.twig', array(
                         'Books' => $Books,
                         'CSinBook' => $CSinBook,
@@ -237,14 +213,15 @@ class DefaultController extends Controller {
                     'entities' => $entities,
         ));
     }
-     /**
+
+    /**
      * consulta a default entity.
      *
      * @Route("/agencia/", name="agencias")
      * @Method("GET")
      * @Template()
      */
-    public function showAgenciasAction(){
+    public function showAgenciasAction() {
         $request = $this->getRequest();
         $page = $request->query->get('page');
         $searchParam = $request->get('searchParam');
@@ -326,7 +303,7 @@ class DefaultController extends Controller {
         $searchParam = $request->get('searchParam');
         //extraemos variables del array
         extract($searchParam);
-        
+
         $em = $this->getDoctrine()->getManager();
         $entryQuery = $em->createQueryBuilder()
                 ->select('hp', 'p', 'h')
@@ -348,7 +325,7 @@ class DefaultController extends Controller {
                 ->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         $total_count = $queryaux->getQuery()->getSingleScalarResult();
-            $entryQuery->setFirstResult(($page - 1) * 36)->setMaxResults(36);
+        $entryQuery->setFirstResult(($page - 1) * 36)->setMaxResults(36);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();

@@ -640,6 +640,8 @@ EOF
         $mail = $request->get('mail');
         //extraemos variables del array
         extract($mail);
+        $data['titulo2']=$Subject;
+        $Subject = 'Fikner - ' . $Subject;
         $entryQuery = $em->createQueryBuilder()
                 ->select('c')
                 ->from('AdminAdminBundle:Hojadevida', 'c');
@@ -649,26 +651,17 @@ EOF
             //obtenemos el array de resultados
             $entities = $entryQueryfinal->getResult();
             $correo_remitente = 'youfikner@gmail.com';
+            $data['titulo1']='Tenemos una noticia nueva';            
+            $data['body']=$Body;
+            $data['firma']='';                    
             foreach ($entities as $entity) {
+                $template=$this->renderView('AdminAdminBundle:views:email.html.twig',array('data'=>$data));
                 $email = $entity->getEmailPersonal();
-                $names = $entity->getNombre() . ' ' . $entity->getApellido();
                 $message = \Swift_Message::newInstance()
                         ->setSubject($Subject)
                         ->setFrom($correo_remitente)
                         ->setTo($email)
-                        ->setBody(
-                        <<<EOF
-                Nombres: $names
-                Asunto: $Subject
-                Correo: $email
-                
-                $Body
-                            
-                NO RESPONDA ESTE EMAIL
-                
-                WWW.FIKNER.COM
-EOF
-                        )
+                        ->setBody($template,'text/html')
                 ;
                 $this->get('mailer')->send($message);
             }
