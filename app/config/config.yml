@@ -70,6 +70,7 @@ swiftmailer:
     host:       "smtp.gmail.com"
     username:   "youfikner@gmail.com"
     password:   "C1l2m3r4"
+    spool: { type: memory }
     
 # user bundle
 #imagenes en mimiatura

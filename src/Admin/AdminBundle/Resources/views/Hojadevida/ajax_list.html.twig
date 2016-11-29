@@ -5,7 +5,7 @@
     <div class="col-lg-4">
         <div class="thumbnail">
             <div class="col-md-2">
-                <input type="checkbox" name="entities[]" value="{{entity.id}}">
+                <input type="checkbox" name="entities[]" value="{{entity.idHojadevida.id}}">
             </div>
             {% if entity.idPhoto.image == '' %}
                 <a href="{{ path('dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}" target="_blank">
