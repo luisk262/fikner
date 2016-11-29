@@ -12,9 +12,7 @@ use Doctrine\ORM\EntityRepository;
 class UsuarioHojadevidaRepository extends EntityRepository {
 
     public function count() {
-        $repository = $this->getEntityManager()
-            ->getRepository('AdminAdminBundle:UsuarioHojadevida');
-        $count = $repository->createQueryBuilder('uh')
+       $count = $this->createQueryBuilder('uh')
                 ->getQuery();
         //$count->getScalarResult();
         return $count->getArrayResult();

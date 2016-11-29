@@ -149,7 +149,7 @@ WHERE a.id=:id'
      */
     public function empresasOfertarAction(Request $request) {
         $security_context = $this->get('security.context');
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();

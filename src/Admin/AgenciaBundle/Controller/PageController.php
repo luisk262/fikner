@@ -111,7 +111,7 @@ class PageController extends Controller {
      */
     public function AgenciaPageSendBookAction(Request $request) {
         $security_context = $this->get('security.context');
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
@@ -171,7 +171,7 @@ class PageController extends Controller {
      */
     public function AgenciaPageRemoveBookAction(Request $request) {
         $security_context = $this->get('security.context');
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();

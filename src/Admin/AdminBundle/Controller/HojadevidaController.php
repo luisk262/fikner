@@ -329,7 +329,7 @@ class HojadevidaController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             //creamos una conexion a la base de datos
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             //realizamos un query sencillo para verificar que no se encuentre registrada la hoja de vida
             $query = $em->createQuery(
                     'SELECT h.nit
@@ -605,7 +605,7 @@ EOF
      * @Template()
      */
     public function removeAction(Request $request) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $ids = $request->get('entities');
 
@@ -634,7 +634,7 @@ EOF
      * @Template()
      */
     public function enviaremailAction(Request $request) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $ids = $request->get('entities');
         //Asignamos el parametro url
         $mail = $request->get('mail');
