@@ -19,7 +19,7 @@
                         {% if  Image %}
                             <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(40,40)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"> 
                         {%else%}
-                            <img data-src="{{ web_image('upload/default/default.png').resize(40,40)}}}}"  src="{{web_image('upload/default/default.png').resize(40,40)}}"> 
+                            <img data-src="{{ web_image('images/noimage.png').resize(40,40)}}}}"  src="{{web_image('images/noimage.png').resize(40,40)}}"> 
                         {%endif%}
                     </a>
                 </li>

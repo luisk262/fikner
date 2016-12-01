@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block tittle %} Apartado invalido{% endblock tittle %}
+{% block container %}
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
+        <div class="row text-center">
+                <img data-src="{{ web_image('images/logo/fikner_logo2.png').resize(40,40)}}}}"  src="{{web_image('images/logo/fikner_logo2.png').resize(40,40)}}"> 
+                        
+                <h1>404</h1>
+                <p>No se pudo localizar la página solicitada. Verifique la URL</p>
+                <a href="{{path('principal')}}" class="btn btn-danger btn-block">Inicio</a>
+            
+        </div> 
+
+    </div>
+    <div class="col-lg-4">
+    </div>
+{% endblock container %}
+
