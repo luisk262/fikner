@@ -216,8 +216,9 @@ body section.profile {
     border-width: initial;
     border-radius: 15px; }
     body section.profile .thumbnail .caption {
-      padding-left: 50px;
-      padding-right: 50px; }
+      padding-left: 5px;
+      padding-right: 5px;
+      min-height: 300px; }
     body section.profile .thumbnail h3 {
       color: gray;
       text-align: center; }

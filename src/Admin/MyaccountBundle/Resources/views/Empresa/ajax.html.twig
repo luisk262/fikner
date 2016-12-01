@@ -24,7 +24,7 @@
                     <p>{{ entity.idAgencia.direccion}}</p>
                     <p>{{ entity.idAgencia.telefono}}</p>
                     {% set ruta = entity.idAgencia.nombre_agencia|replace({' ': '_'}) %}                        
-                    <a class="btn btn-info btn-block" href="{{path('Agencia_page', { 'nombre':ruta })}}" target="_blank"> <i class="glyphicon glyphicon-eye-open"></i> Ver pagina</a>
+                    <a class="btn btn-danger btn-block" href="{{path('Agencia_page', { 'nombre':ruta })}}" target="_blank"> <i class="glyphicon glyphicon-eye-open"></i> Ver pagina</a>
                 </div> 
             </div> 
         </div>
