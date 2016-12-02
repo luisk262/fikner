@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\AdminBundle\Entity;
+namespace Admin\AdminBundle\Repository;
 
 /**
  * seguimientoRepository
