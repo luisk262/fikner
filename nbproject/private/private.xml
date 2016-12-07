@@ -3,8 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/fikner/src/Admin/MyaccountBundle/Resources/views/Empresa/ajax.html.twig</file>
-            <file>file:/C:/xampp/htdocs/fikner/src/Admin/MyaccountBundle/Resources/views/Empresa/ajax2.html.twig</file>
+            <file>file:/C:/xampp/htdocs/fikner/src/Admin/AdminBundle/Controller/NotificacionController.php</file>
         </group>
     </open-files>
 </project-private>
