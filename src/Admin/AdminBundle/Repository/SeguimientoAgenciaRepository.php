@@ -10,7 +10,5 @@ namespace Admin\AdminBundle\Repository;
  */
 class SeguimientoAgenciaRepository extends \Doctrine\ORM\EntityRepository
 {
- public function findViews($id){
-     
- }    
+    
 }
