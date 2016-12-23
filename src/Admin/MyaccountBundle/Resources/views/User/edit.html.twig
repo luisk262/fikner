@@ -1,0 +1,38 @@
+{% extends 'AdminMyaccountBundle::layout.html.twig'%}
+{% block container %}
+    {{ form_start(edit_form) }}
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="form-group">
+            {{form_widget(edit_form.nombre,{'attr': {'class':'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{form_widget(edit_form.apellidos,{'attr': {'class':'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{form_widget(edit_form.telefono,{'attr': {'class':'form-control'}})}}
+
+        </div>
+        <div class="form-group">
+            {{form_widget(edit_form.email,{'attr': {'class':'form-control'}})}}
+
+        </div>
+        <div class="form-group">
+            <div class="col-lg-4 form-group">
+                {{form_widget(edit_form.fechaNaci.day,{'attr': {'class':'form-control'}})}}
+            </div>
+            <div class="col-lg-4 form-group">
+                {{form_widget(edit_form.fechaNaci.month,{'attr': {'class':'form-control'}})}}
+            </div>
+            <div class="col-lg-4 form-group">
+                {{form_widget(edit_form.fechaNaci.year,{'attr': {'class':'form-control'}})}}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-8 col-lg-offset-2">
+            {{ form_row(edit_form.submit, { 'label': 'Actualizar','attr': {'class':'btn btn-primary btn-block' }}) }}
+        </div>
+            </div>
+
+    </div>
+    {{ form(edit_form) }}
+{% endblock %}
