@@ -107,6 +107,7 @@ class UserController extends Controller {
             $UHojadevida->getIdHojadevida()->setNombre($entity->getNombre());
             $UHojadevida->getIdHojadevida()->setApellido($entity->getApellidos());
             $UHojadevida->getIdHojadevida()->setEmailPersonal($entity->getEmail());
+            $UHojadevida->getIdHojadevida()->setFechaNac($entity->getFechaNaci());
             $em->persist($UHojadevida);
             $em->flush();
             return $this->redirect($this->generateUrl('Myaccount_user_edit'));
