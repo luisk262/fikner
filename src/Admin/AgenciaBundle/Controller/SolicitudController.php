@@ -26,7 +26,7 @@ class SolicitudController extends Controller {
      * @Template()
      */
     public function indexAction() {
-        $security_context = $this->get('security.context');
+        $security_context = $this->get('security.token_storage');
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
