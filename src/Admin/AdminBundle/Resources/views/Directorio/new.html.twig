@@ -1,0 +1,14 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block container %}
+    <h1>Directorio creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('dashboard_directorio') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
