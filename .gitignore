@@ -17,7 +17,7 @@
 !var/sessions/.gitkeep
 
 # Parameters
-/app/config/*
+/app/config/parameters.yml
 # Managed by Composer
 /app/bootstrap.php.cache
 /var/bootstrap.php.cache
@@ -43,3 +43,5 @@
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
+
+.idea/workspace.xml
