@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <link rel="icon" type="image/jpeg" href="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
-        <meta name="viewport" content="width=device-width, user-scalable=no">
-        <title>{% block title %} Fikner   | Agencias de Casting | Agencias de modelaje | Agencias de btl y eventos |  {% endblock %}</title>
-        <!--facebook -->
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+{% block title %}Fikner   | Agencias de Casting | Agencias de modelaje | Agencias de btl y eventos |{% endblock %}
+{% block facebook %}
         <meta property="og:url"                content="http://www.fikner.com/" />
         <meta property="og:type"               content="article" />
         <meta property="og:title"              content="Fikner" />
@@ -15,14 +10,119 @@
         <meta name="og:description" content="Fikner es la plataforma que integra las principales agencias de casting y modelaje del país.">
         <meta name="keywords" content="fikner,Trabaja,Tabajo,extra,figurante,modelo,actor,bogota,colombia,evento,publicidad,actriz,Cantante,Locutor,Actuacion,cine,
               Novela,camara,Casting,Imagen,Television,Talento,Estilo,arte,caracol,rti,rcn,canal,teleantioquia,señal,cable,centro,institucional,trece,13,zoom,City,uno,locacion,carro,peter,personal,apoyo,tv">
-        <!-- fin facebook-->
-        {% block styles %}
-            <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
-            <link rel="stylesheet" href="{{asset('css/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
-        {% endblock %}    
-    </head>
+{%endblock%}
+{% block container %}
+    <section>
+        <div class="slider">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+               <div class="item active">
+                  <div class="banner">
+                      <h1>tu  registro es <span>gratis</span></h1>
+                      <p>Participa en proyectos para televisión, comerciales, 
+                    fotografía, modelaje y más.</p>
+                     <a href="#" class="btn btn-default">¡Crear cuenta!</a>
+                  </div>
+              </div>
+              <div class="item ">
+                <div class="banner">
+                  <h1>Registre su <span>agencia</span></h1>
+                  <p>¿Buscas modelos, actrices, actores y personal de apoyo?</p>
+                  <a href="#" class="btn btn-default">¡Crear cuenta!</a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="banner">
+                  <h1>publique <span>castings</span></h1>
+                  <p>Realice convocatorias de casting, utilizando las herramientas que fikner tiene para usted.</p>
+                  <a href="#" class="btn btn-default">¡ Crear cuenta !</a>
+                </div>          
+              </div>
+            </div>
+        </div>
+	  	</div>
+	    </section>
+      <section>
+      	<div class="images">
+      		<img src="{{web_image('bundles/adminadmin/img/template/photo-1.jpg')}}" alt="">
+	      	<img src="{{web_image('bundles/adminadmin/img/template/photo-2.jpg')}}" alt="">
+	      	<img src="{{web_image('bundles/adminadmin/img/template/photo-3.jpg')}}" alt="">
+	      	<img src="{{web_image('bundles/adminadmin/img/template/photo-4.jpg')}}" alt="">	
+      	</div>
+      </section>
+      <section>
+      	<div class="container">
+      		<div class="article-1">
+      			<img src="{{web_image('bundles/adminadmin/img/fikner_logo2.png')}}" class="center-block" alt="fikner"/>
+      			<h2><span>SE FIKNER</span>, 
+				TODOS LOS DIAS, 
+				EN CADA MOMENTO.</h2>
+
+				<p>
+					
+					fikner FIKNER Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, adipisci sapiente. Mollitia praesentium vitae expedita, omnis vel veniam repudiandae reprehenderit eveniet ad, quas, quam est sit culpa accusantium quibusdam! Ab.</p>
+      		</div>
+      	</div>
+      </section>
+      <section>
+      	<div class="informacion">
+      		<div class="detalle container">
+      			<div class="col-lg-4" align="center">
+      				<img src="{{web_image('bundles/adminadmin/img/icons/agency_b.png')}}" alt="">
+					<h4 class="incrementalNumber" set-time="2000" data-value="{{agencias}}">0</h4>
+					<h6>Agencias</h6>
+	      		</div>
+				<div class="col-lg-4" align="center">
+					<img src="{{web_image('bundles/adminadmin/img/icons/casting_b.png')}}" alt="">
+					<h4 class="incrementalNumber" set-time="2000" data-value="34">0</h4>
+					<h6>Castings</h6>
+				</div>
+	      		<div class="col-lg-4" align="center">
+					<img src="{{web_image('bundles/adminadmin/img/icons/people_b.png')}}" alt="">
+					<h4 class="incrementalNumber" set-time="2000" data-value="{{perfiles}}">0</h4>
+					<h6>perfiles</h6>
+				</div>
+	      		
+	      	</div>
+      	</div>
+      </section>
+      <section>
+      	<div class="top-actors">
+      		<div class="container">
+      			<div class="col-lg-4">
+      				<h4>PROFESSIONAL STYLISTS</h4>
+      				<img src="http://cdn-demo.createdbycocoon.com/joomla/nine/nrgfashion/1/images/nrgfashion/photo-5.jpg" alt="">
+      				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum assumenda, pariatur, perferendis natus, id cum fuga autem vitae deserunt amet repudiandae deleniti itaque similique odit. Sit aspernatur libero quaerat, minima.</p>
+      				<a href="#">Leer mas</a>
+      			</div>
+	      		<div class="col-lg-4">
+	      			<h4>PROFESSIONAL STYLISTS</h4>
+	      			<img src="http://cdn-demo.createdbycocoon.com/joomla/nine/nrgfashion/1/images/nrgfashion/photo-6.jpg" alt="">
+	      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, odio, harum! Harum sunt architecto, excepturi culpa ut eius molestias quasi, consectetur nam minima sed voluptate maiores minus tenetur autem tempore!</p>
+	      			<a href="#">Leer mas</a>
+	      		</div>
+	      		<div class="col-lg-4">
+	      			<h4>PROFESSIONAL STYLISTS</h4>
+	      			<img src="http://cdn-demo.createdbycocoon.com/joomla/nine/nrgfashion/1/images/nrgfashion/photo-7.jpg" alt="">
+	      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nulla magnam, sequi. Quisquam nisi numquam voluptatum, labore excepturi, placeat, reiciendis provident omnis tenetur earum exercitationem aut laudantium quaerat non! Velit.</p>
+	      			<a href="#">Leer mas</a>
+	      		</div>		
+      		</div>
+      	</div>	
+      </section>
+{%endblock%}
+{#
+<!DOCTYPE html>
+<html lang="es">
     <body>
-        {% block container %}
+        {% block containers %}
             <div class="backgroundImage">
                 <header>
                     <div class="row">
@@ -356,3 +456,4 @@
         </script>
     {%endblock%}
 </html>
+#}

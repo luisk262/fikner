@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+        <link rel="icon" type="image/jpeg" href="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
+        <title>{% block title %}{% endblock %}</title>
+        <!--facebook -->
+        {% block facebook %}{%endblock%}
+        <link rel="stylesheet" href="{{asset('bundles/adminadmin/bootstrap/3.3.7/css/bootstrap.min.css')}}">
+        <!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!--Javascript top-->
+        {% block topjavascript %}
+            <script type="text/javascript" src="{{asset('bundles/adminadmin/js/incrementalNumber.js')}}"> </script>
+            <script type="text/javascript">
+                $(document).ready(function(){
+  			incrementalNumber();
+  		});
+            </script>
+        {%endblock%}
+        <!--style-->
+        {% block style %}
+            <link rel="stylesheet" href="{{asset('bundles/adminadmin/css/style.css')}}">
+        {% endblock %}    	
+</head>
+<body>
+    {% include "AdminAdminBundle:Default:menu.html.twig" %}    	
+    {% block container %}
+    {% endblock %}
+    {%block footer %}
+        <section>
+      	<div class="footer">
+      		<div class="container">
+      			<div class="col-lg-4">
+      				<div class="texto-footer-left">
+      					<p>NUESTROS ALIADOS</p>
+                                        <a href="http://digitalhype.co/">
+      					<img src="{{asset('bundles/adminadmin/img/logo_digital_gray.png')}}" alt="">
+                                        </a>
+      				</div>
+      			</div>
+      			<div class="col-lg-4">
+      				<div class="texto-footer">
+      					<img src="{{asset('bundles/adminadmin/img/fikner_logo_blanco.png')}}" alt="">
+      					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum molestiae tempora ipsa laborum explicabo rerum, odit assumenda. Perferendis distinctio corporis quidem aperiam nobis, explicabo vero, sint animi perspiciatis, omnis ipsum!</p>
+      				</div>
+      			</div>
+      			<div class="col-lg-4"> 
+      				<div class="texto-footer-right">
+      					<p>REDES</p>
+      					<li><a href="https://www.facebook.com/YouFikner/?fref=ts"><img src="{{asset('bundles/adminadmin/img/social/f2.png')}}" alt=""></a>	Facebook</li>
+      					<li><a href="https://twitter.com/YouFikner"><img src="{{asset('bundles/adminadmin/img/social/t2.png')}}" alt=""></a>	Twitter</li>
+      					<li><a href="#"><img src="{{asset('bundles/adminadmin/img/social/y2.png')}}" alt=""></a>	Youtube</li>
+      				</div>     				
+      			</div>
+      		</div>
+      	</div>
+      	<div class="copyright">
+      		<div class="container">
+      			<div class="col-lg-4"></div>
+	      		<div class="col-lg-4"></div>
+	      		<div class="col-lg-4">	      			
+	      				<p>Fikner © 2017 | Español (COL)</p>
+	      		</div>	
+      		</div>      		
+      	</div>
+      </section>
+    {% endblock %}
+</body>
+{% block footerjavascript %}
+    <script src="{{asset('bundles/adminadmin/bootstrap/3.3.7/js/bootstrap.min.js')}}"></script>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-79661589-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    {%endblock%}
+</html>

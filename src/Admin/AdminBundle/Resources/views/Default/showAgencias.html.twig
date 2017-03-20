@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Fikner - Books</title>
-        <link rel="icon" type="image/jpeg" href="{{ asset('images/logo3.png')}}" />
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+{% block title %}Agencias Fikner{% endblock %}
+{% block facebook %}
         <meta property="og:url"                content="http://www.fikner.com/" />
         <meta property="og:type"               content="article" />
         <meta property="og:title"              content="Fikner" />
@@ -15,101 +10,37 @@
         <meta name="og:description" content="Fikner es la plataforma que integra las principales agencias de casting y modelaje del país.">
         <meta name="keywords" content="fikner,Trabaja,Tabajo,extra,figurante,modelo,actor,bogota,colombia,evento,publicidad,actriz,Cantante,Locutor,Actuacion,cine,
               Novela,camara,Casting,Imagen,Television,Talento,Estilo,arte,caracol,rti,rcn,canal,teleantioquia,señal,cable,centro,institucional,trece,13,zoom,City,uno,locacion,carro,peter,personal,apoyo,tv">
-        <!-- fin facebook-->
-        <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/styles/css/fiknerStyles.min.css')}}" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" href="{{asset('/bundles/adminmyaccount/css/book/animate.css')}}" media="screen" title="no title" charset="utf-8">
-        <style>
-            body section.book img {
-                height:100%;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{path('principal')}}"><img src="{{web_image('images/logo/fikner_logo_blanco.png').resize(90,30)}}" alt="" height="30px"></a>
-                </div>
-
-            </div>
-        </nav>
-        <section class="book">
-            <div class="row">
-                <div class="container">
-                    <form  id="jsForm" role="form" method="GET" action="">
-                        <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
-                        <div class="row" id='dataContainer'>
-                        </div>
-                    </form> 
-                </div>
-        </section>
-        <hr>
-        <script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/book/jquery-2.1.4.min.js')}}" charset="UTF-8"></script>
-        <script type="text/javascript" src="{{asset('/bundles/adminmyaccount/js/book/bootstrap.min.js')}}"></script>
-        <script>
-            (function ($) {
-                /* ajax dashboard*/
-                var form = $('#jsForm'),
-                        dataContainer = form.find('#dataContainer'),
-                        pageInput = form.find('#pagenumber'),
-                        jsFormUrl = '';
-                /* pagination */
-                form.on('click', '.js-page', function () {
-                    pageInput.val($(this).data('page'));
-                    ajaxPost();
-                });
-                form.on('submit', function () {
-                    ajaxPost();
-                    return false;
-                });
-                function init() {
-                    pageInput.val('1');
-                    jsFormUrl = '{{ path('default_ajax_agencias',{'page':current_page}) }}';
-                }
-                function ajaxPost(action, callback) {
-                    $.ajax({
-                        type: "GET",
-                        data: form.serialize(),
-                        url: jsFormUrl,
-                        success: function (data) {
-                            form.removeClass('working');
-                            if (callback)
-                                callback(data);
-                            init();
-                            if (!action)
-                                dataContainer.empty().hide().html(data).fadeIn();
-                            else
-                                ajaxPost();
-                        },
-                        error: function () {
-                            alert('Hubo un error');
-                        }
-                    });
-                    return false;
-                }
-                /* submit the form after loading the page*/
-                init();
-                ajaxPost();
-            })(jQuery);
-        </script>
-        <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-79661589-1', 'auto');
-            ga('send', 'pageview');
-
-        </script>
-    </body>
-</html>
+        
+{%endblock%}
+{% block container %}
+          <section>
+      	<div class="container">
+      		<div class="agenciasf">
+      			<h2>Agencias <span>Fikner</span></h2>
+      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto tenetur consequuntur aspernatur, placeat perspiciatis cumque expedita deserunt atque necessitatibus, porro ipsum quas, ipsa quasi. Ut, earum! Error minima perspiciatis officia.</p>
+      			{% for entity in entities %}
+                        <div class="row">
+      				<div class="form-group">
+	      				<div class="col-lg-2">
+	      					<div class="text-center">
+	      						<a href="{{path('Agencia_page',{'nombre':entity.idAgencia.nombre_agencia|replace({' ':'_'})})}}">
+                                                            {% if entity.idPhoto.image == '' %}
+                                                                <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}" class="img-agencia"> 
+                                                            {% else %}
+                                                                <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(450,450)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(450,540)}}" class="img-agencia" > 
+                                                            {%endif%}
+                                                        </a>	
+	      					</div>
+	      				</div>
+		      			<div class="col-lg-10 bloque-agencia">
+		      				<h4>{{ entity.idAgencia.nombre_agencia|upper }}</h4>
+		      				<p>{{ entity.idAgencia.descripcion }}</p>
+		      				<a href="{{path('Agencia_page',{'nombre':entity.idAgencia.nombre_agencia|replace({' ':'_'})})}}">leer mas</a>
+		      			</div>	
+      				</div>
+      			</div>
+      			{% endfor %}
+      		</div>
+      	</div>
+      </section>
+{%endblock%}

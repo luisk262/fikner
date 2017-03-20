@@ -32,11 +32,16 @@ class DefaultController extends Controller {
         if (($this->get('security.context')->isGranted('ROLE_USER'))) {
             return $this->redirect($this->generateUrl('Myaccount'));
         }
+        $em = $this->getDoctrine()->getManager();
+        $AgenciasA = count($em->getRepository('AdminAdminBundle:Agencia')->count());
+        $Users =  count($em->getRepository('AdminAdminBundle:User')->count());
         $entity = new User();
         $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
+            'agencias'=>$AgenciasA,
+            'perfiles'=>$Users,
             'form' => $form->createView(),
         );
     }
@@ -222,22 +227,6 @@ class DefaultController extends Controller {
      * @Template()
      */
     public function showAgenciasAction() {
-        $request = $this->getRequest();
-        $page = $request->query->get('page');
-        $searchParam = $request->get('searchParam');
-        return array(
-            'current_page' => $page,
-            'searchParam' => $searchParam
-        );
-    }
-
-    /**
-     * consulta a default entity.
-     *
-     * @Route("/ajax/agencias", name="default_ajax_agencias")
-     * @Method("GET")
-     */
-    public function ajaxagenciasAction() {
         $em = $this->getDoctrine()->getManager();
         $entryQuery = $em->createQueryBuilder()
                 ->select('ap', 'p', 'a')
@@ -250,13 +239,22 @@ class DefaultController extends Controller {
                 ->setParameter('principal', '1')
                 ->setParameter('activo', '1')
                 ->setParameter('privado', '0');
-        $entryQuery->setFirstResult(0)->setMaxResults(4);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();
-        return $this->render('AdminAdminBundle:Default:ajax_agencias.html.twig', array(
-                    'entities' => $entities,
-        ));
+        return array(
+            'entities' => $entities
+        );
+    }
+
+    /**
+     * consulta a default entity.
+     *
+     * @Route("/ajax/agencias", name="default_ajax_agencias")
+     * @Method("GET")
+     */
+    public function ajaxagenciasAction() {
+        
     }
 
     public function formulariousuario() {
