@@ -1,9 +1,10 @@
 {
-    "Version": "2.1.8.19",
+    "Version": "2.1.27.99",
     "Names": {
-        "AC": "Isla Ascensión",
-        "BA": "Bosnia y Herzegovina",
-        "IQ": "Irak",
-        "NU": "Niue"
+        "CI": "Costa de Marfil",
+        "IC": "Islas Canarias",
+        "TA": "Tristán da Cunha",
+        "TL": "Timor Oriental",
+        "UM": "Islas Ultramarinas de EE.UU."
     }
 }

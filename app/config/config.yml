@@ -75,12 +75,15 @@ swiftmailer:
 # user bundle
 #imagenes en mimiatura
 gregwar_image: 
-    cache_dir:  upload/cache
-    fallback_image: upload/default/fallback.jpg
+    cache_dir:  bundles/adminadmin/upload/cache
+    fallback_image: bundles/adminadmin/upload/default/no-picture.png
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Admin\AdminBundle\Entity\User
+    from_email:
+     address: info@fikner.com
+     sender_name: Fikner
 services:
     fos_user.doctrine_registry:
         alias: doctrine

@@ -1,8 +1,8 @@
 {
-    "Version": "2.1.8.19",
+    "Version": "2.1.27.99",
     "Names": {
-        "Laoo": "laosiano",
-        "Mlym": "malayalam",
-        "Sinh": "sinhala"
+        "Hrkt": "katakana o hiragana",
+        "Laoo": "lao",
+        "Latn": "latín"
     }
 }

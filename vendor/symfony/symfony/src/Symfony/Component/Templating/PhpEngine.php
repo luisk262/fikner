@@ -142,6 +142,7 @@ class PhpEngine implements EngineInterface, \ArrayAccess
             throw new \InvalidArgumentException('Invalid parameter (view)');
         }
 
+        // the view variable is exposed to the require file below
         $view = $this;
         if ($this->evalTemplate instanceof FileStorage) {
             extract($this->evalParameters, EXTR_SKIP);
@@ -454,7 +455,7 @@ class PhpEngine implements EngineInterface, \ArrayAccess
                         $value = iconv($that->getCharset(), 'UTF-8', $value);
                     }
 
-                    $callback = function ($matches) use ($that) {
+                    $callback = function ($matches) {
                         $char = $matches[0];
 
                         // \xHH

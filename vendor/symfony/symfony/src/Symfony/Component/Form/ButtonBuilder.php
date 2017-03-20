@@ -62,11 +62,12 @@ class ButtonBuilder implements \IteratorAggregate, FormBuilderInterface
      */
     public function __construct($name, array $options = array())
     {
-        if (empty($name) && 0 != $name) {
+        $name = (string) $name;
+        if ('' === $name) {
             throw new InvalidArgumentException('Buttons cannot have empty names.');
         }
 
-        $this->name = (string) $name;
+        $this->name = $name;
         $this->options = $options;
     }
 
@@ -285,7 +286,7 @@ class ButtonBuilder implements \IteratorAggregate, FormBuilderInterface
      *
      * @param bool $disabled Whether the button is disabled
      *
-     * @return ButtonBuilder The button builder
+     * @return $this
      */
     public function setDisabled($disabled)
     {
@@ -414,7 +415,7 @@ class ButtonBuilder implements \IteratorAggregate, FormBuilderInterface
      *
      * @param ResolvedFormTypeInterface $type The type of the button
      *
-     * @return ButtonBuilder The button builder
+     * @return $this
      */
     public function setType(ResolvedFormTypeInterface $type)
     {
@@ -506,7 +507,7 @@ class ButtonBuilder implements \IteratorAggregate, FormBuilderInterface
      *
      * @param bool $initialize
      *
-     * @return ButtonBuilder
+     * @return $this
      *
      * @throws BadMethodCallException
      */
