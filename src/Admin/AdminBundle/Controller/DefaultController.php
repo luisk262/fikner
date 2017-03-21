@@ -35,6 +35,7 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $AgenciasA = count($em->getRepository('AdminAdminBundle:Agencia')->count());
         $Users =  count($em->getRepository('AdminAdminBundle:User')->count());
+        $castings = $em->getRepository('AdminAgenciaBundle:Solicitud')->countAll();
         $entity = new User();
         $form = $this->createCreateForm($entity);
 
@@ -42,6 +43,7 @@ class DefaultController extends Controller {
             'entity' => $entity,
             'agencias'=>$AgenciasA,
             'perfiles'=>$Users,
+            'castings'=>$castings,
             'form' => $form->createView(),
         );
     }
@@ -210,7 +212,7 @@ class DefaultController extends Controller {
                 ->andWhere('hp.principal =:principal')
                 ->addOrderBy('h.Calificacion', 'DESC')
                 ->setParameter('principal', '1');
-        $entryQuery->setFirstResult(0)->setMaxResults(4);
+        $entryQuery->setFirstResult(0)->setMaxResults(3);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();

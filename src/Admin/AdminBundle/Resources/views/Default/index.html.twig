@@ -51,11 +51,13 @@
 	    </section>
       <section>
       	<div class="images">
-      		<img src="{{web_image('bundles/adminadmin/img/template/photo-1.jpg')}}" alt="">
-	      	<img src="{{web_image('bundles/adminadmin/img/template/photo-2.jpg')}}" alt="">
-	      	<img src="{{web_image('bundles/adminadmin/img/template/photo-3.jpg')}}" alt="">
-	      	<img src="{{web_image('bundles/adminadmin/img/template/photo-4.jpg')}}" alt="">	
-      	</div>
+      		<div class="row">
+                <img src="{{web_image('bundles/adminadmin/img/template/photo-1.jpg')}}" alt="" class="img-responsive">
+                <img src="{{web_image('bundles/adminadmin/img/template/photo-2.jpg')}}" alt="" class="img-responsive">
+                <img src="{{web_image('bundles/adminadmin/img/template/photo-3.jpg')}}" alt="" class="img-responsive">
+                <img src="{{web_image('bundles/adminadmin/img/template/photo-4.jpg')}}" alt="" class="img-responsive">
+            </div>
+            </div>
       </section>
       <section>
       	<div class="container">
@@ -64,10 +66,13 @@
       			<h2><span>SE FIKNER</span>, 
 				TODOS LOS DIAS, 
 				EN CADA MOMENTO.</h2>
-
 				<p>
-					
-					fikner FIKNER Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, adipisci sapiente. Mollitia praesentium vitae expedita, omnis vel veniam repudiandae reprehenderit eveniet ad, quas, quam est sit culpa accusantium quibusdam! Ab.</p>
+				Fikner es la plataforma que permite a los modelos,
+				Actores y Personal de apoyo tener un espacio para
+			    Mostrar su perfil profesional además de ser
+				Encontrados por empresas y agencias interesadas
+				De una manera rápida y segura.
+			</p>
       		</div>
       	</div>
       </section>
@@ -81,7 +86,7 @@
 	      		</div>
 				<div class="col-lg-4" align="center">
 					<img src="{{web_image('bundles/adminadmin/img/icons/casting_b.png')}}" alt="">
-					<h4 class="incrementalNumber" set-time="2000" data-value="34">0</h4>
+					<h4 class="incrementalNumber" set-time="2000" data-value="{{ castings }}">0</h4>
 					<h6>Castings</h6>
 				</div>
 	      		<div class="col-lg-4" align="center">
@@ -96,24 +101,7 @@
       <section>
       	<div class="top-actors">
       		<div class="container">
-      			<div class="col-lg-4">
-      				<h4>PROFESSIONAL STYLISTS</h4>
-      				<img src="http://cdn-demo.createdbycocoon.com/joomla/nine/nrgfashion/1/images/nrgfashion/photo-5.jpg" alt="">
-      				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum assumenda, pariatur, perferendis natus, id cum fuga autem vitae deserunt amet repudiandae deleniti itaque similique odit. Sit aspernatur libero quaerat, minima.</p>
-      				<a href="#">Leer mas</a>
-      			</div>
-	      		<div class="col-lg-4">
-	      			<h4>PROFESSIONAL STYLISTS</h4>
-	      			<img src="http://cdn-demo.createdbycocoon.com/joomla/nine/nrgfashion/1/images/nrgfashion/photo-6.jpg" alt="">
-	      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, odio, harum! Harum sunt architecto, excepturi culpa ut eius molestias quasi, consectetur nam minima sed voluptate maiores minus tenetur autem tempore!</p>
-	      			<a href="#">Leer mas</a>
-	      		</div>
-	      		<div class="col-lg-4">
-	      			<h4>PROFESSIONAL STYLISTS</h4>
-	      			<img src="http://cdn-demo.createdbycocoon.com/joomla/nine/nrgfashion/1/images/nrgfashion/photo-7.jpg" alt="">
-	      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nulla magnam, sequi. Quisquam nisi numquam voluptatum, labore excepturi, placeat, reiciendis provident omnis tenetur earum exercitationem aut laudantium quaerat non! Velit.</p>
-	      			<a href="#">Leer mas</a>
-	      		</div>		
+                {{ render(controller('AdminAdminBundle:Default:ajaxtalentos')) }}
       		</div>
       	</div>	
       </section>

@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Solicitud
  *
  * @ORM\Table(name="solicitud")
+ *  @ORM\Entity(repositoryClass="Admin\AgenciaBundle\Repository\SolicitudRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity
  */
 class Solicitud {
 
