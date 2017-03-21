@@ -41,27 +41,16 @@
               </div>
               <div class="modal-body">
                 <div class="text-center">
-                    <div><img src="{{asset('bundles/adminadmin/img/icons/user_r.png')}}" alt="fikner" class="img-login"></div>
-                      <div class="form-group">
-                            <div class="form-group">
-                              <label for="username" class="sr-only">Correo Electronico</label>
-                              <input type="text" class="form-control" id="username" name="username" placeholder="correo electronico">
-                            </div>
-                            <div class="form-group">
-                              <label for="password" class="sr-only">Password</label>
-                              <input type="password" class="form-control" id="password" name="password" placeholder="password">
-                            </div>
-                      </div>
-                      <div class="form-group">
-                        <a href="#" class="btn btn-default btn-block">Iniciar sesion</a>  
-                      </div>                      
-                </div>
-                <div class="form-group">
-                  <p>Olvide mi contraseña? <a href="#">click here</a></p>
+                    <div>
+                      <img src="{{asset('bundles/adminadmin/img/icons/user_r.png')}}" alt="fikner" class="img-login">
+                    </div>
+                    <div class="form-contorl">
+                        {{ render(controller('AdminAdminBundle:Security:login')) }}
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-             </div>
+            </div>
             </div>
         </div>
           </div> 

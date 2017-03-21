@@ -78,7 +78,7 @@ class SecurityController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function renderLogin(array $data) {
-        return $this->render('FOSUserBundle:Security:login.html.twig', $data);
+        return $this->render('AdminAdminBundle:Security:login.html.twig', $data);
     }
 
     public function checkAction() {
