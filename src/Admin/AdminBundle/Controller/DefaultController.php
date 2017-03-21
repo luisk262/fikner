@@ -336,5 +336,54 @@ class DefaultController extends Controller {
                     'pagination' => $pagination,
         ));
     }
+    /**
+     *
+     * @Route("/contact", name="principal_contact")
+     * @Method("GET")
+     * @Template()
+     */
+    public function contactAction(){
+        return array('xs'=>'cs');
+    }
+    /**
+     *
+     * @Route("/contact/send", name="principal_contact_send_mail")
+     * @Method("GET")
+     */
+    public function contactSend_mailAction(request $request){
+        ///procedemos a enviar el email
+        $asunto = $request->query->get('asunto');
+        $Body = $request->query->get('detalle');
+        $emailuser = $request->query->get('email');
+        $correo_remitente = 'youfikner@gmail.com';
+        $Subject = 'Fikner - ' . $emailuser . ':' . $asunto;
+        $email = 'luisk__@hotmail.com';
+        try{
+            $message = \Swift_Message::newInstance()
+                ->setSubject($Subject)
+                ->setFrom($correo_remitente)
+                ->setTo($email)
+                ->setBody(
+                    <<<EOF
+                    Asunto:  $Subject
+                Correo:  $emailuser
+                
+                
+                        $Body               
+                
+                Responda este email a $emailuser
+                
+EOF
+                )
+            ;
+            $this->get('mailer')->send($message);
+        $mail='yes';
+        }catch (\Exception $e){
+         $mail='Not';
+        }
+        return $this->render('AdminAdminBundle:views:sendMailMSG.html.twig', array(
+            'mail' => $mail
+        ));
+    }
 
 }

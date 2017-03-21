@@ -1,5 +1,4 @@
-{% extends "@FOSUser/layout.html.twig" %}
-
-{% block fos_user_content %}
-{% include "@FOSUser/Resetting/reset_content.html.twig" %}
-{% endblock fos_user_content %}
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+{% block container %}
+{% include "AdminAdminBundle:Resetting:reset_content.html.twig" %}
+{% endblock container %}

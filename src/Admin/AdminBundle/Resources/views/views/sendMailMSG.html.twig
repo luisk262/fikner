@@ -1,0 +1,20 @@
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+{% block container %}
+    <section>
+        <div class="container">
+            <div class="contacto">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            {% if mail=='Yes' %}
+                                <h1><small>Gracias por enviar sus sugerencias o reportar problemas. </small></h1>
+                            {% else %}
+                                <h1><small>No se puedo enviar email, Intenta mas tarde. </small></h1>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}

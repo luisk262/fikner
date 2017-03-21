@@ -71,7 +71,7 @@ class ResettingController extends Controller
             return $event->getResponse();
         }
         if(null==$user){
-            return new RedirectResponse($this->generateUrl('fos_user_resetting_request',array('data'=>'No se encontro usuario o correo electronico')));
+            return new RedirectResponse($this->generateUrl('fos_user_resetting_request',array('data'=>'No se encontro usuario o correo electrónico')));
         }
 
         $ttl = $this->container->getParameter('fos_user.resetting.retry_ttl');
