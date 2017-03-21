@@ -418,9 +418,10 @@ section .contacto{
     text-transform: uppercase;
 }
 .img-agencia{
-  padding-top: 25px;
-  padding-bottom: 25px;
-  height: 200px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    height: auto;
 }
 .bloque-agencia p{
     font-size: 14px;

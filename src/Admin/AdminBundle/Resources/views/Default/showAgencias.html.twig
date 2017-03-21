@@ -17,7 +17,8 @@
       	<div class="container">
       		<div class="agenciasf">
       			<h2>Agencias <span>Fikner</span></h2>
-      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto tenetur consequuntur aspernatur, placeat perspiciatis cumque expedita deserunt atque necessitatibus, porro ipsum quas, ipsa quasi. Ut, earum! Error minima perspiciatis officia.</p>
+      			<p>No somos agencia, pero hacemos todo lo posible por ser la primera comunidad, de actores, extras y modelos.</p><h4>En nuestro directorio encontrara las siguientes agencias.
+					</h4>
       			{% for entity in entities %}
                         <div class="row">
       				<div class="form-group">
@@ -34,7 +35,7 @@
 	      				</div>
 		      			<div class="col-lg-10 bloque-agencia">
 		      				<h4>{{ entity.idAgencia.nombre_agencia|upper }}</h4>
-		      				<p>{{ entity.idAgencia.descripcion }}</p>
+		      				<p>{{ entity.idAgencia.descripcion|slice(0, 350) ~ '...'  }}</p>
 		      				<a href="{{path('Agencia_page',{'nombre':entity.idAgencia.nombre_agencia|replace({' ':'_'})})}}">leer mas</a>
 		      			</div>	
       				</div>
