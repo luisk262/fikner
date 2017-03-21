@@ -1,0 +1,17 @@
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block container %}
+    <section>
+        <div class="login">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <p>
+                    {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+                </p>
+
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </section>
+{% endblock %}
