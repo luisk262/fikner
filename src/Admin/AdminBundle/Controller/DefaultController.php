@@ -390,7 +390,14 @@ EOF
      * @Method("GET")
      * @Template()
      */
-    public function directorioAction(){
+    public function directorioAction(request $request){
+        $page = $request->query->get('page');
+        $searchParam = $request->get('searchParam');
+        return array(
+            'current_page' => $page,
+            'searchParam' => $searchParam
+        );
+
     }
     /**
      *
@@ -398,24 +405,18 @@ EOF
      * @Method("GET")
      * @Template()
      */
-    public function directorioajaxAction(){
-        $em= $this->getDoctrine()->getEntityManager();
-        //$em->getRepository('AdminAdminBundle')
-        $em = $this->getDoctrine()->getManager();
-        $entryQuery = $em->createQueryBuilder()
-            ->select('hp', 'p', 'h')
-            ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
-            ->leftJoin('hp.idHojadevida', 'h')
-            ->leftJoin('hp.idPhoto', 'p')
-            ->andWhere('hp.principal =:principal')
-            ->addOrderBy('h.Calificacion', 'DESC')
-            ->setParameter('principal', '1');
-        $entryQuery->setFirstResult(0)->setMaxResults(3);
-        $entryQueryfinal = $entryQuery->getQuery();
-        //obtenemos el array de resultados
-        $entities = $entryQueryfinal->getArrayResult();
-        return $this->render('AdminAdminBundle:Default:ajax_talentos.html.twig', array(
+    public function directorioajaxAction(request $request){
+        $searchParam = $request->get('searchParam');
+        //pagina donde se esta ubicado
+        $page = $request->query->get('page');
+        $em= $this->getDoctrine()->getManager();
+        $count=$em->getRepository('AdminAdminBundle:Directorio')->count($searchParam);
+        $entities=$em->getRepository('AdminAdminBundle:Directorio')->findpaginator($searchParam);
+        $pagination = (new Paginator())->setItems($count, 20)->setPage($searchParam['page'])->toArray();
+
+        return $this->render('AdminAdminBundle:Default:ajax_agencias.html.twig', array(
             'entities' => $entities,
+            'pagination'=>$pagination
         ));
     }
 }

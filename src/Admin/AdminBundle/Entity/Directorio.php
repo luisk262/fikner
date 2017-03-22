@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Directorio
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Admin\AdminBundle\Entity\DirectorioRepository")
+ * @ORM\Entity(repositoryClass="Admin\AdminBundle\Repository\DirectorioRepository")
  */
 class Directorio
 {

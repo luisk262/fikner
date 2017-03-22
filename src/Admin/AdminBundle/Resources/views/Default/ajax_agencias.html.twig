@@ -1,14 +1,24 @@
+{% set row = 3 %}
+
 {% for entity in entities %}
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h1>{{ entity.idAgencia.nombre_agencia|upper }}</h1>
-        <a href="{{path('Agencia_page',{'nombre':entity.idAgencia.nombre_agencia|replace({' ':'_'})})}}">
-        {% if entity.idPhoto.image == '' %}
-            <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}"> 
-        {% else %}
-            <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(450,450)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(450,540)}}" > 
-        {%endif%}
-        </a>
+    {% if row ==3%}
+    <div class="row">
+    {% endif %}
+        <div class="col-lg-4">
+            <div class="bloque-agencia">
+                <h4>{{ entity.nombre|upper }}</h4>
+                <p><b>Direccion:</b>{{ entity.direccion|slice(0, 30) ~ '...' }}</p>
+                <p><b>Telefono:</b>{{ entity.telefono }}</p>
+                <p><b>Email:</b>{{ entity.email}}</p>
+                <p><b>Pagina web:</b><br><a href="{{ entity.paginaweb }}">{{ (entity.paginaweb|slice(0, 35) ~ '...')|lower }}</a></p>
+                <a href="#">leer mas</a>
+            </div>
+        </div>
+    {% if row ==1%}
     </div>
+    {% set row =4 %}
+    {% endif %}
+    {% set row=row-1 %}
 {% endfor %}
 
 
