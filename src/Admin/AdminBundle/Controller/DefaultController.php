@@ -343,8 +343,7 @@ class DefaultController extends Controller {
      * @Template()
      */
     public function contactAction(){
-        return array('xs'=>'cs');
-    }
+        }
     /**
      *
      * @Route("/contact/send", name="principal_contact_send_mail")
@@ -385,5 +384,38 @@ EOF
             'mail' => $mail
         ));
     }
-
+    /**
+     *
+     * @Route("/directorio_agencias", name="principal_directorio")
+     * @Method("GET")
+     * @Template()
+     */
+    public function directorioAction(){
+    }
+    /**
+     *
+     * @Route("/ajax/directorio_agencias", name="principal_directorio_Ajax")
+     * @Method("GET")
+     * @Template()
+     */
+    public function directorioajaxAction(){
+        $em= $this->getDoctrine()->getEntityManager();
+        //$em->getRepository('AdminAdminBundle')
+        $em = $this->getDoctrine()->getManager();
+        $entryQuery = $em->createQueryBuilder()
+            ->select('hp', 'p', 'h')
+            ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+            ->leftJoin('hp.idHojadevida', 'h')
+            ->leftJoin('hp.idPhoto', 'p')
+            ->andWhere('hp.principal =:principal')
+            ->addOrderBy('h.Calificacion', 'DESC')
+            ->setParameter('principal', '1');
+        $entryQuery->setFirstResult(0)->setMaxResults(3);
+        $entryQueryfinal = $entryQuery->getQuery();
+        //obtenemos el array de resultados
+        $entities = $entryQueryfinal->getArrayResult();
+        return $this->render('AdminAdminBundle:Default:ajax_talentos.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
 }
