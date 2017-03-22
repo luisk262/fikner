@@ -6,18 +6,19 @@
             <div class="contacto">
                 <div class="row">
                     <div class="form-group">
-                        <h2><span>BE LIKE A QUEEN</span>,
-                            EVERY DAY,
-                            EVERY MOMENT.
+                        <h2><span>SE FIKNER</span>,
+                            TODOS LOS DIAS,
+                            EN CADA MOMENTO.
                         </h2>
-                        <p>FIKNER Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, adipisci sapiente. Mollitia praesentium vitae expedita, omnis vel veniam repudiandae reprehenderit eveniet ad, quas, quam est sit culpa accusantium quibusdam! Ab.
+                        <p>Contáctenos, si tiene alguna duda o sugerencia, acerca de nuestros servicios.  <br>
+                            Nuestros asesores se contactaran con usted lo antes posible...
                         </p>
                     </div>
                     <div class="col-lg-6 col-lg-offset-3">
                         <form action="{{ path('principal_contact_send_mail') }}">
                         <div class="form-group">
                             <label for="Asunto">Asunto</label>
-                            <input type="text" name="asunto" class="form-control" required>
+                            <input type="text" name="asunto" class="form-control"  placeholder="Asunto" required>
                         </div>
                         <div class="form-group">
                             <label for="Asunto">Email</label>
@@ -25,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label for="detalle">Detalle</label>
-                            <textarea name="detalle" id="" cols="30" rows="10" class="form-control" required></textarea>
+                            <textarea name="detalle" id="" cols="30" rows="10" class="form-control"  placeholder="Detalle de mensaje" required></textarea>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Enviar" class="btn btn-default btn-block"/>
