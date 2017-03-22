@@ -11,11 +11,12 @@
 
 namespace Symfony\Component\Templating\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Templating\DelegatingEngine;
 use Symfony\Component\Templating\StreamingEngineInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-class DelegatingEngineTest extends \PHPUnit_Framework_TestCase
+class DelegatingEngineTest extends TestCase
 {
     public function testRenderDelegatesToSupportedEngine()
     {
@@ -121,12 +122,12 @@ class DelegatingEngineTest extends \PHPUnit_Framework_TestCase
         $secondEngine = $this->getEngineMock('template.php', false);
 
         $delegatingEngine = new DelegatingEngine(array($firstEngine, $secondEngine));
-        $delegatingEngine->getEngine('template.php', array('foo' => 'bar'));
+        $delegatingEngine->getEngine('template.php');
     }
 
     private function getEngineMock($template, $supports)
     {
-        $engine = $this->getMock('Symfony\Component\Templating\EngineInterface');
+        $engine = $this->getMockBuilder('Symfony\Component\Templating\EngineInterface')->getMock();
 
         $engine->expects($this->once())
             ->method('supports')

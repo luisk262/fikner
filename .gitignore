@@ -1,7 +1,7 @@
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
-/web/upload/*
+web/bundles/adminadmin/upload/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
@@ -47,3 +47,4 @@ app/logs/.gitkeep
 .idea/workspace.xml
 .idea/symfony2.xml
 .idea/codeStyleSettings.xml
+.idea/fk.iml

@@ -75,8 +75,8 @@ swiftmailer:
 # user bundle
 #imagenes en mimiatura
 gregwar_image: 
-    cache_dir:  upload/cache
-    fallback_image: upload/default/noImage.jpg
+    cache_dir:  bundles/adminadmin/upload/cache
+    fallback_image: bundles/adminadmin/upload/default/noImage.jpg
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main

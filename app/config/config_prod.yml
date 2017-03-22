@@ -26,7 +26,7 @@ monolog:
 elao_error_notifier:
     from: youfikner@gmail.com
     to: luisk__@hotmail.com
-    handle404: true # default :  false
+    handle404: false
     handleHTTPcodes: ~
     mailer: mailer # default : mailer
     handlePHPErrors: true # catch fatal erros and email them

@@ -14,13 +14,14 @@ namespace Symfony\Bridge\Doctrine\PropertyInfo\Tests;
 use Doctrine\DBAL\Types\Type as DBALType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
+use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Doctrine\PropertyInfo\DoctrineExtractor;
 use Symfony\Component\PropertyInfo\Type;
 
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class DoctrineExtractorTest extends \PHPUnit_Framework_TestCase
+class DoctrineExtractorTest extends TestCase
 {
     /**
      * @var DoctrineExtractor
@@ -49,6 +50,8 @@ class DoctrineExtractorTest extends \PHPUnit_Framework_TestCase
                 'time',
                 'json',
                 'simpleArray',
+                'float',
+                'decimal',
                 'bool',
                 'binary',
                 'customFoo',
@@ -73,6 +76,8 @@ class DoctrineExtractorTest extends \PHPUnit_Framework_TestCase
         return array(
             array('id', array(new Type(Type::BUILTIN_TYPE_INT))),
             array('guid', array(new Type(Type::BUILTIN_TYPE_STRING))),
+            array('float', array(new Type(Type::BUILTIN_TYPE_FLOAT))),
+            array('decimal', array(new Type(Type::BUILTIN_TYPE_STRING))),
             array('bool', array(new Type(Type::BUILTIN_TYPE_BOOL))),
             array('binary', array(new Type(Type::BUILTIN_TYPE_RESOURCE))),
             array('json', array(new Type(Type::BUILTIN_TYPE_ARRAY, false, null, true))),

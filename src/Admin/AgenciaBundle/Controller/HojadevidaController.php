@@ -635,14 +635,25 @@ EOF
         if ($query->getResult()) {
             $agenciaU = $query->setMaxResults(1)->getOneOrNullResult();
             $query = $em->createQuery(
-                            'SELECT HP
-                            FROM AdminAdminBundle:HojadevidaPhoto HP
-                            WHERE HP.idHojadevida  =:id'
-                    )->setParameter('id', $id);
+                                'SELECT hp
+                        FROM AdminAdminBundle:HojadevidaPhoto hp
+                        WHERE (hp.idHojadevida  =:id) AND (hp.principal =:Valor)'
+                        )->setParameter('id', $id)
+                        ->setParameter('Valor', 1);
             if ($query->getResult()) {
-                $HPhoto = $query->setMaxResults(1)->getOneOrNullResult();
-            } else {
-                
+                    $HPhoto = $query->getResult();
+                    // Buscamos el array de resultados
+                    $HPhoto = $query->setMaxResults(1)->getOneOrNullResult();
+            }
+            else{            
+                    $query = $em->createQuery(
+                                    'SELECT HP
+                                    FROM AdminAdminBundle:HojadevidaPhoto HP
+                                    WHERE HP.idHojadevida  =:id'
+                            )->setParameter('id', $id);
+                if ($query->getResult()) {
+                        $HPhoto = $query->setMaxResults(1)->getOneOrNullResult();
+                }
             }
             $query = $em->createQuery(
                             'SELECT AH
@@ -685,6 +696,8 @@ EOF
 
         return array(
             'entity' => $HPhoto,
+            'Image'=>$HPhoto->getIdPhoto()->getImage(),
+            'idfoto' => $HPhoto->getIdPhoto()->getId(),
             'Ahojadevida' => $hojadevida,
             'delete_form' => $deleteForm->createView(),
             'AgenciaP'=>$agenciaPlan

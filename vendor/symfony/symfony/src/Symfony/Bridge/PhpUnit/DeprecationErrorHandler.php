@@ -140,7 +140,7 @@ class DeprecationErrorHandler
                     return "\x1B[{$color}m{$str}\x1B[0m";
                 };
             } else {
-                $colorize = function ($str) {return $str;};
+                $colorize = function ($str) { return $str; };
             }
             register_shutdown_function(function () use ($getMode, &$deprecations, $deprecationHandler, $colorize) {
                 $mode = $getMode();
@@ -151,7 +151,7 @@ class DeprecationErrorHandler
                 restore_error_handler();
 
                 if (DeprecationErrorHandler::MODE_WEAK === $mode) {
-                    $colorize = function ($str) {return $str;};
+                    $colorize = function ($str) { return $str; };
                 }
                 if ($currErrorHandler !== $deprecationHandler) {
                     echo "\n", $colorize('THE ERROR HANDLER HAS CHANGED!', true), "\n";
@@ -195,7 +195,7 @@ class DeprecationErrorHandler
     {
         if ('\\' === DIRECTORY_SEPARATOR) {
             return
-                0 >= version_compare('10.0.10586', PHP_WINDOWS_VERSION_MAJOR.'.'.PHP_WINDOWS_VERSION_MINOR.'.'.PHP_WINDOWS_VERSION_BUILD)
+                '10.0.10586' === PHP_WINDOWS_VERSION_MAJOR.'.'.PHP_WINDOWS_VERSION_MINOR.'.'.PHP_WINDOWS_VERSION_BUILD
                 || false !== getenv('ANSICON')
                 || 'ON' === getenv('ConEmuANSI')
                 || 'xterm' === getenv('TERM');
