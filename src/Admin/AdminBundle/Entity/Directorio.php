@@ -48,7 +48,18 @@ class Directorio
      * @ORM\Column(name="direccion", type="string", length=255, nullable=true)
      */
     private $direccion;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pais", type="string", length=100, nullable=true)
+     */
+    private $pais;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ciudad", type="string", length=100, nullable=true)
+     */
+    private $ciudad;
     /**
      * @var string
      *

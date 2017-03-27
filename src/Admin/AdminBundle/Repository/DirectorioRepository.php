@@ -27,6 +27,7 @@ class DirectorioRepository extends \Doctrine\ORM\EntityRepository
                 ->select('COUNT(d.id)');
             if($searchParam['ciudad']){
                $query->where('d.direccion Like :ciudad')
+                   ->orWhere('d.ciudad Like :ciudad')
                    ->setParameter('ciudad','%'. $searchParam['ciudad'] .'%');
             }
             if($searchParam['nombre']) {
@@ -36,7 +37,7 @@ class DirectorioRepository extends \Doctrine\ORM\EntityRepository
             }
             if($searchParam['nombre'] and $searchParam['ciudad']) {
                 $query->where('d.nombre Like :nombre')
-                    ->andWhere('d.direccion Like :ciudad')
+                    ->andWhere('d.ciudad Like :ciudad')
                     ->setParameter('ciudad','%'. $searchParam['ciudad'] .'%')
                     ->setParameter('nombre','%'. $searchParam['nombre'] .'%');
             }
@@ -55,6 +56,7 @@ class DirectorioRepository extends \Doctrine\ORM\EntityRepository
                 ->select('d');
             if($searchParam['ciudad']){
                 $query->where('d.direccion Like :ciudad')
+                    ->orWhere('d.ciudad Like :ciudad')
                     ->setParameter('ciudad','%'. $searchParam['ciudad'] .'%');
             }
             if($searchParam['nombre']) {
@@ -64,7 +66,7 @@ class DirectorioRepository extends \Doctrine\ORM\EntityRepository
             }
             if($searchParam['nombre'] and $searchParam['ciudad']) {
                 $query->where('d.nombre Like :nombre')
-                    ->andWhere('d.direccion Like :ciudad')
+                    ->andWhere('d.ciudad Like :ciudad')
                     ->setParameter('ciudad','%'. $searchParam['ciudad'] .'%')
                     ->setParameter('nombre','%'. $searchParam['nombre'] .'%');
             }

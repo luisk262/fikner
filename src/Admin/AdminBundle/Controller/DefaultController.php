@@ -280,8 +280,7 @@ class DefaultController extends Controller {
      * @Method("GET")
      * @Template()
      */
-    public function booksAction() {
-        $request = $this->getRequest();
+    public function booksAction(Request $request) {
         $page = $request->query->get('page');
         $searchParam = $request->get('searchParam');
         return array(
