@@ -1,0 +1,42 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set register = ['fos_user_registration_register'] %}
+{% block title %}Registrate{% endblock %}
+{% set template= "AdminAdminBundle::base.html.twig" %}
+{% if route in register %}
+    {% set template= "AdminAdminBundle:Default:layout.html.twig" %}
+{% endif %}
+{% extends template %}
+{% block container %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% if route in register %}
+<seccion>
+    <div class="login">
+        <div class="container">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                        {{ form_widget(form) }}
+                        <div>
+                            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                        </div>
+                    {{ form_end(form) }}
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</seccion>
+{% else %}
+    {#{% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    #}
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <br>
+    <div class="form-group">
+        <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-default btn-block" />
+    </div>
+    {{ form_end(form) }}
+
+{% endif %}
+{% endblock %}
