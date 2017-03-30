@@ -143,7 +143,6 @@ class ResettingController extends Controller
      */
     public function resetAction(Request $request, $token)
     {
-        dump("entra");die;
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.resetting.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -188,7 +187,7 @@ class ResettingController extends Controller
             return $response;
         }
 
-        return $this->render('@FOSUser/Resetting/reset.html.twig', array(
+        return $this->render('@AdminAdmin/Resetting/reset.html.twig', array(
             'token' => $token,
             'form' => $form->createView(),
         ));

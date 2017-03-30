@@ -44,7 +44,4 @@ app/logs/.gitkeep
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
 
-.idea/workspace.xml
-.idea/symfony2.xml
-.idea/codeStyleSettings.xml
-.idea/*
+.idea/
