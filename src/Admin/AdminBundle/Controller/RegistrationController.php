@@ -183,7 +183,7 @@ class RegistrationController extends Controller
     }
     private function createEditForm($form)
     {
-        $form->remove('username');
+        //$form->add('username','text',array('attr'=>array('style'=>'display:none;')));
         $form->add('nombre', 'text', array('label' => 'Nombres *', 'max_length' => 30,'attr'=>array('class'=>'form-control')));
         $form->add('apellidos', 'text', array('label' => 'Apellidos *', 'max_length' => 30,'attr'=>array('class'=>'form-control')));
         $form->add('telefono', 'text', array('max_length' => 13, 'label' => 'Telefono*','attr'=>array('class'=>'form-control')));
