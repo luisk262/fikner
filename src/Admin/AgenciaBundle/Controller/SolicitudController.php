@@ -40,7 +40,7 @@ class SolicitudController extends Controller {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
-            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaUsuario->getIdAgencia()->getId());
             $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('idAgencia' => $AgenciaUsuario->getIdAgencia()->getId(), 'activo' => '1'));
         } else {
             $agenciaPlan = null;
@@ -124,7 +124,7 @@ class SolicitudController extends Controller {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
-            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaUsuario->getIdAgencia()->getId());
             $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
         } else {
             $agenciaPlan = null;
@@ -157,7 +157,7 @@ class SolicitudController extends Controller {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
-            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaUsuario->getIdAgencia()->getId());
             $entity = $em->getRepository('AdminAgenciaBundle:Solicitud')->findBy(array('id' => $id, 'idAgencia' => $AgenciaUsuario->getIdAgencia()->getId()));
 
             if (!$entity) {
@@ -203,7 +203,7 @@ class SolicitudController extends Controller {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
-            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaUsuario->getIdAgencia()->getId());
             $entities = $em->getRepository('AdminAgenciaBundle:Solicitud')->findAll();
         } else {
             $agenciaPlan = null;

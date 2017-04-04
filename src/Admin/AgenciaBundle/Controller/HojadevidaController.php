@@ -677,7 +677,7 @@ EOF
         if ($query->getResult()) {
             $agenciaU = $query->setMaxResults(1)->getOneOrNullResult();
             ///verificamos plan que tiene la agencia 
-            $agenciaPlan = DashboardController::agenciaplan($agenciaU->getIdAgencia()->getId());
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($agenciaU->getIdAgencia()->getId());
             if(!$agenciaPlan){
                 $agenciaPlan=null;
             }
