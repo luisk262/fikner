@@ -56,6 +56,7 @@ class AgenciaController extends Controller {
                 $entity->setApellsRepLegal($user->getApellidos());
                 $entity->setActivo('0');
                 $entity->setPrivado('1');
+                $user->addRole('ROLE_AGENC');
                 $entity->setFecha($date);
                 $entity->setFechaupdate($date);
                 $em->persist($entity);
@@ -65,6 +66,7 @@ class AgenciaController extends Controller {
                 $AgenciaUsuario->setIdAgencia($entity);
                 $AgenciaUsuario->setFecha($date);
                 $AgenciaUsuario->setFechaupdate($date);
+                $em->persist($user);
                 $em->persist($AgenciaUsuario);
                 $em->flush();
             }
