@@ -25,7 +25,9 @@
         {% endblock %}    	
 </head>
 <body>
-    {% include "AdminAdminBundle:Default:menu.html.twig" %}    	
+	{% block menu %}
+    	{% include "AdminAdminBundle:Default:menu.html.twig" %}
+	{% endblock menu %}
     {% block container %}
     {% endblock %}
 	{%block footer %}

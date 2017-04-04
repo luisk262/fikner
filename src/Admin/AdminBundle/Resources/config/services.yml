@@ -1,0 +1,5 @@
+services:
+  validar.path:
+    class: Admin\AdminBundle\Controller\DefaultController
+    calls:
+      - [ setContainer, ["@service_container"]]

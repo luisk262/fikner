@@ -49,8 +49,8 @@ class HojadevidaController extends Controller {
             $AgenciaUsuario = $query->getResult();
             // Buscamos el array de resultados
             $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
-            ///verificamos plan que tiene la agencia 
-            $agenciaPlan = DashboardController::agenciaplan($AgenciaUsuario->getIdAgencia()->getId());
+            ///verificamos plan que tiene la agencia
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaUsuario->getIdAgencia()->getId());
             if(!$agenciaPlan){
                 $agenciaPlan=null;
             }
@@ -97,7 +97,7 @@ class HojadevidaController extends Controller {
         if ($query->getResult()) {
             $agenciaU = $query->setMaxResults(1)->getOneOrNullResult();
             ///verificamos plan que tiene la agencia 
-            $agenciaPlan = DashboardController::agenciaplan($agenciaU->getIdAgencia()->getId());
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($agenciaU->getIdAgencia()->getId());
             if(!$agenciaPlan){
                 $agenciaPlan=null;
             }

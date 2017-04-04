@@ -60,8 +60,8 @@ class DefaultController extends Controller {
             $Agencia = $query->getResult();
             // Buscamos el array de resultados
             $Agencia = $query->setMaxResults(1)->getOneOrNullResult();
-//verificamos que plan tiene asignado la agencia
-            $Agenciaplan = DashboardController::agenciaplan($Agencia->getIdAgencia()->getId());
+//verificamos el tipo de plan que tiene la agencia//
+            $Agenciaplan =$em->getRepository('AdminAdminBundle:Agencia')->plan($Agencia->getIdAgencia()->getId());
         } else {
             $Agenciaplan = null;
             $Agencia = null;
@@ -92,7 +92,8 @@ class DefaultController extends Controller {
             // Buscamos el array de resultados
             $Agencia = $query->setMaxResults(1)->getOneOrNullResult();
 //verificamos que plan tiene asignado la agencia
-            $Agenciaplan = DashboardController::agenciaplan($Agencia->getIdAgencia()->getId());
+            //verificamos el tipo de plan que tiene la agencia//
+            $Agenciaplan =$em->getRepository('AdminAdminBundle:Agencia')->plan($Agencia->getIdAgencia()->getId());
         } else {
             $Agenciaplan = null;
             $Agencia = null;

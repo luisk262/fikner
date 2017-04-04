@@ -197,8 +197,9 @@ class AgenciaController extends Controller {
             // Buscamos el array de resultados
             $AgenciaU = $query->setMaxResults(1)->getOneOrNullResult();
             $entity = $em->getRepository('AdminAdminBundle:Agencia')->find($AgenciaU->getIdAgencia()->getId());
-///verificamos plan que tiene la agencia 
-            $agenciaPlan = DashboardController::agenciaplan($AgenciaU->getIdAgencia()->getId());
+            //verificamos el tipo de plan que tiene la agencia//
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaU->getIdAgencia()->getId());
+
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Agencia entity.');
             }
@@ -234,7 +235,9 @@ class AgenciaController extends Controller {
         $form->add('youtube', 'text', array('label' => 'Youtube', 'required' => false));
         $form->add('twitter', 'text', array('label' => 'Twitter', 'required' => false));
         $form->add('copiaemail', 'checkbox', array('label' => 'Enviar una copia al email', 'required' => false));
-        $agenciaPlan = DashboardController::agenciaplan($entity->getId());
+        //verificamos el tipo de plan que tiene la agencia//
+        $em=$this->get('doctrine')->getEntityManager();
+        $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($entity->getId());
         $privacidad = null;
         if ($agenciaPlan) {
             foreach ($agenciaPlan as $aux) {

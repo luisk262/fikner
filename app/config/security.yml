@@ -41,7 +41,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/dashboard/*, role: [ROLE_SUPER_ADMIN] }
         - { path: ^/dashboard/hojadevida/*, role: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
-        - { path: ^/Agencia/dashboard/*, role: [ROLE_AGENC] }
+        - { path: ^/Agencia/dashboard/*, role: [ROLE_AGENC,ROLE_USER] }
         - { path: ^/Reclutador/dashboard/*, role: [ROLE_RECLU] }
         - { path: ^/Myaccount/*, role: [ROLE_USER] }
         - { path: ^/Empresa/*, role: [ROLE_USER] }

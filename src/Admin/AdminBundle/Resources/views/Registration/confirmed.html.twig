@@ -1,10 +1,61 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+{% block menu %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{path('principal')}}"><img src="{{asset('bundles/adminadmin/img/fikner_logo_blanco.png')}}" alt="fikner" /></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('principal_contact') }}">contacto</a></li>
+                    <li><a href="#" data-target="#login" data-toggle="modal">Iniciar sesion</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
 
+{% endblock menu %}
 {% trans_default_domain 'FOSUserBundle' %}
+{% block container %}
+    <section>
+        <div class="container">
+            <div class="contacto">
+                <div class="row">
+                    <div class="form-group">
+                        <h2>
+                            Seleccione la modalidad de registro para continuar con el proceso
+                        </h2>
+                        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-6">
+                            <a href="{{ path('Myaccount') }}">
+                                <h4 class="text-center">TALENTO</h4>
+                            <img src="{{web_image('bundles/adminadmin/img/icons/people_r.png')}}" alt="" class="img-responsive center-block">
+                            <p>Regístrese aquí!. si es un talento, Actor, Actriz, Modelo, Figurante, Personal de apoyo, Extra de televisión, etc.</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="{{ path('agencia_dashboard') }}">
+                            <h4 class="text-center">AGENCIA</h4>
+                            <img src="{{web_image('bundles/adminadmin/img/icons/agencia-r.png')}}" alt="" class="img-responsive center-block">
+                            <p>Regístrese Aquí!, si es Empresa de casting,  casting para modelos o solicita personal para grabaciones, eventos de pasarela, comerciales y televisión.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+
+{% endblock container %}
+
+

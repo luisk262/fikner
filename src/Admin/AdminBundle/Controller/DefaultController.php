@@ -19,20 +19,32 @@ class DefaultController extends Controller {
      * @Template()
      */
     public function indexAction() {
-        $security_context = $this->get('security.context');
+        $em = $this->getDoctrine()->getManager();
         if (($this->get('security.context')->isGranted('ROLE_RECLU'))) {
             return $this->redirect($this->generateUrl('reclutador_dashboard'));
         }
         if ($this->get('security.context')->isGranted('ROLE_AGENC')) {
             return $this->redirect($this->generateUrl('agencia_dashboard'));
+
         }
         if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             return $this->redirect($this->generateUrl('admin_dashboard'));
+
         }
         if (($this->get('security.context')->isGranted('ROLE_USER'))) {
-            return $this->redirect($this->generateUrl('Myaccount'));
+            $UHojadevida=$em->getRepository('AdminAdminBundle:UsuarioHojadevida')->findByIdUsuario($this->getUser()->getId());
+            $AUsuario=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findByIdUsuario($this->getUser()->getId());
+            if($UHojadevida){
+                return $this->redirect($this->generateUrl('Myaccount'));
+            }
+            if($AUsuario){
+                return $this->redirect($this->generateUrl('agencia_dashboard'));
+            }
+            if(!$AUsuario and !$UHojadevida){
+                return $this->redirect($this->generateUrl('fos_user_registration_confirmed'));
+            }
+
         }
-        $em = $this->getDoctrine()->getManager();
         $AgenciasA = count($em->getRepository('AdminAdminBundle:Agencia')->count());
         $Users =  count($em->getRepository('AdminAdminBundle:User')->count());
         $castings = $em->getRepository('AdminAgenciaBundle:Solicitud')->countAll();
@@ -258,19 +270,30 @@ class DefaultController extends Controller {
     public function ajaxagenciasAction() {
         
     }
-
     public function formulariousuario() {
-        $security_context = $this->get('security.context');
-        if (($this->get('security.context')->isGranted('ROLE_RECLU'))) {
-            return $this->redirect($this->generateUrl('reclutador_dashboard'));
+        $em=$this->getDoctrine()->getManager();
+        $UHojadevida=$em->getRepository('AdminAdminBundle:UsuarioHojadevida')->findByIdUsuario($this->getUser()->getId());
+        $AUsuario=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findByIdUsuario($this->getUser()->getId());
+        if($UHojadevida){
+            return $this->redirect($this->generateUrl('Myaccount'));
         }
-        if ($this->get('security.context')->isGranted('ROLE_AGENC')) {
+        if($AUsuario){
             return $this->redirect($this->generateUrl('agencia_dashboard'));
         }
-        if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+        if(!$AUsuario and !$UHojadevida){
+            return $this->redirect($this->generateUrl('fos_user_registration_confirmed'));
+        }
+        if (($this->get('security.authorization_checker')->isGranted('ROLE_RECLU'))) {
+            return $this->redirect($this->generateUrl('reclutador_dashboard'));
+        }
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_AGENC')) {
+            return $this->redirect($this->generateUrl('agencia_dashboard'));
+        }
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
             return $this->redirect($this->generateUrl('admin_dashboard'));
         }
-        if (($this->get('security.context')->isGranted('ROLE_USER'))) {
+        if (($this->get('security.authorization_checker')->isGranted('ROLE_USER'))) {
             return $this->redirect($this->generateUrl('Myaccount'));
         }
     }
