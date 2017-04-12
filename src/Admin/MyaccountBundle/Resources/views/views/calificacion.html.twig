@@ -1,25 +1,28 @@
-{%extends "AdminAdminBundle:Default:index.html.twig"%}
-{% block container %}
-    <div>
-        <header>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <nav class="navbar navbar-default navbar-fixed-top">
-                        <div class="container">
-                            <a class="navbar-brand" href="{{path('principal')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="40px"></a>
-                        </div>
-                    </nav>
-                </div>
+{%extends "AdminAdminBundle:Default:layout.html.twig"%}
+{% block title %}Calificación{% endblock %}
+{% block menu  %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{path('principal')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="100%"></a>
             </div>
-        </header>
-                        
-    </div>
-    <section class="book">
+        </div>
+    </nav>
+{% endblock %}
+{% block container %}
+    <section>
+<div class="container">
+    <div class="contacto">
         <div class="row">
-            <div class="container">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <img src="{{asset('images/logo/fikner_logo2.png')}}" alt="" />
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <img src="{{web_image('bundles/adminadmin/img/fikner_logo2.png').resize(100,100)}}" alt="fikner" class="center-block"/>
+            </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h2><b>¿COMO MEJORO MI CALIFICACIÓN?</b></h2>
                     <div id="texto">
@@ -37,9 +40,9 @@
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                     </p>
-                    <div id="texto">
+                    <p id="info" class="text-center">
                         Fikner no ha calificado el book
-                    </div>
+                    </p>
                     <p id="info" class="text-center">
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -52,13 +55,13 @@
                             • Imágenes incompletas,  para mejorar su calificación cargue las 6 imágenes a la plataforma
                         </p>
                         <p >
-                            • Imágenes repetidas, automáticamente se calificara en esta categoría sin importar la calidad 
+                            • Imágenes repetidas, automáticamente se calificara en esta categoría sin importar la calidad
                             de las demás imágenes.
                         </p>
-                        <p>    
-                            • Información de contacto en imágenes, si las imágenes cargadas contienen información de contacto 
-                            como email, teléfono ,dirección, o datos como numero de documento, nombre, links de redes 
-                            sociales, páginas web o demás campos que puedan generar un riesgo para la seguridad 
+                        <p>
+                            • Información de contacto en imágenes, si las imágenes cargadas contienen información de contacto
+                            como email, teléfono ,dirección, o datos como numero de documento, nombre, links de redes
+                            sociales, páginas web o demás campos que puedan generar un riesgo para la seguridad
                             del usuario o la plataforma.
                         </p>
                         <p>
@@ -86,10 +89,10 @@
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>                            
+                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                     </p>
                     <div id="texto">
-                        <p>     
+                        <p>
                             • Imágenes completas pero de mala Calidad o una de ellas tiene mala calidad
                         </p>
                     </div>
@@ -104,7 +107,7 @@
                         <p>
                             • Imágenes completas, Buena calidad
                         </p>
-                    </div>                    
+                    </div>
                     <p id="info" class="text-center">
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -113,24 +116,25 @@
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                     </p>
                     <div class="col-lg-6">
-                        <p>La calificación 5 estrellas la realiza la empresa <a href="www.digitalHype.co">DigitalHype</a>, la cual realiza la sesión fotográfica acorde a 
+                        <p>La calificación 5 estrellas la realiza la empresa <a href="www.digitalHype.co">DigitalHype</a>, la cual realiza la sesión fotográfica acorde a
                             las necesidades y parámetros estipulados por las agencias de casting, btl, o modelaje.</p>
                     </div>
                     <div class="col-lg-6">
-                    <p><a href="www.digitalHype.co">DigitalHype</a> es la encargada 
-                            de validar la veracidad de la información como estatura real, peso, color de ojos, piel y demás campos de fikner. 
+                    <p><a href="www.digitalHype.co">DigitalHype</a> es la encargada
+                            de validar la veracidad de la información como estatura real, peso, color de ojos, piel y demás campos de fikner.
                         </p>
                     </div>
                     <div id="texto">
                         <p>
-                            ESTOS PARAMETROS PUEDEN VARIAR EN CUALQUIER MOMENTO,  SI VE ALGUN CAMBIO EN SU CALIFICACION, 
+                            ESTOS PARAMETROS PUEDEN VARIAR EN CUALQUIER MOMENTO,  SI VE ALGUN CAMBIO EN SU CALIFICACION,
                             SUGERIMOS REVISAR NUEVAMENTE ESTE FORMULARIO.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 {% endblock %}
 

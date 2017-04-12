@@ -5,7 +5,7 @@ namespace Admin\MyaccountBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -19,8 +19,7 @@ class AccountController extends Controller {
      * @Route("/", name="Myaccount")
      * @Template()
      */
-    public function indexAction() {
-        $request = $this->getRequest();
+    public function indexAction(Request $request) {
         //Asignamos el parametro url para luego pasarlo a ajax
         $idAgencia = $request->query->get('idAgencia');
         $idReclutador = $request->query->get('idReclutador');
@@ -128,7 +127,8 @@ class AccountController extends Controller {
      * @Template()
      */
     public function AgenciaAction(){
-                $aux = AccountController::profile();
+        $em= $this->getDoctrine()->getManager();
+        $aux=$em->getRepository('AdminAdminBundle:User')->userrole($user->getId());
                  return array(
                 'Image' =>$aux['image'],
                 'idfoto' =>$aux['id'],
@@ -151,31 +151,4 @@ class AccountController extends Controller {
         $em->flush();
         return $this->redirect($this->generateUrl('fos_user_security_logout'));
     }
-    public function profile(){
-        $security_context = $this->get('security.context');
-        $security_token = $security_context->getToken();
-        //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
-        $user = $security_token->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $query =$em->createQuery(
-                 'SELECT p.id,p.image FROM  AdminAdminBundle:UsuarioHojadevida uh 
-INNER JOIN AdminAdminBundle:HojadevidaPhoto hp WITH hp.idHojadevida = uh.idHojadevida 
-INNER JOIN AdminAdminBundle:User u WITH u.id= uh.idUsuario 
-INNER JOIN AdminAdminBundle:Hojadevida h WITH h.id = uh.idHojadevida
-INNER JOIN AdminAdminBundle:Photo p WITH p.id = hp.idPhoto
-WHERE (hp.principal =1) AND (uh.idUsuario=:Usuario)
-')->setParameter('Usuario',$user->getId());
-        if ($query->getResult()) {
-            $profile = $query->getResult();
-            $profile = $query->setMaxResults(1)->getOneOrNullResult();
-            
-        }
-        else{
-            $profile=null;
-        }
-        return $profile;
-    }
-
-   
-
 }

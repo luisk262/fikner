@@ -19,9 +19,8 @@ class DefaultController extends Controller {
      * @Method("GET")
      * @Template("AdminMyaccountBundle:views:mensaje.html.twig")
      */
-    public function mensajeAction() {
+    public function mensajeAction(Request $request) {
 
-        $request = $this->getRequest();
         $errormsg = '';
         $nombre = $request->query->get('nombre');
         $apellidos = $request->query->get('apellidos');
@@ -60,7 +59,7 @@ class DefaultController extends Controller {
      * @Template("AdminMyaccountBundle:views:calificacion.html.twig")
      */
     public function calificacionAction() {
-        
+
     }
 
     /**
@@ -70,7 +69,7 @@ class DefaultController extends Controller {
      * @Method("GET")
      * @Template("AdminMyaccountBundle:views:book.html.twig")
      */
-    public function bookAction($id) {
+    public function bookAction($id) {   
         $em = $this->getDoctrine()->getManager();
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
              $seguimientos=$em->getRepository('AdminAdminBundle:SeguimientoBook')->findBy(array('idHojadevida'=>$id,'ipServer'=>$_SERVER['REMOTE_ADDR']),array('id' => 'DESC'),1,0);
@@ -156,7 +155,9 @@ class DefaultController extends Controller {
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
-        $aux = AccountController::profile();
+        $em = $this->getDoctrine()->getManager();
+        //buscamos la imagen del usuario
+        $aux=$em->getRepository('AdminAdminBundle:User')->userrole($user->getId());
         if(!$aux){
             $Image=null;
             $idfoto=null;
@@ -183,7 +184,8 @@ class DefaultController extends Controller {
         $security_token = $security_context->getToken();
         //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
         $user = $security_token->getUser();
-        $aux = AccountController::profile();
+        $em= $this->getDoctrine()->getManager();
+        $aux=$em->getRepository('AdminAdminBundle:User')->userrole($user->getId());
         ///procedemos a enviar el email
         $asunto = $request->query->get('asunto');
         $Body = $request->query->get('mensaje');

@@ -1,24 +1,13 @@
-{%extends "AdminAdminBundle:Default:index.html.twig"%}
-{% block container %}
-    <div>
-        <header>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <nav class="navbar navbar-default navbar-fixed-top">
-                        <div class="container">
-                            <a class="navbar-brand" href="{{path('principal')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="40px"></a>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </header>
+{%extends "AdminAdminBundle:Default:layout.html.twig"%}
+{% block title %}Terminos y Condiciones{% endblock %}
 
-    </div>
-    <section class="book">
+{% block container %}
+<section>
+    <div class="container">
+        <div class="contacto">
         <div class="row">
-            <div class="container">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <img src="{{asset('images/logo/fikner_logo2.png')}}" alt="" />
+                    <img src="{{web_image('bundles/adminadmin/img/fikner_logo2.png').resize(100,100)}}" alt="fikner" class="center-block"/>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">  
                     <h2><b>Términos y condiciones</b></h2>
@@ -27,43 +16,33 @@
                         Por favor, léalas detenidamente.</p>
                     <br>
                     <hr>
-                    <p>
-                        El uso de nuestros 
-                        Servicios no otorga derecho de propiedad intelectual 
+                    <div class="text-justify">
+                        El uso de nuestros
+                        Servicios no otorga derecho de propiedad intelectual
                         alguna sobre nuestros Servicios o contenido al que acceda.
-                    </p>
-                    <p>
-                        fikner.com No fomenta la prostitución, ni es un sitio para la comercialización de servicios sexuales.
-                    </p>
-                    <p>
-                        Una vez aceptadas las presentes Condiciones, Ud. deberá facilitar los datos requeridos a través de los formularios existentes en la página web para poder prestarle el servicio. 
-                    </p><p>
+                        <br>
+                        Una vez aceptadas las presentes Condiciones, Ud. deberá facilitar los datos requeridos a través de los formularios existentes en la página web para poder prestarle el servicio.
+                        <br>
                         Nuestros Servicios muestran cierto contenido que no pertenece a fikner. Dicho contenido es responsabilidad exclusiva de la entidad o persona que lo pone a disposición. Podremos revisar contenido para determinar si es ilegal o si infringe nuestras políticas, y podremos eliminar o rechazar la visualización de contenido que razonablemente consideremos que infringe nuestras políticas o la ley. Sin embargo, esto no significa que revisemos contenido, por lo que no debe suponer que lo haremos.
-                    </p><p>
-
+                        <br>
                         La Cuenta es personal, única e intransferible, y está prohibido que un mismo Usuario inscriba o posea más de una Cuenta. En caso que fikner detecte distintas Cuentas que contengan datos coincidentes o relacionados, podrá cancelar, suspender o inhabilitarlas.
                         Se reserva el derecho de rechazar cualquier solicitud de inscripción o de cancelar una inscripción previamente aceptada, sin que esté obligado a comunicar o exponer las razones de su decisión y sin que ello genere algún derecho a indemnización o resarcimiento.
                         No está permitida ninguna acción o uso de dispositivo, software, u otro medio tendiente a interferir tanto en las actividades y operatoria de fikner cuentas o bases de datos. Cualquier intromisión, tentativa o actividad violatoria o contraria a las leyes sobre derecho de propiedad intelectual y/o a las prohibiciones estipuladas en este contrato harán pasible a su responsable de las acciones legales pertinentes, y a las sanciones previstas por este acuerdo, así como lo hará responsable de indemnizar los daños ocasionados.
-                    </p><p>
-
+                        <br>
                         El usuario puede incluir imágenes y fotografías siempre que las mismas  correspondan a su autoridad
                         Fikner podrá impedir la publicación de la fotografía, e incluso del book, si interpretara, a su exclusivo criterio, que la imagen o imágenes  no cumplen con los presentes Términos y Condiciones..
-                    </p><p>
-
+                        <br>
 
                         Podremos modificar las presentes condiciones o las condiciones adicionales aplicables a un Servicio para, por ejemplo, reflejar cambios en las leyes o en nuestros Servicios. Usted debe revisar las condiciones periódicamente. Publicaremos avisos sobre las modificaciones a estos términos en esta página. Publicaremos avisos sobre las condiciones adicionales modificadas, en el Servicio correspondiente. Las modificaciones no se aplicarán retroactivamente y entrarán en vigencia no antes de catorce días después de su publicación. Sin embargo, las modificaciones que reflejan nuevas funciones de un Servicio o las modificaciones realizadas por razones legales entrarán en vigencia de forma inmediata. Si no acepta las condiciones modificadas en un Servicio, debería cancelar el uso de dicho Servicio
-                    </p><p>
-
+                        <br>
                         Dado que fikner es un punto de encuentro entre talento y agencia y no participa de las operaciones que se realizan entre ellos, la agencia será responsable por todas las obligaciones y cargas impositivas que correspondan por los servicios
                         Y contratos, sin que pudiera imputársele a fikner algún tipo de responsabilidad por incumplimientos en tal sentido.
 
-                    </p><p>
+                        <br>
 
+                        Sin perjuicio de otras medidas, fikner podrá advertir, suspender en forma temporal o inhabilitar definitivamente la Cuenta de un Usuario o una agencia,  aplicar una sanción que impacte negativamente en la reputación de un Usuario, iniciar las acciones que estime pertinentes y/o suspender la prestación de sus Servicios si
 
-                        Sin perjuicio de otras medidas, fikner podrá advertir, suspender en forma temporal o inhabilitar definitivamente la Cuenta de un Usuario o una agencia,  aplicar una sanción que impacte negativamente en la reputación de un Usuario, iniciar las acciones que estime pertinentes y/o suspender la prestación de sus Servicios si 
-
-                    </p>    
-
+                        <br>
 
                     • se quebrantara alguna ley, o cualquiera de las estipulaciones de los Términos y Condiciones.<br>
 
@@ -78,71 +57,63 @@
                     En el caso de la suspensión o inhabilitación, todos los servicios o noticias que tuviera publicados serán removidos del sistema y en ningún caso se devolverán o bonificarán los involucrados. 
                     <br>
                     <hr>
-                    <p>
-
-                        fikner sólo pone a disposición de los Usuarios un espacio virtual que les permite ponerse en comunicación mediante Internet para encontrar una forma de ofrecer o buscar personal.
-                    </p><p>
-
+                        <br>
+                        Fikner sólo pone a disposición de los Usuarios un espacio virtual que les permite ponerse en comunicación mediante Internet para encontrar una forma de ofrecer o buscar personal.
+                        <br>
 
                         fikner recomienda actuar con prudencia y sentido común al momento de aceptar o realizar operaciones con Usuarios o agencias. El Usuario debe tener presentes, además, los riesgos de contratar con menores o con personas que se valgan de una identidad falsa. fikner NO será responsable por la realización de ofertas y/o operaciones con otros Usuarios basadas en la confianza depositada en el sistema o los Servicios brindados por fikner.
-                    </p><p>
-
+                        <br>
                         En caso que uno o más Usuarios o algún tercero inicien cualquier tipo de reclamo o acciones legales contra otro u otros Usuarios, todos y cada uno de los Usuarios involucrados en dichos reclamos o acciones eximen de toda responsabilidad a fikner y a sus directores, gerentes, empleados, agentes, operarios, representantes y apoderados.
-                    </p><p>
-
+                        <br>
                         El Usuario no revenderá productos o servicios adquiridos a través del sitio Web a otras personas.
-                    </p>
-
+                        <br>
+                        <br>
                     CONDICIONES ECONÓMICAS
-
-                    <p>
+                    <br>
                         La falta de pago, por parte de la agencia, del Servicio facultará a fikner para suspender el acceso al mismo. Así mismo, fikner se reserva el derecho a iniciar las acciones legales pertinentes dirigidas a obtener el pago de las cantidades adeudadas.
-                        fikner no se responsabiliza de los posibles errores en los contenidos que puedan aparecer en este website. 
-                    </p><p>
-
+                        fikner no se responsabiliza de los posibles errores en los contenidos que puedan aparecer en este website.
+                        <br>
                         Queda prohibida cualquier comunicación, transmisión de contenidos o inclusión de información que infrinja los derechos de propiedad de terceros y cuyo contenido sea amenazante, obsceno, difamatorio, pornográfico, xenófobo, atentatorio contra la dignidad de la persona, los derechos de la infancia, el honor o intimidad, la legalidad vigente o cualquier conducta que incite o constituya la realización de una ofensa penal.
 
-                    </p><p>
+                        <br>
 
                         Queda también prohibida la inclusión de contenidos que se encuentren protegidos por cualesquiera derechos de propiedad intelectual o industrial, pertenecientes a terceras personas, cuando no cuenten con la autorización del titular de los derechos, menoscaben o desprestigien la fama o crédito de fikner, o sean considerados como una caso de publicidad ilícita, engañosa o desleal.
-                    </p><p>
+                        <br>
 
                         El Usuario autoriza a fikner a publicar en el web y en su publicidad impresa, o en cualquier otro medio que crea conveniente para su promoción los contenidos textuales y las fotografías que introduce en su book, cediendo los derechos de propiedad intelectual y reproducción inherentes a dicha publicación para tales fines.
-                    </p><p>
+                        <br>
 
                         El Usuario se responsabiliza de todos los contenidos cargados a fikner, tales como su introducción, su currículum, y sus fotografías, y exime a fikner de toda responsabilidad sobre ellos.
-                    </p><p>
+                        <br>
 
                         fikner NO acepta fotografías que atenten contra la moral, buenas costumbres y estética. Por ningún motivo se incluirán fotografías de desnudos de carácter sexual explícitos. Queda prohibida la carga de fotografías con contenido pornográfico, que contengan escenas de sexo implícito, o imágenes de contenido erótico que puedan herir la sensibilidad.
                         Las fotografías deben ser individuales y no grupales. fikner se reserva el derecho de admisión a nuestro directorio de personal.  La admisión está basada en factores como el registro, la calidad del book (si lo tiene), calidad de las fotos. Estas no deben ser retocadas de ninguna manera.
                         Queda prohibida la carga de fotografías de desnudo de personas cuya edad se encuentre por debajo de la mayoría de edad legal en Colombia (18 años), o la del país donde fueron realizadas las fotografías.
-                    </p><p>
-
+                        <br>
                         las agencias deben ser titulares de una sociedad legalmente establecida en su país de residencia: Sociedad Anónima, Sociedad Limitada, sociedad unipersonal. Sociedad, colectiva, etc... 
                         Proporcionar durante el registro información detallada sobre:
                         Nombre de la sociedad 
                         Número de identificación legal o tributaria que identifique la empresa: NIT, RUT, CIF, etc... según el país donde se lleve el registro. 
                         Dirección física completa 
                         Teléfono fijo de contacto 
-                        Nombre y apellidos del usuario registrado, actuando en representación de la empresa 
-                    </p><p>
-
+                        Nombre y apellidos del usuario registrado, actuando en representación de la empresa
+                        <br>
                         fikner no garantiza la ausencia de virus u otros elementos que puedan causar daños en los sistemas informáticos, en los documentos electrónicos, por lo que no se responsabiliza por los perjuicios que se puedan causar. 
-                        Así mismo, fikner no se responsabiliza del mal uso que los usuarios puedan hacer de este sitio web. 
-                    </p><p>
+                        Así mismo, fikner no se responsabiliza del mal uso que los usuarios puedan hacer de este sitio web.
+                        <br>
 
                         Podemos utilizar su  información para:
                         • Administrar su cuenta.
                         • Enviarle comunicaciones sobre ofertas.
                         • Supervisar y asegurar nuestros sitios y servicios.
                         • Administrar concursos, sorteos y promociones que pueda haber ingresado y enviar notificaciones relacionadas.
-                        Podemos compartir su información con nuestros afiliados, proveedores de servicios y otras terceras partes. 
-                    </p><p>
-
+                        Podemos compartir su información con nuestros afiliados, proveedores de servicios y otras terceras partes.
+                        <br>
                         Si usted no cumple estas condiciones, y nosotros no tomamos acción inmediata, ello no implica renuncia alguna a cualquier derecho que pudiera correspondernos
-                    </p>
+                        <br>
                 </div>
             </div>
         </div>
-    </section>
-{% endblock %}
+    </div>
+</section>
+    {% endblock %}
