@@ -43,11 +43,12 @@
             desde un equipo de escritorio. 
         </p>
         <br>
-
+{#
         <p id="texto2">
 
             <b>NO SOY TALENTO</b>, Haga clic <a href="{{path('Myaccount_verificarusuario')}}">aquí</a> para registrarse como agencia.
         </p>
+  #}
         <br>
         <p id="texto">
             <a  class='btn btn-default btn-block'href="{{ path('Myaccount_perfil_new',{'idAgencia':idAgencia,'idReclutador':idReclutador}) }}">
@@ -73,7 +74,7 @@
                         {% if  Image %}
                             <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}" > 
                         {%else%}
-                            <img  src="{{ asset('upload/default/default.png')}}"> 
+                            <img  src="{{ web_image('web/bundles/adminadmin/upload/default/noimage.jpg')}}">
                         {%endif%}
                     </p>
                     <p id="nameProfile">{{ app.user.nombre}} <small>{{ app.user.apellidos}}</small></p>
