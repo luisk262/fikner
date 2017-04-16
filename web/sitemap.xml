@@ -13,12 +13,12 @@
   <loc>http://fikner.com/login</loc>
 </url>
 <url>
-  <loc>http://fikner.com/Agencia/registration/</loc>
+  <loc>http://fikner.com/register</loc>
 </url>
 <url>
-  <loc>http://fikner.com/calificacion</loc>
+  <loc>http://fikner.com/agencia</loc>
 </url>
 <url>
-  <loc>http://fikner.com/resetting/request</loc>
+  <loc>http://fikner.com/directorio_agencias</loc>
 </url>
 </urlset>

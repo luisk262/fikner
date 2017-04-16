@@ -4,8 +4,6 @@
 User-agent: *
 Disallow: /book*/
 User-agent: *
-Disallow: /agencia*/
-User-agent: *
 Disallow: /terminos
 User-agent: *
 Disallow: /calificacion/
