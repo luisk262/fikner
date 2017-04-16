@@ -10,6 +10,4 @@ Disallow: /calificacion/
 User-agent: *
 Disallow:/app.php*/
 User-agent: *
-Disallow:/login
-User-agent: *
 Disallow:/resetting/request
