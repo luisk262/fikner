@@ -11,3 +11,6 @@ User-agent: *
 Disallow:/app.php*/
 User-agent: *
 Disallow:/resetting/request
+User-agent: *
+Disallow: /Agencia/registration/
+
