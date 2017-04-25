@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<link rel="alternate" href="http://fikner.com" hreflang="es-co"/>
+	{#<link rel="alternate" href="http://fikner.com" hreflang="es-co"/>#}
 	<meta name="viewport" content="width=device-width, user-scalable=no">
         <link rel="icon" type="image/jpeg" href="{{web_image('images/logo/fikner_logo2.png').resize(100,100)}}" />
         <title>{% block title %}{% endblock %}</title>
@@ -25,6 +25,13 @@
             <link rel="stylesheet" href="{{asset('bundles/adminadmin/css/style.css')}}">
         {% endblock %}    	
 </head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6359162192439396",
+    enable_page_level_ads: true
+  });
+</script>
 <body>
 	{% block menu %}
     	{% include "AdminAdminBundle:Default:menu.html.twig" %}
