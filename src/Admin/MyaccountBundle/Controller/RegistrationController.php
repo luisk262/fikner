@@ -118,17 +118,14 @@ class RegistrationController extends Controller {
      * @Method("GET")
      * @Template()
      */
-    public function newAction() {
-        $request = $this->getRequest();
+    public function newAction(Request $request) {
         //Asignamos el parametro url para luego pasarlo a ajax
         $idAgencia = $request->query->get('id');
         $idReclutador = $request->query->get('idReclutador');
-        $entity = new User();
-        $form = $this->createCreateForm($entity,$idAgencia,$idReclutador);
-        
+        $em = $this->getDoctrine()->getManager();
+        $entity=$em->getRepository('AdminAdminBundle:Agencia')->find($idAgencia);
         return array(
             'entity' => $entity,
-            'form' => $form->createView(),
             'idAgencia'=>$idAgencia,
             'idReclutador'=>$idReclutador
         );

@@ -1,140 +1,33 @@
-{% extends "AdminAdminBundle:Default:index.html.twig" %}
-{% block title %}Crear Cuenta Fikner {% endblock %}
+{% extends "AdminAdminBundle:Default:layout.html.twig" %}
+{% block title %}Registro {%  if entity %}{% filter upper %}{{ entity.nombreagencia }}{% endfilter %}{% endif %}{% endblock %}
 {% block container %}
-    <nav class="navbar navbar-default navbar-fixed-top navbar-principal"> 
-        <div class="container"> 
-            <div class="navbar-header"> 
-                <a class="navbar-brand" href="{{path('principal')}}"> 
-                    <img src="{{web_image('images/logo/fikner_logo_blanco.png').resize(200,100)}}" alt="" whith="100%" height="100%"> 
-                </a> 
-            </div>
-            <div id="navbar" class="navbar-collapse collapse ">
-                <ul class="nav navbar-nav navbar-right">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-user"></i> {{app.user.username}} |
-                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                            </a></li>
-                        {% else %}
-                        <li><a href="{{ path('fos_user_security_login') }}"><i class="glyphicon glyphicon-user"></i> 
-                                Iniciar sesión</a></li>
-                            {% endif %}
+<seccion>
+    <div class="row">
+        <div class="container">
+            <div class="login">
+                <div class="col-lg-6">
+                    {%  if entity %}
+                        <h1>{% filter upper %}{{ entity.nombreagencia }}{% endfilter %}</h1>
+                        <h2>{{  entity.pais }}</h2>
+                        <p>{{ entity.descripcion }}</p>
+                    {% else %}
+                        <h1>El mundo del espectáculo</h1>
+                        <h2>Espera por ti</h2>
+                        <p>
+                            Fikner es la plataforma que permite a los modelos, </p>
+                        <p> Actores y Personal de apoyo tener un espacio para </p>
+                        <p> Mostrar su book profesional además de ser </p>
+                        <p>Encontrados por empresas y agencias interesadas </p>
+                        <p>De una manera rápida y segura.
+                        </p>
+                    {% endif %}
 
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-    <section class="registrate2">
-        <div class="row">
-            <div class="container">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <h1>El mundo del espectáculo</h1>
-                                        <h2>Espera por ti</h2>
-                                        <p>
-                                            Fikner es la plataforma que permite a los modelos, </p>
-                                        <p> Actores y Personal de apoyo tener un espacio para </p>
-                                        <p> Mostrar su book profesional además de ser </p>
-                                        <p>Encontrados por empresas y agencias interesadas </p>
-                                        <p>De una manera rápida y segura.
-                                        </p>
-                                    </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            {{ form_start(form) }}
-                            <h2><b>Crear cuenta</b></h2>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
-                                    {{ form_widget(form.nombre,{
-                                    'attr': {'class':'form-control','placeholder':'Nombres*'}
-                                     })
-                                    }}
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
-                                    {{ form_widget(form.apellidos,{
-                                    'attr': {'class':'form-control','placeholder':'Apellidos*'}
-                                     })
-                                    }}
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <h4 id="fechaNacimiento">Fecha de nacimiento</h4>
-                                <div class="col-md-2 form-group">
-                                    {{ form_widget(form.fechanaci.year,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                                    }}
-                                </div>
-                                <div class="col-md-2 form-group">
-                                    {{ form_widget(form.fechanaci.month,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                                    }}
-                                </div>
-                                <div class="col-md-2 form-group">
-                                    {{ form_widget(form.fechanaci.day,{
-                                        'attr': {'class':'form-control'}
-                                     })
-                                    }}
-                                </div>
-                                <div class="col-lg-6 form-group">
-                                    {{ form_widget(form.telefono,{
-                                    'attr': {'class':'form-control','placeholder':'Numero Celular*'}
-                                     })
-                                    }}
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-
-                            <div class="form-group input-group">
-                                <span class="input-group-addon">@</span>
-                                {{ form_widget(form.email.first,{
-                                    'attr': {'class':'form-control','placeholer':'Correo Electronico'}
-                                     })
-                                }}
-                            </div>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon">@</span>
-                                {{ form_widget(form.email.second,{
-                                    'attr': {'class':'form-control','placeholer':'Correo Electronico'}
-                                     })
-                                }}
-                            </div>
-                            <div class="form-group">
-                                {{ form_widget(form.plainPassword.first,{
-                                    'attr': {'class':'form-control'}
-                                     })
-                                }}
-                            </div>
-                            <div class="form-group">
-                                {{ form_widget(form.plainPassword.second,{
-                                    'attr': {'class':'form-control'}
-                                     })
-                                }}
-                            </div>
-                            {% if form_errors(form.plainPassword.first) or form_errors(form.email.first) or form_errors(form.telefono) %}
-                                <div class="alert alert-danger">
-                                    {{ form_errors(form.telefono) }}
-                                    {{ form_errors(form.email.first) }}
-                                    {{ form_errors(form.plainPassword.first) }}
-                                </div>
-                            {% endif%}
-                            <p>Al hacer clic en registrar confirmas 
-                                que has leído los Términos y condiciones y los aceptas</p>
-                            {{ form_row(form.submit, {'attr': {'class':'btn btn-default btn-block'}}) }}
-                            {{ form_end(form) }}
-                            <br>
-                            <br>
-
-
-                        </div>
-                    </div>
+                </div>
+                <div class="col-lg-6">
+                        {{ render(controller('AdminAdminBundle:Registration:register')) }}
                 </div>
             </div>
-    </section>    
-    {% block javascripts %}
-        {{parent()}}     
-    {%endblock%}
+        </div>
+    </div>
+</seccion>
 {% endblock %}
