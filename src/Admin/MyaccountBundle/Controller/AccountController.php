@@ -20,107 +20,53 @@ class AccountController extends Controller {
      * @Template()
      */
     public function indexAction(Request $request) {
-        //Asignamos el parametro url para luego pasarlo a ajax
-        $idAgencia = $request->query->get('idAgencia');
-        $idReclutador = $request->query->get('idReclutador');
-        
-        $security_context = $this->get('security.context');
-        if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+        //Verificamos que usuario corresponda a la credencial.
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
             return $this->redirect($this->generateUrl('admin_dashboard'));
         }
-        else if ($this->get('security.context')->isGranted('ROLE_AGENC')){
-            return $this->redirect($this->generateUrl('agencia_dashboard'));            
+        else if ($this->get('security.authorization_checker')->isGranted('ROLE_AGENC')){
+            return $this->redirect($this->generateUrl('agencia_dashboard'));
         }
-        else if(($this->get('security.context')->isGranted('ROLE_RECLU'))){
-             return $this->redirect($this->generateUrl('reclutador_dashboard'));
+        else if(($this->get('security.authorization_checker')->isGranted('ROLE_RECLU'))){
+            return $this->redirect($this->generateUrl('reclutador_dashboard'));
         }
-        $security_token = $security_context->getToken();
-        //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
-        $user = $security_token->getUser();
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-                        'SELECT uh
-                        FROM AdminAdminBundle:UsuarioHojadevida uh
-                        WHERE uh.idUsuario  =:id'
-                )->setParameter('id', $user->getId());
-        if ($query->getResult()) {
-            $Hojadevida = $query->getResult();
-            // Buscamos el array de resultados
-            $Hojadevida = $query->setMaxResults(1)->getOneOrNullResult();
-            $query = $em->createQuery(
-                            'SELECT hp
-                        FROM AdminAdminBundle:HojadevidaPhoto hp
-                        WHERE hp.idHojadevida  =:id'
-                    )->setParameter('id', $Hojadevida->getIdHojadevida()->getId());
-            if ($query->getResult()) {
-                $query = $em->createQuery(
-                                'SELECT hp
-                        FROM AdminAdminBundle:HojadevidaPhoto hp
-                        WHERE (hp.idHojadevida  =:id) AND (hp.principal =:Valor)'
-                        )->setParameter('id', $Hojadevida->getIdHojadevida()->getId())
-                        ->setParameter('Valor', 1);
-                if ($query->getResult()) {
-                    $HojadevidaP = $query->getResult();
-                    // Buscamos el array de resultados
-                    $HojadevidaP = $query->setMaxResults(1)->getOneOrNullResult();
-                    $idfoto = $HojadevidaP->getIdPhoto()->getId();
-                    $Image = $HojadevidaP->getIdPhoto()->getImage();
-                } else {
-                    $idfoto = null;
-                    $Image = null;
-                }
-                $estatura = $Hojadevida->getIdHojadevida()->getEstatura();
-                $fechaNac = $Hojadevida->getIdHojadevida()->getFechaNac();
-                $TelCe = $Hojadevida->getIdHojadevida()->getTelCe();
-                $idbook = $Hojadevida->getIdHojadevida()->getId();
-                $calificacion=$Hojadevida->getIdHojadevida()->getCalificacion();
-                return array(
-                    'hojadevida' => true,
-                    'photo' => true,
-                    'estatura' => $estatura,
-                    'fechaNac' => $fechaNac,
-                    'TelCe' => $TelCe,
-                    'Image' => $Image,
-                    'idfoto' => $idfoto,
-                    'idbook'=>$idbook,
-                    'calificacion'=>$calificacion,
-                    'idAgencia'=>$idAgencia,
-                    'idReclutador'=>$idReclutador,
-                );
-            } else {
-                $estatura = $Hojadevida->getIdHojadevida()->getEstatura();
-                $fechaNac = $Hojadevida->getIdHojadevida()->getFechaNac();
-                $TelCe = $Hojadevida->getIdHojadevida()->getTelCe();
-                $idbook = $Hojadevida->getIdHojadevida()->getId();
-                return array(
-                    'hojadevida' => true,
-                    'photo' => false,
-                    'estatura' => $estatura,
-                    'fechaNac' => $fechaNac,
-                    'TelCe' => $TelCe,
-                    'Image' => null,
-                    'idfoto' => null,
-                    'calificacion'=>null,
-                    'idAgencia'=>$idAgencia,
-                    'idReclutador'=>$idReclutador,
-                    'idbook'=>$idbook,
-                );
+        $idUser=$this->get('security.token_storage')->getToken()->getUser()->getId();
+        //Verificamos si el usuario ya completo los datos de registro de la hoja de vida
+        $idhojadevida=$em->getRepository('AdminAdminBundle:UsuarioHojadevida')->findOneBy(array('idUsuario'=>$idUser));
+        if($idhojadevida){
+            $hojadevida = true;
+            //Verificamos si el usuario ya cargo las imagenes
+            $idImages=$em->getRepository('AdminAdminBundle:HojadevidaPhoto')->findOneBy(array('idHojadevida'=>$idhojadevida->getIdHojadevida()));
+            if($idImages){
+                $images = true;
+                //Verificamos las agencias a las cuales se ha postulado
+                $agencias = $em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findBy(array('idHojadevida'=>$idhojadevida->getIdHojadevida(),'Activo'=>true));
+                $vistasA = $em->getRepository('AdminAdminBundle:SeguimientoAgencia')->countHojadevida($idhojadevida);
+                $vistasB = $em->getRepository('AdminAdminBundle:SeguimientoBook')->countHojadevida($idhojadevida);
+                $vistas=$vistasA+$vistasB;
             }
-        } else {
-            return array(
-                'hojadevida' => false,
-                'photo' => false,
-                'estatura' => null,
-                'fechaNac' => null,
-                'TelCe' => null,
-                'Image' => null,
-                'idfoto' => null,
-                'idbook'=>null,
-                'calificacion'=>null,
-                'idAgencia'=>$idAgencia,
-                'idReclutador'=>$idReclutador,
-            );
+            else{
+                $images = false;
+                $agencias=null;
+                $vistas=0;
+            }
         }
+        else{
+            $hojadevida = false;
+            $agencias=null;
+            $images=null;
+            $vistas=0;
+        }
+        return array(
+            'hojadevida' => $hojadevida,
+            'photo' => $images,
+            'entity'=>$agencias,
+            'vistas'=>$vistas
+        );
+
+
+   //     }
     }
     /**
      * @Route("/Verificarusuario", name="Myaccount_verificarusuario")

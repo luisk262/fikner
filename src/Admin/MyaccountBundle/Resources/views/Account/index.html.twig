@@ -1,25 +1,62 @@
 {% extends "AdminMyaccountBundle::layout.html.twig" %}
 {% block container %}
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 info">
             {%if hojadevida %}
                 {%if photo %}
-                    <p id="nameUser">
-                    <h1>¡Felicidades {{ app.user.nombre}}!</h1>
-                    <h1><small>Envíe su perfil a una agencia</small></h1>
-                    <p id="texto">    
-                        <a href="{{path('Myaccount_empresa')}}" class="btn btn-block">
-                            <span class="glyphicon glyphicon-facetime-video"></span> Postúlese en las agencias
-                        </a>
-                    </p>
-                    <p id="texto">
-                        Para nosotros es muy importante su seguridad, por esto no coloque datos como (número de documento, teléfono, email, dirección de residencia, nombre) en las imágenes subidas a fikner, ya que personas inescrupulosas  pueden usar esta información para contactarlo con fines fraudulentos.
-                    </p>
-                    <h1><small>Usa la cabeza, usa fikner</small></h1>
-                    
+                    {% if entity|length > 0 %}
+                        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 info">
+                            <p id="nameUser">
+                            <h1>¡Bienvenid@ {{ app.user.nombre}}!</h1>
+                            <p id="texto">
+                                Para nosotros es muy importante su seguridad, por esto no coloque datos como (número de documento, teléfono, email, dirección de residencia, nombre) en las imágenes subidas a fikner, ya que personas inescrupulosas  pueden usar esta información para contactarlo con fines fraudulentos.
+                            </p>
+                            <p id="texto">
+                                <a href="{{path('Myaccount_empresa')}}" class="btn btn-block">
+                                    <span class="glyphicon glyphicon-facetime-video"></span> Buscar agencias
+                                </a>
+                            </p>
+                            <h1><small>Usa la cabeza, usa fikner</small></h1>
+                        </div>
+                        {% else %}
+                            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 info">
+                                <p id="nameUser">
+                                <h1>¡Felicidades {{ app.user.nombre}}!</h1>
+                                <h1><small>Envíe su perfil a una agencia</small></h1>
+                                <p id="texto">
+                                    <a href="{{path('Myaccount_empresa')}}" class="btn btn-block">
+                                        <span class="glyphicon glyphicon-facetime-video"></span> Postúlese en las agencias
+                                    </a>
+                                </p>
+                                <p id="texto">
+                                    Para nosotros es muy importante su seguridad, por esto no coloque datos como (número de documento, teléfono, email, dirección de residencia, nombre) en las imágenes subidas a fikner, ya que personas inescrupulosas  pueden usar esta información para contactarlo con fines fraudulentos.
+                                </p>
+                                <h1><small>Usa la cabeza, usa fikner</small></h1>
+                            </div>
+
+                    {% endif %}
+                    <div class="col-lg-4">
+                        <h2></small>{{ vistas }} <small>Visitas</small></h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Mis Agencias</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for agencia in entity  %}
+                                <tr>
+
+                                    <td><a href="{{path('Agencia_page', { 'nombre':agencia.idagencia.nombreagencia|replace({' ': '_'})})}}">{{ agencia.idagencia }}</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                   </div>
                        
                     
                 {%else%}
+                    <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 info">
+
                     <p id="nameUser">
                         `   <h1>¡Muy Bien!<small> Datos guardados</small></h1>
                     </p>
@@ -28,10 +65,12 @@
                     <p id="texto">
                         <a href="{{path('Myaccount_photo_new')}}" class="btn btn-block btn-default"><span class="glyphicon glyphicon-open"></span>Paso 3 - Cargar Fotos</a> 
                     </p>
-
+                    </div>
                 {%endif%}
             </div>
         {%else%}
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 info">
+
             <p id="nameUser">
                 `   <h1>¡Bienvenido a Fikner!</h1>
             <h1><small>Se está registrando como Talento (Actor, Actriz, modelo, personal de apoyo)</small></h1>
@@ -51,7 +90,7 @@
   #}
         <br>
         <p id="texto">
-            <a  class='btn btn-default btn-block'href="{{ path('Myaccount_perfil_new',{'idAgencia':idAgencia,'idReclutador':idReclutador}) }}">
+            <a  class='btn btn-default btn-block'href="{{ path('Myaccount_perfil_new') }}">
                 <i class="glyphicon glyphicon-book"></i> Registrar Perfil
             </a> 
         </p>
@@ -59,109 +98,4 @@
         <br>
     </div>
 {%endif%}
-<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 recuadro">
-    <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <div class="thumbnail">
-                <div class="caption">
-                    {% if  Image %}
-                        <h3>Así te ven las agencias</h3>
-                    {%else%}
-                        <h3>  Su perfil <b>NO</b> es visible a las agencias</h3>
-                    {%endif%}
-
-                    <p id="profilePhoto">
-                        {% if  Image %}
-                            <img data-src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}"  src="{{web_image('upload/Photos/' ~ idfoto ~'/' ~ Image).resize(400,400)}}" > 
-                        {%else%}
-                            <img  src="{{ web_image('web/bundles/adminadmin/upload/default/noimage.jpg')}}">
-                        {%endif%}
-                    </p>
-                    <p id="nameProfile">{{ app.user.nombre}} <small>{{ app.user.apellidos}}</small></p>
-                    {% if not calificacion%}
-                        <center>
-                            <a href="{{path('Myaccount_calificacion')}}">
-                                <p id="info">
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                </p>
-                            </a>
-                        </center>
-                    {%endif%}
-                    {% if calificacion =='1' %}
-                        <a href="{{path('Myaccount_calificacion')}}">
-
-                            <p id="info" class="text-center">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            </p>
-                        </a>
-
-                    {%endif%}
-                    {% if calificacion =='2' %}
-                        <a href="{{path('Myaccount_calificacion')}}">
-
-                            <p id="info" class="text-center">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            </p>
-                        </a>
-                    {%endif%}
-                    {% if calificacion =='3' %}
-                        <a href="{{path('Myaccount_calificacion')}}">
-
-                            <p id="info" class="text-center">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>                            
-                            </p>
-                        </a>
-                    {%endif%}
-                    {% if calificacion =='4' %}
-                        <a href="{{path('Myaccount_calificacion')}}">
-
-                            <p id="info" class="text-center">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            </p>
-                        </a>
-                    {%endif%}
-                    {% if calificacion =='5' %}
-                        <a href="{{path('Myaccount_calificacion')}}">
-                            <p id="info" class="text-center">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </p>
-                        </a>
-                    {%endif%}
-
-                    <p id="info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{app.user.email}}</p>
-                    <p id="info"><span class="glyphicon glyphicon-indent-right" aria-hidden="true"></span> {{estatura}} cms</p>
-                    {% set number1 = fechaNac|date("Y") %}
-                    {% set number2 = "now"|date("Y") %}
-                    {% set aux= ((number2 - number1)) %}
-                    <p id="info"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> {{aux}}</p>
-                    <p id="info"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{TelCe}}</p>
-                    <p id="boton"><a href="{{path('Myaccount_perfil_show')}}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VER PERFIL</a></p>
-                </div> 
-            </div> 
-        </div>
-    </div>
 {% endblock container %}

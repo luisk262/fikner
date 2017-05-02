@@ -108,15 +108,6 @@ body .navbar-default{
     margin: 0 auto 45px;
     padding: 0 15px;
 }
-section .images{
-	margin: 0;
-	position: relative;
-	display: inline-block;
-}
-section .images img{
-	display: inline-block;
-	width: 24.5%;	
-}
 .article-1{
 	padding-top: 160px;
 	padding-bottom: 60px;
