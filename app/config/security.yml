@@ -16,7 +16,7 @@ security:
         in_memory:
             memory:
                 users:
-                    admin: { password: 89CjxIgb, roles: [ 'ROLE_SUPER_ADMIN' ] }
+                    admin: { password: yQlMMq5p, roles: [ 'ROLE_SUPER_ADMIN' ] }
         fos_userbundle:
             id: fos_user.user_provider.username
 
