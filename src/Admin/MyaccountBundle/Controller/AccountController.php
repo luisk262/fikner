@@ -41,9 +41,9 @@ class AccountController extends Controller {
             if($idImages){
                 $images = true;
                 //Verificamos las agencias a las cuales se ha postulado
-                $agencias = $em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findBy(array('idHojadevida'=>$idhojadevida->getIdHojadevida(),'Activo'=>true));
-                $vistasA = $em->getRepository('AdminAdminBundle:SeguimientoAgencia')->countHojadevida($idhojadevida);
-                $vistasB = $em->getRepository('AdminAdminBundle:SeguimientoBook')->countHojadevida($idhojadevida);
+                $agencias = $em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findBy(array('idHojadevida'=>$idhojadevida->getIdhojadevida(),'Activo'=>true));
+                $vistasA = $em->getRepository('AdminAdminBundle:SeguimientoAgencia')->countHojadevida($idhojadevida->getIdhojadevida());
+                $vistasB = $em->getRepository('AdminAdminBundle:SeguimientoBook')->countHojadevida($idhojadevida->getIdhojadevida());
                 $vistas=$vistasA+$vistasB;
             }
             else{
