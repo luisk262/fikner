@@ -1,23 +1,26 @@
 	{% extends "AdminAdminBundle:Default:layout.html.twig" %}
 {% block title %}Agencias Fikner{% endblock %}
 {% block facebook %}
-        <meta property="og:url"                content="http://www.fikner.com/" />
-        <meta property="og:type"               content="article" />
-        <meta property="og:title"              content="Fikner" />
-        <meta property="og:image"              content="{{web_image('images/background/Fb2.png')}}" />
-        <meta property="og:image:width" content="400">
-        <meta property="og:image:height" content="315">
-        <meta name="og:description" content="Fikner es la plataforma que integra las principales agencias de casting y modelaje del país.">
-        <meta name="keywords" content="fikner,Trabaja,Tabajo,extra,figurante,modelo,actor,bogota,colombia,evento,publicidad,actriz,Cantante,Locutor,Actuacion,cine,
+	<meta property="og:url"                content="http://www.fikner.com/" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="Directorio Agencias" />
+	<meta property="og:image"              content="{{web_image('images/background/Fb2.png')}}" />
+	<meta property="og:image:width" content="400">
+	<meta property="og:image:height" content="315">
+	<meta name="og:description" content="Apuntate como agencia!. Registrar su perfil es completamente GRATIS!.">
+	<meta name="keywords" content="fikner,Trabaja,Tabajo,extra,figurante,modelo,actor,bogota,colombia,evento,publicidad,actriz,Cantante,Locutor,Actuacion,cine,
               Novela,camara,Casting,Imagen,Television,Talento,Estilo,arte,caracol,rti,rcn,canal,teleantioquia,señal,cable,centro,institucional,trece,13,zoom,City,uno,locacion,carro,peter,personal,apoyo,tv">
-        
-{%endblock%}
+
+{% endblock %}
 {% block container %}
           <section>
       	<div class="container">
       		<div class="agenciasf">
-      			<h2>Agencias <span>Fikner</span></h2>
-      			<p>No somos agencia, pero hacemos todo lo posible por ser la primera comunidad, de actores, extras y modelos.</p><h4>En nuestro directorio encontrara las siguientes agencias.
+      			<h2>Agencias que usan <span>Fikner</span></h2>
+      			<p>
+					Al registrarse podrá formar parte de las agencias mencionadas a continuación. Si tiene una agencia y no aparece en este directorio. Regístrela de manera gratuita
+					<a href="{{ path('fos_user_registration_register') }}">aquí</a>.</p>
+				<h4>En nuestro directorio encontrara las siguientes agencias.
 					</h4>
       			{% for entity in entities %}
                         <div class="row">

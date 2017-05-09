@@ -26,7 +26,7 @@ class NotificacionController extends Controller {
                 $template = $this->renderView('AdminAdminBundle:views:email_notificacion.html.twig', array('data' => $data));
                 $message = \Swift_Message::newInstance()
                         ->setSubject('Fikner - Nuevos perfiles se han postulado en su agencia')
-                        ->setFrom($this->getParameter('mail'))
+                        ->setFrom('youfikner@gmail.com')
                         ->setTo($agencia->getEmail())
                         ->setBody($template, 'text/html')
                 ;
