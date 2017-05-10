@@ -57,10 +57,6 @@ class SecurityController extends Controller {
         }
         $authChecker = $this->container->get('security.authorization_checker');
         $router = $this->container->get('router');
-       if ($authChecker->isGranted('ROLE_USER')) {
-        return new RedirectResponse($router->generate('Agencia_home',array('name'=>'nombre')));
-        
-    } 
 
         return $this->renderLogin(array(
                     'last_username' => $lastUsername,

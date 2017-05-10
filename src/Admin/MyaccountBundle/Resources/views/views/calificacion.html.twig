@@ -1,19 +1,7 @@
 {%extends "AdminAdminBundle:Default:layout.html.twig"%}
 {% block title %}Calificación{% endblock %}
 {% block menu  %}
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{path('principal')}}"><img src="{{asset('images/logo/fikner_logo_blanco.png')}}" alt="" height="100%"></a>
-            </div>
-        </div>
-    </nav>
+    {% include "AdminAdminBundle:Default:menu.html.twig" %}
 {% endblock %}
 {% block container %}
     <section>
@@ -24,110 +12,61 @@
                 <img src="{{web_image('bundles/adminadmin/img/fikner_logo2.png').resize(100,100)}}" alt="fikner" class="center-block"/>
             </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2><b>¿COMO MEJORO MI CALIFICACIÓN?</b></h2>
+                    <h2><b>¿CÓMO MEJORO MI CALIFICACIÓN?</b></h2>
                     <div id="texto">
+                        <p>
+                            Tenga en cuenta que muchas agencias, descartan de manera inmediata un perfil, cuando este no carga al sistema imágenes de calidad.
+                        </p>
                         <p>Para mejorar la calificación de su book recomendamos seguir las siguientes observaciones.</p>
-                        <p>
-                            La calificación de los books se hace a partir  de la calidad de las imágenes,   calidad del  perfil entre otros factores.
-                        </p>
+
                     </div>
                     <hr>
-                    <h2>Tendrán esta calificación books con las siguientes características.</h2>
-                    <p id="info" class="text-center">
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <h2>¿CÓMO SÉ QUE MIS IMÁGENES SON DE BUENA CALIDAD?</h2>
+                    <p>Use siempre una cámara digital, NO celular.</p>
+                    <p>Las imágenes deben ser en fondo blanco.</p>
+                    <p>Use ropa en tonos vivos, sin rayas ni puntos.</p>
+                    <p>Maquillaje suave.</p>
+                    <p>Posa natural, sé tu mism@.</p>
+                    <p>No uses elementos distractores como SOMBREROS, GAFAS, CELULARES EN LAS MANOS, SOMBRILLAS, BUFANDAS. recuerde que su perfil es PERSONAL, por ello no cargue al sistema fotos con grupos de amigos o familiares.
                     </p>
-                    <p id="info" class="text-center">
-                        Fikner no ha calificado el book
+    <p>Tenga en cuenta que fikner permite subir imágenes de hasta 5MB, si posee imágenes de un tamaño superior puede hacer uso de compresores de imagen como
+        <a href="http://optimizilla.com">optizilla.</a></p>
+                    <p>La resolución mínima recomendada es 1024x768.</p>
+                    <h2>VERIFIQUE SU INFORMACIÓN DE CONTACTO Y EXPERIENCIA</h2>
+                    <p>
+                        Su calificación puede verse alterada, si no comenta la experiencia que posee en el medio. Intente mencionar los proyectos en los cuales ha participado, si no posee experiencia, mencione las razones por las cuales su perfil debería ser elegido.
                     </p>
-                    <p id="info" class="text-center">
+                    <p>Verifique su información de contacto, Correo electrónico y telefono celular, si son erróneos pueden ser determinados, como información falsa, o inconsistente, lo cual repercute en su calificación.</p>
+                    <h2><b>¿CÓMO FUNCIONA EL SISTEMA DE CALIFICACIÓN?</b></h2>
+<p>Fikner promedia las calificaciones que obtiene de cada agencia, es decir, si dos agencias <B>A</B> Y <B>B</B> Califican su perfil, de manera que:
+</p>
+                    <p>* A califica con 1 Estrella:
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                     </p>
-                    <div id="texto">
-                        <p>
-                            • Imágenes incompletas,  para mejorar su calificación cargue las 6 imágenes a la plataforma
-                        </p>
-                        <p >
-                            • Imágenes repetidas, automáticamente se calificara en esta categoría sin importar la calidad
-                            de las demás imágenes.
-                        </p>
-                        <p>
-                            • Información de contacto en imágenes, si las imágenes cargadas contienen información de contacto
-                            como email, teléfono ,dirección, o datos como numero de documento, nombre, links de redes
-                            sociales, páginas web o demás campos que puedan generar un riesgo para la seguridad
-                            del usuario o la plataforma.
-                        </p>
-                        <p>
-                            • Imágenes cargadas con grupos de personas o animales (recuerde que el book es personal NO GRUPAL)  <br>
-                        </p>
-                    </div>
+                    <p>* B califica con 5 Estrellas:
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                    <p>La calificación final serán 3 estrellas:
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    </p>
+                    <p>(1+5)/2 = 3 donde <b>2</b> es el total de agencias que lo han calificado en este caso  2 (A Y B).</p>
+
                     <hr>
-                    <p id="info" class="text-center">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    </p>
                     <div id="texto">
                         <p>
-                            • Imágenes con buena calidad pero no cargo la totalidad de las imágenes
-                        </p>
-                        <p>
-                            • Imágenes con mala calidad, no cargo la totalidad de las imágenes
-                        </p>
-                    </div>
-                    <p id="info" class="text-center">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    </p>
-                    <div id="texto">
-                        <p>
-                            • Imágenes completas pero de mala Calidad o una de ellas tiene mala calidad
-                        </p>
-                    </div>
-                    <p id="info" class="text-center">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    </p>
-                    <div id="texto">
-                        <p>
-                            • Imágenes completas, Buena calidad
-                        </p>
-                    </div>
-                    <p id="info" class="text-center">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    </p>
-                    <div class="col-lg-6">
-                        <p>La calificación 5 estrellas la realiza la empresa <a href="www.digitalHype.co">DigitalHype</a>, la cual realiza la sesión fotográfica acorde a
-                            las necesidades y parámetros estipulados por las agencias de casting, btl, o modelaje.</p>
-                    </div>
-                    <div class="col-lg-6">
-                    <p><a href="www.digitalHype.co">DigitalHype</a> es la encargada
-                            de validar la veracidad de la información como estatura real, peso, color de ojos, piel y demás campos de fikner.
-                        </p>
-                    </div>
-                    <div id="texto">
-                        <p>
-                            ESTOS PARAMETROS PUEDEN VARIAR EN CUALQUIER MOMENTO,  SI VE ALGUN CAMBIO EN SU CALIFICACION,
-                            SUGERIMOS REVISAR NUEVAMENTE ESTE FORMULARIO.
+                            ESTOS PARAMETROS PUEDEN VARIAR EN CUALQUIER MOMENTO, SI VE ALGÚN CAMBIO EN SU CALIFICACIÓN, SUGERIMOS REVISAR NUEVAMENTE ESTE FORMULARIO.
                         </p>
                     </div>
                 </div>
