@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         {% if entity %}
-            <title>{%block title %}Fikner - {{entity.nombreagencia}}{% endblock %}</title>    
+            <title>{%block title %}Fikner - Agencia de {{entity.categoria}}  {{entity.nombreagencia}}{% endblock %}</title>
             {% block informacion %}
             {% if not idlogo %}
                 <link rel="icon" type="image/jpeg" href="{{ asset('images/logo3.png')}}" />
@@ -64,43 +64,74 @@
             <div class="container">
                 <div class="contenedor">
                     <div class="row">
-                        <div class="col-sm-2">
-                            <div class="img-marg .img-brd-out  img-white" style="margin-top:30px;" >
-                                <div class="img-brd-in">
-                                    <a class="img-block" href="#" rel="theater">
-                                        {% if not idlogo %}
-                                            <img class="img-block img" height="auto" src="{{ asset('images/noimage.jpg')}}" width="100%" alt="{{entity.nombreagencia}}">
-                                        {% else %}
-                                            <img class="img-block img" src="{{web_image('upload/Photos/' ~ idlogo ~'/' ~ idNombre).resize(200,200,'white')}}" alt="{{entity.nombreagencia}}" height="100%" width="100%">                    
-                                        {%endif%}
-                                    </a><!-- react-empty: 8 -->
-                                </div>
-                            </div>
-                            <div class="row-marg-button row-marg-top">
-                                <div class="_2wm9">
-                                    <div>
-                                        <div>
-                                            <div class="">
-                                                <a class="color_text" href="#">{{entity.nombreagencia}}</a><span class="_2l9f"><!-- react-empty: 16 --></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- react-empty: 17 -->
-                                </div>
-                            </div>
-                            <div class="sidebar-nav">
-                                <div class="navbar navbar-default-left" role="navigation">
-                                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                                        <ul class="nav navbar-nav">
-                                            <li ><a href="#">Inicio</a></li>
-                                            <li><a href="#">Solicitudes</a></li>
+                        <div class="col-sm-4">
+                            <br>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        {% if not(is_granted("ROLE_AGENC"))  %}
+                                            {% if U_foto %}
+                                                {% if U_foto_Agencia %}
+                                                    {%set aux=false%}
+                                                    {% for agencia in U_foto_Agencia %}
+                                                        {%if (agencia.idAgencia.id == entity.id) and (agencia.activo=='1')%}
+                                                            <a href="{{path('agencia_page_remove_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Remover book</strong></a>
+                                                            {%set aux=true%}
+                                                        {%endif%}
+                                                    {%endfor%}
+                                                    {%if not aux%}
+                                                        <a href="{{path('agencia_page_send_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>
+                                                    {%endif%}
+                                                {%else%}
+                                                    <a href="{{path('agencia_page_send_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>
+                                                {%endif%}
+                                            {%else%}
+                                                <p>No puedes enviar book carga al menos una imagen primero</p>
+                                            {%endif%}
 
-                                        </ul>
-                                    </div><!--/.nav-collapse -->
+                                        {%else%}
+                                            <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                        {%endif%}
+                                    {%else%}
+                                        <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                    {%endif%}
                                 </div>
                             </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body"><p>{{entity.ciudad}}-{{entity.pais}}</p>
+                                    <p>Registrada:{{entity.fecha|date("M-d-Y")}}</p>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Información</div>
+                                <div class="panel-body">
+                                    <p id="info"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{entity.telefono}}</p>
+                                    <p id="info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{entity.email}}</p>
+                                    <p id="info"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> {%if entity.paginaweb %}<a href="{{entity.paginaweb}}">{{entity.paginaweb}}</a>{%else%}No definida{%endif%}</p>
+                                    <p id="info"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{entity.direccion}}</p>
+
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Últimos registros</div>
+                                <div class="panel-body">
+                                    {{ render(controller('AdminAgenciaBundle:Page:ajaxtalentos',{'id':entity.id})) }}
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Redes Sociales</div>
+                                <div class="panel-body">
+                                    <p id="info"><img src="{{asset('images/social/f.png')}}" alt="" height="35px" id="social"> {%if entity.grupofb %}{{entity.grupofb}}{%else%}No definido{%endif%}</p>
+                                    <p id="info"><img src="{{asset('images/social/y.png')}}" alt="" height="35px" id="social"> {%if entity.youtube %}{{entity.paginaweb}}{%else%}No definido{%endif%}</p>
+                                    <p id="info"><img src="{{asset('images/social/t.png')}}" alt="" height="35px" id="social"> {%if entity.twitter %}{{entity.paginaweb}}{%else%}No definido{%endif%}</p>
+
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="col-sm-10">
+
+                        <div class="col-sm-8">
                             <div class="col-sm-8">
                                 <br>
                                 <div class="panel panel-default">
@@ -112,71 +143,54 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <br>
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                            {% if not(is_granted("ROLE_AGENC"))  %}
-                                                {% if U_foto %}
-                                                    {% if U_foto_Agencia %}
-                                                        {%set aux=false%}
-                                                        {% for agencia in U_foto_Agencia %}
-                                                            {%if (agencia.idAgencia.id == entity.id) and (agencia.activo=='1')%}
-                                                                <a href="{{path('agencia_page_remove_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Remover book</strong></a> 
-                                                                {%set aux=true%}
-                                                            {%endif%}
-                                                        {%endfor%}
-                                                        {%if not aux%}
-                                                            <a href="{{path('agencia_page_send_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>   
-                                                        {%endif%}
-                                                    {%else%}
-                                                        <a href="{{path('agencia_page_send_book',{'id':entity.id,'nombre':entity.nombreagencia})}}" class="btn  btn-danger btn-block"><strong>Enviar book</strong></a>                                
-                                                    {%endif%}
-                                                {%else%}
-                                                    <p>No puedes enviar book carga al menos una imagen primero</p>  
-                                                {%endif%}
-
-                                            {%else%}
-                                                <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
+                                <div class="img-marg .img-brd-out  img-white" style="margin-top:30px;" >
+                                    <div class="img-brd-in">
+                                        <a class="img-block" href="#" rel="theater">
+                                            {% if not idlogo %}
+                                                <img class="img-block img" height="auto" src="{{ asset('images/noimage.jpg')}}" width="100%" alt="{{entity.nombreagencia}}">
+                                            {% else %}
+                                                <img class="img-block img" src="{{web_image('upload/Photos/' ~ idlogo ~'/' ~ idNombre).resize(200,200,'white')}}" alt="{{entity.nombreagencia}}" height="100%" width="100%">
                                             {%endif%}
-                                        {%else%}
-                                            <a href="{{path('registration_new',{'id':entity.id})}}" class="btn  btn-danger btn-block"><strong>¡QUIERO ENTRAR!</strong></a>
-                                        {%endif%}
+                                        </a><!-- react-empty: 8 -->
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-body"><p>{{entity.ciudad}}-{{entity.pais}}</p>
-                                        <p>Registrada:{{entity.fecha|date("M-d-Y")}}</p>
+                                <div class="row-marg-button row-marg-top">
+                                    <div class="_2wm9">
+                                        <div>
+                                            <div>
+                                                <div class="">
+                                                    <a class="color_text" href="#">{{entity.nombreagencia}}</a><span class="_2l9f"><!-- react-empty: 16 --></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- react-empty: 17 -->
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Información</div>
-                                    <div class="panel-body">
-                                        <p id="info"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{entity.telefono}}</p>
-                                        <p id="info"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{entity.email}}</p>
-                                        <p id="info"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> {%if entity.paginaweb %}<a href="{{entity.paginaweb}}">{{entity.paginaweb}}</a>{%else%}No definida{%endif%}</p>
-                                        <p id="info"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{entity.direccion}}</p>
+                                <div class="sidebar-nav">
+                                    <div class="navbar navbar-default-left" role="navigation">
+                                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                            <ul class="nav navbar-nav">
+                                                <li ><a href="#">Inicio</a></li>
+                                                <li><a href="#">Solicitudes</a></li>
 
+                                            </ul>
+                                        </div><!--/.nav-collapse -->
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Últimos registros</div>
-                                    <div class="panel-body">
-                                        {{ render(controller('AdminAgenciaBundle:Page:ajaxtalentos',{'id':entity.id})) }}
-                                    </div>
+                                <div>
+                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                    <!-- Bloque1 -->
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-client="ca-pub-6359162192439396"
+                                         data-ad-slot="7042996067"
+                                         data-ad-format="auto"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Redes Sociales</div>
-                                    <div class="panel-body">
-                                        <p id="info"><img src="{{asset('images/social/f.png')}}" alt="" height="35px" id="social"> {%if entity.grupofb %}{{entity.grupofb}}{%else%}No definido{%endif%}</p>
-                                        <p id="info"><img src="{{asset('images/social/y.png')}}" alt="" height="35px" id="social"> {%if entity.youtube %}{{entity.paginaweb}}{%else%}No definido{%endif%}</p>
-                                        <p id="info"><img src="{{asset('images/social/t.png')}}" alt="" height="35px" id="social"> {%if entity.twitter %}{{entity.paginaweb}}{%else%}No definido{%endif%}</p>
-
-                                    </div>
-                                </div>
-
-
                             </div>
+
                         </div>
                     </div>
                 </div>
