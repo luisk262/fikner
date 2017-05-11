@@ -17,9 +17,7 @@
                 </a>
             {%endif%}
             <div class="caption">
-                <h3>{{ entity.idHojadevida.nombre }}<br>
-                    <small>{{ entity.idHojadevida.apellido }}</small>
-                </h3>
+                <h3>{{ entity.idHojadevida.nombre }}</h3>
                 {% if not entity.idHojadevida.Calificacion %}
                     <center>
                         <a href="{{path('Myaccount_calificacion')}}">
@@ -94,15 +92,12 @@
                     </a>
                 {%endif%}
                 <label>Ciudad:</label>{{ entity.idHojadevida.ciudadresidencia }}<br>
-                {{ entity.idHojadevida.emailPersonal }}<br>
                 <label>Estatura:</label>{{ entity.idHojadevida.estatura }} Cm<br>
                 {% set number1 = entity.idHojadevida.fechaNac|date("Y") %}
                 {% set number2 = "now"|date("Y") %}
                 {% set aux= ((number2 - number1)) %}
                 <label>Edad:</label>{{aux}}<br>
-                <Label>Celular:</label>
-                    {{ entity.idHojadevida.telCe }}
-                <a href="{{ path('agencia_dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}" class="btn btn-default btn-block"><i class="glyphicon glyphicon-eye-open"></i> Ver book</a>
+                <a href="{{ path('agencia_dashboard_hojadevida_show', { 'id': entity.idHojadevida.id}) }}" class="btn btn-default btn-block"><i class="glyphicon glyphicon-eye-open"></i> Ver perfil</a>
             </div> 
         </div>    
     </div>

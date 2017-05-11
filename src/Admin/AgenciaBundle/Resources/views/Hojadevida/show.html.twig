@@ -159,15 +159,7 @@
                                 {{entity.idHojadevida.Campoartistico[:20] ~ '...' }}
                                    {%else%}No definido{%endif%})</h4>
                             <br>
-                            <a href="{{path('list_book',{id:entity.idHojadevida.id})}}" class="btn btn-primary">
-                                <span>
-                                    BOOK PUBLICO
-                                </span></a>
-                            <a href="http://www.facebook.com/sharer.php?u=http://fikner.com{{path('list_book',{id:entity.idHojadevida.id})}}" class="btn btn-primary" target="_blank">
-                                <span>
-                                    COMPARTIR
-                                </span>
-                            </a>
+
                         </div>
 
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="profileLikes">
@@ -214,18 +206,14 @@
 
 
                                                         <li>PESO <br><span>{{ entity.idHojadevida.peso}}KG</span><hr></li>
-
-
-
-                                                        <li>DOCUMENTO <br><span> {{ entity.idHojadevida.tipoDocumento }} / {{ entity.idHojadevida.nit }}</span><hr></li>
                                                         <li>PAIS NACIMIENTO <br><span>{{ entity.idHojadevida.paisNacimiento }}</span><hr></li>
-
-                                                        <li>MOVIL<BR><span> {{ entity.idHojadevida.telCe }}</span><hr></li>
-
-                                                        <li>WHATSAPP<BR><span> {{ entity.idHojadevida.telefonoAdic }}</span><hr></li>
-
-                                                        <li>EMAIL<br><span>{{ entity.idHojadevida.emailPersonal }}</span><li>
-                                                    </ul>
+                                                        {% if not ((Ahojadevida.Estado =='Pendiente') or (Ahojadevida.Estado =='Inactivo') or (Ahojadevida.Estado =='Vetado'))  %}
+                                                            <li>DOCUMENTO <br><span> {{ entity.idHojadevida.tipoDocumento }} / {{ entity.idHojadevida.nit }}</span><hr></li>
+                                                            <li>MOVIL<BR><span> {{ entity.idHojadevida.telCe }}</span><hr></li>
+                                                            <li>WHATSAPP<BR><span> {{ entity.idHojadevida.telefonoAdic }}</span><hr></li>
+                                                            <li>EMAIL<br><span>{{ entity.idHojadevida.emailPersonal }}</span><li>
+                                                        {% endif %}
+                                                        </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -383,18 +371,11 @@
                                                                             <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                                                             <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
                                                                         </ul>
+                                                                        <br><br><br>
                                                                     </div>
                                                                 </div>
 
 
-                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="sobreMi">
-                                                                    <hr>
-                                                                    <h3>Sobre mí</h3>
-                                                                    <p id="textoABoutMe">
-                                                                        {{ entity.idHojadevida.experienciaTv }}
-                                                                    </p>
-                                                                    <hr>
-                                                                </div>
                                                                 <!--
                                                                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="valoraciones">
                                                                                                     <div class="panel-group" id="accordion">
@@ -469,14 +450,31 @@
                                                         </div>
 
                                                         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="fotos">
+                                                            {% if  ((Ahojadevida.Estado =='Pendiente') or (Ahojadevida.Estado =='Inactivo') or (Ahojadevida.Estado =='Vetado'))  %}
+                                                                <h2>Este perfil se encuentra {{ Ahojadevida.Estado }}</h2>
+                                                                <h4>El perfil sugiere que es
+                                                                    {%if entity.idHojadevida.Campoartistico%}
+                                                                    {% for item in entity.idHojadevida.Campoartistico|split(',') %}
+                                                                        <li>{{ item }}</li>
+                                                                    {% endfor %}
+                                                                    {%else%}No definido{%endif%}</li>
+                                                                </h4>
+                                                            {% endif %}
                                                             <div class="col-lg-12 linea">
                                                                 {{ render(controller('AdminAgenciaBundle:Hojadevida:edit',{'id':Ahojadevida.idHojadevida.id})) }}
                                                             </div>
                                                             {{ render(controller('AdminAgenciaBundle:Photo:list',{'id':entity.idHojadevida})) }}
+                                                        <div class="col-lg-12 linea">
+                                                            <div class="row">
+                                                                <h2>Sobre mí</h2>
+                                                                <p id="textoABoutMe">
+                                                                    {{ entity.idHojadevida.experienciaTv }}
+                                                                </p>
+                                                                <hr>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <hr>
-                                                </div>
+                                                        </div>
+                    </div>
                                             </div>
                                         </div>
                                     </section>
