@@ -40,12 +40,12 @@
                         <div class="input-group">
                             <input type="text" name="searchParam[general]" class="form-control" placeholder="Búsqueda rápida">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                <button class="btn btn-default" type="submit" id="btn-recargar"><span class="glyphicon glyphicon-search"></span></button>
                             </div><!-- /btn-group -->
                         </div><!-- /input-group -->
                     </div>
                     <div class="col-md-2">
-                        <select id="js-perpage" name="searchParam[perPage]" class="form-control">
+                        <select id="js-perpage" name="searchParam[perPage]" class="form-control" onchange="Recargar()">
                             <option value="10" >10</option>
                             <option value="20" selected>20</option>
                             <option value="50">50</option>
@@ -53,14 +53,13 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select id="js-perpage" name="searchParam[calificacion]" class="form-control">
+                        <select id="js-perpage" name="searchParam[calificacion]" class="form-control" onchange="Recargar()">
                             <option value="Todas" selected="">Todas</option>
-                            <option value="1 Estrellas">1 Estrellas</option>
-                            <option value="2 Estrellas">2 Estrellas</option>
-                            <option value="3 Estrellas">3 Estrellas</option>
-                            <option value="4 Estrellas">4 Estrellas</option>
-                            <option value="5 Estrellas">5 Estrellas</option>
-                            <option value="1 Estrellas">Sin Calificación</option>
+                            <option value="1">1 Estrellas</option>
+                            <option value="2">2 Estrellas</option>
+                            <option value="3">3 Estrellas</option>
+                            <option value="4">4 Estrellas</option>
+                            <option value="5">5 Estrellas</option>
                         </select>
                     </div>
 
@@ -447,6 +446,9 @@
     {{parent()}}
     {%if (agencia and AgenciaUsuario.idAgencia.Activo=='1')%}
         <script>
+            function Recargar() {
+                document.getElementById("btn-recargar").click();
+            }
             (function ($) {
                 /* helper functions */
                 function getCheckedRows() {

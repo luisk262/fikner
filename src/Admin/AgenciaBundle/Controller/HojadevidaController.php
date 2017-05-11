@@ -222,6 +222,10 @@ class HojadevidaController extends Controller {
                             . 'h.estatura Like :general')
                     ->setParameter('general', '%' . $general . '%');
         }
+        if(!empty($calificacion!='Todas')){
+            $entryQuery->andWhere('ah.Calificacion =:calificacion ')->setParameter('calificacion', intval($calificacion));
+            $queryaux->andWhere('ah.Calificacion =:calificacion')->setParameter('calificacion', intval($calificacion));
+        }
 
 
         if (!empty($id)) {
