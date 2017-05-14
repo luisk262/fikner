@@ -76,7 +76,7 @@
                                                 {%if contador==0%}
                                                     {% if entity.image == ''%}
                                                         {%set aux=true%}
-                                                        <img class="featurette-image img-responsive center-block" data-src="{{ asset('upload/default/default.png')}}" alt="Image " src="{{ asset('upload/default/default.png')}}" data-holder-rendered="true">
+                                                        <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                                     {%else%}
                                                         {%set aux=true%}
                                                         <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" alt="Image " src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" data-holder-rendered="true">
@@ -85,7 +85,7 @@
                                                 {% set contador=contador+1%}
                                             {%endfor%}
                                             {%if not aux %}
-                                                <img class="" alt="{{HojadevidaP[0].idHojadevida.id}}" src="{{web_image("/bundles/adminmyaccount/images/no-picture.png").resize(500,500)}}" data-holder-rendered="true">
+                                                <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                             {%endif%}
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                                                 {%if contador==1%}
                                                     {% if entity.image == ''%}
                                                         {%set aux=true%}
-                                                        <img class="featurette-image img-responsive center-block" data-src="{{ asset('upload/default/default.png')}}" alt="Image " src="{{ asset('upload/default/default.png')}}" data-holder-rendered="true">
+                                                        <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                                     {%else%}
                                                         {%set aux=true%}
                                                         <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" alt="Image " src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" data-holder-rendered="true">
@@ -110,7 +110,7 @@
                                                 {% set contador=contador+1%}
                                             {%endfor%}
                                             {%if not aux %}
-                                                <img class="" alt="{{HojadevidaP[0].idHojadevida.id}}" src="{{web_image("/bundles/adminmyaccount/images/no-picture.png").resize(500,500)}}" data-holder-rendered="true">
+                                                <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                             {%endif%}
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -158,7 +158,7 @@
                                                 {%if contador==2%}
                                                     {% if entity.image == ''%}
                                                         {%set aux=true%}
-                                                        <img class="featurette-image img-responsive center-block" data-src="{{ asset('upload/default/default.png')}}" alt="Image " src="{{ asset('upload/default/default.png')}}" data-holder-rendered="true">
+                                                        <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                                     {%else%}
                                                         {%set aux=true%}
                                                         <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" alt="Image " src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" data-holder-rendered="true">
@@ -167,7 +167,7 @@
                                                 {% set contador=contador+1%}
                                             {%endfor%}
                                             {%if not aux %}
-                                                <img class="" alt="{{HojadevidaP[0].idHojadevida.id}}" src="{{web_image("/bundles/adminmyaccount/images/no-picture.png").resize(500,500)}}" data-holder-rendered="true">
+                                                <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                             {%endif%}
                                         </div>
                                     </div>
@@ -183,7 +183,7 @@
                                                 {%if contador==3%}
                                                     {% if entity.image == ''%}
                                                         {%set aux=true%}
-                                                        <img class="featurette-image img-responsive center-block" data-src="{{ asset('upload/default/default.png')}}" alt="Image " src="{{ asset('upload/default/default.png')}}" data-holder-rendered="true">
+                                                        <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                                     {%else%}
                                                         {%set aux=true%}
                                                         <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" alt="Image " src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" data-holder-rendered="true">
@@ -192,7 +192,7 @@
                                                 {% set contador=contador+1%}
                                             {%endfor%}
                                             {%if not aux %}
-                                                <img class="" alt="{{HojadevidaP[0].idHojadevida.id}}" src="{{web_image("/bundles/adminmyaccount/images/no-picture.png").resize(500,500)}}" data-holder-rendered="true">
+                                                <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                             {%endif%}
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -240,7 +240,7 @@
                                                 {%if contador==4%}
                                                     {% if entity.image == ''%}
                                                         {%set aux=true%}
-                                                        <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/default/default.png').resize(100,100)}}" alt="Image " src="{{ asset('upload/default/default.png')}}" data-holder-rendered="true">
+                                                        <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                                     {%else%}
                                                         {%set aux=true%}
                                                         <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" alt="Image " src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" data-holder-rendered="true">
@@ -249,7 +249,7 @@
                                                 {% set contador=contador+1%}
                                             {%endfor%}
                                             {%if not aux %}
-                                                <img class="" alt="{{HojadevidaP[0].idHojadevida.id}}" src="{{web_image("/bundles/adminmyaccount/images/no-picture.png").resize(500,500)}}" data-holder-rendered="true">
+                                                <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                             {%endif%}
 
                                         </div>
@@ -267,7 +267,7 @@
                                                 {%if contador==5%}
                                                     {% if entity.image == ''%}
                                                         {%set aux=true%}
-                                                        <img class="featurette-image img-responsive center-block" data-src="{{ web_image('upload/default/default.png').resize(100,100)}}" alt="Image " src="{{ asset('upload/default/default.png')}}" data-holder-rendered="true">
+                                                        <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                                     {%else%}
                                                         {%set aux=true%}
                                                         <img class="featurette-image img-responsive center-block" data-src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" alt="Image " src="{{web_image('upload/Photos/' ~ entity.id ~'/' ~ entity.image).resize(500,500)}}" data-holder-rendered="true">
@@ -276,7 +276,7 @@
                                                 {% set contador=contador+1%}
                                             {%endfor%}
                                             {%if not aux %}
-                                                <img class="" alt="{{HojadevidaP[0].idHojadevida.id}}" src="{{web_image("/bundles/adminmyaccount/images/no-picture.png").resize(500,500)}}" data-holder-rendered="true">
+                                                <img data-src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}"  src="{{ web_image('upload/default/noImage.jpg').zoomCrop(500,500,'black')}}" style="height: 450px; width: 350px;">
                                             {%endif%}
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

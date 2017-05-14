@@ -334,7 +334,7 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
                 ->addOrderBy('h.Calificacion', 'DESC')
-                ->addOrderBy('h.fechaupdate', 'DESC')
+                //->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         //query aux
         $queryaux = $em->createQueryBuilder()
@@ -344,14 +344,14 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
                 ->addOrderBy('h.Calificacion', 'DESC')
-                ->addOrderBy('h.fechaupdate', 'DESC')
+                //->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         $total_count = $queryaux->getQuery()->getSingleScalarResult();
-        $entryQuery->setFirstResult(($page - 1) * 36)->setMaxResults(36);
+        $entryQuery->setFirstResult(($page - 1) * 20)->setMaxResults(20);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();
-        $pagination = (new Paginator())->setItems($total_count, 36)->setPage($searchParam['page'])->toArray();
+        $pagination = (new Paginator())->setItems($total_count, 20)->setPage($searchParam['page'])->toArray();
         //renderizamos la vista para mostrar las hojas de vida
         return $this->render('AdminAdminBundle:Default:ajax_books_list.html.twig', array(
                     'entities' => $entities,
