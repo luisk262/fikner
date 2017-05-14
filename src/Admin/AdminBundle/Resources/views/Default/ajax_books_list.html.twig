@@ -2,12 +2,12 @@
     {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
 </div>
 {% for entity in entities %}
-    <div class="col-sm-6 col-md-3 col-lg-2">
+    <div class="col-sm-6 col-md-3 col-lg-3">
         <a href="{{path('list_book', {'id':entity.idHojadevida.id})}}" class="thumbnail">
             {% if entity.idPhoto.image == '' %}
-                <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}"> 
+                <img data-src="{{ web_image('upload/default/default.jpg').zoomCrop(350,450,'black')}}"  src="{{ web_image('upload/default/default.jpg').zoomCrop(350,450,'black')}}" style="height: 450px; width: 350px;">
             {% else %}
-                <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(200,200,'black')}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(200,200,'black')}}" style="height: 180px; width: 100%; display: block;"> 
+                <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(350,450,'black')}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).zoomCrop(350,450,'black')}}" style="height: 450px; width: 350px;">
             {%endif%}
         </a>
     </div>
