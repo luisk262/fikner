@@ -283,6 +283,8 @@ class AgenciaController extends Controller {
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $video=str_replace('https://www.youtube.com/watch?v=','',$entity->getVideoPrincipal());
+            $entity->setVideoPrincipal($video);
             $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
             $em->persist($entity);
             $em->flush();

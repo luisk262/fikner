@@ -34,6 +34,7 @@ class AgenciaType extends AbstractType {
                 ->add('pais','text',array('label'=>'País *'))
                 ->add('ciudad','text',array('label'=>'Ciudad *'))
                 ->add('nit','text',array('label'=>'Nit *'))
+                ->add('VideoPrincipal','text',array('label'=>'Link video youtube','required' => false))
                 ->add('descripcion','textarea',array('label'=>'Descripción ','required' => false,'attr'=>array('rows' => 33,'placeholder' => 'Digite aquí una descripción, actividades  o misión y visión')))
                 ->add('telefono', 'text', array('label' => 'Teléfono *', 'required' => true))
                 ->add('direccion','text',array('label'=>'Dirección *'))

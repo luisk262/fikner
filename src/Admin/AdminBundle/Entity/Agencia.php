@@ -99,7 +99,12 @@ class Agencia {
      * @ORM\Column(name="twitter", type="string", length=150, nullable=true)
      */
     private $twitter;
-    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="VideoPrincipal", type="string", length=150, nullable=true)
+     */
+    private $VideoPrincipal;
 
     /**
      * @var string
@@ -705,5 +710,29 @@ class Agencia {
     public function getCopiaEmail()
     {
         return $this->CopiaEmail;
+    }
+
+    /**
+     * Set videoPrincipal
+     *
+     * @param string $videoPrincipal
+     *
+     * @return Agencia
+     */
+    public function setVideoPrincipal($videoPrincipal)
+    {
+        $this->VideoPrincipal = $videoPrincipal;
+
+        return $this;
+    }
+
+    /**
+     * Get videoPrincipal
+     *
+     * @return string
+     */
+    public function getVideoPrincipal()
+    {
+        return $this->VideoPrincipal;
     }
 }
