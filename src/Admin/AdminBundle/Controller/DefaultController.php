@@ -398,7 +398,7 @@ EOF
                 )
             ;
             $this->get('mailer')->send($message);
-        $mail='yes';
+        $mail='Yes';
         }catch (\Exception $e){
          $mail='Not';
         }
