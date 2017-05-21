@@ -221,6 +221,30 @@ class PhotoController extends Controller {
                     $em->persist($hojadevidaPhoto);
                     $em->flush();
                 }
+                $body= 'El usuario '.$user->getNombre().' Subio o modifico una imagen en su perfil. http://fikner.com/Agencia/dashboard/hojadevida/'.$UHojadevida->getIdHojadevida()->getId();
+                $agenciasHs=$em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findBy(array('idHojadevida'=>$UHojadevida->getIdHojadevida(),'Activo'=>true));
+                $correo_remitente = 'youfikner@gmail.com';
+                $Subject=$user->getNombre().'- Realizo cambios en su galeria de imagenes.';
+                $data['titulo1']='Tenemos una nueva noticia';
+                $data['titulo2']=$Subject;
+                $data['body']=$body;
+                $data['firma']='';
+                $template=$this->renderView('AdminAdminBundle:views:email.html.twig',array('data'=>$data));
+                foreach ( $agenciasHs as $ah){
+                    try{
+                        $email = $ah->getIdAgencia()->getEmail();;
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject($Subject)
+                            ->setFrom($correo_remitente)
+                            ->setTo($email)
+                            ->setBody($template,'text/html')
+                        ;
+                        $this->get('mailer')->send($message);
+                    }catch (\Exception $e){
+
+                    }
+
+                }
             }
             return $this->redirect($this->generateUrl('Myaccount_photo'));
         }

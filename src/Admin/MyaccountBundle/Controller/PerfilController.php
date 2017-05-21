@@ -254,43 +254,8 @@ class PerfilController extends Controller {
      */
     public function editAction() {
         $em = $this->getDoctrine()->getManager();
-        $security_context = $this->get('security.context');
-//definimos el usuario logeado
-        $security_token = $security_context->getToken();
-//definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
-        $user = $security_token->getUser();
-        $query = $em->createQuery(
-                        'SELECT uh
-                        FROM AdminAdminBundle:UsuarioHojadevida uh
-                        WHERE uh.idUsuario  =:id'
-                )->setParameter('id', $user->getId());
-
-        if ($query->getResult()) {
-
-            $Hojadevida = $query->getResult();
-// Buscamos el array de resultados
-            $Hojadevida = $query->setMaxResults(1)->getOneOrNullResult();
-            if ($Hojadevida) {
-                $entity = $em->getRepository('AdminAdminBundle:Hojadevida')->find($Hojadevida->getIdHojadevida()->getId());
-                ///sacamos imagen para mostrar
-                $query = $em->createQuery(
-                                'SELECT hp
-                        FROM AdminAdminBundle:HojadevidaPhoto hp
-                        WHERE (hp.idHojadevida  =:id) AND (hp.principal =:Valor)'
-                        )->setParameter('id', $Hojadevida->getIdHojadevida()->getId())
-                        ->setParameter('Valor', 1);
-                if ($query->getResult()) {
-                    $HojadevidaP = $query->getResult();
-                    // Buscamos el array de resultados
-                    $HojadevidaP = $query->setMaxResults(1)->getOneOrNullResult();
-                    $idfoto = $HojadevidaP->getIdPhoto()->getId();
-                    $Image = $HojadevidaP->getIdPhoto()->getImage();
-                } else {
-                    $idfoto = null;
-                    $Image = null;
-                }
-            }
-        }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $entity=$em->getRepository('AdminAdminBundle:UsuarioHojadevida')->getUsrIdHojadevida($user->getId());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Hojadevida entity.');
         }
@@ -298,9 +263,9 @@ class PerfilController extends Controller {
 
         return array(
             'entity' => $entity,
-            'edit_form' => $editForm->createView(),
-            'idfoto' => $idfoto,
-            'Image' => $Image
+            'edit_form' => $editForm->createView()
+            //'idfoto' => $idfoto,
+            //'Image' => $Image
         );
     }
 
@@ -359,37 +324,50 @@ class PerfilController extends Controller {
     public function updateAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
-        $security_context = $this->get('security.context');
-//definimos el usuario logeado
-        $security_token = $security_context->getToken();
-//definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
-        $user = $security_token->getUser();
-        $query = $em->createQuery(
-                        'SELECT uh
-                        FROM AdminAdminBundle:UsuarioHojadevida uh
-                        WHERE uh.idUsuario  =:id'
-                )->setParameter('id', $user->getId());
-        if ($query->getResult()) {
-            $Hojadevida = $query->getResult();
-// Buscamos el array de resultados
-            $Hojadevida = $query->setMaxResults(1)->getOneOrNullResult();
-            if ($Hojadevida) {
-                $entity = $em->getRepository('AdminAdminBundle:Hojadevida')->find($Hojadevida->getIdHojadevida()->getId());
-            }
-        }
-
-
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $entity=$em->getRepository('AdminAdminBundle:UsuarioHojadevida')->getUsrIdHojadevida($user->getId());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Hojadevida entity.');
         }
         $editForm = $this->createEditForm($entity);
+        $cambios=array();
+        $auxH=$request->request->get('admin_adminbundle_hojadevida');
+        if($auxH['experienciaTv']!=$entity->getExperienciaTv()){
+            $cambios['experienciaTv']='* Experiencia: '.$auxH['experienciaTv'].' http://fikner.com/Agencia/dashboard/hojadevida/'.$entity->getId();
+        }
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
             $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
             $entity->setFechaupdate($date);
             $em->persist($entity);
             $em->flush();
-            ;
+            if(isset($cambios['experienciaTv'])){
+                $body= $cambios['experienciaTv'];
+                $agenciasHs=$em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findBy(array('idHojadevida'=>$entity->getId(),'Activo'=>true));
+                $correo_remitente = 'youfikner@gmail.com';
+                $Subject=$entity->getNombre().'- Realizo cambios en su perfil. ';
+                $data['titulo1']='Tenemos una nueva noticia';
+                $data['titulo2']=$Subject;
+                $data['body']=$body;
+                $data['firma']='';
+                $template=$this->renderView('AdminAdminBundle:views:email.html.twig',array('data'=>$data));
+                foreach ( $agenciasHs as $ah){
+                    try{
+                        $email = $ah->getIdAgencia()->getEmail();;
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject($Subject)
+                            ->setFrom($correo_remitente)
+                            ->setTo($email)
+                            ->setBody($template,'text/html')
+                        ;
+                        $this->get('mailer')->send($message);
+                    }catch (\Exception $e){
+
+                    }
+
+                }
+            }
+
             return $this->redirect($this->generateUrl('Myaccount_perfil_show'));
         }
         return array(
