@@ -222,12 +222,14 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idHojadevida', 'h')
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
-                ->addOrderBy('h.Calificacion', 'DESC')
+                ->andWhere('h.Calificacion =5')
+                ->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         $entryQuery->setFirstResult(0)->setMaxResults(3);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();
+        dump($entities);die;
         return $this->render('AdminAdminBundle:Default:ajax_talentos.html.twig', array(
                     'entities' => $entities,
         ));
@@ -333,8 +335,8 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idHojadevida', 'h')
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
-                ->addOrderBy('h.Calificacion', 'DESC')
-                //->addOrderBy('h.fechaupdate', 'DESC')
+                ->andWhere('h.Calificacion >=4')
+                ->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         //query aux
         $queryaux = $em->createQueryBuilder()
@@ -343,8 +345,8 @@ class DefaultController extends Controller {
                 ->leftJoin('hp.idHojadevida', 'h')
                 ->leftJoin('hp.idPhoto', 'p')
                 ->andWhere('hp.principal =:principal')
-                ->addOrderBy('h.Calificacion', 'DESC')
-                //->addOrderBy('h.fechaupdate', 'DESC')
+                ->andWhere('h.Calificacion >=4')
+                ->addOrderBy('h.fechaupdate', 'DESC')
                 ->setParameter('principal', '1');
         $total_count = $queryaux->getQuery()->getSingleScalarResult();
         $entryQuery->setFirstResult(($page - 1) * 20)->setMaxResults(20);
