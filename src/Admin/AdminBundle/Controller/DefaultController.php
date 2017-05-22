@@ -229,7 +229,6 @@ class DefaultController extends Controller {
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();
-        dump($entities);die;
         return $this->render('AdminAdminBundle:Default:ajax_talentos.html.twig', array(
                     'entities' => $entities,
         ));
