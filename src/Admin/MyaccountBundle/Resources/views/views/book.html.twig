@@ -26,6 +26,27 @@
     <link rel="stylesheet" href="{{asset('bundles/adminadmin/css/listbooks.css')}}">
 {% endblock %}
 {% block container %}
+    <section class="section" id="book_section_agencia" style="padding: 50px 0 50px 0; background-color: #4b4f56;">
+        <div class="container">
+<div class="col-lg-12">
+<h3>Disponible en:</h3>
+</div>
+            <div class="col-lg-12">
+                {% for agencia in agencias %}
+                    <div class="col-lg-3">
+                        <a href="{{path('Agencia_page',{'nombre':agencia.idAgencia.nombreagencia|replace({' ':'_'})})}}">
+                            <h4 class="text-justify">{% filter upper %}
+                                    {{ agencia.idAgencia.nombreagencia|slice(0, 19) ~ '...'  }}
+                                {% endfilter %}</h4>
+                            <img src="{{ asset('upload/default/noImage.jpg') }}" alt="" class="img-responsive" width="250px">
+                        </a>
+                         </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
             <div id="books">
