@@ -19,5 +19,19 @@ class AgenciaHojadevidaRepository extends EntityRepository
                 ->getQuery()
                 ;
       return $result->getArrayResult();
- }    
+ }
+ /// agencias que pertenecen a un book en especifico $id es id hojadevida
+ public function agenciasbook($idHojadevida){
+     $result = $this->createQueryBuilder('ah')
+         ->join('ah.idHojadevida','h')
+         ->join('ah.idAgencia','a')
+         ->andWhere('a.privado =0')
+         ->andWhere('ah.Activo =1')
+         ->andWhere('ah.Estado =:Estado')
+         ->andWhere('h.id =:id')
+         ->setParameter('id',$idHojadevida)
+         ->setParameter('Estado','Activo')
+         ->getQuery();
+     return $result->getResult();
+ }
 }

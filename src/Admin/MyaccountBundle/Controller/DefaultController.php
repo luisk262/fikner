@@ -134,7 +134,7 @@ class DefaultController extends Controller {
             $entities = null;
             $HojadevidaP=null;
         }
-        $agencias=$em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findby(array('idHojadevida'=>$id,'Activo'=>1,'Estado'=>'Activo'));
+        $agencias=$em->getRepository('AdminAdminBundle:AgenciaHojadevida')->agenciasbook($id);
         return array(
             'id' => $id,
             'photos' => $photos,
