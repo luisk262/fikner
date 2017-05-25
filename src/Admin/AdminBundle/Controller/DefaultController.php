@@ -217,18 +217,24 @@ class DefaultController extends Controller {
     public function ajaxtalentosAction() {
         $em = $this->getDoctrine()->getManager();
         $entryQuery = $em->createQueryBuilder()
-                ->select('hp', 'p', 'h')
-                ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
-                ->leftJoin('hp.idHojadevida', 'h')
-                ->leftJoin('hp.idPhoto', 'p')
-                ->andWhere('hp.principal =:principal')
+                ->select('h.id')
+                ->from('AdminAdminBundle:Hojadevida', 'h')
                 ->andWhere('h.Calificacion =5')
                 ->addOrderBy('h.fechaupdate', 'DESC')
-                ->setParameter('principal', '1');
-        $entryQuery->setFirstResult(0)->setMaxResults(3);
+                ;
+       // $entryQuery->setFirstResult(0)->setMaxResults(23);
         $entryQueryfinal = $entryQuery->getQuery();
         //obtenemos el array de resultados
         $entities = $entryQueryfinal->getArrayResult();
+        $books=array();
+        foreach ($entities as $entity){
+            array_push($books,$entity['id']);
+        }
+        $key_books=array_rand($books, 3);
+        $entities=array();
+        foreach ($key_books as $key){
+            array_push($entities,$em->getRepository('AdminAdminBundle:HojadevidaPhoto')->findOneBy(array('idHojadevida'=>$books[$key],'principal'=>true)));
+        }
         return $this->render('AdminAdminBundle:Default:ajax_talentos.html.twig', array(
                     'entities' => $entities,
         ));
