@@ -442,4 +442,16 @@ EOF
             'pagination'=>$pagination
         ));
     }
+    public function showphotoAction($idAgencia){
+        $em= $this->getDoctrine()->getManager();
+        $AgenciaPhoto=$em->getRepository('AdminAdminBundle:AgenciaPhoto')->findOneByidAgencia($idAgencia);
+        if(!empty($AgenciaPhoto)){
+            $entity=$em->getRepository('AdminAdminBundle:Photo')->find($AgenciaPhoto->getIdPhoto()->getId());
+        }else{
+            $entity=array();
+        }
+        return $this->render('AdminAdminBundle:Default:ajax_image.html.twig', array(
+            'entity' => $entity
+        ));
+    }
 }

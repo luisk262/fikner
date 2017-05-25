@@ -38,7 +38,10 @@
                             <h4 class="text-justify">{% filter upper %}
                                     {{ agencia.idAgencia.nombreagencia|slice(0, 19) ~ '...'  }}
                                 {% endfilter %}</h4>
-                            <img src="{{ asset('upload/default/noImage.jpg') }}" alt="" class="img-responsive" width="250px">
+                            {{ render(controller('AdminAdminBundle:Default:showphoto',{'idAgencia':agencia.idAgencia.id})) }}
+                            <div style="background-color: #ffffff; display: none;" class="img-responsive text-center" width="248px" height="186px">
+                                <img src="{{ asset('images/cargando.gif') }}"style="margin-left: auto;margin-right: auto;padding-top: 50px;padding-bottom: 50px;">
+                            </div>
                         </a>
                          </div>
                 {% endfor %}
