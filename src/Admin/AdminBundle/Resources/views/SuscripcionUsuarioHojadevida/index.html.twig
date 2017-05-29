@@ -1,0 +1,55 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block title %}
+    Suscripcion | {{ parent() }}
+{% endblock %}
+{% block container %}    <h1>Suscripcion</h1>
+    <a class="btn btn-danger" href="{{ path('dashboard_suscripcionusuariohojadevida_new',{'id':idHojadevida}) }}">
+        Nueva
+    </a>
+
+    <table class="table table-sm table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Fecha_vencimiento</th>
+                <th>Dias Restantes</th>
+                <th>Plan</th>
+                <th>Tarifa</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            {% if entity.estado =='VIGENTE' %}
+            <tr class="table-warning">
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{ entity.Estado }}</td>
+                <td>{% if entity.fechavencimiento %}{{ entity.fechavencimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    {% if entity.Estado =='VIGENTE' %}
+                        {% set diferencia = entity.fechavencimiento.diff(date('now')) %}
+                        {% set diasRestantes = diferencia.days %}
+                        {% if diasRestantes == 1 %}
+                            1 día
+                        {% else %}
+                            {{ diasRestantes }} días
+                        {% endif %}
+                        {% else %}
+                        N/a
+                    {% endif %}
+                </td>
+                <td>{{ entity.idsuscripcion }}</td>
+                <td>$ {{ entity.idsuscripcion.tarifa }}</td>
+
+            <td>
+                <ul>
+                        <a class="btn btn-default btn-block" href="{{ path('dashboard_suscripcionusuariohojadevida_edit', { 'id': entity.id }) }}">Editar</a>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ {% endblock %}

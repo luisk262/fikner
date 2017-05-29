@@ -1,0 +1,22 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+{% block title %}
+    Editar suscripcion | {{ parent() }}
+{% endblock %}
+{% block container %}
+    <h1>SuscripcionUsuarioHojadevida edit</h1>
+    {{ form_start(edit_form) }}
+    {{ form_row(edit_form.Estado,{
+        'attr': {'class':'form-control'}})
+    }}
+    {{ form(edit_form) }}
+
+    {{ form_end(edit_form) }}
+    <ul class="record_actions">
+    <li>
+        <a href="{{ path('dashboard_suscripcionusuariohojadevida',{'id':entity.idHojadevida.id}) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

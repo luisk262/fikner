@@ -1,0 +1,47 @@
+{% extends "AdminAdminBundle::layout.html.twig" %}
+
+{% block container %}
+    <h1>SuscripcionUsuario list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Activo</th>
+                <th>Tarifa</th>
+                <th>Dias</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('dashboard_suscripcionusuario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.activo }}</td>
+                <td>{{ entity.tarifa }}</td>
+                <td>{{ entity.dias }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('dashboard_suscripcionusuario_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('dashboard_suscripcionusuario_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('dashboard_suscripcionusuario_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
