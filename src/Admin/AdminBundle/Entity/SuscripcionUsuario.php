@@ -47,7 +47,12 @@ class SuscripcionUsuario
      * @ORM\Column(name="dias", type="string", length=3)
      */
     private $dias;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Cod", type="string", length=3)
+     */
+    private $codigo;
     /**
      * Get id
      *
@@ -155,5 +160,29 @@ class SuscripcionUsuario
     }
     public function __toString() {
         return '$ '.$this->tarifa.':'.$this->nombre;
+    }
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     *
+     * @return SuscripcionUsuario
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
     }
 }
