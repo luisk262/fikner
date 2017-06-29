@@ -335,6 +335,7 @@ class DefaultController extends Controller {
         extract($searchParam);
         if(isset($genero)){
             $em = $this->getDoctrine()->getManager();
+            $date = new DateTime('-18years', new \DateTimeZone('America/Bogota'));
             switch ($genero){
                 case 'Masculino':
                     $entryQuery = $em->createQueryBuilder()
@@ -345,9 +346,11 @@ class DefaultController extends Controller {
                         ->andWhere('hp.principal =:principal')
                         ->andWhere('h.Calificacion >=4')
                         ->andWhere('h.sexo=:Genero')
+                        ->andWhere('h.fechaNac<:fecha')
                         ->addOrderBy('h.fechaupdate', 'DESC')
                         ->setParameter('principal', '1')
-                        ->setParameter('Genero','Masculino');
+                        ->setParameter('Genero','Masculino')
+                        ->setParameter('fecha',$date);
                     //query aux
                     $queryaux = $em->createQueryBuilder()
                         ->select('COUNT(hp)')
@@ -357,9 +360,11 @@ class DefaultController extends Controller {
                         ->andWhere('hp.principal =:principal')
                         ->andWhere('h.Calificacion >=4')
                         ->andWhere('h.sexo=:Genero')
+                        ->andWhere('h.fechaNac<:fecha')
                         ->addOrderBy('h.fechaupdate', 'DESC')
                         ->setParameter('principal', '1')
-                        ->setParameter('Genero','Masculino');
+                        ->setParameter('Genero','Masculino')
+                        ->setParameter('fecha',$date);
 
                     break;
                 case 'Femenino':
@@ -371,9 +376,11 @@ class DefaultController extends Controller {
                         ->andWhere('hp.principal =:principal')
                         ->andWhere('h.Calificacion >=4')
                         ->andWhere('h.sexo=:Genero')
+                        ->andWhere('h.fechaNac<:fecha')
                         ->addOrderBy('h.fechaupdate', 'DESC')
                         ->setParameter('Genero','Femenino')
-                        ->setParameter('principal', '1');
+                        ->setParameter('principal', '1')
+                        ->setParameter('fecha',$date);
                     //query aux
                     $queryaux = $em->createQueryBuilder()
                         ->select('COUNT(hp)')
@@ -383,13 +390,14 @@ class DefaultController extends Controller {
                         ->andWhere('hp.principal =:principal')
                         ->andWhere('h.Calificacion >=4')
                         ->andWhere('h.sexo=:Genero')
+                        ->andWhere('h.fechaNac<:fecha')
                         ->addOrderBy('h.fechaupdate', 'DESC')
                         ->setParameter('Genero','Femenino')
-                        ->setParameter('principal', '1');
+                        ->setParameter('principal', '1')
+                        ->setParameter('fecha',$date);
 
                     break;
                 case 'Infantil':
-                    $date = new DateTime('-18years', new \DateTimeZone('America/Bogota'));
                     $entryQuery = $em->createQueryBuilder()
                         ->select('hp', 'p', 'h')
                         ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
