@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Admin\AdminBundle\Entity\User;
 use Admin\MyaccountBundle\Form\RegistrationType;
 use Admin\AdminBundle\Pagination\Paginator;
+use DateTime;
 
 class DefaultController extends Controller {
 
@@ -332,38 +333,125 @@ class DefaultController extends Controller {
         $searchParam = $request->get('searchParam');
         //extraemos variables del array
         extract($searchParam);
+        if(isset($genero)){
+            $em = $this->getDoctrine()->getManager();
+            switch ($genero){
+                case 'Masculino':
+                    $entryQuery = $em->createQueryBuilder()
+                        ->select('hp', 'p', 'h')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->andWhere('h.sexo=:Genero')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('principal', '1')
+                        ->setParameter('Genero','Masculino');
+                    //query aux
+                    $queryaux = $em->createQueryBuilder()
+                        ->select('COUNT(hp)')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->andWhere('h.sexo=:Genero')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('principal', '1')
+                        ->setParameter('Genero','Masculino');
 
-        $em = $this->getDoctrine()->getManager();
-        $entryQuery = $em->createQueryBuilder()
-                ->select('hp', 'p', 'h')
-                ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
-                ->leftJoin('hp.idHojadevida', 'h')
-                ->leftJoin('hp.idPhoto', 'p')
-                ->andWhere('hp.principal =:principal')
-                ->andWhere('h.Calificacion >=4')
-                ->addOrderBy('h.fechaupdate', 'DESC')
-                ->setParameter('principal', '1');
-        //query aux
-        $queryaux = $em->createQueryBuilder()
-                ->select('COUNT(hp)')
-                ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
-                ->leftJoin('hp.idHojadevida', 'h')
-                ->leftJoin('hp.idPhoto', 'p')
-                ->andWhere('hp.principal =:principal')
-                ->andWhere('h.Calificacion >=4')
-                ->addOrderBy('h.fechaupdate', 'DESC')
-                ->setParameter('principal', '1');
-        $total_count = $queryaux->getQuery()->getSingleScalarResult();
-        $entryQuery->setFirstResult(($page - 1) * 20)->setMaxResults(20);
-        $entryQueryfinal = $entryQuery->getQuery();
-        //obtenemos el array de resultados
-        $entities = $entryQueryfinal->getArrayResult();
-        $pagination = (new Paginator())->setItems($total_count, 20)->setPage($searchParam['page'])->toArray();
-        //renderizamos la vista para mostrar las hojas de vida
-        return $this->render('AdminAdminBundle:Default:ajax_books_list.html.twig', array(
-                    'entities' => $entities,
-                    'pagination' => $pagination,
-        ));
+                    break;
+                case 'Femenino':
+                    $entryQuery = $em->createQueryBuilder()
+                        ->select('hp', 'p', 'h')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->andWhere('h.sexo=:Genero')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('Genero','Femenino')
+                        ->setParameter('principal', '1');
+                    //query aux
+                    $queryaux = $em->createQueryBuilder()
+                        ->select('COUNT(hp)')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->andWhere('h.sexo=:Genero')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('Genero','Femenino')
+                        ->setParameter('principal', '1');
+
+                    break;
+                case 'Infantil':
+                    $date = new DateTime('-18years', new \DateTimeZone('America/Bogota'));
+                    $entryQuery = $em->createQueryBuilder()
+                        ->select('hp', 'p', 'h')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->andWhere('h.fechaNac>:fecha')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('principal', '1')
+                        ->setParameter('fecha',$date);
+                    //query aux
+                    $queryaux = $em->createQueryBuilder()
+                        ->select('COUNT(hp)')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->andWhere('h.fechaNac>:fecha')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('principal', '1')
+                        ->setParameter('fecha',$date);
+                    break;
+                default:
+                    $entryQuery = $em->createQueryBuilder()
+                        ->select('hp', 'p', 'h')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('principal', '1');
+                    //query aux
+                    $queryaux = $em->createQueryBuilder()
+                        ->select('COUNT(hp)')
+                        ->from('AdminAdminBundle:HojadevidaPhoto', 'hp')
+                        ->leftJoin('hp.idHojadevida', 'h')
+                        ->leftJoin('hp.idPhoto', 'p')
+                        ->andWhere('hp.principal =:principal')
+                        ->andWhere('h.Calificacion >=4')
+                        ->addOrderBy('h.fechaupdate', 'DESC')
+                        ->setParameter('principal', '1');
+
+            }
+            $total_count = $queryaux->getQuery()->getSingleScalarResult();
+            $entryQuery->setFirstResult(($page - 1) * 9)->setMaxResults(9);
+            $entryQueryfinal = $entryQuery->getQuery();
+            //obtenemos el array de resultados
+            $entities = $entryQueryfinal->getArrayResult();
+            $pagination = (new Paginator())->setItems($total_count, 9)->setPage($searchParam['page'])->toArray();
+            //renderizamos la vista para mostrar las hojas de vida
+            return $this->render('AdminAdminBundle:Default:ajax_books_list.html.twig', array(
+                'entities' => $entities,
+                'pagination' => $pagination,
+            ));
+        }
+        else{
+            die;
+        }
+
     }
     /**
      *
