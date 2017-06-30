@@ -86,6 +86,10 @@ class DashboardController extends Controller {
             $totalbooksV = $queryaux->getQuery()->getSingleScalarResult();
             $queryaux->andWhere('ah.Estado =:Estado')->setParameter('Estado', 'Pendiente');
             $totalbooksP = $queryaux->getQuery()->getSingleScalarResult();
+
+            //Buscamos hojasde vida disponibles en fikner
+            $totalFikner=$em->getRepository('AdminAdminBundle:Hojadevida')->countAgenciaHojadevida($Agencia->getIdAgencia()->getId());
+
 //definimos el nombre para la ruta de fikner-page
             $ruta = str_replace(' ', '_', $Agencia->getIdAgencia()->getNombreAgencia());
             return array(
@@ -108,6 +112,7 @@ class DashboardController extends Controller {
                 'totalbooksR' => $totalbooksR,
                 'totalbooksP' => $totalbooksP,
                 'totalbooksV' => $totalbooksV,
+                'totalfikner'=>$totalFikner,
                 'AgenciaP' => $Agenciaplan,
             );
         } else {

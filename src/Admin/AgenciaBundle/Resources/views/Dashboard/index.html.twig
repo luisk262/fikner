@@ -16,6 +16,28 @@
     </div>
     <div class="col-md-8 col-lg-8">
         {%if estado%}
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img src="{{web_image('bundles/adminadmin/img/fikner_logo2.png').resize(50,50)}}" class="img-responsive" alt="">
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge x3">{{totalfikner}}</div>
+                                <div>Disponibles</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{path('agencia_dashboard_hojadevida2')}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Explorar fikner</span>
+                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div class="col-lg-12">
                 {%if totalbooksA <1000 %}
                     <h2>Alcance su próxima meta</h2>

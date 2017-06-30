@@ -34,4 +34,15 @@ class AgenciaHojadevidaRepository extends EntityRepository
          ->getQuery();
      return $result->getResult();
  }
+    public function idsHojasdevida($idAgencia){
+     //retorna ids de hojas de vida segun id de agencia
+        //retorna array
+        $ids = $this->createQueryBuilder('ah')
+            ->select('h.id')
+            ->join('ah.idHojadevida','h')
+            ->join('ah.idAgencia','a')
+            ->andWhere('a.id =:idAgencia')->setParameter('idAgencia',$idAgencia)
+            ->getQuery();
+        return $ids->getArrayResult();
+ }
 }
