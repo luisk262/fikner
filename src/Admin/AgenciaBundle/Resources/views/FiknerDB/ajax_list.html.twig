@@ -1,0 +1,60 @@
+<div class="col-md-12">
+    {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
+</div>
+{% for entity in entities %}
+    <div class="col-lg-4">
+        <div class="thumbnail">
+            <div class="col-md-2">
+                {% set aux=false %}
+                {% for id in ids %}
+                   {% if id.id==entity.idHojadevida.id%}
+                   {% set aux=true %}
+                   {% endif %}
+                {% endfor %}
+                {% if aux %}
+                    N/a
+                {% else %}
+                    <input type="checkbox" name="entities[]" value="{{entity.idHojadevida.id}}">
+                {% endif %}
+
+            </div>
+            sadsad
+            {% if entity.idPhoto.image == '' %}
+                <a href="{{ path('agencia_dashboard_hojadevida_fiknerdb_show', { 'id': entity.idHojadevida.id}) }}" target="_blank">
+                    <img data-src="{{ asset('upload/default/default.jpg')}}"  src="{{ asset('upload/default/default.jpg')}}" data-holder-rendered="true" style="width: 100%; display: block;"> 
+                </a>
+            {% else %}
+                <a href="{{ path('agencia_dashboard_hojadevida_fiknerdb_show', { 'id': entity.idHojadevida.id}) }}" target="_blank">
+                    <img data-src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}"  src="{{web_image('upload/Photos/' ~ entity.idPhoto.id ~'/' ~ entity.idPhoto.image).resize(210,210)}}" data-holder-rendered="true" style=" width: 100%; display: block;"> 
+                </a>
+            {%endif%}
+            <div class="caption"> 
+                <h3>{{ entity.idHojadevida.id }}<br>
+                </h3>
+                <label>Ciudad:</label>{{ entity.idHojadevida.ciudadresidencia }}<br>
+                <label>Estatura:</label>{{ entity.idHojadevida.estatura }}<br>
+                {% set number1 = entity.idHojadevida.fechaNac|date("Y") %}
+                {% set number2 = "now"|date("Y") %}
+                {% set aux= ((number2 - number1)) %}
+                <label>Edad:</label>{{aux}}<br>
+            </div>
+        </div>    
+    </div>
+{% endfor %}
+
+<div class="col-md-12">
+    {% include "AdminAdminBundle:Default:paginacion.html.twig" %}
+</div>
+<script>
+    (function ($) {
+
+        /* tooltip */
+        $('a[data-toggle="tooltip"]').tooltip();
+
+    })(jQuery);
+</script>
+
+
+
+
+
