@@ -48,11 +48,7 @@ class Solicitud {
      * @ORM\Column(name="Fechaprogramada", type="date", nullable=true)
      */
     private $fechaprogramada;
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Fecha", type="datetime", nullable=true)
-     */
+   
     /**
      * @var \Activo
      *

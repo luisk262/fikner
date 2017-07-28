@@ -13,14 +13,14 @@
             <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
             <div class="col-md-12">
                 <div class="col-md-2">
-                    <select id="js-perpage" name="searchParam[perPage]" class="form-control">
+                    <select id="js-perpage" name="searchParam[perPage]" class="form-control" onchange="Recargar()">
                         <option value="10" >10</option>
                         <option value="20" selected>20</option>
                         <option value="50">50</option>
                         <option value="100" >100</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="display: none;">
                     <button class="btn btn-default" type="submit" id="btn-recargar"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
                 <div class="col-md-2">
@@ -33,6 +33,11 @@
                         <option value="5">5 Estrellas</option>
                     </select>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <a href="#" data-toggle="modal" data-target="#searchModal" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-glass"></span> Búsqueda avanzada</a>
+                    </div>
+                </div>
                 <div col-md-3>
                     <h4>
                         <input type="checkbox" id="checkall"   data-toggle="checkbox"> Seleccionar Todos
@@ -43,11 +48,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <a href="#" data-toggle="modal" data-target="#searchModal" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-glass"></span> Búsqueda avanzada</a>
-            </div>
+        <div class="col-lg-2">
+            <button class="btn btn-primary btn-block" >Agregar</button>
         </div>
+
+
         <!-- Modal advanced search -->
         <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
             <div class="col-md-12">

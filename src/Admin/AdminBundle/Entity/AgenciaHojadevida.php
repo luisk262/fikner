@@ -72,6 +72,18 @@ class AgenciaHojadevida
      * @ORM\Column(name="Activo", type="boolean", nullable=true)
      */
     private $Activo;
+    /**
+     * @var \Reclutado
+     *
+     * @ORM\Column(name="Reclutado", type="boolean", nullable=true)
+     */
+    private $Reclutado;
+    /**
+     * @var \EstadoR
+     *
+     * @ORM\Column(name="EstadoR", type="boolean", nullable=true)
+     */
+    private $EstadoR;
      /**
      * @var \DateTime
      *
@@ -311,5 +323,53 @@ class AgenciaHojadevida
     public function getCalificacion()
     {
         return $this->Calificacion;
+    }
+
+    /**
+     * Set reclutado
+     *
+     * @param boolean $reclutado
+     *
+     * @return AgenciaHojadevida
+     */
+    public function setReclutado($reclutado)
+    {
+        $this->Reclutado = $reclutado;
+
+        return $this;
+    }
+
+    /**
+     * Get reclutado
+     *
+     * @return boolean
+     */
+    public function getReclutado()
+    {
+        return $this->Reclutado;
+    }
+
+    /**
+     * Set estadoR
+     *
+     * @param boolean $estadoR
+     *
+     * @return AgenciaHojadevida
+     */
+    public function setEstadoR($estadoR)
+    {
+        $this->EstadoR = $estadoR;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoR
+     *
+     * @return boolean
+     */
+    public function getEstadoR()
+    {
+        return $this->EstadoR;
     }
 }
