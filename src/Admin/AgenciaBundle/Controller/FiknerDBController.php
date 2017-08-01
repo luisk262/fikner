@@ -59,9 +59,6 @@ class FiknerDBController extends Controller {
             $AgenciaUsuario = null;
             $agenciaPlan = null;
         }
-
-
-
         return array(
             'current_page' => $page,
             'searchParam' => $searchParam,
@@ -265,6 +262,19 @@ class FiknerDBController extends Controller {
                     'ids'=>$ids
         ));
     }
+    /**
+     * consulta a Hojadevida entity.
+     *
+     * @Route("/ajax/consultaP", name="agencia_dashboard_fiknerdbP_ajax")
+     * @Method("GET")
+     */
+    public function ajaxListPAction() {
+        $pendientes=$this->listpendientes();
+        //renderizamos vista de pendientes
+        return $this->render('AdminAgenciaBundle:FiknerDB:listP.html.twig', array(
+            'pendientes' => $pendientes
+        ));
+    }
   /**
      * Finds and displays a Hojadevida entity.
      *
@@ -367,6 +377,99 @@ class FiknerDBController extends Controller {
             'nit' => $nit,
             'id' => $id
         );
+    }
+    public function listpendientes(){
+        $em= $this->getDoctrine()->getManager();
+        $security_context = $this->get('security.context');
+        $security_token = $security_context->getToken();
+        $user = $security_token->getUser();
+        $ausuario=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findOneBy(array('idUsuario'=>$user));
+        if(is_object($ausuario)){
+            $list=$em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findBy(array('Reclutado'=>true,'EstadoR'=>false,'idAgencia'=>$ausuario->getidAgencia()));
+        }else{
+            $list=array();
+        }
+        return $list;
+    }
+    /**
+     * Finds and displays a Hojadevida entity.
+     *
+     * @Route("/añadir/perfiles", name="agencia_dashboard_fiknerdbP_añadir")
+     * @Method("GET")
+     */
+    public function añadir(Request $request){
+        $Respuesta=false;
+        $lista = $request->query->get('lista');
+        $em= $this->getDoctrine()->getManager();
+        $security_context = $this->get('security.context');
+        $security_token = $security_context->getToken();
+        $user = $security_token->getUser();
+        $ausuario=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findOneBy(array('idUsuario'=>$user));
+
+        if($lista!=""){
+            $lista=explode(',',$lista);
+            foreach ( $lista as $id){
+                $hojadevida = $em->getRepository('AdminAdminBundle:Hojadevida')->find($id);
+                $Ahojadevida = $em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findOneBy(array('idHojadevida'=>$hojadevida,'idAgencia'=>$ausuario->getIdAgencia()));
+                if (is_object($hojadevida) && !is_object($Ahojadevida)){
+                    $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
+                    $AgenciaHojadevida=new AgenciaHojadevida();
+                    $AgenciaHojadevida->setIdHojadevida($hojadevida);
+                    $AgenciaHojadevida->setEstadoR(false);
+                    $AgenciaHojadevida->setReclutado(true);
+                    $AgenciaHojadevida->setEstado('Inactivo');
+                    $AgenciaHojadevida->setActivo(true);
+                    $AgenciaHojadevida->setIdAgencia($ausuario->getIdAgencia());
+                    $AgenciaHojadevida->setFechaupdate($date);
+                    $AgenciaHojadevida->setFecha($date);
+                    $em->persist($AgenciaHojadevida);
+                    $em->flush();
+                    $respuesta=true;
+                }else{$respuesta = false;}
+            }
+        }else{
+            $respuesta=false;
+        }
+        $pendientes=$this->listpendientes();
+        //renderizamos vista de pendientes
+        return $this->render('AdminAgenciaBundle:FiknerDB:listP.html.twig', array(
+            'pendientes' => $pendientes
+        ));
+    }
+    /**
+     * Finds and displays a dbfikner entity.
+     *
+     * @Route("/remover/perfiles", name="agencia_dashboard_fiknerdbP_remover")
+     * @Method("GET")
+     */
+    public function remover(Request $request){
+        $Respuesta=false;
+        $lista = $request->query->get('lista');
+        $em= $this->getDoctrine()->getManager();
+        $security_context = $this->get('security.context');
+        $security_token = $security_context->getToken();
+        $user = $security_token->getUser();
+        $ausuario=$em->getRepository('AdminAdminBundle:AgenciaUsuario')->findOneBy(array('idUsuario'=>$user));
+
+        if($lista!=""){
+            $lista=explode(',',$lista);
+            foreach ($lista as $id){
+                $hojadevida = $em->getRepository('AdminAdminBundle:Hojadevida')->find($id);
+                $Ahojadevida = $em->getRepository('AdminAdminBundle:AgenciaHojadevida')->findOneBy(array('idHojadevida'=>$hojadevida,'idAgencia'=>$ausuario->getIdAgencia()));
+                if (is_object($Ahojadevida)){
+                    $em->remove($Ahojadevida);
+                    $em->flush();
+                    $respuesta=true;
+                }else{$respuesta = false;}
+            }
+        }else{
+            $respuesta=false;
+        }
+        $pendientes=$this->listpendientes();
+        //renderizamos vista de pendientes
+        return $this->render('AdminAgenciaBundle:FiknerDB:listP.html.twig', array(
+            'pendientes' => $pendientes
+        ));
     }
 
 }

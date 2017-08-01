@@ -6,11 +6,9 @@
                 <h3><span class="glyphicon glyphicon-list-alt"></span> Hojas de vida</h3>
             </div>
         </div>
-
     </div>
-    <form  id="jsForm" role="form" method="GET" action="" class="form-horizontal col-lg-12">
-        <div class="col-lg-10">
-            <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
+    <form  id="jsForm" role="form" method="GET" action="" class="form-horizontal col-lg-9">
+        <input id="pagenumber" type="hidden" name="searchParam[page]" value="1">
             <div class="col-md-12">
                 <div class="col-md-2">
                     <select id="js-perpage" name="searchParam[perPage]" class="form-control" onchange="Recargar()">
@@ -35,24 +33,20 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <a href="#" data-toggle="modal" data-target="#searchModal" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-glass"></span> Búsqueda avanzada</a>
+                        <a href="#" data-toggle="modal" data-target="#searchModal" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-glass"></span> Búsqueda avanzada</a>
                     </div>
                 </div>
-                <div col-md-3>
+                <div class="col-lg-3">
+                    <span id="recargarP" class="btn btn-danger btn-block"> <u class="glyphicon glyphicon-shopping-cart"></u> Agregar</span>
+                </div>
+                <div class="col-md-3" style="display: none;">
                     <h4>
                         <input type="checkbox" id="checkall"   data-toggle="checkbox"> Seleccionar Todos
                     </h4>
                 </div>
-                <hr>
                 <div id='dataContainer'>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2">
-            <button class="btn btn-primary btn-block" >Agregar</button>
-        </div>
-
-
         <!-- Modal advanced search -->
         <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
             <div class="col-md-12">
@@ -292,7 +286,7 @@
                                             <option value="XL(38-40)">XL(38-40)</option>
                                             <option value="XXL(41-43)">XXL(41-43)</option>
                                         </select>
-                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="col-sm-5 control-label">Talla de zapatos</label>
@@ -303,7 +297,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">                        
+                    <div class="modal-footer">
                         <div class="container">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
@@ -316,12 +310,25 @@
             </div>
         </div>
     </form>
+    <div class="col-lg-3">
+            <form  id="jsFormP" role="form" method="GET" action="">
+                    <p>Lista de perfiles  que seran añadidos a su base de datos</p>
+                    <p>Compra minima <b>COP 20.000.00</b></p>
+                <table class="table" id='listP'>
+                </table>
+                <p class="text-right">
+                    <span id="removerP" class="glyphicon glyphicon-floppy-disk btn btn-success"></span>
+                    <span id="removerP" class="glyphicon glyphicon-trash btn btn-danger"></span>
+                </p>
+
+            </form>
+        </div>
 {% endblock %}
 {% block javascript %}
     {{parent()}}
     <script>
         function Recargar() {
-            document.getElementById("btn-recargar").click();
+            document.getElementById('btn-recargar').click();
         }
         (function ($) {
             /* helper functions */
@@ -332,12 +339,25 @@
                 });
                 return users.join(',');
             }
+            function getCheckedRowsP() {
+                var users = [];
+                dataContainerP.find('input:checkbox:checked').each(function () {
+                    users.push($(this).val());
+                });
+                return users.join(',');
+            }
             function isSelected() {
                 if (!getCheckedRows()) {
-                    alert('Por favor seleccione una hoja de vida');
+                    alert('Por favor seleccioné un perfil');
                     return false;
-                }
-                ;
+                };
+                return true;
+            }
+            function isSelectedP() {
+                if (!getCheckedRowsP()) {
+                    alert('Seleccioné un perfil a remover');
+                    return false;
+                };
                 return true;
             }
             /* ajax dashboard*/
@@ -348,6 +368,14 @@
                     emailModal = form.find('#emailModal'),
                     jsFormUrl = '',
                     checkboxBtn = form.find("input:checkbox");
+            var formP =$('#jsFormP'),
+                dataContainerP = formP.find('#listP'),
+                jsFormUrlP = '',
+                checkboxBtn = form.find("input:checkbox");
+            formP.on('submit'),function () {
+                ajaxPostP();
+                return false;
+            }
             /* pagination */
             form.on('click', '.js-page', function () {
                 pageInput.val($(this).data('page'));
@@ -361,6 +389,10 @@
                 pageInput.val('1');
                 checkboxBtn.prop("checked", false);
                 jsFormUrl = '{{ path('agencia_dashboard_fiknerdb_ajax',{'page':current_page}) }}';
+            }
+            function initp() {
+                jsFormUrlP = '{{ path('agencia_dashboard_fiknerdbP_ajax') }}';
+
             }
             function ajaxPost(action, callback) {
                 form.addClass('working');
@@ -386,9 +418,33 @@
                 });
                 return false;
             }
+            function ajaxPostP(action, callback) {
+                form.addClass('working');
+                searchModal.modal('hide');
+                $.ajax({
+                    type: "GET",
+                    data: formP.serialize(),
+                    url: jsFormUrlP,
+                    success: function (datos) {
+                        formP.removeClass('working');
+                        if (callback)
+                            callback(datos);
+                        initp();
+                        if (!action)
+                            dataContainerP.empty().hide().html(datos).fadeIn();
+                        else
+                            ajaxPostP();
+                    },
+                    error: function () {
+                        formP.removeClass('working');
+                        alert('Hubo un error');
+                    }
+                });
+                return false;
+            }
             /* submit the form after loading the page*/
             init();
-            ajaxPost();
+            initp();
              /* check all check buttons*/
             $("#checkall").click(function () {
                 if ($("#checkall").prop("checked"))
@@ -396,7 +452,28 @@
                 else
                     $("input:checkbox").prop("checked", false);
             });
+            $("#recargarP").click(function () {
+                if(isSelected()){
+                    var lista = new Array();
+                    lista = getCheckedRows();
+                    jsFormUrlP= "{{ path('agencia_dashboard_fiknerdbP_añadir') }}";
+                    jsFormUrlP=jsFormUrlP+"?lista="+lista;
+                    ajaxPostP();
+                }
+            });
+            $("#removerP").click(function () {
+                if(isSelectedP()){
+                    var lista = new Array();
+                    lista = getCheckedRowsP();
+                    jsFormUrlP= "{{ path('agencia_dashboard_fiknerdbP_remover') }}";
+                    jsFormUrlP=jsFormUrlP+"?lista="+lista;
+                    ajaxPostP();
+                }
+            });
 
+
+            $(document).ready(ajaxPost());
+            $(document).ready(ajaxPostP());
         })(jQuery);
     </script>
 

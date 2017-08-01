@@ -151,6 +151,8 @@ class HojadevidaController extends Controller {
                     ->andWhere('h.id = h2.id')
                     ->andWhere('ah.idAgencia  =:idAgencia')
                     ->andWhere('ah.Activo = 1')
+                    ->andWhere('ah.Reclutado IS NULL OR ah.Reclutado=1')
+                    ->andWhere('ah.EstadoR IS NULL OR ah.EstadoR=1')
                     ->addOrderBy('ah.fechaupdate', 'DESC')
                     ->andWhere('ah.Estado  =:Estado')
                     ->setParameter('Estado', 'Activo')
@@ -167,6 +169,8 @@ class HojadevidaController extends Controller {
                     ->andWhere('ah.idAgencia  =:idAgencia')
                     ->addOrderBy('ah.fechaupdate', 'DESC')
                     ->andWhere('ah.Activo = 1')
+                    ->andWhere('ah.Reclutado IS NULL OR ah.Reclutado=1')
+                    ->andWhere('ah.EstadoR IS NULL OR ah.EstadoR=1')
                     ->andWhere('ah.Estado  =:Estado')
                     ->setParameter('Estado', 'Activo')
                     ->setParameter('idAgencia', $agenciaU->getIdAgencia());
@@ -407,6 +411,8 @@ class HojadevidaController extends Controller {
                     ->andWhere('h.id = h2.id')
                     ->andWhere('ah.idAgencia  =:idAgencia')
                     ->andWhere('ah.Activo = 1')
+                    ->andWhere('ah.Reclutado IS NULL OR ah.Reclutado=1')
+                    ->andWhere('ah.EstadoR IS NULL OR ah.EstadoR=1')
                     ->addOrderBy('ah.fechaupdate', 'DESC')
                     ->andWhere('ah.Estado  =:Estado')
                     ->setParameter('Estado', $estado)
@@ -423,6 +429,8 @@ class HojadevidaController extends Controller {
                     ->andWhere('ah.idAgencia  =:idAgencia')
                     ->addOrderBy('ah.fechaupdate', 'DESC')
                     ->andWhere('ah.Activo = 1')
+                    ->andWhere('ah.Reclutado IS NULL OR ah.Reclutado=1')
+                    ->andWhere('ah.EstadoR IS NULL OR ah.EstadoR=1')
                     ->andWhere('ah.Estado  =:Estado')
                     ->setParameter('Estado', $estado)
                     ->setParameter('idAgencia', $agenciaU->getIdAgencia()->getId());
@@ -662,13 +670,15 @@ EOF
             $query = $em->createQuery(
                             'SELECT AH
                             FROM AdminAdminBundle:AgenciaHojadevida AH
-                            WHERE (AH.idAgencia  =:idAgencia  AND AH.idHojadevida=:idhojadevida) AND  (AH.Activo  =:Activo)'
+                            WHERE (AH.idAgencia  =:idAgencia  AND AH.idHojadevida=:idhojadevida) 
+                            AND  (AH.Activo  =:Activo) AND (AH.Reclutado IS NULL OR AH.Reclutado=TRUE ) AND (AH.EstadoR IS NULL OR AH.EstadoR=TRUE)'
                     )->setParameter('idAgencia', $agenciaU->getIdAgencia()->getId())
                     ->setParameter('Activo', '1')
                     ->setParameter('idhojadevida', $HPhoto->getIdHojadevida());
             if ($query->getResult()) {
                 $hojadevida = $query->setMaxResults(1)->getOneOrNullResult();
             } else {
+                print "Ups imposible acceder a esta credencial";die;
                 $hojadevida = NULL;
             }
         }

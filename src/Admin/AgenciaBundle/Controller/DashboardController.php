@@ -77,6 +77,8 @@ class DashboardController extends Controller {
                     ->from('AdminAdminBundle:AgenciaHojadevida', 'ah')
                     ->andWhere('ah.idAgencia =:id')
                     ->andWhere('ah.Activo = 1')
+                    ->andWhere('ah.Reclutado IS NULL OR ah.Reclutado=1')
+                    ->andWhere('ah.EstadoR IS NULL OR ah.EstadoR=1')
                     ->setParameter('id', $Agencia->getIdAgencia()->getId());
             $queryaux->andWhere('ah.Estado =:Estado')->setParameter('Estado', 'Activo');
             $totalbooksA = $queryaux->getQuery()->getSingleScalarResult();

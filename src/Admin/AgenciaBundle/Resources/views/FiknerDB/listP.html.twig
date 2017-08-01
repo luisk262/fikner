@@ -1,0 +1,72 @@
+{% set total=0 %}
+<thead>
+<tr>
+    <td><b>Total Añadidos</b></td>
+    <td><b>{{ pendientes|length }}</b></td>
+</tr>
+{% if  pendientes|length >0  %}
+<tr>
+
+    <th>Book</th>
+    <th>Costo</th>
+    <th>
+        <input type="checkbox" id="checkallP"   data-toggle="checkboxP">
+    </th>
+</tr>
+</thead>
+<tbody >
+    {% for pendiente in pendientes %}
+        <tr>
+            <td>
+                <a href="{{ path('agencia_dashboard_hojadevida_fiknerdb_show', { 'id': pendiente.idHojadevida.id}) }}" target="_blank">
+                    {{ pendiente.idHojadevida.id }}
+                </a>
+            </td>
+            <th>
+                {% if pendiente.idHojadevida.calificacion == "1" %}
+                  {% set total=total+200 %}  200
+                {% elseif pendiente.idHojadevida.calificacion == "2" %}
+                    {% set total=total+400 %}  400
+                {% elseif pendiente.idHojadevida.calificacion == "3" %}
+                    {% set total=total+600 %} 600
+                {% elseif pendiente.idHojadevida.calificacion == "4" %}
+                    {% set total=total+800 %} 800
+                {% elseif pendiente.idHojadevida.calificacion == "5" %}
+                    {% set total=total+1000 %} 1000
+                {% else %}
+                    {% set total=total+200 %} 200
+                {% endif %}
+            </th>
+            <td>
+                <input type="checkbox" name="pendientes[]" value="{{pendiente.idHojadevida.id}}">
+            </td>
+
+        </tr>
+    {% endfor %}
+<tr>
+    <td><b>Total</b></td>
+    <td><b>COP {{ total|number_format(2, '.', '.') }}</b></td>
+    <td>
+    </td>
+</tr>
+{% endif %}
+</tbody>
+
+<script>
+    (function ($) {
+        /* tooltip */
+        $('a[data-toggle="tooltip"]').tooltip();
+        $("#checkallP").click(function () {
+            if ($("#checkallP").prop("checked"))
+                $("input:checkbox").prop("checked", true);
+            else
+                $("input:checkbox").prop("checked", false);
+        });
+
+    })(jQuery);
+</script>
+
+
+
+
+
