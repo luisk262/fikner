@@ -15,3 +15,10 @@ parameters:
     debug_toolbar: true
     debug_redirects: false
     use_assetic_controller: true
+    #payU
+    merchantId: 508029
+    accountId: 512321
+    currency: COP
+    apikey: 4Vj8eK4rloUd272L48hsrarnUA
+    apilogin: pRRXKOl8ikMmt9u
+    test: 1

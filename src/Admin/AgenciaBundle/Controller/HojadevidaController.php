@@ -341,8 +341,8 @@ class HojadevidaController extends Controller {
             $queryaux->andWhere('h.entidadSalud Like :entidadSalud')->setParameter('entidadSalud', '%' . $entidadSalud . '%');
         }
         if (!empty($categoria)) {
-            $entryQuery->andWhere('h.categoria =:categoria ')->setParameter('categoria', $categoria);
-            $queryaux->andWhere('h.categoria =:categoria ')->setParameter('categoria', $categoria);
+            $entryQuery->andWhere('ah.categoria =:categoria ')->setParameter('categoria', $categoria);
+            $queryaux->andWhere('ah.categoria =:categoria ')->setParameter('categoria', $categoria);
         }
         if (!empty($tallaCamisa)) {
             $entryQuery->andWhere('h.tallaCamisa =:tallaCamisa')->setParameter('tallaCamisa', $tallaCamisa);

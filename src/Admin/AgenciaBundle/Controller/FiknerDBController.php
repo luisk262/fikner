@@ -471,5 +471,89 @@ class FiknerDBController extends Controller {
             'pendientes' => $pendientes
         ));
     }
+    /**
+     *
+     * @Route("/guardar/perfiles/", name="agencia_dashboard_fiknerdbP_pay")
+     * @Method("GET")
+     * @Template()
+     */
+    public function PaycheckoutAction(){
+        $security_context = $this->get('security.context');
+        $security_token = $security_context->getToken();
+        //definimos el usuario, con rol diferentea cordinador, administrador,suberadmin,usuario
+        $user = $security_token->getUser();
+        $request = $this->getRequest();
+        //Asignamos el parametro url para luego pasarlo a ajax
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT au
+                        FROM AdminAdminBundle:AgenciaUsuario au
+                        WHERE au.idUsuario  =:id'
+        )->setParameter('id', $user->getId());
+        if ($query->getResult()) {
+            $agencia = true;
+            $AgenciaUsuario = $query->getResult();
+            // Buscamos el array de resultados
+            $AgenciaUsuario = $query->setMaxResults(1)->getOneOrNullResult();
+            ///verificamos plan que tiene la agencia
+            $agenciaPlan =$em->getRepository('AdminAdminBundle:Agencia')->plan($AgenciaUsuario->getIdAgencia()->getId());
+            if(!$agenciaPlan){
+                $agenciaPlan=null;
+            }
+        } else {
+            $agencia = false;
+            $AgenciaUsuario = null;
+            $agenciaPlan = null;
+        }
+        $pendientes=$this->listpendientes();
+        $total=count($pendientes);
+        $precio=$this->calcularprecio($pendientes);
+        $date = new DateTime('now', new \DateTimeZone('America/Bogota'));
+        $payU['amount']=$precio;
+        $payU['merchantId']=$this->getParameter('merchantId');
+        $payU['accountId']=$this->getParameter('accountId');
+        $payU['description']="Acceso a información detallada de ".$total." perfiles. de la base de datos fikner.";
+        $payU['referenceCode']=$date->format('YmdHis').rand(100, 999);
+        $payU['tax']="";
+        $payU['taxReturnBase']="";
+        $payU['currency']=$this->getParameter('currency');
+        $payU['signature']=$str = md5($this->getParameter("apikey")."~".$this->getParameter("merchantId")."~".$payU['referenceCode']."~".$payU['amount']."~".$payU['currency']);
+        $payU['test']=$this->getParameter('test');
+        $payU['buyerEmail']=$this->getUser()->getEmail();
+        return array(
+            'AgenciaP' => $agenciaPlan,
+            'pendientes'=>$pendientes,
+            'payU'=>$payU
+        );
+    }
+    public function calcularprecio($pendientes){
+        //Tarifas
+        $payU=array();
+        $contador=0;
+        foreach ($pendientes as $hojadevida){
+            switch ($hojadevida->getIdHojadevida()->getCalificacion()){
+                case "5":
+                    $contador=$contador+1000;
+                    break;
+                case "4":
+                    $contador=$contador+800;
+                    break;
+                case "3":
+                    $contador=$contador+600;
+                    break;
+                case "2":
+                    $contador=$contador+400;
+                    break;
+                case "1":
+                    $contador=$contador+200;
+                    break;
+                default:
+                    $contador=$contador+200;
+            }
+        }
+        if($contador<20000) $contador=20000;
+
+       return $contador;
+    }
 
 }

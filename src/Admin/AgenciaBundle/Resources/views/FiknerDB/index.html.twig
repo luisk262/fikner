@@ -317,7 +317,7 @@
                 <table class="table" id='listP'>
                 </table>
                 <p class="text-right">
-                    <span id="removerP" class="glyphicon glyphicon-floppy-disk btn btn-success"></span>
+                    <span id="save" class="glyphicon glyphicon-floppy-disk btn btn-success"></span>
                     <span id="removerP" class="glyphicon glyphicon-trash btn btn-danger"></span>
                 </p>
 
@@ -469,6 +469,9 @@
                     jsFormUrlP=jsFormUrlP+"?lista="+lista;
                     ajaxPostP();
                 }
+            });
+            $("#save").click(function () {
+                window.location.replace("{{ path('agencia_dashboard_fiknerdbP_pay')}}");
             });
 
 
